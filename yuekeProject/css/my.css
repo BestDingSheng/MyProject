@@ -1,0 +1,83 @@
+/*.mui-backdrop{
+	display: none;
+}*/
+header{
+	height: 110px;
+}
+.statistical{
+	margin: 0;
+	padding:10px 20px;
+	list-style: none;
+	background: #fff;
+	overflow:hidden;
+	border-bottom: 1px solid #999;
+}
+.statistical li{
+	width:25%;
+	text-align: center;
+}
+.statistical li p{
+	font-size: 12px;
+	margin: 0;
+}
+.statistical li span{
+	font-size: 20px;
+	font-weight: bold;
+}
+/**/
+.listmore .mui-table-view-cell .bg01 {
+  background: url(../images/my01.png) no-repeat 2px 12px;
+  background-size: 20px auto;
+}
+.listmore .mui-table-view-cell .bg02 {
+  background: url(../images/my02.png) no-repeat 3px 7px;
+  background-size: 20px auto;
+}
+.listmore .mui-table-view-cell .bg03 {
+  background: url(../images/my03.png) no-repeat 4px 11px;
+  background-size: 20px auto;
+}
+.listmore .mui-table-view-cell .bg04 {
+  background: url(../images/my04.png) no-repeat 4px 13px;
+  background-size: 20px auto;
+}
+.listmore .mui-table-view-cell .bg05 {
+  background: url(../images/my05.png) no-repeat 4px 12px;
+  background-size: 20px auto;
+}
+/**/
+.mui-backdrop .main{
+	padding: 0;
+	position: relative;
+}
+.mui-backdrop .main .header{
+	text-align: center;
+	line-height: 40px;
+	font-weight: bold;
+	border-bottom: 3px solid #ff8d4e;
+}
+textarea{
+	height: 130px;
+}
+.mui-backdrop .main{
+	height: 240px;
+}
+.mui-btn-block{
+	padding: 0;
+	width: 50%;
+	font-size: 14px;
+	line-height: 25px;
+	margin: 0 auto;
+	background: #FF8D4E !important;
+	border: none;
+}
+.mui-btn-danger:enabled:active{
+	border: none;
+}
+.count{
+	position: absolute;
+	top: 140px;
+	right: 20px;
+	color: #999;
+	z-index: 99;
+}

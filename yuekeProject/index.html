@@ -6,6 +6,7 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/swiper-3.3.1.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
 	</head>
 
@@ -36,7 +37,7 @@
 			<ul class="mui-table-view mui-grid-view mui-grid-9 entrance">
 
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<a href="#"> 
+					<a href="#">
 						<span class="mui-icon">
 							<img src="images/Icon_add.png" alt="" />
 						</span>
@@ -44,7 +45,7 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<a href="#"> 
+					<a href="#">
 						<span class="mui-icon">
 							<img src="images/Icon_push.png" alt="" />
 						</span>
@@ -52,7 +53,7 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<a href="#"> 
+					<a href="#">
 						<span class="mui-icon">
 							<img src="images/Icon_data.png" alt="" />
 						</span>
@@ -89,30 +90,99 @@
 					</a>
 				</li>
 			</ul>
+			<!--广告banner-->
+			<div class="advertising">
+				<img src="images/guanggao.png" alt="" />
+			</div>
+			<!--蒙版-->
+			<div class="mui-backdrop">
+				
+				<div class="main">
+					<ul class="mui-table-view mui-grid-view mui-grid-9 entrance">
+
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+							<a href="#">
+								<span class="mui-icon">
+							<img src="images/mask01.png" alt="" />
+						</span>
+								<div class="mui-media-body">微官网</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+							<a href="#">
+								<span class="mui-icon">
+							<img src="images/mask02.png" alt="" />
+							
+						</span>
+								<div class="mui-media-body">活动券</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+							<a href="#">
+								<span class="mui-icon">
+							<img src="images/mask03.png" alt="" />
+							
+						</span>
+								<div class="mui-media-body">课程券</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+							<a href="#">
+								<span class="mui-icon">
+							<img src="images/mask04.png" alt="" />
+						
+						</span>
+								<div class="mui-media-body">相机</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+							<a href="#">
+								<span class="mui-icon">
+							<img src="images/mask05.png" alt="" />
+							
+						</span>
+								<div class="mui-media-body">文章</div>
+							</a>
+						</li>
+					</ul>
+					<div class="btnclose">
+						<img src="images/close.png" alt="" />
+					</div>
+				</div>
+			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item mui-active" href="#tabbar">
-				<span class="mui-icon">
-					<img src="images/home.png" alt="" />
+				<span class="mui-icon icon01">
+					
 				</span>
 				<span class="mui-tab-label">首页</span>
 			</a>
 			<a class="mui-tab-item" href="#tabbar-with-chat">
-				<span class="mui-icon"></span>
-				<span class="mui-tab-label">消息</span>
+				<span class="mui-icon icon02">
+					
+				</span>
+				<span class="mui-tab-label">动态</span>
 			</a>
 			<a class="mui-tab-item" href="#tabbar-with-contact">
-				<span class="mui-icon"></span>
-				<span class="mui-tab-label">通讯录</span>
+				<span class="mui-icon icon03">
+					
+				</span>
+				<span class="mui-tab-label">试听</span>
 			</a>
 			<a class="mui-tab-item" href="#tabbar-with-map">
-				<span class="mui-icon"></span>
-				<span class="mui-tab-label">设置</span>
+				<span class="mui-icon icon04">
+				</span>
+				<span class="mui-tab-label">我</span>
 			</a>
 		</nav>
 		<script src="js/mui.min.js"></script>
+		<script src="js/zepto.min.js"></script>
+		<script src="js/swiper-3.3.1.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			$('.btnclose').on('click',function(){
+				$('.mui-backdrop').hide();
+			})
 		</script>
 	</body>
 

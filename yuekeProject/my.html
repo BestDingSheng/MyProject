@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/my.css" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<header>
+				<div class="Headportrait">
+					<div class="mui-pull-left head">
+						<img src="images/touxiang.png" alt="" />
+					</div>
+					<div class="mui-pull-left text">
+						<p>Andy</p>
+						<p>博乐宝宝亲子乐园</p>
+					</div>
+				</div>
+			</header>
+			<!--入口-->
+			<ul class="statistical">
+				<li class="mui-pull-left">
+					<span>15</span>
+					<p>昨日阅读量</p>
+				</li>
+				<li class="mui-pull-left">
+					<span>15</span>
+					<p>昨日阅读量</p>
+				</li>
+				<li class="mui-pull-left">
+					<span>15</span>
+					<p>昨日阅读量</p>
+				</li>
+				<li class="mui-pull-left">
+					<span>15</span>
+					<p>昨日阅读量</p>
+				</li>
+
+			</ul>
+			<!--list 列表-->
+			<ul class="mui-table-view listmore">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right bg01">
+						微官网
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right bg02">
+						活动券
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view listmore">
+
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right bg03">
+						课程券
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right bg04">
+						相册
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right bg05">
+						文章
+					</a>
+				</li>
+			</ul>
+			<!--蒙版-->
+			<div class="mui-backdrop">
+				
+				<div class="main">
+					<div class="header">
+						反馈意见
+					</div>
+					<div class="count">
+						<span id="num">0 </span>/ 100
+					</div>
+					<textarea placeholder="请写下您的宝贵意见..." name="" rows="" cols="" maxlength="100"></textarea>
+					<button class="mui-btn-block mui-btn-danger">提交</button>
+				</div>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon icon01">
+					
+				</span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat">
+				<span class="mui-icon icon02">
+					
+				</span>
+				<span class="mui-tab-label">动态</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-contact">
+				<span class="mui-icon icon03">
+					
+				</span>
+				<span class="mui-tab-label">试听</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map">
+				<span class="mui-icon icon04">
+				</span>
+				<span class="mui-tab-label">我</span>
+			</a>
+		</nav>
+		<script src="js/mui.min.js"></script>
+		<script src="js/zepto.min.js"></script>
+		<script src="js/swiper-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			$('.main').on('click',function(event){
+				 event.stopPropagation();
+//				alert(22)
+			})
+			$('.mui-backdrop').on('click',function(){
+				$('.mui-backdrop').hide();
+			})
+			$('textarea').keyup(function(){
+				var len = $(this).val().length;
+				$('#num').html(len);
+			})
+		</script>
+	</body>
+
+</html>

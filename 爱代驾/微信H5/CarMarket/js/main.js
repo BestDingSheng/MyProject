@@ -20,7 +20,6 @@
             }
         } else {
             alert("手机号码不能为空!");
-            document.getElementById("phone").focus();
             return;
         }
 

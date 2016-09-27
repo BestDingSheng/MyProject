@@ -1,0 +1,109 @@
+header {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: url(../images/header_bg.png) no-repeat center center;
+  background-size: 100% 100%;
+}
+header .Headportrait {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 40px;
+  padding-top: 15px;
+}
+header .Headportrait .head {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+header .Headportrait .head img {
+  width: 100%;
+}
+header .Headportrait .text {
+  margin-top: 15px;
+}
+header .Headportrait .text p {
+  color: #333333;
+  font-size: 16px;
+}
+header .Headportrait .text p:nth-child(1) {
+  font-weight: bold;
+  font-size: 18px;
+}
+header .reading {
+  list-style: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+header .reading li {
+  width: 49.5%;
+  box-sizing: border-box;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+header .reading li p {
+  margin: 0;
+  color: #fff;
+  font-size: 10px;
+}
+header .reading li p span {
+  font-size: 16px;
+  margin-right: 5px;
+}
+.mui-grid-view.mui-grid-9 {
+  background: #fff;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+  border: none;
+  padding: 0;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell .mui-media-body {
+  color: #999999;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell.mui-active {
+  background: transparent;
+}
+.entrance {
+  border-bottom: 1px solid #999999;
+}
+.entrance li div {
+  color: #999999;
+}
+.entrance li img {
+  width: 65%;
+  vertical-align: middle;
+}
+.listmore {
+  margin-top: 15px;
+}
+.listmore .mui-table-view-cell {
+  padding-left: 35px;
+}
+.listmore .mui-table-view-cell .bg01 {
+  background: url(../images/bg_01.png) no-repeat left center;
+  background-size: 25px auto;
+}
+.listmore .mui-table-view-cell .bg02 {
+  background: url(../images/bg_02.png) no-repeat 3px 7px;
+  background-size: 20px auto;
+}
+.listmore .mui-table-view-cell .bg03 {
+  background: url(../images/bg_03.png) no-repeat left 11px;
+  background-size: 25px auto;
+}
+.listmore .mui-table-view-cell .bg04 {
+  background: url(../images/bg_04.png) no-repeat left center;
+  background-size: 25px auto;
+}
+.listmore .mui-table-view-cell .bg05 {
+  background: url(../images/bg_05.png) no-repeat left 11px;
+  background-size: 25px auto;
+}
+/*# sourceMappingURL=index.css.map */

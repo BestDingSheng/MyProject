@@ -1,0 +1,115 @@
+
+header{
+    position: relative;
+    width: 100%;
+    height: 160px;
+    background: url(../images/header_bg.png) no-repeat center center;
+    background-size: 100% 100%;
+    .Headportrait{
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 40px;
+        padding-top: 15px;
+        .head{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            img{
+                width: 100%;
+            }
+        }
+        .text{
+            margin-top: 15px;
+            p{
+                color:#333333;
+                font-size: 16px;
+            }
+            p:nth-child(1){
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+    }
+    .reading{
+        list-style: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        //height: 42px;
+        li{
+            width: 49.5%;
+           // height:42px;
+            box-sizing: border-box;
+            padding-top: 3px;
+            padding-bottom:3px;
+            text-align: center;
+            background:rgba(0,0,0,0.3);
+            p{
+                margin: 0;
+                color:#fff;
+                font-size: 10px;
+                span{
+                    font-size: 16px;
+                    margin-right: 5px;
+                }
+            }
+        }
+        
+    }
+}
+//第二部分
+.mui-grid-view.mui-grid-9{
+    background: #fff;
+}
+    .mui-grid-view.mui-grid-9 .mui-table-view-cell{
+       border:none;
+       padding:0;
+       .mui-media-body{
+           color:#999999;
+       }
+    }
+    .mui-grid-view.mui-grid-9 .mui-table-view-cell.mui-active{
+        background: transparent;
+    }
+.entrance{
+    border-bottom: 1px solid #999999;
+    li{
+        div{
+            color: #999999;
+        }
+        img{
+            width:65%;
+            vertical-align: middle;
+        }
+    }
+}
+.listmore{
+    margin-top: 15px;
+    .mui-table-view-cell{
+        padding-left: 35px;
+        .bg01{
+            background: url(../images/bg_01.png) no-repeat left center;
+            background-size: 25px auto;
+        }
+          .bg02{
+            background: url(../images/bg_02.png) no-repeat 3px 7px;
+            background-size: 20px auto;
+        }
+          .bg03{
+            background: url(../images/bg_03.png) no-repeat left 11px;
+            background-size: 25px auto;
+        }
+          .bg04{
+            background: url(../images/bg_04.png) no-repeat left center;
+            background-size: 25px auto;
+        }
+          .bg05{
+            background: url(../images/bg_05.png) no-repeat left 11px;
+            background-size: 25px auto;
+        }
+    }
+}

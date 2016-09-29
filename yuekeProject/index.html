@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>约课教师端</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/swiper-3.3.1.min.css" />
@@ -91,12 +91,28 @@
 				</li>
 			</ul>
 			<!--广告banner-->
-			<div class="advertising">
-				<img src="images/guanggao.png" alt="" />
+
+			<div class="swiper-container swiper-container-horizontal">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide swiper-slide-active">
+						<img src="images/publicity01.png" alt="" />
+					</div>
+					<div class="swiper-slide swiper-slide-active">
+						<img src="images/publicity02.png" alt="" />
+					</div>
+					<div class="swiper-slide swiper-slide-active">
+						<img src="images/publicity01.png" alt="" />
+					</div>
+					<div class="swiper-slide swiper-slide-active">
+						<img src="images/publicity02.png" alt="" />
+					</div>
+				</div>
+				<!-- Add Pagination -->
 			</div>
+
 			<!--蒙版-->
 			<div class="mui-backdrop">
-				
+
 				<div class="main">
 					<ul class="mui-table-view mui-grid-view mui-grid-9 entrance">
 
@@ -152,7 +168,7 @@
 			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active" href="#tabbar">
+			<a class="mui-tab-item mui-active" href="index.html">
 				<span class="mui-icon icon01">
 					
 				</span>
@@ -170,7 +186,7 @@
 				</span>
 				<span class="mui-tab-label">试听</span>
 			</a>
-			<a class="mui-tab-item" href="#tabbar-with-map">
+			<a class="mui-tab-item" href="my.html">
 				<span class="mui-icon icon04">
 				</span>
 				<span class="mui-tab-label">我</span>
@@ -180,9 +196,21 @@
 		<script src="js/zepto.min.js"></script>
 		<script src="js/swiper-3.3.1.min.js"></script>
 		<script type="text/javascript">
-			$('.btnclose').on('click',function(){
+			$('.btnclose').on('click', function() {
 				$('.mui-backdrop').hide();
-			})
+			});
+			$('.mui-bar').find('a').on('tap', function() {
+				var herf = $(this).attr('href');
+				location.href = herf;
+			});
+			//广告位置banner滚动配置
+			var swiper = new Swiper('.swiper-container', {
+				autoplay:3000,
+				slidesPerView: 2,
+				paginationClickable: true,
+				spaceBetween:0,
+				loop:true,
+			});
 		</script>
 	</body>
 

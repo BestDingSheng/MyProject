@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>我</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/swiper-3.3.1.min.css" />
@@ -32,15 +32,15 @@
 				</li>
 				<li class="mui-pull-left">
 					<span>15</span>
-					<p>昨日阅读量</p>
+					<p>阅读量</p>
 				</li>
 				<li class="mui-pull-left">
 					<span>15</span>
-					<p>昨日阅读量</p>
+					<p>总试听量</p>
 				</li>
 				<li class="mui-pull-left">
 					<span>15</span>
-					<p>昨日阅读量</p>
+					<p>总签约量</p>
 				</li>
 
 			</ul>
@@ -91,7 +91,7 @@
 			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active" href="#tabbar">
+			<a class="mui-tab-item " href="index.html">
 				<span class="mui-icon icon01">
 					
 				</span>
@@ -109,7 +109,7 @@
 				</span>
 				<span class="mui-tab-label">试听</span>
 			</a>
-			<a class="mui-tab-item" href="#tabbar-with-map">
+			<a class="mui-tab-item mui-active" href="my.html">
 				<span class="mui-icon icon04">
 				</span>
 				<span class="mui-tab-label">我</span>
@@ -129,6 +129,11 @@
 			$('textarea').keyup(function(){
 				var len = $(this).val().length;
 				$('#num').html(len);
+			})
+			
+			$('.mui-bar').find('a').on('tap',function(){
+				var herf = $(this).attr('href');
+				location.href=herf;
 			})
 		</script>
 	</body>

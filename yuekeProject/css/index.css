@@ -137,28 +137,28 @@ header .reading li p span {
 	background-size: 20px auto;
 }
 .mui-bar-tab .mui-tab-item .icon02{
-	background: url(../images/dongtai.png) no-repeat center center;
-	background-size: 20px auto;
+	background: url(../images/dongtai.png) no-repeat center 4px;
+	background-size: 15px auto;
 }
 .mui-bar-tab .mui-tab-item.mui-active .icon02{
-	background: url(../images/dongtai-act.png) no-repeat center center;
-	background-size: 20px auto;
+	background: url(../images/dongtai-act.png) no-repeat center 4px;
+	background-size: 15px auto;
 }
 .mui-bar-tab .mui-tab-item .icon03{
-	background: url(../images/shiting.png) no-repeat center center;
-	background-size: 20px auto;
+	background: url(../images/shiting.png) no-repeat center 5px;
+	background-size: 18px auto;
 }
 .mui-bar-tab .mui-tab-item.mui-active .icon03{
-	background: url(../images/shiting-act.png) no-repeat center center;
-	background-size: 20px auto;
+	background: url(../images/shiting-act.png) no-repeat center 5px;
+	background-size: 18px auto;
 }
 .mui-bar-tab .mui-tab-item .icon04{
-	background: url(../images/my.png) no-repeat center center;
-	background-size: 20px auto;
+	background: url(../images/my.png) no-repeat center 5px;
+	background-size: 18px auto;
 }
 .mui-bar-tab .mui-tab-item.mui-active .icon04{
-	background: url(../images/my-act.png) no-repeat center center;
-	background-size: 20px auto;
+	background: url(../images/my-act.png) no-repeat center 5px;
+	background-size: 18px auto;
 }
 
 /**/
@@ -189,4 +189,11 @@ background:#fff;
 
 .mui-table-view-cell>a:not(.mui-btn).mui-active{
 	background-color: transparent;
+}
+/*广告banner*/
+.swiper-wrapper img{
+	width: 100%;
+}
+.swiper-container{
+	margin:10px 0;
 }

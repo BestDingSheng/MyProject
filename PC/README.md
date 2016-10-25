@@ -9,7 +9,7 @@
 
 * [微赛](https://github.com/7270401471/MyProject/tree/master/PC/weisai)
 
-## 一些图片
+## 展示图
 <centet>
 <img src="showImg/weisai.png" width="100%">
 $$$

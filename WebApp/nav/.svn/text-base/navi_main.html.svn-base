@@ -1,0 +1,517 @@
+<!--<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>站点地图</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/nav_main.css" />
+		<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&libraries=geometry&key=YS4BZ-IGTRD-UMK4S-PPP3R-BXUV5-F4FKL"></script>
+		<script type="text/javascript" src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/jquery.selectlist.js"></script>
+		<script src="../js/location.js" type="text/javascript"></script>
+		<script src="../js/public.js" type="text/javascript"></script>
+		<script src="../js/constant.js" type="text/javascript"></script>
+		<script src="../js/mui.min.js"></script>
+		
+		<script>
+			var clockId;
+			var pageIndex = 1;
+			var markers;
+			var nearby;
+			var orderby;
+			var filter;
+			var lastPage=false;
+			var markerCluster;
+			mui.init();
+			mui.plusReady(function(){
+				loadNetworkInfo();
+//				//增加网络状态监控
+//				document.addEventListener("netchange", function() {
+//					loadNetworkInfo(true);
+//				}, false);
+				document.getElementById("imgNoNetwork").addEventListener("tap",function(){
+				try{
+					searchLocation(firstLocated);
+				}
+				catch(e){
+					plus.webview.currentWebview().reload();
+				}
+			});
+
+		});
+			function loadNetworkInfo(netchange){
+				var networkType = plus.networkinfo.getCurrentType();
+					switch (networkType) {
+						case plus.networkinfo.CONNECTION_UNKNOW:
+						case plus.networkinfo.CONNECTION_NONE:
+							console.log("Not networks!");
+							//初次加载
+							if(!netchange){
+								$("#imgNoNetwork").css('display','block');
+							}
+							break;
+						default:
+							console.log("Switch to networks!");
+//							if(!map){
+								$("#imgNoNetwork").css('display','none');
+								console.log("reload map!");
+//								if(qq){
+									searchLocation(firstLocated);
+//								}
+//								else{
+//									plus.webview.currentWebview().reload();
+								//}
+//							}
+							break;
+					}
+			}
+
+			function addLocationControl(map) {
+				var locationControlDiv = document.createElement('div');
+				$(locationControlDiv).click(function() {
+						searchLocation(searchLocationCallBack);
+					}) //locationControlDiv.style.cssText = "";
+				locationControlDiv.innerHTML = "<div id='' style='margin: 15px; padding:3px 3px 0 3px;box-shadow:0 0 5px rgba(0,0,0,0.5);background:rgba(250,250,250,0.95); border-radius: 5px;'><img src='../images/navi.png' style='width: 24px;;'></div>";
+				map.controls[qq.maps.ControlPosition.LEFT_BOTTOM].push(locationControlDiv);
+			}
+
+			function mapMarkers(data, map) {
+
+				var Marker = qq.maps.Marker;
+				var MarkerAnimation = qq.maps.MarkerAnimation;
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].x.site_status != 3)
+						continue;
+					//						var arr2 = GPS.gcj_encrypt(data[i].location.lat, data[i].location.lng);
+					(function(n) {
+						var dataLatLng = new qq.maps.LatLng(
+							// 维度
+							data[i].location.lat,
+							// 精度
+							data[i].location.lng);
+						var marker = new Marker({
+							'title': data[i].x.site_code,
+							'position': dataLatLng,
+							map: map
+						});
+						var map_name = data[i].x.site_name;
+						qq.maps.event.addListener(marker, 'click', function(evnet) {
+							var ju = qq.maps.geometry.spherical.computeDistanceBetween(currentLatLng, marker.getPosition());
+							var distance = parseInt(ju);
+							if (distance >= 1000) {
+								distance = (distance / 1000).toFixed(1) + ' km';
+							} else {
+								distance = distance + ' m';
+							}
+							var markerLatLng = marker.getPosition();
+							//							setTimeout(function(){
+							//								jQuery("#nav").attr("lat",markerLatLng.getLat());
+							//								jQuery("#nav").attr("lng",markerLatLng.getLng());
+							//							},1000)
+							jQuery(".silder").attr("site_name", map_name);
+							jQuery(".silder").attr("lat", markerLatLng.getLat());
+							jQuery(".silder").attr("lng", markerLatLng.getLng());
+							jQuery('.silder').attr("sitecode", marker.getTitle());
+							getSiteInfo(marker.getTitle(), distance);
+							$('.silder').show();
+						});
+						markers.push(marker);
+					})(i);
+				}
+			}
+
+			function getSiteInfo(siteCode, distance) {
+				var url = webRoot + '/wechat/nav/siteBoxStatus';
+				mui.ajax(url, {
+					data: {
+						'siteCodes': siteCode
+					},
+					dataType: 'json',
+					type: 'get',
+					success: function(data) {
+						jQuery("#siteName").html(data[0].name + '<span>慢</span>');
+						jQuery("#address").html(data[0].address + "<span class='fr' id='nav'><span id='dis'>" + distance + "</span><img id='navig' src='../images/icon-nav.png'/></span>");
+						if (data[0].isChargeFee) {
+							jQuery("#isFee").html('充电收费');
+						} else {
+							jQuery("#isFee").html('充电免费');
+						}
+						jQuery("#chargeNum").html('充电位：' + data[0].chargeNum);
+						jQuery("#available").html('充电空闲：' + data[0].info.available);
+					}
+				})
+			}
+
+			function searchChargeSite(map,filter,nearby, orderby) {
+				var url = "http://apis.map.qq.com/lbscloud/v1/poi/search?callback=?";
+				var params = {
+//					"boundary": nearby,
+					"filter": filter,
+//					"orderby": orderby,
+					"page_size": 10,
+					"page_index": pageIndex,
+					"poi_table": "Evchong",
+					"output": "jsonp",
+					"key": "YS4BZ-IGTRD-UMK4S-PPP3R-BXUV5-F4FKL"
+				};
+				if(nearby!=null && orderby!=null){
+					params.boundary=nearby;
+					params.orderby=orderby;
+					console.log(filter);
+				}
+
+				$.ajax({
+					url: url,
+					type: 'get',
+					dataType: 'json',
+					data: params,
+					needValidateLogin:false,
+					success: function(json) {
+						if (json.status == 0) {
+							if (json.data.length>0) {
+								var data = json.data;
+								mapMarkers(data, map);
+							} else {
+								lastPage=true;
+							}
+						} else {
+							//											alert("clearInterval");
+							lastPage=true;
+						}
+					}
+				}).always(
+					function(){
+						if(!lastPage){
+							pageIndex++;
+							searchChargeSite(map,filter,nearby, orderby);
+						}
+					}
+				);
+				}
+
+				var firstLocated = function onFirstLocated(position) {
+						markers = new qq.maps.MVCArray();
+						map = new qq.maps.Map(document.getElementById("container"), {
+					zoom: 11,
+					zoomControl: false,
+					mapTypeControl: false
+				});
+				searchLocationCallBack(position);
+				qq.maps.event.addListener(map, 'click', function() {
+					$('.silder').hide();
+				});
+				addLocationControl(map);
+				markerCluster = new qq.maps.MarkerCluster({
+					map: map,
+					minimumClusterSize: 5, //默认2
+					markers: markers,
+					zoomOnClick: true, //默认为true
+					gridSize: 100, //默认60
+					averageCenter: true, //默认false
+					maxZoom: 18, //默认18
+				});
+				filter = "x.site_status=3";
+				searchChargeSite(map,filter);
+				watchPositions(function(position) {
+					var coords = position.coords;
+					var arr2 = GPS.gcj_encrypt(coords.latitude, coords.longitude);
+					currentLatLng = new qq.maps.LatLng(
+						// 维度
+						arr2['lat'],
+						// 精度
+						arr2['lon']);
+					if (curPositionMarker != null) {
+						curPositionMarker.setPosition(currentLatLng);
+					}
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+		<div id="imgNoNetwork" style="text-align: center;padding-top:40%">
+				<img style="width: 30%" src="../images/icon_no_network.png" />
+				<br />
+				<br />
+				<span style="color: gray;font-size: 17px;">网络不给力,请点击重试!</span>
+			</div>
+		</div>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-pull-left" id="mark"><img src="../images/icon_screening.png" alt=""><span>筛选</span></a>
+			<h1 class="mui-title">地图导航</h1>
+			<a class="mui-icon mui-pull-right" href="navigation.html" class="list"><img src="../images/icon_map_list.png" alt=""></a>
+		</header>
+		<div class="mui-backdrop display">
+			<div class="close"></div>
+			<div class="content" id="content">
+				<div class="scrool">
+					<div class="way" style="margin-top:0;">
+						<div class="txt">充电方式</div>
+						<div id='chargeWay' class="cell tab">
+							<div class="child_cell act" data='0'><span>全部</span></div>
+							<div class="child_cell" style="text-align:center;" data='1'><span>快充</span></div>
+							<div class="child_cell" style="text-align: right;" data='2'><span>慢充</span></div>
+						</div>
+					</div>
+					<div class="way">
+						<div class="txt">站点距离</div>
+						<div id='siteDistance' class="cell tab">
+							<div class="child_cell act" data='1'><span>三公里</span></div>
+							<div class="child_cell" style="text-align:center;" data='2'><span>五公里内</span></div>
+							<div class="child_cell" style="text-align: right;" data='3'><span>五公里外</span></div>
+						</div>
+					</div>
+					<div class="way">
+						<div class="txt">选择运营商
+							<div class="mui-switch mui-switch-mini mui-active" id="Operator">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</div>
+						<div id='operator' class="cell list">
+							<div class="child_cell">
+								<p class="act" data='1'>
+									<img src="../images/operator_ec.png" alt="" /><br /> 益虫充电
+								</p>
+							</div>
+							<div class="child_cell">
+								<p class="" data='2'>
+									<img src="../images/operator_dw.png" alt="" /><br /> 国家电网
+								</p>
+							</div>
+							<div class="child_cell">
+								<p class="" data='3'>
+									<img src="../images/operator_t.png" alt="" /><br /> 特斯拉
+								</p>
+							</div>
+							<div class="child_cell">
+								<p class="" data='4'>
+									<img src="../images/operator_xx.png" alt="" /><br /> 星星充电
+								</p>
+							</div>
+							<div class="child_cell">
+								<p class="" data='5'>
+									<img src="../images/operator_cd.png" alt="" /><br /> 充电网
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="way">
+						<div class="txt">停车筛选</div>
+						<div id='isParkingFee' class="txt" style="border:none;">免费停车
+							<div class="mui-switch mui-switch-mini" data=1>
+								<div class="mui-switch-handle"></div>
+							</div>
+						</div>
+						<div id='isChargeFee' class="txt" style="border:none;">免费充电
+							<div class="mui-switch mui-switch-mini" data=1>
+								<div class="mui-switch-handle"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<button class="mui-btn-green mui-btn-block" id="submit">完成</button>
+			</div>
+		</div>
+		<div id='siteInfo' class="silder" sitecode="" style="display:none ;">
+			<div class="content">
+				<div id='siteName' class="tit"><span>慢</span></div>
+				<p id='isFee'></p>
+				<p><span id='chargeNum'></span><span id='available' style="margin-left: 30px;"></span></p>
+				<p id='address'><span class="fr" id="nav" lat="" lng=""><span id='dis'> 0</span><img src="../images/icon-nav.png" alt="" /></span>
+				</p>
+			</div>
+		</div>
+<script type="text/javascript" src="../js/jQuery.js"></script>
+		<script>
+			var content_height = $('#content').height();
+			$('#submit').on('click', function() {
+				searchLocation(function(position) {
+					curGPSLatLng = position.coords;
+					var arr2 = GPS.gcj_encrypt(curGPSLatLng.latitude, curGPSLatLng.longitude);
+					currentLatLng = new qq.maps.LatLng(
+						// 维度
+						arr2['lat'],
+						// 精度
+						arr2['lon']);
+				});
+				//					nearby="region("+position.address.city+")";
+				orderby = "distance(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ")";
+				filter = "x.site_status=3";
+				var chargeWay = $('#chargeWay .act').attr('data');
+				if (chargeWay == 1) {
+					filter = filter + " and x.charge_type=1"
+				} else if (chargeWay == 2) {
+					filter = filter + " and x.charge_type=2"
+				}
+				var siteDis = $('#siteDistance .act').attr('data');
+				if (siteDis == 1) {
+					nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",3000)";
+				} else if (siteDis == 2) {
+					nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",5000)";
+				}
+				var operators = $('#operator .child_cell .act');
+				var operatorVal;
+//				for (var i = 0; i < operators.length; i++) {
+//					if (i == 0) {
+						operatorVal = operators.attr('data');
+//					} else {
+//						operatorVal = operatorVal + ',' + operators.eq(i).attr('data');
+//					}
+//				}
+				if (operatorVal != null) {
+					filter = filter + " and x.operators=" + operatorVal;
+				}
+				var isParkingFee = $('#isParkingFee .mui-active').attr('data');
+				var isChargeFee = $('#isChargeFee .mui-active').attr('data');
+				if (isParkingFee != 'undefined' && isParkingFee!=null) {
+					filter = filter + ' and x.is_park_fee=0';
+				};
+				if (isChargeFee != 'undefined' && isChargeFee!=null) {
+					filter = filter + ' and x.is_charge_fee=0';
+				};
+				lastPage=false;
+				pageIndex=1;
+				markerCluster.clearMarkers();
+                if(siteDis==3){
+                	searchChargeSite(map,filter);
+                }else{
+                	searchChargeSite(map,filter,nearby, orderby);
+                }
+				
+				$('.mui-backdrop').hide();
+			})
+			$('.close').on('click', function() {
+				$('.mui-backdrop').hide();
+			})
+			$('#mark').on('tap', function() {
+				$('.mui-backdrop').show();
+			});
+			$('.tab .child_cell').on('click', function() {
+				$(this).siblings().removeClass('act');
+				$(this).addClass('act');
+			});
+			//			$(function() {
+			//				var xh = $('.silder').height();
+			//				$('.left').on('click', function() {
+			//					$('.silder').css('bottom', -xh + 'px');
+			//					$('.silder').hide();
+			//				});
+			//				$('.bottom').on('click', function() {
+			//					$('.silder').css('bottom', 0);
+			//					$('.silder').show();
+			//				})
+			//			});
+			mui('.mui-bar-nav').on('tap', 'a', function() {
+				var id = this.getAttribute('href');
+				if (id == null) {
+					return;
+				}
+				mui.openWindow({
+					id: 'navigation.html',
+					url: 'navigation.html',
+					styles: {
+						bottom: '50px',
+						top: "0"
+					},
+					show: {
+						aniShow: "pop-in"
+					},
+					waiting: {
+						autoShow: false,
+						title: "加载中"
+					}
+				});
+			});
+			//点击运行商开关
+//			$('#Operator').on('click', function() {
+//				if ($(this).hasClass('mui-active')) {
+//					$('.child_cell').find('p').addClass('act');
+//				} else {
+//					$('.child_cell').find('p').removeClass('act');
+//				}
+//			});
+//			$('.child_cell').find('p').on('click', function() {
+//				if ($(this).hasClass('act')) {
+//					var conut = $('.child_cell .act').length;
+//					if (conut == 1) {
+//						$(' #Operator .mui-switch-handle').css('transform', 'translate(0px, 0px)')
+//						$('#Operator').removeClass('mui-active')
+//					}
+//					$(this).removeClass('act');
+//				} else {
+//					var conut = $('.child_cell .act').length
+//					if (conut == 0) {
+//						$('#Operator .mui-switch-handle').css('transform', 'translate(16px, 0px)')
+//						$('#Operator').addClass('mui-active')
+//					}
+//					$(this).addClass('act');
+//				}
+//			});
+			$('#Operator').on('click', function() {
+				if ($(this).hasClass('mui-active')) {
+					$('.child_cell').find('p').eq(0).addClass('act');
+				} else {
+					$('.child_cell').find('p').removeClass('act');
+				}
+			});
+			$('.child_cell').find('p').on('click', function() {
+				var class_str=$('.child_cell').find('.act').length;
+				console.log(class_str);
+				if(class_str==0){
+					$('#Operator .mui-switch-handle').css('transform', 'translate(16px, 0px)')
+					$('#Operator').addClass('mui-active');
+				}
+				$('.child_cell').find('p').removeClass('act');
+				$(this).addClass('act');
+			})
+
+			function navigateWithMap(lat1, lng1, lat2, lng2) {
+				// 设置目标位置坐标点和其实位置坐标点
+				var dst = new plus.maps.Point(lat1, lng1);
+				var src = new plus.maps.Point(lat2, lng2);
+				// 调用系统地图显示 
+				plus.maps.openSysMap(dst, "天安门", src);
+			}
+			jQuery(document).on('tap', "#nav", function(event) {
+				// 设置目标位置坐标点和其实位置坐标点
+				event.stopPropagation();
+				var markLat = jQuery(".silder").attr("lat");
+				var markLng = jQuery(".silder").attr("lng");
+				var site_name = jQuery(".silder").attr("site_name"); //站点名称
+				var markLatLng = GPS.gcj_decrypt(markLat, markLng);
+				var dst = new plus.maps.Point(markLatLng['lon'], markLatLng['lat']);
+				var src = new plus.maps.Point(curGPSLatLng.longitude, curGPSLatLng.latitude);
+				// 调用系统地图显示 
+				plus.maps.openSysMap(dst, site_name, src);
+			});
+			jQuery(document).on('tap', '.silder', function(event) {
+				event.stopPropagation();				
+				var siteCode = jQuery('.silder').attr("sitecode");
+				var webview = mui.openWindow({
+					url: "details.html",
+					id: "details.html",
+					createNew: false,
+					extras: {
+						'siteCode': siteCode
+					},
+					show: {
+						aniShow: "slide-in-right",
+						duration: 300
+					}
+				});
+			});
+			//自定义事件隐藏蒙版
+			document.addEventListener('hideMask',function(){
+				$('.mui-backdrop').hide();
+			})
+		</script>
+	</body>
+
+</html>-->

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/swiper-3.3.1.min.css" />
+		<style>
+			html,
+			body {
+				background: #fff;
+			}
+			
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			
+			.mui-bar {
+				background: none;
+				border: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			.mui-bar .mui-icon {
+				font-size: 24px;
+				color: #fff;
+				margin-top: 6px;
+			}
+			
+			.mui-input-group label {
+				width: 15%;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 85%;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			
+			.mui-btn {
+				padding: 8px;
+				border-radius: 100px;
+			}
+			
+			.link-area {
+				display: block;
+				margin-top: 15px;
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			.spliter {
+				color: #bbb;
+				padding: 0px 8px;
+			}
+			
+			.oauth-area {
+				position: absolute;
+				bottom: 20px;
+				left: 0px;
+				text-align: center;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			.oauth-area .oauth-btn {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-size: 30px 30px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				margin: 0px 20px;
+				/*-webkit-filter: grayscale(100%); */
+				border: solid 1px #ddd;
+				border-radius: 25px;
+			}
+			
+			.oauth-area .oauth-btn:active {
+				border: solid 1px #aaa;
+			}
+			
+			#showPwd {
+				position: absolute;
+				right: 10px;
+				top: 12px;
+				width: 30px;
+			}
+			
+			.swiper-container {
+				width: 100%;
+			}
+			
+			.swiper-container img {
+				display: block;
+				width: 100%;
+			}
+			
+			.swiper-pagination-bullet-active {
+				background: #fff;
+			}
+			
+			.mui-toast-container.mui-active {
+				position: absolute;
+				top: 50%;
+			}
+			
+			.mui-toast-container {
+				position: absolute;
+				top: 50%;
+			}
+			
+			.mui-toast-message {
+				color: #fff;
+				background: rgba(0, 0, 0, .5);
+			}
+		</style>
+		<script src="../js/mui.min.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon-back mui-icon" onclick="back(true);"></a>
+		</header>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="../images/banner.png"></div>
+				<div class="swiper-slide"><img src="../images/banner.png"></div>
+				<div class="swiper-slide"><img src="../images/banner.png"></div>
+			</div>
+			<!--<div class="swiper-pagination"></div>-->
+		</div>
+		<div class="mui-main-content">
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label><img src="../images/user.png" class="userpwdimg"></label>
+					<input id='account' type="tel" class="mui-input-clear mui-input" placeholder="请输入手机号">
+				</div>
+				<div class="mui-input-row">
+					<label><img src="../images/pwd.png" class="userpwdimg"></label>
+					<input id='password' type="password" class="mui-input" placeholder="请输入密码">
+					<img src="../images/eye.png" id="showPwd" class="showPwd">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-green">登录</button>
+				<button id='wechatLogin' class="mui-btn mui-btn-block mui-btn-white" onclick="oauthLogin('weixin')">微信登录</button>
+				<div class="link-area">
+					<a id='reg' class="register">手机快速注册</a>
+					<a id='forgetPassword' class="forgetpwd">忘记密码</a>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.enterfocus.js"></script>
+		<!--<script src="../js/app.js"></script>-->
+		<script src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script src="../js/swiper-3.3.1.min.js"></script>
+		<script src="../js/md5-min.js"></script>
+
+		<!--第三方登录start-->
+		<script type="text/javascript" src="../js/constant.js"></script>
+		<script type="text/javascript" src="../js/page.switch.js"></script>
+		<script type="text/javascript" src="../js/oauth.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/immersed.js"></script>
+		</script>
+		</script>
+		<!--第三方登录End-->
+		<script src="../js/validation.js"></script>
+		<script>
+			$(function() {
+				var fage = true; //设置一个开关;			      
+				$('#showPwd').on('click', function() {
+					if(fage) {
+						$(this).attr('src', '../images/eye-act.png');
+						$('#password').attr('type', 'text');
+						fage = false;
+					} else {
+						$(this).attr('src', '../images/eye.png');
+						$('#password').attr('type', 'password');
+						fage = true;
+					}
+				});
+				$('#login').on('click', function() {
+					var phone = $('#account').val();
+					var password = $('#password').val();
+					if(!valiadation.phone(phone)) {
+						return;
+					};
+					if(!valiadation.password(password)) {
+						return;
+					}
+					password = hex_md5($('#password').val());
+					// 执行登录
+					login(phone, password, LOGIN_CHANNEL.APP);
+				});
+			});
+			
+			
+			// 安卓机手机号码样式设置为文本类型
+			if(mui.os.android){
+				$('#account').attr('type','text');
+			}
+			
+			//			mui('.link-area').on('tap', 'a', function() {
+			//				var href = this.getAttribute('href');
+			//				var id = this.href;
+			//				mui.openWindow({
+			//					id: id,
+			//					url: href,
+			//					show: {
+			//						aniShow: "slide-in-right"
+			//					},
+			//					waiting: {
+			//						autoShow: false
+			//					}
+			//				});
+			//			})
+
+			document.getElementById('reg').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'reg.html',
+					url: 'reg.html',
+					show: {
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
+			});
+			document.getElementById('forgetPassword').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'RetrievePassword.html',
+					url: 'RetrievePassword.html',
+					show: {
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
+			});
+
+			//添加监听事件
+			function addWebViewEvent() {
+				// 其他页面触发自动登录
+				document.addEventListener('autoLoginOtherView', autoLogin, false);
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				addBackForAndroid();
+				// 添加监听事件
+				addWebViewEvent();
+				// 清空输入框
+				clearInput();
+			}
+
+			function clearInput() {
+				$('#account').val('');
+				$('#password').val('');
+			}
+			/**
+			 * 自动登录处理
+			 */
+			function autoLogin() {
+				var loginInfo = getLoginInfo();
+				console.log(JSON.stringify(loginInfo));
+				if(loginInfo == null) {
+					return;
+				}
+				if(loginInfo.loginChannel && loginInfo.loginChannel !== LOGIN_CHANNEL.APP) {
+					// 第三方登录（微信、qq等）
+					login(loginInfo.loginId, loginInfo.password, loginInfo.loginChannel);
+					return;
+				}
+				// 判断本地用户信息是否有效
+				if(loginInfo.loginId == null || loginInfo.password == null || loginInfo.loginTime == null || loginInfo.expireTime == null) {
+					return;
+				} else {
+					if(!isLogin()) {
+						// 执行自动登录
+						login(loginInfo.loginId, loginInfo.password, LOGIN_CHANNEL.APP);
+						
+					}
+				}
+			}
+
+			function login(loginId, password, loginChannel) {				
+				
+				var clientId = getDeviceUuid();
+				$.ajax({
+					type: "post",
+					url: webRoot + "/app/auth/login",
+					dataType: 'json',
+					needValidateLogin: false,
+					data: {
+						loginId: loginId,
+						password: password,
+						clientId: clientId,
+						loginChannel: loginChannel
+					},
+					success: function(msg) {
+						var data = msg.data;
+						// 清空本地缓存，让用户手动登录
+						clearLoginInfo();
+
+						if(msg.respCode == 1) {
+							storageLoginInfo(data);
+							//执行自定义事件;
+							var chargeMain = plus.webview.getWebviewById(WEBVIEW_IDS.CHARGE_MAIN);
+							mui.fire(chargeMain, 'showPageByLoginView');
+							var main = plus.webview.getWebviewById(WEBVIEW_IDS.ACCOUNT_MAIN);
+							mui.fire(main, 'refresh');							
+							//plus.webview.currentWebview().close();
+							plus.webview.close(plus.webview.currentWebview());
+							console.log("自动登入成功")
+							//toPage('basic/main.html');
+							clearInput();
+						} else {
+							if(LOGIN_CHANNEL.APP == loginChannel) {
+								mui.toast(msg.respMsg);
+							}
+						}
+					},
+					error: function(e) {
+						// 清空本地缓存，让用户手动登录
+						clearLoginInfo();
+						plus.nativeUI.alert('网络出现小差，登录失败！')
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

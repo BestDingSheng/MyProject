@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>站点地图</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/nav_main.css" />
+		<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&libraries=geometry&key=YS4BZ-IGTRD-UMK4S-PPP3R-BXUV5-F4FKL"></script>
+		<script type="text/javascript" src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/jquery.selectlist.js"></script>
+		<script src="../js/location.js" type="text/javascript"></script>
+		<script src="../js/public.js" type="text/javascript"></script>
+		<script src="../js/constant.js" type="text/javascript"></script>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			document.addEventListener('delayShow', delayShow);
+			function delayShow() {
+				$('#container').hide();
+				setTimeout(function() {
+					$('#container').show();
+				}, 3000)
+			}
+			var ws = null,
+				wo = null,
+				wvsite = null;
+			var em = null,
+				amap = null;
+			var pageIndex = 1;
+			var lastPage = false;
+			var markers = null;
+			var nearby, orderby, filter;
+			var currentPoint;
+			// H5 plus事件处理
+			function plusReady() {
+				if (!em || ws) {
+					return
+				};
+				// 获取窗口对象
+				ws = plus.webview.currentWebview();
+				loadNetworkInfo();
+				document.getElementById("imgNoNetwork").addEventListener("tap", function() {
+					try {
+						initMap();
+					} catch (e) {
+						plus.webview.currentWebview().reload();
+					}
+				});
+				//自定义事件隐藏蒙版
+				document.addEventListener('hideMask', function() {
+					hideSiteMask();
+				});
+				// 显示页面并关闭等待框
+				//ws.show("pop-in");
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+			// DOMContentloaded事件处理
+			document.addEventListener("DOMContentLoaded", function() {
+				em = document.getElementById("container");
+				window.plus && plusReady();
+			}, false);
+
+			function initMap() {
+				var t1 = new Date().getTime();
+				amap = new plus.maps.Map("container", {
+					zoom: 16
+				});
+				console.log('init map:'+ (new Date().getTime() - t1)+'ms');
+				userLocation();
+				console.log('userLocation:'+ (new Date().getTime() - t1)+'ms');
+				setTimeout(function() {
+					var pt1 = new Date().getTime();
+					createMyLocMask();
+					createSearchMask();
+					createSiteMask();
+					console.log('preload end:'+ (new Date().getTime() - pt1)+'ms');
+				}, 300);
+				console.log('preload time:'+ (new Date().getTime() - t1)+'ms');
+				document.addEventListener('filter', function(event) {
+					pageIndex = 1;
+					amap.clearOverlays();
+					searchChargeSite(event.detail.filter, event.detail.nearby, event.detail.orderby);
+					resetMap();
+				});
+				console.log('initMap compleate '+ (new Date().getTime() - t1)+'ms');
+			}
+			//显示用户位置及定位
+			function userLocation() {
+				if(!amap){
+					console.log('reload map site');
+					mui.currentWebview.reload()
+					return;
+				}
+				//默认上海市
+				amap.setCenter(new plus.maps.Point(121.487897, 31.249158));
+				amap.onclick = hideSiteMask;
+				amap.onstatuschanged = hideSiteMask;
+				amap.showUserLocation(true);
+				var loct1= new Date().getTime();
+				amap.getUserLocation(function(state, pos) {
+					if (0 == state) {
+						console.log("user location: lat: " + pos.getLat() + ", lnt: " + pos.getLng());
+						currentPoint = pos;
+						amap.setCenter(pos);
+						console.log('set location center:'+ (new Date().getTime() - loct1)+'ms');
+					}
+				});
+				filter = "x.site_status=3";
+				searchChargeSite(filter);
+			}
+
+			function mapMarkers(data) {
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].x.site_status != 3)
+						continue;
+					(function(n) {
+						var sitename = data[i].x.site_name;
+						var sitecode = data[i].x.site_code;
+						var isExternalSite = data[i].x.is_external_site;
+						var markerWGSPoint = GPS.gcj_decrypt_exact(data[i].location.lat, data[i].location.lng);
+						var tempBd = GPS.bd_encrypt(data[i].location.lat, data[i].location.lng);
+						var makerPoint = new plus.maps.Point(tempBd.lon, tempBd.lat);
+						var marker = new plus.maps.Marker(makerPoint);
+						
+						//判断是否是自营桩
+						if ('iOS' == plus.os.name) {
+							isExternalSite == 0 ? marker.setIcon("../images/marker40.png") : marker.setIcon("../images/other_mask40.png");
+						} else {
+							isExternalSite == 0 ? marker.setIcon("../images/marker75.png") : marker.setIcon("../images/other_mask75.png");
+						}
+						marker["sitecode"] = sitecode;
+						marker["sitename"] = sitename;
+						amap.addOverlay(marker);
+						//console.log("add marker: lat = " + makerPoint.getLat() + ",lnt = " + makerPoint.getLng());
+						marker.onclick = function(maker) {
+							if (wvsite && wvsite.isVisible()) {
+								if (wvsite.sitecode == maker.sitecode) {
+									wvsite.hide('slide-out-bottom', 150);
+									return;
+								} else {
+									wvsite.hide();
+								}
+							}
+							plus.maps.Map.calculateDistance(currentPoint, marker.getPoint(), function(event) {
+								//event.distance;  // 转换后的距离值
+								var dist = '';
+								if (event.distance >= 1000) {
+									dist = (event.distance / 1000).toFixed(1) + ' km';
+								} else {
+									dist = event.distance.toFixed(1) + ' m';
+								}
+								if (!wvsite) {
+									createSiteMask();
+								}
+								wvsite.sitecode = maker.sitecode;
+								mui.fire(wvsite, 'loadSiteInfo', {
+									sitename: maker.sitename,
+									sitecode: maker.sitecode,
+									dstlat: markerWGSPoint.lat,
+									dstlng: markerWGSPoint.lon,
+									//srclat: srcWGSPoint.lat,
+									//srclng: srcWGSPoint.lon,
+									distance: dist
+								});
+							}, function(e) {
+								console.log("Failed:" + JSON.stringify(e));
+							});
+						}
+					})(i);
+				}
+			}
+			//qq LBS 获取站点信息
+			function searchChargeSite(filter, nearby, orderby) {
+				console.log('site map - filter='+filter +'&orderby='+ orderby+'&boundary='+nearby);
+				var url = "http://apis.map.qq.com/lbscloud/v1/poi/search?callback=?";
+				var params = {
+					"filter": filter,
+					"page_size": 10,
+					"page_index": pageIndex,
+					"poi_table": "Evchong",
+					"output": "jsonp",
+					"key": "YS4BZ-IGTRD-UMK4S-PPP3R-BXUV5-F4FKL"
+				};
+				if (nearby != null && orderby != null) {
+					params.boundary = nearby;
+					params.orderby = orderby;
+				}
+				var t1 = new Date().getTime();
+				
+				$.ajax({
+					url: url,
+					type: 'get',
+					dataType: 'json',
+					data: params,
+					needValidateLogin: false,
+					success: function(json) {
+						console.log('request charge sites:'+ (new Date().getTime()-t1)+ 'ms');
+						if (json.status == 0) {
+							if (json.data.length > 0) {
+								var data = json.data;
+								mapMarkers(data);
+							} else {
+								lastPage = true;
+							}
+						} else {
+							lastPage = true;
+						}
+					},
+					error:function(){
+						lastPage = false;
+					}
+				}).always(
+					function() {
+						if (!lastPage) {
+							pageIndex++;
+							searchChargeSite(filter, nearby, orderby);
+						}else{
+							lastPage = false;
+						}
+					}
+				);
+			}
+
+			function loadNetworkInfo(netchange) {
+				var networkType = plus.networkinfo.getCurrentType();
+				switch (networkType) {
+					case plus.networkinfo.CONNECTION_UNKNOW:
+					case plus.networkinfo.CONNECTION_NONE:
+						console.log("Not networks!");
+						//初次加载
+						if (!netchange) {
+							$("#loading").css('display', 'none');
+							$("#imgNoNetwork").css('display', 'block');
+						}
+						break;
+					default:
+						console.log("Switch to networks!");
+						if (!amap) {
+							$("#loading").css('display', 'block');
+							$("#imgNoNetwork").css('display', 'none');
+							initMap();
+						}
+						break;
+				}
+			}
+
+			function createSearchMask() {
+				// 创建加载内容窗口
+				var wsub = plus.webview.create('navi_search.html', 'navi_search', {
+					top: '0px',
+					height: '100px',
+					position: 'absolute',
+					scrollIndicator: 'none',
+					background: 'transparent'
+				});
+				ws.append(wsub);
+			}
+
+			function createMyLocMask() {
+				// 创建加载内容窗口
+				var bottomoffset = '0';
+				var wsub = plus.webview.create('map_reset.html', 'map_reset', {
+					bottom: bottomoffset,
+					right: '3px',
+					height: '50px',
+					width: '50px',
+					position: 'absolute',
+					scrollIndicator: 'none',
+					background: 'transparent'
+				});
+				ws.append(wsub);
+			}
+
+			function createSiteMask() {
+				wvsite = plus.webview.create('map_siteinfo.html', 'map_siteinfo', {
+					bottom: '0px',
+					height: '144px',
+					position: 'absolute',
+					scrollIndicator: 'none',
+					background: 'transparent'
+				});
+				ws.append(wvsite);
+				wvsite.hide();
+			}
+
+			function hideSiteMask() {
+				if (wvsite && wvsite.isVisible()) {
+					wvsite.hide('slide-out-bottom', 150);
+				}
+			}
+
+			function resetMap() {
+				amap.getUserLocation(function(state, pos) {
+					if (0 == state) {
+						currentPoint = pos;
+						//amap.setCenter(pos);
+						amap.centerAndZoom(pos, 16);
+					}
+				});
+			}
+
+			function openSysMap(dstlng, dstlat, name) {
+				MyLocation.getPosition(function(pos) {
+					var dst = new plus.maps.Point(dstlng, dstlat);
+					var currentGCJPoint = GPS.bd_decrypt(pos.coords.latitude,pos.coords.longitude);
+					var currentWGSPoint = GPS.gcj_decrypt(currentGCJPoint.lat, currentGCJPoint.lon);
+					var src = new plus.maps.Point(currentWGSPoint.lon, currentWGSPoint.lat);
+					//console.log('navi gps src lng:'+pos.coords.longitude + ', lat:'+ pos.coords.latitude);
+					// 调用系统地图显示 
+					plus.maps.openSysMap(dst, name, src);
+				})
+			}
+
+			function search(word) {
+				if (word.trim() == "") {
+					plus.nativeUI.alert("请输入目的地地址");
+					return;
+				}
+				MyLocation.getCity(function(v) {
+					//var city = p.address.city ? p.address.city : '上海';
+					var city = v ? v : '上海';
+					plus.maps.Map.geocode(word, {
+						city: city,
+						coordType: 'bd09ll'
+					}, function(event) {
+						var address = event.address; // 转换后的地理位置
+						var point = event.coord;
+						//var point = new plus.maps.Point(event.coord.longitude, event.coord.latitude)
+						var coordType = event.coordType; // 转换后的坐标系类型
+						amap.clearOverlays();
+						var marker = new plus.maps.Marker(point);
+						if (plus.os.name == 'Android') {
+							marker.setIcon("../images/search_mask75.png")
+						}else{
+							marker.setIcon("../images/search_mask40.png")
+						}
+						marker.setLabel(event.address);
+						amap.addOverlay(marker);
+						amap.setCenter(point);
+						console.log("Coord:" + JSON.stringify(point));
+						//清除所有marker，重新搜索打标点
+						var gcjpoint = GPS.bd_decrypt(point.getLat(), point.getLng());
+						var qqPoint = new qq.maps.LatLng(gcjpoint['lat'], gcjpoint['lon']);
+						nearby = "nearby(" + qqPoint.getLat() + "," + qqPoint.getLng() + ",3000)";
+						orderby = "distance(" + qqPoint.getLat() + "," + qqPoint.getLng() + ")";
+						filter = "x.site_status=3";
+						pageIndex = 1;
+						searchChargeSite(filter, nearby, orderby);
+					}, function(e) {
+						plus.nativeUI.alert("请输入更详细的地址信息");
+						console.log("Failed:" + JSON.stringify(e));
+					});
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<!--		<div class="mui-content" style=">-->
+		<div id="container" style="position: relative;">
+			<div id='loading' style="text-align: center; padding-top:20%;font-size: medium;color: gray;">地图加载中...</div>
+			<div id="imgNoNetwork" style="text-align: center;padding-top:40%;display: none;">
+				<img style="width: 30%" src="../images/icon_no_network.png" />
+				<br />
+				<br />
+				<a style="color: gray;font-size: 17px;">网络不给力,请点击重试!</a>
+			</div>
+		</div>
+		<!--</div>-->
+	</body>
+
+</html>

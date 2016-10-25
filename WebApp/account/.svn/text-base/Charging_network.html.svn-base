@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>充电桩</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<style type="text/css">
+			.mui-content {
+				background: #F8F8F8;
+			}
+			
+			.mui-content img {
+				width: 95%;
+				display: block;
+				margin: 45px auto 0;
+			}
+			
+			.row {
+				width: 100%;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				padding-bottom: 20px;
+				background: #f8f8f8;
+			}
+			
+			.row ul {
+				display: table;
+				/*	vertical-align:middle;*/
+				/*box-sizing: border-box;*/
+				width: 100%;
+				margin-top: 20px;
+				padding-right: 10px;
+			}
+			
+			.row ul li {
+				display: inline-block;
+				width: 50%;
+				height: 50px;
+				background: transparent;
+			}
+			
+			.row ul .cdz {
+				background: url(../images/icon_cdz.png) no-repeat 15px center;
+				background-size: auto 100%;
+			}
+			
+			.row ul .house {
+				background: url(../images/icon_house.png) no-repeat 10px center;
+				background-size: auto 100%;
+			}
+			
+			.row ul .cd {
+				background: url(../images/icon_cd.png) no-repeat 11px center;
+				background-size: auto 100%;
+			}
+			
+			.row ul .fw {
+				background: url(../images/icon_fw.png) no-repeat 10px center;
+				background-size: auto 100%;
+			}
+			
+			.row ul .dliang {
+				background: url(../images/icon_dliang.png) no-repeat 15px center;
+				background-size: auto 100%;
+			}
+			
+			.top {
+				text-indent: 70px;
+				color: #2b3946;
+				font-size: 14px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			
+			h4 {
+				text-align: right;
+				margin: 0;
+				margin-top:8px;
+				font-size: 14px;
+			}
+			
+			h4 span {
+				font-size: 25px;
+				font-weight: 400;
+			}
+			
+			.sm_title {
+				font-size: 14px;
+				color: #2b3946;
+				padding-left: 20px;
+				padding-top: 20px;
+				padding-right: 20px;
+			}
+			/*asdsa*/
+			
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="action-back"></a>
+			<h1 class="mui-title">充电网络</h1>
+		</header>
+		<div class="mui-content">
+			<!--<img src="../images/network.jpg" alt="" />-->
+			<p class="sm_title">截止<span id="show"></span>，森通智达充电网络发展情况 :</p>
+			<div class="row">
+				<ul>
+					<li class="cdz">
+						<p class="top">充电桩总数</p>
+						<h4><span id="chargeBoxNumTotal"></span>个</h4>
+					</li>
+					<li></li>
+				</ul>
+				<ul>
+					<li class="house">
+						<p class="top">综合服务站点</p>
+						<h4><span id="site"></span>个</h4>
+					</li>
+					<li class="cd">
+						<p class="top">在运营智能充电桩</p>
+						<h4><span id="chargeBox"></span>个</h4>
+					</li>
+
+				</ul>
+				<ul>
+					<li class="fw">
+						<p class="top">累计服务次数</p>
+						<h4><span id="serviceNum"></span>次</h4>
+					</li>
+					<li class="dliang">
+						<p class="top">累计服务总电量</p>
+						<h4><span id="serviceKwh"></span>千瓦时</h4>
+					</li>
+				</ul>
+				<img id="chargePicture1" src="" alt="" data-preview-src="" data-preview-group="1" />
+				<img id="chargePicture2" src="" alt="" data-preview-src="" data-preview-group="1" />
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.zoom.js"></script>
+		<script src="../js/mui.previewimage.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/constant.js"></script>
+		<script src="../js/public.js"></script>
+		<script type="text/javascript">
+			var initializationTime = (new Date()).getTime();
+
+			function showTime() {
+				var now = new Date();
+				var year = now.getFullYear();
+				var month = now.getMonth() + 1;
+				var day = now.getDate();
+				var hours = now.getHours();
+				var minutes = now.getMinutes();
+				var seconds = now.getSeconds();
+				if (month >= 0 && month <= 9) {
+					month = "0" + month;
+				}
+				document.all.show.innerHTML = year + "年" + month + "月" + day + "日" + hours + ":" + minutes;
+			}
+		</script>
+		<script>
+			mui.init()
+			mui.previewImage();
+			document.addEventListener("plusready", onPlusReady, false);
+			var picture1 = webRoot + "/picture/getAttachmentPicture/StaticResource_Attachment/574faed72cdc544243037c31";
+			var picture2 = webRoot + "/picture/getAttachmentPicture/StaticResource_Attachment/574faee72cdc544243037c32";
+			$("#chargePicture1").attr('src', picture1);
+			$("#chargePicture2").attr('src', picture2);
+
+			function onPlusReady() {
+				showTime();
+				$.ajax({
+					type: "get",
+					url: webRoot + "/welcome/getWelcome",
+					dataType: 'json',
+					data: {},
+					success: function(msg) {
+						//alert(msg.chargeBoxNumTotal);
+						$("#site").text(parseFloat(msg.chargeSiteNum).toLocaleString());
+						$("#chargeBox").text(parseFloat(msg.chargeBoxNum).toLocaleString());
+						$("#serviceNum").text(parseFloat(msg.serviceNum).toLocaleString());
+						$("#serviceKwh").text(parseFloat(msg.serviceKwh).toLocaleString());
+						$("#chargeBoxNumTotal").text(parseFloat(msg.chargeBoxNumTotal).toLocaleString());
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

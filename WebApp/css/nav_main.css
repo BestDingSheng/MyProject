@@ -1,0 +1,402 @@
+
+			
+			body,
+			button,
+			input,
+			select,
+			textarea {
+				font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+			}
+			
+			html,
+			body {
+				postion: relative;
+				width: 100%;
+				height: 100%;
+			}
+			
+			#info {
+				margin-top: 10px;
+			}
+			
+			#container {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.citymap {
+				width: auto;
+				height: auto;
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				z-index: 1000;
+			}
+			
+			.citymapLeft {
+				width: auto;
+				float: left;
+			}
+			
+			.citymap .citymapLeft div.choseCity {
+				width: 35px;
+				height: 27px;
+				text-align: center;
+				padding-top: 6px;
+				font: 20px/17px helvetica, arial, verdana, sans-serif;
+				color: #333;
+				display: block;
+			}
+			
+			.citymap .citymapLeft select {
+				width: 70px;
+				border: 1px solid #999;
+				border-radius: none;
+			}
+			
+			.citymap .citymapLeft select option {
+				font: 13px/18px helvetica, arial, verdana, sans-serif;
+				color: #000;
+				border: 1px solid #999;
+				padding: 2px 0;
+			}
+			
+			.citymapRight {
+				float: left;
+				margin-top: 5px;
+				margin-left: 10px;
+			}
+			
+			.citymapRight ul {
+				float: left;
+			}
+			
+			.citymapRight li {
+				margin-right: 10px;
+				float: left;
+			}
+			
+			.citymapRight li p.status {
+				margin-right: 2px;
+				float: left;
+			}
+			
+			.citymapRight li span {
+				width: 30px;
+				height: 15px;
+				margin-top: 1px;
+				float: left;
+			}
+			
+			dl.showCity {
+				width: 100px;
+				min-height: 50px;
+				padding: 5px;
+				position: absolute;
+				top: 10px;
+				left: 60px;
+				background: #fff;
+				border: 1px solid #666;
+				z-index: 1005;
+			}
+			
+			dl.showCity dd {
+				font-size: 16px;
+				color: #333;
+				line-height: 20px;
+				padding: 5px 3px;
+				border-bottom: 1px solid #999;
+			}
+			
+			.colorBlue {
+				background: #367fe2;
+			}
+			
+			.colorGreen {
+				background: #8da804;
+			}
+			
+			.colorSkyBlue {
+				background: #13c7d2;
+			}
+			
+			.colorRed {
+				background: #f00;
+			}
+			
+			.colorYellow {
+				background: #bc900b;
+			}
+			
+			.stationNumber {
+				color: #666;
+				float: right;
+				margin-left: 10px;
+			}
+			
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#map_canvas {
+				position: absolute;
+				left: 320px;
+				min-width: 800px;
+				min-height: 767px;
+				border: 1px solid #ff0000;
+			}
+			
+			#panel {
+				position: relative;
+				width: 300px;
+				height: 500px;
+				overflow: auto;
+				border: 1px solid #000000;
+			}
+			
+			#attributeList li {
+				border-bottom: 1px dashed #999999;
+				padding: 5px 5px;
+				line-height: 20px;
+			}
+			
+			.img {
+				-webkit-animation: loc 1s infinite linear 0.2s;
+				animation: loc 1s infinite linear 0.2s;
+			}
+			
+			@-webkit-keyframes loc {
+				to {
+					-webkit-transform: scale(0.8);
+					transform: scale(0.8);
+				}
+			}
+			
+			@keyframes loc {
+				to {
+					-webkit-transform: scale(0.8);
+					transform: scale(0.8);
+				}
+			}
+			
+			.mui-bar .mui-icon span {
+				font-size: 16px;
+			}
+			
+			.mui-bar .mui-icon img {
+				vertical-align: -3px;
+				width: 20px;
+				margin-right: 5px;
+			}
+			
+			.mui-bar .mui-title {
+				/*font-weight: bold;*/
+			}
+			
+			body,
+			html,
+			#allmap {
+				width: 100%;
+				height: 100%;
+				max-height: 100%;
+				margin: 0;
+				overflow: hidden;
+				font-family: "微软雅黑";
+			}
+			
+			#allmap {
+				top: 44px;
+			}
+			
+			.left,
+			.bottom {
+				position: absolute;
+				top: 100px;
+				left: 20px;
+				width: 40px;
+				height: 40px;
+				background: #e4e4e4;
+				display: none;
+			}
+			
+			.bottom {
+				top: 150px;
+			}
+			
+			.mui-backdrop .content {
+				position: absolute;
+				bottom: 0;
+				height: 60%;
+				background:#F8F8F8;
+				width: 100%;
+				padding: 10px;
+				overflow:hidden;
+				transition: all 1s linear;
+			}
+			.scrool{
+				height: -webkit-calc(100% - 54px);
+				overflow: scroll;
+				background: #f4f4f4;
+			}
+			.mui-backdrop .close {
+				position: absolute;
+				width: 25px;
+				height: 25px;
+				background: url(../images/icon_close.png) no-repeat 0 0;
+				background-size: 100% auto;
+				right: 10px;
+				bottom: -webkit-calc(60% - 10px);
+				z-index: 9;
+				transition: all 1s linear;
+			}
+			
+			.mui-backdrop .content input {
+				height: 30px;
+				border-radius: 30px;
+				text-align: center;
+			}
+			
+			.mui-backdrop .content input::-webkit-input-placeholder {
+				text-align: center;
+				font-size: 14px;
+			}
+			
+			.way {
+				margin-top: 10px;
+				border: 1px solid #e4e4e4;
+				padding:0 10px;
+				margin-bottom: 10px;
+				background: #fff;
+			}
+			
+			.way .cell {
+				overflow: hidden;
+				/*padding: 10px 10px 10px 0;*/
+			}
+			
+			.way .list {
+				padding: 10px 0 15px;
+				/*padding-top: 10px;*/
+			}
+			
+			.way .cell .child_cell {
+				float: left;
+				width: 33.33%;
+				height: 40px;
+				line-height: 40px;
+			}
+			
+			.way .txt {
+				border-bottom: 1px solid #4ca26e;
+				line-height: 40px;
+				font-size: 16px;
+				padding-top:10px;
+			}
+			
+			.way .cell .child_cell span {
+				border: 1px solid #adadad;
+				padding: 5px 15px;
+				border-radius: 13px;
+				color: #adadad;
+				font-size: 14px;
+				vertical-align: 1px;
+			}
+			
+			.way .cell .act span {
+				border: 1px solid #4ca26e;
+				color: #4ca26e;
+			}
+			
+			.way .list .child_cell {
+				width:20%;
+				height:auto;
+				margin-bottom: 10px;
+			}
+			
+			.mui-switch.mui-active {
+				float: right;
+			}
+			
+			.mui-switch {
+				float: right;
+				top: 4px;
+			}
+			
+			.mui-switch:before {
+				top: -6px;
+			}
+			
+			.option p {
+				margin: 0;
+				line-height: 40px;
+				font-size: 16px;
+				color: #595959;
+			}
+			
+			.option p:nth-child(1) {
+				border-bottom: 1px solid #e4e4e4;
+			}
+			.silder {
+				position: absolute;
+				height:144px;
+				width: 100%;
+				background: #fff;
+				/*bottom: -144px;*/
+				bottom: 0;
+				padding-left: 10px;
+				transition: all 0.5s linear;
+				display:none;
+				z-index: 99;
+			}
+			.mui-backdrop{
+				display: none;	
+			}
+			
+			.silder .content .tit {
+				line-height: 40px;
+				border-bottom: 1px solid #96D8A1;
+				font-size: 16px;
+			}
+			
+			.silder .content .tit span {
+				margin-left: 10px;
+			}
+			
+			.silder .content p {
+				margin: 10px 0;
+				padding-right: 10px;
+			}
+			#nav{
+				width:85px;
+				height: 30px;
+				
+			}
+			#nav img{
+				width: 20px;
+				vertical-align: middle;
+				margin-left:6px;
+			}
+			.child_cell .act{
+				border:1px solid #4ca26e;
+				color: #4CA26E;
+			}
+			.child_cell p {
+				font-size: 12px;
+				text-align: center;
+				width:50px;
+				height:50px;
+				border-radius: 50%;
+				margin: 0 auto;
+				border:1px solid #8f8f94;
+				line-height: 30px;
+			}
+			.child_cell p img{
+				width: 20px;
+				margin-top:13px;
+			}
+			.mui-btn-block{
+				line-height: 30px;
+				margin:10px 0;
+			}

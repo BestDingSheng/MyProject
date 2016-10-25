@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+	</head>
+	<style type="text/css">
+		.img img {
+			display: block;
+			width: 100%;
+		}
+		
+		.mui-table-view {
+			margin-top: 10px;
+			border-top: 3px solid #4ca26e;
+			border-bottom: 0;
+		}
+		
+		.mui-table-view-cell:after {
+			left: 0;
+		}
+		
+		.mui-grid-view.mui-grid-9 .mui-media {
+			padding: 0;
+		}
+		
+		.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+			border-left: none;
+			border-top: 1px solid #ececec;
+		}
+		
+		.mui-grid-view.mui-grid-9 .mui-table-view-cell:nth-child(1),
+		.mui-grid-view.mui-grid-9 .mui-table-view-cell:nth-child(2),
+		.mui-grid-view.mui-grid-9 .mui-table-view-cell:nth-child(3) {
+			border-top: none;
+		}
+		/*.mui-table-view li {
+			height: 40px;
+			font-size: 16px;
+			padding:9px 35px;
+			color: #7e7c81;
+			display: block;
+			border-bottom:1px solid #dadada;
+		}*/
+		
+		.mui-table-view li {
+			height: 40px;
+			font-size: 16px;
+			padding: 9px 35px;
+			color: #7e7c81;
+			display: block;
+			border-bottom: 1px solid #dadada;
+			text-indent: 0px;
+			padding-left: 42px;
+		}
+		
+		.mui-table-view .icon-01 {
+			background: url(../images/details-icon-01.png) no-repeat 10px center;
+			background-size: 20px auto;
+			color: #595959;
+			font-weight: bold;
+		}
+		
+		.mui-table-view .icon-02 {
+			background: url(../images/details-icon-02.png) no-repeat 10px center;
+			background-size: 20px auto;
+		}
+		
+		.mui-table-view .icon-03 {
+			background: url(../images/details-icon-03.png) no-repeat 10px center;
+			background-size: 20px auto;
+		}
+		
+		.mui-table-view .icon-04 {
+			background: url(../images/details-icon-04.png) no-repeat 10px center;
+			background-size: 20px auto;
+		}
+		
+		.mui-table-view .icon-05 {
+			background: url(../images/details-icon-05.png) no-repeat 10px center;
+			background-size: 20px auto;
+		}
+		
+		.mui-table-view .icon-06 {
+			background: url(../images/details-icon-06.png) no-repeat 10px center;
+			background-size: 20px auto;
+		}
+		
+		.mui-table-view .icon-07 {
+			background: url(../images/details-icon-07.png) no-repeat 10px center;
+			background-size: 20px auto;
+		}
+		
+		.mui-table-view .icon-08 {
+			background: url(../images/details-icon-08.png) no-repeat 10px center;
+			background-size: 20px auto;
+		}
+		
+		#charging {
+			border-left: 1px solid #d5d5d5;
+			border-right: 1px solid #d5d5d5;
+		}
+		
+		.swiper-container {
+			max-height: 200px;
+		}
+		
+		.swiper-container img {
+			width: 100%;
+			display: block;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back(true);"></a>
+			<h1 class="mui-title">桩点详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="swiper-container">
+					<div id='sitePhoto' class="swiper-wrapper">
+						<div class="swiper-slide"><img src="../images/details-bg.png"></div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<ul class="mui-table-view">
+					<li id='siteName' class=" icon-01 "></li>
+					<li id='address' class=" icon-02 "></li>
+					<li id='partingFee' class=" icon-03 "></li>
+					<li id='openTime' class=" icon-04 "></li>
+					<li id='lotName' class=" icon-05 "></li>
+					<li id='direct_current' class=" icon-06 "></li>
+					<li id='operator' class="icon-07 "></li>
+					<li id='chargeWay' class="icon-08"></li>
+				</ul>
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div class="mui-media-body">计价方式</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div class="mui-media-body" id="charging">充电费</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div class="mui-media-body">服务费</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div class="mui-media-body">白天</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div id='lightKwh' class="mui-media-body"></div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div id='lightServe' class="mui-media-body"></div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div class="mui-media-body">夜间</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div id='nightKwh' class="mui-media-body"></div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						<a href="#">
+							<div id='nightServe' class="mui-media-body"></div>
+						</a>
+					</li>
+
+				</ul>
+
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/swiper-3.3.1.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/constant.js"></script>
+		<script>
+			document.addEventListener("plusready", onPlusReady, false);
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+
+			function onPlusReady() {
+//				var siteDetail = plus.webview.currentWebview();
+//				getSiteInfo(siteDetail.siteCode);
+				
+				document.addEventListener('loadSiteDetail',function(event){
+					var sitecode = event.detail.sitecode;
+					console.log('detail paremeter: ' + sitecode);
+					getSiteInfo(sitecode);
+				});
+			}
+			
+
+			function getSiteInfo(siteCode) {
+				var w = plus.nativeUI.showWaiting();
+				var url = webRoot + '/wechat/nav/siteBoxStatus';
+				mui.ajax(url, {
+					data: {
+						'siteCodes': siteCode
+					},
+					dataType: 'json',
+					type: 'get',
+					success: function(data) {
+						$('.mui-table-view li').css('height', 'auto')
+						if (data[0].name == 'undefined' || data[0].name == null || data[0].name == '') {
+							jQuery("#siteName").html("未知");
+						} else {
+							jQuery("#siteName").html(data[0].name);
+						}
+						if (data[0].address == 'undefined' || data[0].address == null || data[0].address == '') {
+							jQuery("#address").html("地址：未知");
+						} else {
+							jQuery("#address").html("地址：" + data[0].address);
+						}
+						if (data[0].parkingFee == 'undefined' || data[0].parkingFee == null || data[0].parkingFee == '') {
+							jQuery("#partingFee").html("停车费：未知");
+						} else {
+							jQuery("#partingFee").html("停车费：" + data[0].parkingFee);
+						}
+						if (data[0].openTime == 'undefined' || data[0].openTime == null || data[0].openTime == '') {
+							jQuery("#openTime").html("开放时间：未知");
+						} else {
+							jQuery("#openTime").html("开放时间：" + data[0].openTime);
+						}
+						if (data[0].lotName == 'undefined' || data[0].lotName == null || data[0].lotName == '') {
+							jQuery("#lotName").html("停车位：未知");
+						} else {
+							jQuery("#lotName").html("停车位：" + data[0].lotName);
+						}
+						if (data[0].info == 'undefined' || data[0].info == null || data[0].info == '') {
+							jQuery("#direct_current").html("空闲/使用：未知");
+						} else {
+							jQuery("#direct_current").html("空闲/使用：" + data[0].info.available + "/" + data[0].info.occupied);
+						}
+						if (data[0].operator == 'undefined' || data[0].operator == null || data[0].operator == '') {
+							jQuery("#operator").html("运营商：未知");
+						} else {
+							jQuery("#operator").html("运营商：" + data[0].operator);
+						}
+						if (data[0].chargeWay == 'undefined' || data[0].chargeWay == null || data[0].chargeWay == '') {
+							jQuery("#chargeWay").html("充电方式：未知");
+						} else {
+							jQuery("#chargeWay").html("充电方式：" + data[0].chargeWay);
+						}
+						var sitePhoto = data[0].sitePhoto;
+						if (sitePhoto != null) {
+							var result = sitePhoto.split(",");
+							var PhotoDivHtml = "";
+							for (var i in result) {
+								var sitePhoto = webRoot + "/picture/getThumbnailPicture/StaticResource_DevChargesite/" + result[i];
+								PhotoDivHtml = PhotoDivHtml + "<div class='swiper-slide'><img src='" + sitePhoto + "'></div>";
+							}
+							//							alert(PhotoDivHtml);
+							//jQuery("#sitePhoto").empty();
+							$('.swiper-slide').remove();
+							jQuery("#sitePhoto").html(PhotoDivHtml);
+							//console.log(jQuery("#sitePhoto").html());
+							if (result.length > 1) {
+								var mySwiper = new Swiper('.swiper-container', {
+									direction: 'horizontal',
+									pagination: '.swiper-pagination',
+									loop: true,
+									autoplay: 3000,
+								});
+							}
+						}else{
+							$('.swiper-slide').remove();
+							jQuery("#sitePhoto").html("<div class='swiper-slide'><img src='../images/details-bg.png'></div>");							
+						}
+						if (data[0].priceParam == 'undefined' || data[0].priceParam == null || data[0].priceParam == '') {
+							jQuery('#lightKwh').html("未知");
+							jQuery('#nightKwh').html("未知");
+							jQuery('#lightServe').html("未知");
+							jQuery('#nightServe').html("未知");
+						} else {
+							jQuery('#lightKwh').html(data[0].priceParam.perKwhLight + "元/KW");
+							jQuery('#nightKwh').html(data[0].priceParam.perKwhNight + "元/KW");
+							jQuery('#lightServe').html(data[0].priceParam.perHours + "元/时");
+							jQuery('#nightServe').html(data[0].priceParam.perHoursNight + "元/时");
+						}
+						plus.webview.currentWebview().show('pop-in',300);
+						w.close();
+					},
+					error: function() {
+						mui.toast('网络不给力');
+						w.close();
+					}
+				})
+			}
+		</script>
+	</body>
+
+</html>

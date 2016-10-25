@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="mui-content-padded">
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-collapse mui-media layer">
+					<span class="mark"></span>
+					<a href="#" class="up">
+						<div class="mui-media-object mui-pull-left">
+							<img src="../images/icon_msg_start.png" alt="">
+						</div>
+						<div class="mui-media-body">
+							<div>开始充电通知</div>
+							<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+							<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+						</div>
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+	
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="mui-media-object mui-pull-left">
+									<img src="../images/nav-pic.png" alt="">
+								</div>
+								<div class="mui-media-body">
+									<div>结束充电通知</div>
+									<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+									<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="mui-media-object mui-pull-left">
+									<img src="../images/icon_msg_end.png" alt="">
+								</div>
+								<div class="mui-media-body">
+									<div>终止充电通知</div>
+									<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+									<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="mui-media-object mui-pull-left">
+									<img src="../images/nav-pic.png" alt="">
+								</div>
+								<div class="mui-media-body">
+									<div>开始充电通知</div>
+									<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+									<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="mui-table-view-cell mui-collapse mui-media layer">
+					<span class="mark"></span>
+					<a href="#" class="up">
+						<div class="mui-media-object mui-pull-left">
+							<img src="../images/icon_msg_end.png" alt="">
+						</div>
+						<div class="mui-media-body">
+							<div>开始结束通知</div>
+							<p class="mui-ellipsis">益虫充电结束通知益虫充电开始通知益虫充电充电...</p>
+							<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+						</div>
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+	
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="mui-media-object mui-pull-left">
+									<img src="../images/nav-pic.png" alt="">
+								</div>
+								<div class="mui-media-body">
+									<div>开始结束通知</div>
+									<p class="mui-ellipsis">益虫充电结束通知益虫充电开始通知益虫充电充电...</p>
+									<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</li>
+	
+			</ul>
+		</div>
+	</body>
+</html>

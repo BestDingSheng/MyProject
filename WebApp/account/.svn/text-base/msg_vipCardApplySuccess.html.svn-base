@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>会员卡申请成功</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">会员卡申请成功</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded" style="margin:30px 10px;">
+				<div>尊敬的用户，您好！您的会员卡已经申请成功，稍后客服将会与您联系。如有疑问，请随时拨打客服热线。</div>
+				<div style="margin-top: 20px;">
+					<button class="mui-btn-block mui-btn-green" onclick="telPhone()">客服电话：400-820-2298</button>
+				</div>
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			function telPhone() {
+					var btnArray = ['拨打', '取消'];
+					mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+						if (e.index != 1) {
+							location.href = "tel:400-820-2298";
+						}
+					})
+			}
+		</script>
+	</body>
+
+</html>

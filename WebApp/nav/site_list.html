@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title id='title'>列表导航</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/navigation_list.css" />
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<style type="text/css">
+			.name {
+				width: -webkit-calc(100% - 75px);
+			}
+			
+			.name span.fl {
+				width: -webkit-calc(100% - 35px);
+			}
+			
+			.name span.fr {
+				width: 35px;
+			}
+			
+			.distance {
+				width: 75px;
+				text-align: center;
+			}
+			
+			.distance img {
+				width: 15px;
+				vertical-align: -2px;
+				margin-left: 5px;
+			}
+			
+			.loading {
+				text-align: center;
+				line-height: 30px;
+				color: #999;
+				display: none;
+			}
+			
+			.mui-spinner {
+				vertical-align: -4px;
+				margin-right: 10px;
+			}
+			/*///*/
+			
+			.mui-backdrop .content {
+				position: absolute;
+				bottom: 0;
+				height: 60%;
+				background: #f8f8f8;
+				width: 100%;
+				padding: 10px;
+				overflow: hidden;
+				transition: all 1s linear;
+			}
+			
+			.scrool {
+				height: -webkit-calc(100% - 54px);
+				overflow: scroll;
+			}
+			
+			.mui-backdrop .close {
+				position: absolute;
+				width: 25px;
+				height: 25px;
+				background: url(../images/icon_close.png) no-repeat 0 0;
+				background-size: 100% auto;
+				right: 10px;
+				bottom: -webkit-calc(60% - 10px);
+				z-index: 9;
+				transition: all 1s linear;
+			}
+			
+			.mui-backdrop .content input {
+				height: 30px;
+				border-radius: 30px;
+				text-align: center;
+			}
+			
+			.mui-backdrop .content input::-webkit-input-placeholder {
+				text-align: center;
+				font-size: 14px;
+			}
+			
+			.way {
+				margin-top: 10px;
+				border: 1px solid #e4e4e4;
+				padding: 0 10px;
+				margin-bottom: 10px;
+				background: #fff;
+			}
+			
+			.way .cell {
+				overflow: hidden;
+				/*padding: 10px 10px 10px 0;*/
+			}
+			
+			.way .list {
+				padding: 10px 0 15px;
+				/*padding-top: 10px;*/
+			}
+			
+			.way .cell .child_cell {
+				float: left;
+				width: 33.33%;
+				height: 40px;
+				line-height: 40px;
+			}
+			
+			.way .txt {
+				border-bottom: 1px solid #4ca26e;
+				line-height: 40px;
+				font-size: 16px;
+			}
+			
+			.way .cell .child_cell span {
+				border: 1px solid #adadad;
+				padding: 5px 15px;
+				border-radius: 13px;
+				color: #adadad;
+				font-size: 14px;
+				vertical-align: 1px;
+			}
+			
+			.way .cell .act span {
+				border: 1px solid #4ca26e;
+				color: #4ca26e;
+			}
+			
+			.way .list .child_cell {
+				width: 20%;
+				height: auto;
+				margin-bottom: 10px;
+			}
+			
+			.mui-switch.mui-active {
+				float: right;
+			}
+			
+			.mui-switch {
+				float: right;
+				top: 4px;
+			}
+			
+			.mui-switch:before {
+				top: -6px;
+			}
+			
+			.option p {
+				margin: 0;
+				line-height: 40px;
+				font-size: 16px;
+				color: #595959;
+			}
+			
+			.option p:nth-child(1) {
+				border-bottom: 1px solid #e4e4e4;
+			}
+			
+			.silder {
+				position: absolute;
+				height: 144px;
+				width: 100%;
+				background: #fff;
+				/*bottom: -144px;*/
+				bottom: 0;
+				padding-left: 10px;
+				transition: all 0.5s linear;
+				display: block;
+			}
+			
+			.mui-backdrop {
+				display: block;
+			}
+			
+			.silder .content .tit {
+				line-height: 40px;
+				border-bottom: 1px solid #96D8A1;
+				font-size: 16px;
+			}
+			
+			.silder .content .tit span {
+				margin-left: 10px;
+			}
+			
+			.silder .content p {
+				margin: 10px 0;
+				padding-right: 10px;
+			}
+			
+			#nav {
+				width: 72px;
+				height: 30px;
+			}
+			
+			#nav img {
+				width: 20px;
+				vertical-align: middle;
+				margin-left: 6px;
+			}
+			
+			.child_cell .act {
+				border: 1px solid #4ca26e;
+				color: #4CA26E;
+			}
+			
+			.child_cell p {
+				font-size: 12px;
+				text-align: center;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				margin: 0 auto;
+				border: 1px solid #8f8f94;
+				line-height: 30px;
+			}
+			
+			.child_cell p img {
+				width: 20px;
+				margin-top: 13px;
+			}
+			
+			.mui-btn-block {
+				line-height: 30px;
+				margin: 10px 0;
+			}
+			
+			.way .list {
+				padding: 10px 0;
+			}
+			
+			.way .cell .child_cell {
+				float: left;
+				width: 33.33%;
+				height: 40px;
+				line-height: 40px;
+			}
+			
+			.way .txt {
+				border-bottom: 1px solid #4ca26e;
+				line-height: 40px;
+			}
+			
+			.way .cell .child_cell span {
+				border: 1px solid #adadad;
+				padding: 3px 20px;
+				border-radius: 13px;
+				color: #adadad;
+				font-size: 14px;
+				vertical-align: 1px;
+			}
+			
+			.way .cell .act span {
+				border: 1px solid #4ca26e;
+				color: #4ca26e;
+			}
+			
+			.way .list .child_cell {
+				width: 20%;
+				height: 50px;
+			}
+			
+			.mui-switch.mui-active {
+				float: right;
+			}
+			
+			.mui-switch {
+				float: right;
+				top: 4px;
+			}
+			
+			.mui-switch:before {
+				top: -6px;
+			}
+			
+			.option p {
+				margin: 0;
+				line-height: 40px;
+				font-size: 16px;
+				color: #595959;
+			}
+			
+			.option p:nth-child(1) {
+				border-bottom: 1px solid #e4e4e4;
+			}
+			
+			.mui-backdrop {
+				display: none;
+			}
+			
+			.silder {
+				position: absolute;
+				height: 144px;
+				width: 100%;
+				background: #fff;
+				/*bottom: -144px;*/
+				bottom: 0;
+				padding-left: 10px;
+				transition: all 0.5s linear;
+				display: none;
+			}
+			
+			.silder .content .tit {
+				line-height: 40px;
+				border-bottom: 1px solid #96D8A1;
+			}
+			
+			.silder .content .tit span {
+				margin-left: 10px;
+			}
+			
+			.silder .content p {
+				margin: 10px 0;
+			}
+			/*动画*/
+			
+			.spinner {
+				width: 60px;
+				height: 60px;
+				position: relative;
+				margin: 60% auto;
+			}
+			
+			.double-bounce1,
+			.double-bounce2 {
+				width: 100%;
+				height: 100%;
+				border-radius: 50%;
+				background-color: #67CF22;
+				opacity: 0.6;
+				position: absolute;
+				top: 0;
+				left: 0;
+				-webkit-animation: bounce 2.0s infinite ease-in-out;
+				animation: bounce 2.0s infinite ease-in-out;
+			}
+			
+			.double-bounce2 {
+				-webkit-animation-delay: -1.0s;
+				animation-delay: -1.0s;
+			}
+			
+			@-webkit-keyframes bounce {
+				0%,
+				100% {
+					-webkit-transform: scale(0.0)
+				}
+				50% {
+					-webkit-transform: scale(1.0)
+				}
+			}
+			
+			@keyframes bounce {
+				0%,
+				100% {
+					transform: scale(0.0);
+					-webkit-transform: scale(0.0);
+				}
+				50% {
+					transform: scale(1.0);
+					-webkit-transform: scale(1.0);
+				}
+			}
+			
+			.load {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				background: #fff;
+				top: 0;
+				bottom: 0;
+				z-index: 99;
+				display: none;
+			}
+			
+			.mar10 {
+				margin-right: 10px;
+			}
+			#searchBox{
+				font-size:0;
+				margin: 10px;
+				border-radius: 5px;
+			}
+			#searchBox input{
+				width:90%;
+				height:35px;
+				padding-left: 35px;
+				margin: 0;
+				border:none;
+				box-shadow:0 0 3px #cbcbcb;
+				background:#fff url(../images/icon_search.png) no-repeat 10px center;
+				background-size:auto 20px;
+			}
+			#searchBox button{
+				width:20%;
+				margin-left: -10%;
+				border:none;
+				background: #4fa16f;
+				color: #fff;
+				padding:8px 12px;
+				box-shadow: 0 0 2px #4FA16F;
+				
+			}
+			/*#searchBox {
+				display: -webkit-flex;
+				display: flex;
+				flex-flow: row nowrap;
+				align-items: flex-start;
+				justify-content: center;
+				position:fixed;
+				background:#f4f4f4;
+				width: 100%;
+				top: 0px;
+				padding: 5px 0;
+				z-index: 999;
+			}
+			#searchBox input{
+				margin-left: 10px !important;
+			}
+			#searchBox button{
+				margin-right: 10px;
+			}*/
+			.mui-scroll-wrapper{
+				top: 55px;
+			}
+			.mui-plus-pullrefresh .mui-scroll-wrapper, .mui-plus-pullrefresh .mui-slider-group{
+				/*margin-top: 50px;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div id='searchBox'>
+			<input id="searchTxt" type="text" placeholder="请输入目的地地址" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="zh-CN">
+			<button class="mui-btn mui-btn-white"  onclick="search_val()">搜索</button>
+		</div>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="list" class="mui-table-view">
+
+				</ul>
+			</div>
+		</div>
+		<!--mui-brock-->
+
+		<!--jieshu-->
+		<div class="load">
+			<div class="spinner">
+				<div class="double-bounce1"></div>
+				<div class="double-bounce2"></div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/location.js"></script>
+		<script src="../js/constant.js"></script>
+		<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=YS4BZ-IGTRD-UMK4S-PPP3R-BXUV5-F4FKL"></script>
+
+		<script>
+		var currentWGSPoint;
+		function search_val() {
+				var word = document.getElementById("searchTxt").value;				
+
+				if(word==""){
+					plus.nativeUI.alert("请输入目的地地址");
+					return;
+				}
+				search(word)
+			}
+		//搜索
+			function search(word) {
+				MyLocation.getCity(function(p) {
+					var city = p ? p : '上海';
+					plus.maps.Map.geocode(word, {
+						city: city,
+						coordType: 'bd09ll'
+					}, function(event) {
+						plus.storage.setItem('word',word);
+						//保存搜过记录
+						
+						var address = event.address; // 转换后的地理位置
+						var point = event.coord;
+						//var point = new plus.maps.Point(event.coord.longitude, event.coord.latitude)
+						var coordType = event.coordType; // 转换后的坐标系类型
+//						amap.clearOverlays();
+//						var marker = new plus.maps.Marker(point);
+//						marker.setIcon("../images/loc.png")
+//						marker.setLabel(event.address);
+//						amap.addOverlay(marker);
+//						amap.setCenter(point);
+						//console.log("Coord:" + JSON.stringify(point));
+						//清除所有marker，重新搜索打标点
+						var gcjpoint = GPS.bd_decrypt(point.getLat(), point.getLng());
+						var qqPoint = new qq.maps.LatLng(gcjpoint['lat'], gcjpoint['lon']);
+						nearby = "nearby(" + qqPoint.getLat() + "," + qqPoint.getLng() + ",5000)";
+						orderby = "distance(" + qqPoint.getLat() + "," + qqPoint.getLng() + ")";
+						filter = "x.site_status=3";
+						pageIndex = 1;						
+						$('#list li').remove();	
+						searchChargeSite(filter, nearby, orderby);
+					}, function(e) {
+						plus.nativeUI.alert("请输入更详细的地址信息");
+						console.log("Failed:" + JSON.stringify(e));
+					});
+				});
+			}
+			//
+			document.addEventListener('mask', function() {
+				$('.mui-backdrop').show();
+			})
+			var pageIndex = 1;
+			var nearby;
+			var orderby;
+			var filter;
+			var w;
+			document.addEventListener('filter', filter_submit);
+
+			function filter_submit(event) {
+				//event.detail //传过来json
+				$('#list li').remove();
+				pageIndex = 1;
+				filter = event.detail.filter;
+				nearby = event.detail.nearby;
+				orderby = event.detail.orderby;
+				searchChargeSite(filter, nearby, orderby);
+				mui('.mui-content').pullRefresh().refresh(true);
+			}
+
+			function navigateWithMap(tenLat, tenLng,sitename) {
+				var tenLatLng = GPS.gcj_decrypt(tenLat, tenLng);
+				// 设置目标位置坐标点和其实位置坐标点
+				var dst = new plus.maps.Point(tenLatLng.lon, tenLatLng.lat);
+				var src = new plus.maps.Point(currentWGSPoint.lon, currentWGSPoint.lat);
+				console.log(sitename);
+				// 调用系统地图显示 
+				plus.maps.openSysMap(dst, sitename, src);
+			}
+		</script>
+		<script>
+			var nearby_pull=null;
+			document.addEventListener("changeNum",function(event){
+				nearby_pull=event.detail.nearby;
+			})
+			
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						contentrefresh: "正在刷新...",
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: "正在加载...",
+						contentnomore: '没有更多数据了',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				
+				setTimeout(function() {
+					pageIndex = 1;
+					$('#list li').remove();
+					w = plus.nativeUI.showWaiting();
+					//判断有没有用搜索记录
+					var word = plus.storage.getItem('word');
+					if(word==null){
+						firstLocated();						
+					}else{
+						search(word);
+					}
+					//firstLocated();
+					w.close();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1000);
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				searchChargeSite(filter, nearby, orderby);
+			}
+			if (mui.os.plus) {
+				mui.plusReady(onPlusReady);
+			} else {
+				mui.ready(onPlusReady);
+			}
+
+			function onPlusReady() {
+				console.log("site list onPlusReady");
+				document.addEventListener('showMask', function() {
+					$('.mui-backdrop').show();
+				});
+				document.addEventListener('query', function(e) {
+					//alert(e.detail.pageIndex);
+					pageIndex = e.detail.pageIndex;
+					$('#list li').remove();
+					searchChargeSite(e.detail.filter, e.detail.nearby, e.detail.orderby);
+					mui('.mui-content').pullRefresh().refresh(true);
+					$('.mui-backdrop').hide();
+				});
+				w = plus.nativeUI.showWaiting();
+				firstLocated();
+				w.close();
+			};
+
+			function constructChargeInfoPanel(data) {
+				var innerHtml = "";
+				for (var i = 0; i < data.length; i++) {
+					var sitePhoto = data[i].x.site_photo;
+					var siteCode = data[i].x.site_code;
+					if (sitePhoto != null&&sitePhoto!="") {
+						sitePhoto = webRoot + "/picture/getThumbnailPicture/StaticResource_DevChargesite/" + sitePhoto;
+					} else {
+						sitePhoto = "../images/nav-pic.png";
+					}
+					innerHtml = innerHtml + "<li class='mui-table-view-cell mui-media' data='" + siteCode + "'>" + "<div class='mui-media-object mui-pull-left'>" + "<img src='" + sitePhoto + "'/>" + "</div>";
+					var url = "stationDetail.html";
+					innerHtml = innerHtml + "<div class='mui-media-body'>" + "<div class='top mui-ellipsis'>" + "<div class='fl name mui-ellipsis'><span class='fl mui-ellipsis'>" + data[i].title + "</span></div>";
+					console.log(JSON.stringify(data[i]));
+					var distance = parseInt(data[i]._distance);
+					if (distance >= 1000) {
+						distance = (distance / 1000).toFixed(1) + ' km';
+					} else {
+						distance = distance + ' m';
+					} //onClick='navigateWithMap("+data[i].location.lat+","+data[i].location.lng+")'
+					innerHtml = innerHtml + "<div class='fr distance' lat='" + data[i].location.lat + "' lng='" + data[i].location.lng + "' sitename='" + data[i].title + "'>" + distance + "<img id='navig' src='../images/icon-nav.png'/></div>" + "</div>";
+					//					var directChargerNum = data[i].x.direct_charger_num == undefined ? 0 : data[i].x.direct_charger_num;
+					var directChargerNum = data[i].x.charger_number == undefined ? 0 : data[i].x.charger_number;
+					innerHtml = innerHtml + "<div class='bottom mui-ellipsis'>" + "<div class='txt'>" + "<span>充电位:" + directChargerNum + "</span>";
+					var chargeType = data[i].x.charge_type;
+					if (chargeType == 1) {
+						innerHtml = innerHtml + "<span class='fr mar10'><img src='../images/nav-slow.png' alt=''/>快</span>";
+					} else {
+						innerHtml = innerHtml + "<span class='fr mar10'><img src='../images/nav-slow.png' alt=''/>慢</span>";
+					}
+					innerHtml = innerHtml + "</div>" + "<div class = 'txt mui-ellipsis'>" + data[i].address + "</div>" + "</div>" + "</li>";
+				}
+				console.log(innerHtml);
+				return innerHtml;
+			}
+			$(document).on('tap', '.distance', function(event) {
+				event.stopPropagation();
+				var lat = $(this).attr('lat');
+				var lng = $(this).attr('lng');
+				var sitename = $(this).attr('sitename');
+				navigateWithMap(lat, lng,sitename);
+			})
+			$(document).on('tap', '.mui-table-view-cell', function() {
+				var siteCode = $(this).attr('data');				
+				intoDetail(siteCode)
+			})
+
+			function intoDetail(siteCode) {
+
+				var map_main = plus.webview.getWebviewById(WEBVIEW_IDS.SITE_MAIN);				
+					mui.fire(map_main,'showDetail',{sitecode:siteCode});
+			}
+
+			function searchChargeSite(filter, boundary, orderby) {
+				console.log('site-list - filter='+filter +'&orderby='+ orderby+'&boundary='+boundary +'&pageIndex='+ pageIndex);
+				var url = "http://apis.map.qq.com/lbscloud/v1/poi/search?callback=?";
+				var params = {
+					"filter": filter,
+					"page_size": 10,
+					"page_index": pageIndex,
+					"poi_table": "Evchong",
+					"output": "jsonp",
+					"key": "YS4BZ-IGTRD-UMK4S-PPP3R-BXUV5-F4FKL"
+				};
+				if (nearby != null && orderby != null) {
+					params.boundary = nearby;
+					params.orderby = orderby;
+					console.log(filter);
+				}
+				$.getJSON(url, params, function(json) {
+					console.log(json.data);
+					if (json.status == 0) {
+						if (json.count > 0) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+							var innerHtml = constructChargeInfoPanel(json.data);
+							if (pageIndex == 1) {}
+							if (json.data.length > 0) {
+								pageIndex++;
+							} else {
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+							};
+							$('#list').append(innerHtml);
+						} else {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+					}
+				});
+			}
+
+			function firstLocated() {
+				MyLocation.getPosition(function(pos) {
+					console.log('coordType:' + pos.coordType)
+					var arr2 = GPS.bd_decrypt(pos.coords.latitude,pos.coords.longitude);
+					currentWGSPoint = GPS.gcj_decrypt(arr2.lat, arr2.lon);
+					var searchDestLatLng = new plus.maps.Point(arr2['lon'],arr2['lat']);
+					if(nearby_pull==null){
+					nearby = "nearby(" + searchDestLatLng.getLat() + "," + searchDestLatLng.getLng() + ",5000)";						
+					}else{
+						 nearby=nearby_pull;
+					}
+
+					 				
+					//					nearby="region("+position.address.city+")";
+					orderby = "distance(" + searchDestLatLng.getLat() + "," + searchDestLatLng.getLng() + ")";
+					filter = "x.site_status=3";
+					//					$('#title').html(position.address.city);
+					searchChargeSite(filter, nearby, orderby);
+				});
+			}
+			//			(function($) {
+			//				//阻尼系数
+			//				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			//				$('.mui-scroll-wrapper').scroll({
+			//					bounce: false,
+			//					indicators: true, //是否显示滚动条
+			//					deceleration: deceleration
+			//				});
+			//			})(mui);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<style>
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			
+			.mui-bar .mui-icon:active {
+				opacity: 1;
+			}
+			
+			#head_pic {
+				height: 140px;
+				background: url(../images/my-bg.png) repeat 0 0;
+				background-size: 100% 100%;
+				text-align: center;
+				padding-top: 20px;
+			}
+			
+			.head .head-pic img {
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+			}
+			
+			.info {
+				overflow: hidden;
+				background: #4ca26e;
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+			
+			div.fl,
+			div.fr {
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+				padding: 0 10px;
+				position: relative;
+			}
+			
+			div.fl:after,
+			div.fl a {
+				color: #fff;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn).mui-active {
+				background: transparent;
+			}
+			
+			.gold {
+				width: 20px;
+				vertical-align: -3px;
+				margin-left: 10px;
+			}
+			
+			.mui-table-view {
+				text-align: left;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn) {
+				color: #333;
+				margin: -11px 10px;
+			}
+			
+			.mui-table-view {
+				margin-bottom: 10px;
+			}
+			
+			.mui-table-view .mui-table-view-cell {
+				color: #333;
+			}
+			
+			.mui-table-view .account {
+				background: url(../images/icon-account.png) no-repeat 10px center;
+				background-size: 25px;
+			}
+			
+			.mui-table-view .vip {
+				background: url(../images/icon-vipcard.png) no-repeat 10px center;
+				background-size: 25px;
+			}
+			
+			.mui-table-view .jilu {
+				background: url(../images/icon-note.png) no-repeat 10px center;
+				background-size: 25px;
+			}
+			
+			.mui-table-view .fenxi {
+				background: url(../images/icon-fenxi.png) no-repeat 10px center;
+				background-size: 25px;
+			}
+			
+			.mui-table-view .wangluo {
+				background: url(../images/icon-wangluo.png) no-repeat 10px center;
+				background-size: 25px;
+			}
+			
+			.mui-table-view .kefu {
+				background: url(../images/iconfont-kefuzhongxin.png) no-repeat 10px center;
+				background-size: 25px;
+			}
+			
+			.mui-table-view .setting {
+				background: url(../images/iconfont-shezhi.png) no-repeat 10px center;
+				background-size: 25px;
+			}
+			
+			.mui-bar .mui-icon {
+				width: 25px;
+				height: 25px;
+				background: url(../images/icon_msg.png) no-repeat center center;
+				background-size: 100%;
+				top: 7px;
+			}
+			
+			.act:before {
+				content: '';
+				position: absolute;
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				right: -2px;
+				top: 0;
+				background: red;
+			}
+			
+			#blance {
+				float: right;
+				margin-right: 30px;
+			}
+			
+			.mui-content {
+				background: #efeff4;
+			}
+			
+			.mui-ellipsis {
+				font-size: 16px;
+				color: #fff;
+			}
+			
+			#mb_phone button {
+				background: none;
+				border: none;
+				border-radius: 0px;
+			}
+			
+			#kefu a {
+				background: url(../images/icon_call_phone.png) no-repeat 95% center;
+				background-size: 20px;
+			}
+			
+			.mui-navigate-right:after,
+			.mui-push-left:after,
+			.mui-push-right:after {
+				color: #4ca26e;
+			}
+		</style>
+	</head>
+
+	<body id="body">
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">我的</h1>
+			<a class="mui-icon mui-pull-right" id="msg"></a>
+		</header>
+		<input id='accountCode' type='hidden' />
+		<div class="mui-content">
+			<div class="head">
+				<div class="head-pic" id="head_pic">
+					<img id='imgPre' src="../images/head-pic.png" alt="" />
+					<p class="color-black" id="mb_phone"><button id="login_register">登录/注册</button></p>
+				</div>
+				<div class="info">
+					<div class="fl mui-ellipsis mui-push-right account_amount" id="account_amount">
+						<span class="fl amount">森通账户余额</span>
+						<div class="" id="blance"><span>0</span><img class="gold" src="../images/gold.png" alt="" /></div>
+					</div>
+				</div>
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell account" id="my">
+						<a id="myAccount" href="refund_record.html" class="mui-navigate-right">我的账户</a>
+					</li>
+					<li class="mui-table-view-cell vip" id="vip_card">
+						<a href="member/application_success.html" class="mui-navigate-right" id="my_card">我的会员卡</a>
+						<input type='hidden' id='cardNumber' />
+					</li>
+				</ul>
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell jilu">
+						<a id='myChargeRecord' href="charge_record.html" class="mui-navigate-right">充电记录</a>
+					</li>
+					<li class="mui-table-view-cell fenxi">
+						<a id='chargeAnalysis' href="Charging_analysis.html" class="mui-navigate-right">充电分析</a>
+					</li>
+					<li class="mui-table-view-cell wangluo">
+						<a id='chargeAnalysis' href="Charging_network.html" class="mui-navigate-right">充电网络</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell kefu" id="kefu">
+						<a href="tel:400-820-2298" class="">服务热线</a>
+					</li>
+					<li class="mui-table-view-cell setting" id="setting">
+						<a href="Personal_Settings.html" class="mui-navigate-right">设置</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/jQuery.js"></script>
+	<script src="../js/public.js"></script>
+	<script src="../js/constant.js"></script>
+	<script type="text/javascript">
+		//进入会员卡的状态判断
+	</script>
+	<script>
+		var isMsgCountPlusReady = true; // 消息数量是否首次加载
+		//自定义事件
+		document.addEventListener('refresh', function(event) {
+			intoMyCenter();
+		});
+		var personHeadPhoto = null;
+		//当高度是5s或者小于5s的时候就不启动上下拉刷新功能
+		var _h = window.screen.height;
+		if(_h > 568) {
+			mui.init({
+				pullRefresh: {
+					container: '.mui-content',
+					down: {
+						callback: pulldownRefresh
+					}
+				}
+			});
+		}
+		jQuery.ready(
+			function() {
+				intoMyCenter();
+			}
+		);
+
+		//添加监听事件
+		function addWebViewEvent() {
+			// 显示隐藏消息红色图标
+			document.addEventListener('msgIconShow', msgIconShow, false);
+			document.addEventListener('getUnReadedLastMsgCountAndMsgShowIcon', getUnReadedLastMsgCountAndMsgShowIcon, false);
+		}
+
+		function msgIconShow(event) {
+			var pushMsg = localStorage.getItem('PUSH_MSG');
+			//alert('msgIconShow:'+pushMsg);
+			pushMsg = JSON.parse(pushMsg);
+			if(pushMsg) {
+				if(pushMsg.isReaded) {
+					$('#msg').removeClass('act'); // 隐藏
+				} else {
+					$('#msg').addClass('act'); // 显示
+				}
+			} else {
+				$('#msg').removeClass('act'); // 隐藏
+			}
+		}
+
+		mui.plusReady(function() {
+			//添加监听事件
+			addWebViewEvent();
+
+			var login = isLogin();
+			if(login) {
+				intoMyCenter();
+			}
+			var login_register = document.getElementById("login_register");
+			login_register.addEventListener('tap', function() {
+				toLogin();
+			});
+			$('#mb_phone').on('tap', function() {
+				if(!isLogin()) {
+					toLogin();
+				}
+			});
+			var account_amount = document.getElementById("account_amount");
+			account_amount.addEventListener('tap', function() {
+				var accAmount = $("#blance span").text();
+				if(isLogin()) {
+					mui.openWindow({
+						id: 'account_amount',
+						url: 'Accounts_prepaid.html',
+						extras: {
+							'accAmount': accAmount
+						},
+						show: {
+							aniShow: 'pop-in'
+						}
+					});
+				} else {
+					toLogin();
+				}
+			});
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var accAmount = $("#blance span").text();
+				var cardNum = $("#cardNumber").val();
+				var id = this.getAttribute('href');
+				var accountCode = $('#accountCode').val();
+				var href = this.href;
+				var type = this.getAttribute("open-type");
+				if(id.indexOf('html') == -1) {
+					var btnArray = ['拨打', '取消'];
+					mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+						if(e.index != 1) {
+							location.href = "tel:400-820-2298";
+						}
+					})
+					return;
+				}
+				if(isLogin()) {
+					//不使用父子模板方案的页面
+					mui.openWindow({
+						id: id,
+						url: this.href,
+						show: {
+							aniShow: "slide-in-right"
+						},
+						createNew: false,
+						extras: {
+							'accAmount': accAmount,
+							'accountCode': accountCode,
+							'cardNum': cardNum
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				} else {
+					toLogin();
+				}
+			});
+			mui('#head_pic').on('tap', 'img', function() {
+				if(isLogin()) {
+					mui.openWindow({
+						id: 'Person_info.html',
+						url: 'Person_info.html',
+						show: {
+							aniShow: "slide-in-right"
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				} else {
+					toLogin();
+					return;
+				}
+			});
+
+			$('#msg').on('tap', function() {
+				if(!isLogin()) {
+					toLogin();
+					return;
+				}
+				if($('#msg').hasClass('act')) {
+					$('#msg').removeClass('act'); // 隐藏
+
+					var pushMsg = localStorage.getItem('PUSH_MSG');
+					pushMsg = JSON.parse(pushMsg);
+					if(pushMsg) {
+						pushMsg.isReaded = true;
+						localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+					}
+				}
+				mui.openWindow({
+					id: WEBVIEW_IDS.MSG_CENTER,
+					url: 'message_center.html',
+					show: {
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+		});
+
+		/** 下拉刷新 **/
+		function pulldownRefresh() {
+			intoMyCenter();
+			mui('.mui-content').pullRefresh().endPulldownToRefresh();
+		}
+
+		function intoMyCenter() {
+			if(!isLogin()) {
+				$('#imgPre').attr('src', '../images/head-pic.png');
+				$('#mb_phone').html('<button id="login_register">登录/注册</button>');
+				$('#blance span').html('0');
+				return;
+			}
+			var params = prepareParams({});
+			$.ajax({
+				type: "get",
+				url: webRoot + "/app/personInfo/getIntoMyCenter",
+				dataType: 'json',
+				data: params,
+				success: function(msg) {
+					console.log("response msg: " + msg);
+					var data = msg.data;
+					if(msg.respCode == 1) {
+						$("#blance span").html(data.blance);
+						$("#mb_phone").html(data.loginId);
+						$("#cardNumber").val(data.cardNum);
+						$('#accountCode').val(data.accountCode);
+						localStorage.setItem('personBrandAndModelName', data.carBrandAndModelName);
+						localStorage.setItem('personInfo', JSON.stringify(data));
+						if(data.basePicture != null) {
+							//							var src = webRoot + "/picture/getThumbnailPicture/StaticResource_PersonHeadPicture/" + data.conventionPicture;
+							$("#imgPre").attr('src', 'data:image/jpg;base64,' + data.basePicture);
+							localStorage.setItem("personInfo_headPhoto", data.basePicture);
+						} else {
+							personHeadPhoto = localStorage.getItem('personHeadPhoto');
+							if(personHeadPhoto != null) {
+								$("#imgPre").attr('src', 'data:image/jpg;base64,' + personHeadPhoto);
+							}
+						}
+						if(1 == 1) {
+							$('#myAccount').attr('href', 'PartnerAccount.html');
+							$('#myChargeRecord').attr('href', 'PartnerCharging.html');
+						}
+						//						var href=webRoot+'/appReport/chargingReport/Charging_analysis.html?accCode=ACC15071400020';
+						//						$('#chargeAnalysis').attr('href',href);
+					}
+				},
+				error: function() {
+					var personInfo = localStorage.getItem('personInfo');
+					personInfo = $.parseJSON(personInfo);
+					$("#imgPre").attr('src', 'data:image/jpg;base64,' + localStorage.getItem("personInfo_headPhoto"));
+					$("#blance span").html(personInfo.blance);
+					$("#mb_phone").html(personInfo.loginId);
+					$("#cardNumber").val(personInfo.cardNum);
+					$('#accountCode').val(personInfo.accountCode);
+					mui.toast('网络不给力');
+				}
+			});
+
+			// 从服务端获取未读消息数量，并根据数量判断是否显示未读消息图标
+			getUnReadedLastMsgCountAndMsgShowIcon();
+		}
+
+		// 设置我的页面消息是否已读图标状态
+		function setMsgInfoCenterIcon(isReaded) {
+			var pushMsg = localStorage.getItem('PUSH_MSG');
+			pushMsg = JSON.parse(pushMsg);
+			if(!pushMsg) {
+				pushMsg = {
+					curMsg: '',
+					lastOrderNo: '',
+					isReaded: isReaded,
+					isUpdate: true,
+					historyMsgs: []
+				};
+			} else {
+				pushMsg.isReaded = isReaded;
+			}
+			localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+		}
+
+		// 从服务端获取未读消息数量，并根据数量判断是否显示未读消息图标
+		function getUnReadedLastMsgCountAndMsgShowIcon() {
+			if(isLogin()) {
+				var pushMsg = localStorage.getItem('PUSH_MSG');
+				pushMsg = JSON.parse(pushMsg);
+				if(!isMsgCountPlusReady && pushMsg && !pushMsg.isReaded) {
+					msgIconShow();
+					return;
+				}
+				var orderNo = (pushMsg && pushMsg.lastOrderNo) ? pushMsg.lastOrderNo : '';
+
+				var params = prepareParams({
+					targetClientId: plus.push.getClientInfo().clientid,
+					orderNo: orderNo
+				});
+				$.ajax({
+					type: "get",
+					url: webRoot + "/app/msgCenter/getUnReadedLastMsgCount",
+					dataType: 'json',
+					data: params,
+					success: function(msg) {
+						//						console.log("response msg: " + msg);
+						var data = msg.data;
+						if(msg.respCode == 1) {
+							if(data && data.unReadedMsgCount) {
+								isMsgCountPlusReady = false;
+								if(data.unReadedMsgCount > 0) {
+									setMsgInfoCenterIcon(false);
+									msgIconShow();
+								} else {
+									setMsgInfoCenterIcon(true);
+									msgIconShow();
+								}
+							}
+						}
+					},
+					error: function() {
+						setMsgInfoCenterIcon(true);
+						msgIconShow();
+					}
+				});
+			} else {
+				setMsgInfoCenterIcon(true);
+				msgIconShow();
+			}
+		}
+	</script>
+
+</html>

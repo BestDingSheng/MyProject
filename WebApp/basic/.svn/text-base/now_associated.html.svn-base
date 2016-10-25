@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>立即关联</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+    	.mui-content-padded{margin:15px 0;padding:0 10px;}
+    </style>
+</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">登录绑定</h1>
+		</header>
+		<div class="mui-content">
+			
+		    <div class="mui-content-padded">
+		    	<div class="list">
+					<p>关联已有账号</p>
+					<input type="text" placeholder="请输入手机号码" id="phone" />
+				</div>
+				<div class="list">
+					<input type="password" placeholder="请输入密码" id="password" />
+				</div>
+				<div style="margin-top:0px;">
+					<p>登录后您的账号和微信都可以登录</p>
+					<button class="mui-btn-block mui-btn-green" onclick="associateLogin()">立即登录</button>
+				</div>
+				<div style="margin-top: 20px;text-align: right;font-size: 14px;color: #8f8f94;">
+					遇到问题? <a href="#" class="tel" style="color:#4ca26e;text-decoration:none;">请联系客服</a>
+				</div>
+		    </div>
+		</div>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/validation.js"></script>
+		<script src="../js/md5-min.js"></script>
+		<script type="text/javascript" src="../js/constant.js" ></script>
+		<script type="text/javascript" src="../js/public.js" ></script>
+		<script type="text/javascript" src="../js/page.switch.js" ></script>
+		<script>
+			mui.init();
+			$('.tel').on('click', function() {
+					var btnArray = ['拨打', '取消'];
+					mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+						if (e.index != 1) {
+							location.href = "tel:400-820-2298"
+						}
+					})
+				})
+			function associateLogin() {
+				var phone=$('#phone').val();
+				var password =$('#password').val();
+				
+				if(!valiadation.phone(phone)){
+					return;
+				};
+				if(!valiadation.password(password)){
+					return;
+				}												
+				password=hex_md5($('#password').val());
+				var auth = getOAuthInfo()
+				var credentialId = getCredentialIdByOAuth(auth);
+				var credentialChannel = getCredentialChannelByOAuth(auth);
+				if (credentialId == null || credentialChannel == null) {
+					mui.toast('缺少必要第三方登录认证信息，请返回登录界面重新授权登录！');
+					toLogin();
+					return;
+				}
+				
+				$.ajax({
+					type: "post",
+					url: webRoot + "/app/auth/associateLogin",
+					dataType: 'json',
+					data: { loginId: phone, password: password, credentialId: credentialId, credentialChannel: credentialChannel},
+					needValidateLogin:false,
+					success: function(data) {
+						if (data.respCode == 1) {
+							var loginInfo = {loginId: phone, password: password, loginChannel: credentialChannel};
+							storageLoginInfo(loginInfo);
+							var msg = phone+'已经与您的'+auth.description+'账号成功关联!';
+							mui.alert(msg,'关联成功','我知道了',function(){
+                                 mui.back();
+                                 var loginWebView = plus.webview.getWebviewById(WEBVIEW_IDS.LOGIN);
+                                 if (loginWebView) {
+                                    mui.each(loginWebView.opened(),function(index,item){
+                                          item.close();
+                                          });
+                                    mui.fire(loginWebView, "autoLoginOtherView");
+                                 }
+                                 });
+						} else {
+							mui.toast(data.respMsg)
+						}
+					},
+					error: function(e) {
+						mui.toast('网络出现小差，请返回登录界面重新尝试！');
+					}
+				});
+				
+			}
+		</script>
+	</body>
+</html>

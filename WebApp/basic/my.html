@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的</title>
+		<script src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/constant.js" ></script>
+		<script type="text/javascript" src="../js/public.js" ></script>
+		<script type="text/javascript" src="../js/oauth.js" ></script>
+		<script type="text/javascript" src="../js/page.switch.js" ></script>
+		<script>
+			$(function(){
+				getMyInfos();
+			})
+			function getMyInfos() {
+				
+				var loginInfo = localStorage.getItem("LOGIN_INFO");
+				if (loginInfo == null) {
+					return;
+				}
+				
+				loginInfo = JSON.parse(loginInfo);
+				var paramsJson = {
+						loginId:loginInfo.loginId,
+						ticket:loginInfo.ticket,
+						other:"other001"
+				};
+				paramsJson = prepareParams(paramsJson);
+				
+				$.ajax({
+					url:webRoot + "/app/test/testLogin",
+					type:"post",
+					datatype:"json",
+					data: paramsJson,
+					success: function(data) {
+						$("#myInfos").html("登录成功，欢迎您！")
+					},
+					error:function() {
+						alert("系统异常");
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		我的首页<p></p>
+		<div id="myInfos"></div>
+		<button onclick="logoutAll()">退出</button>
+	</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>账户充值</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	</head>
+	<style type="text/css">
+		.fr img {
+			width: 20px;
+			vertical-align: middle;
+			margin-top: -4px;
+		}
+		
+		#submit {
+			margin-top: 20px;
+			width: 90%;
+			width: 90%;
+			margin-left: 5%;
+		}
+		
+		li.mui-media {
+			background: url(../images/icon_def.png) no-repeat 95% center;
+			background-size: 20px 20px;
+		}
+		
+		li.mui-media.act {
+			background: url(../images/icon_act.png) no-repeat 95% center;
+			background-size: 20px 20px;
+		}
+		
+		select.amount{
+			width: 62%;
+			float: right;
+			text-align:left;
+			direction:rtl;
+		}
+		
+		select.amount option {
+			padding: 5px;
+		}
+		
+		.mui-content {
+			margin: 0;
+		}
+		
+		.agreement {
+			line-height: 43px;
+			/*background: red;*/
+			border-bottom: 1px solid #dadada;
+			padding-right: 10px;
+			text-align: left;
+			padding-left:10px;
+		}
+		
+		.agreement a {
+			color: #4ca26e;
+			margin-left: 5px;
+		}
+		
+		.agreement img {
+			width: 15px;
+			vertical-align: -2px;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">账户充值</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					账户余额
+					<span class="fr">
+						<span id='accAmount' class="">
+		    			0
+		    			</span>
+					<img src="../images/gold.png" alt="">
+					</span>
+				</li>
+				<li class="mui-table-view-cell">
+					充值金额
+					<select id='charginPrice' class="amount">
+						<option value="10">10</option>
+						<option value="50" selected = "selected">50</option>
+						<option value="100">100</option>
+						<option value="200">200</option>
+						<option value="500">500</option>
+						<option value="1000">1000</option>
+					</select>
+				</li>
+			</ul>	
+			<div class="agreement" style="height: 20px;">
+			</div>
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell">充值方式</li>
+				<li class="mui-table-view-cell mui-media act" paytype="alipay">
+					<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../images/alipay.png">
+					<div class="mui-media-body">
+						支付宝付款
+						<p class="mui-ellipsis">推荐支付宝用户使用</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media" paytype="wxpay">
+					<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../images/weixin.png">
+					<div class="mui-media-body">
+						微信付款
+						<p class="mui-ellipsis">推荐微信用户使用</p>
+					</div>
+				</li>
+			</ul>
+			<div class="agreement">
+				<p>
+					<img src="../images/icon_act.png" alt="" /> 同意
+					<a href="#">《益虫充电充值协议》</a></p>
+			</div>
+			<button class="mui-btn-green mui-btn-block" id="submit">立即充值</button>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/validation.js"></script>
+		<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/constant.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.init();
+			var pays = {};
+
+			function plusReady() {
+				$('#accAmount').html(plus.webview.currentWebview().accAmount);
+				// 获取支付通道
+				plus.payment.getChannels(function(channels) {
+					var txt = "支付通道信息：";
+					for (var i in channels) {
+						var channel = channels[i];
+						pays[channel.id] = channel;
+						checkServices(channel);
+					}
+				}, function(e) {
+					outLine("获取支付通道失败：" + e.message);
+				});
+			}
+			document.addEventListener('plusready', plusReady, false);
+			// 检测是否安装支付服务
+			function checkServices(pc) {
+				if (!pc.serviceReady) {
+					var txt = null;
+					switch (pc.id) {
+						case "alipay":
+							txt = "检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？";
+							break;
+						default:
+							txt = "系统未安装“" + pc.description + "”服务，无法完成支付，是否立即安装？";
+							break;
+					}
+					plus.nativeUI.confirm(txt, function(e) {
+						if (e.index == 0) {
+							pc.installService();
+						}
+					}, pc.description);
+				}
+			}
+			var w = null;
+			$('li.mui-media').on('click', function() {
+				$('li.mui-media').removeClass('act');
+				$(this).addClass('act');
+			});
+			$('button').click(function() {
+				var payType = 'alipay';
+				var payPrice=$('#charginPrice').val();
+//				var payPrice=0.01;
+				if ($('li.act').length > 0) {
+					payType = $('li.act').attr('payType');
+				}
+				var url = webRoot + '/app/pay/orderInfo';
+				w = plus.nativeUI.showWaiting();
+				var paramsJson = prepareParams({
+					'payChannelId': payType,
+					'payAmount': payPrice
+				});
+				$.ajax({
+						url: url,
+						data: paramsJson,
+						dataType: 'json',
+						type: 'get',
+						success: function(data) {
+							w.close();
+							var order = data.payStr;
+							
+							plus.payment.request(pays[payType], order, function(result) {
+								plus.nativeUI.alert("支付成功：感谢您的支持!", function() {
+									var accountAmount=parseFloat($('#accAmount').text())+payPrice;
+									$('#accAmount').html(accountAmount);
+								}, "益虫充电");
+							}, function(e) {
+								//console.log("[" + e.code + "]：" + e.message);
+								plus.nativeUI.alert("支付失败");
+							});
+						},
+						error: function(xhr, type, e) {
+							w.close();
+//							alert(type);
+//							alert(e.Message);
+							plus.nativeUI.alert("获取订单信息失败！", e.Message, "益虫充电");
+						}
+					})
+				
+			});
+			var falg = true;
+			$('.agreement').on('click', function() {
+				if (falg == true) {
+					$(this).find('img').attr('src', '../images/icon_def.png')
+					falg = false;
+				} else {
+					$(this).find('img').attr('src', '../images/icon_act.png')
+					falg = true;
+				}
+			})
+			$('.agreement a').on('click', function(event) {
+				event.stopPropagation();
+				mui.openWindow({
+					url: "member/payProtocol.html",
+					show: {
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

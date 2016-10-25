@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>站点信息</title>
+		<link rel="stylesheet" href="../css/nav_main.css" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+
+		<style type="text/css">
+			.silder {
+				position: absolute;
+				height: 144px;
+				width: 100%;
+				background: #fff;
+				top: 0;
+				padding-left: 10px;
+				transition: all 0.5s linear;
+				display: block;
+			}
+			
+			.silder .content .tit {
+				line-height: 40px;
+				border-bottom: 1px solid #96D8A1;
+				font-size: 16px;
+			}
+			
+			.silder .content .tit span {
+				margin-left: 10px;
+			}
+			
+			.silder .content p {
+				margin: 10px 0;
+				padding-right: 10px;
+			}
+			
+			html,
+			body {
+				overflow: hidden;
+			}
+		</style>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/jquery.selectlist.js"></script>
+		<script src="../js/constant.js" type="text/javascript"></script>
+		<script type="text/javascript" charset="UTF-8">
+			window.onload = function(){
+  				window.addEventListener("loadSiteInfo", function(event) {
+					jQuery(".silder").attr("site_name", event.detail.sitename);
+					jQuery(".silder").attr("dstlat", event.detail.dstlat);
+					jQuery(".silder").attr("dstlng", event.detail.dstlng);
+					jQuery(".silder").attr("srclat", event.detail.srclat);
+					jQuery(".silder").attr("srclng", event.detail.srclng);
+					
+					var sitecode = event.detail.sitecode;
+					var distance = event.detail.distance;
+					jQuery('.silder').attr("sitecode", sitecode);
+					console.log('loadSiteInfo begin');
+					getSiteInfo(sitecode, distance);
+				}, false);
+			}
+			
+			function getSiteInfo(siteCode, distance) {
+				var url = webRoot + '/wechat/nav/siteBoxStatus';
+				mui.ajax(url, {
+					data: {
+						'siteCodes': siteCode
+					},
+					dataType: 'json',
+					type: 'get',
+					success: function(data) {
+						jQuery("#siteName").html(data[0].name + '<span>慢</span>');
+						jQuery("#address").html(data[0].address + "<span class='fr' id='nav'><span id='dis'>" + distance + "</span><img id='navig' src='../images/icon-nav.png'/></span>");
+						if (data[0].isChargeFee) {
+							jQuery("#isFee").html('充电收费');
+						} else {
+							jQuery("#isFee").html('充电免费');
+						}
+						jQuery("#chargeNum").html('充电位：' + data[0].chargeNum);
+						jQuery("#available").html('充电空闲：' + data[0].info.available);
+						
+						console.log('load site info complete');
+						mui.plusReady(function(){
+    							//显示当前页面
+    							plus.webview.currentWebview().show();
+    							//mui.currentWebview.show();
+  						});
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log('get site info API error');
+					}
+				});
+			}
+			
+		</script>
+	</head>
+
+	<body>
+		<div id='siteInfo' class="silder" sitecode="">
+			<div class="content">
+				<div id='siteName' class="tit"><span>慢</span></div>
+				<p id='isFee'></p>
+				<p><span id='chargeNum'></span><span id='available' style="margin-left: 30px;"></span></p>
+				<p id='address'><span class="fr" id="nav" lat="" lng=""><span id='dis'> 0</span><img src="../images/icon-nav.png" alt="" /></span>
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			jQuery(document).on('tap', "#nav", function(event) {
+				// 设置目标位置坐标点和其实位置坐标点
+				event.stopPropagation();
+				var dstLat = jQuery(".silder").attr("dstlat");
+				var dstLng = jQuery(".silder").attr("dstlng");
+				var site_name = jQuery(".silder").attr("site_name"); //站点名称
+				plus.webview.currentWebview().opener().evalJS("openSysMap("+ dstLng + "," + dstLat +",'"+site_name+"')");
+			});
+			jQuery(document).on('tap', '.silder', function(event) {
+				event.stopPropagation();				
+				var siteCode = jQuery('.silder').attr("sitecode");
+				var map_main = plus.webview.getWebviewById(WEBVIEW_IDS.SITE_MAIN);
+				if(map_main){
+					console.log('show detail fire');
+					mui.fire(map_main,'showDetail',{sitecode:siteCode});
+				}
+//				var detailPage = plus.webview.getWebviewById('details.html');
+//				if(!detailPage){
+//					detailPage = plus.webview.create('details.html','details.html',{top:'0px',bottom:'0px'},{'siteCode': siteCode});
+//				}
+//				detailPage.show()
+
+//				var webview = mui.openWindow({
+//					url: "details.html",
+//					id: "details.html",
+//					createNew: false,
+//					extras: {
+//						'siteCode': siteCode
+//					},
+//					show: {
+//						aniShow: "slide-in-right",
+//						duration: 300
+//					}
+//				});
+			});
+		</script>
+	</body>
+
+</html>

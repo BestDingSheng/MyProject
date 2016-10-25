@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>会员卡申请</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" href="../../css/public.css" />
+	</head>
+	<style type="text/css">
+		.mui-input-group {
+			margin-top: 10px;
+		}
+		/*.mui-input-group .mui-input-row:after{
+			height: 0;
+		}*/
+		
+		.mui-input-group .mui-input-row:after {
+			left: 0;
+		}
+		
+		.mui-input-row .title {
+			color: #96D8A1;
+		}
+		
+		span.fr {
+			line-height: 40px;
+			margin-right: 35px;
+		}
+		
+		.mui-input-row label~input::-webkit-input-placeholder {
+			text-align: right;
+		}
+		
+		.mui-input-row label~input {
+			text-align: right;
+			font-size: 16px;
+			color: #333;
+		}
+		
+		.mui-input-group .to_bottom {
+			background: url(../../images/toBottom.png) no-repeat 98% center;
+			background-size: 20px auto;
+		}
+		
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		
+		.list .title {
+			color: #96D8A1;
+		}
+		
+		.list {
+			margin-top: 10px;
+			background: #fff;
+			border-bottom: 1px solid #dadada;
+		}
+		
+		.list div.mui-input-row {
+			line-height: 40px;
+			border-top: 1px solid #dadada;
+			padding-left: 15px;
+		}
+		
+		.list ul {
+			font-size: 0;
+			height: 40px;
+		}
+		
+		.list li {
+			display: inline-block;
+			width: 50%;
+			font-size: 14px;
+			position: relative;
+			background: url(../../images/toBottom.png) no-repeat 95% center;
+			background-size: 20px auto;
+		}
+		
+		.list li:nth-last-child(1) {
+			padding-left: 10px;
+		}
+		
+		.list input {
+			border: 0;
+			margin: 0;
+			width: 50%;
+			float: right;
+			text-align: right;
+			padding-right:38px;
+		}
+		
+		.list .first:before {
+			content: '';
+			position: absolute;
+			width: 1px;
+			height: 80%;
+			background: #96D8A1;
+			right: 0px;
+			top: 10%;
+		}
+		
+		.list input::-webkit-input-placeholder {
+			text-align: right;
+		}
+		
+		span.ml {
+			margin-left: 10px;
+			color: #999;
+		}
+		
+		.list .to_bottom {
+			background: url(../../images/toBottom.png) no-repeat 98% center;
+			background-size: 20px auto;
+		}
+		
+		.list .top_border {
+			border-top: 1px solid #96D8A1;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="action-back"></a>
+			<h1 class="mui-title">会员卡申请</h1>
+		</header>
+		<div class="mui-content">
+			<form name="applyForm" id="applyForm">
+				<div class="list">
+					<div class="mui-input-row">
+						<label class="title">
+						基本信息
+					</label>
+					</div>
+					<div class="mui-input-row">
+						<label>
+						姓&#12288;&#12288;名
+					</label>
+						<input type="text" placeholder="请输入您的姓名" name="applyName" id="applyName">
+					</div>
+					<div class="mui-input-row to_bottom">
+						<label>
+						性&#12288;&#12288;别
+					</label>
+						<button id='showSexButton' class="mui-btn choosebtn" type='button'></button>
+						<div id='sexResult' class="ui-alert" name="male"></div>
+						<input type="hidden" name="applySex" id="sex" />
+					</div>
+					<div class="mui-input-row">
+						<label>
+						手机号码
+					</label>
+						<input type="tel" maxlength="11" placeholder="请输入您的手机号码" name="applyPhone" id="tel">
+					</div>
+					<div class="mui-input-row to_bottom">
+						<label>
+						出生日期
+					</label>
+						<button id='birthDate' data-options='{"type":"date"}' class="btn mui-btn choosebtn date-time-btn"></button>
+						<div class="ui-alert"></div>
+						<input type="hidden" name="birthDay" id="birthday" />
+					</div>
+				</div>
+				<div class="list">
+					<div class="text title mui-input-row">爱车资料</div>
+					<div class="text mui-input-row to_bottom">
+						<label>
+						品牌车型
+					</label>
+						<button id='brandButton' class="mui-btn choosebtn" type='button'></button>
+						<div id='brandResult' class="ui-alert" name="car"></div>
+						<input type="hidden" name="carBrandAndModel" id="carBrand" />
+					</div>
+					<div class="text mui-input-row">
+						车&#12288;&#12288;牌
+						<input type="text" placeholder="请填写正确的车牌" name="licensePlateNumber" value="" id="licensePlateNumber" />
+					</div>
+					<div class="text to_bottom mui-input-row">
+						购买年份
+						<button id='timeButton' data-options='{"type":"month"}' class="mui-btn choosebtn" type='button'></button>
+						<div id='timeResult' class="ui-alert" name="car"></div>
+						<input type="hidden" name="carYear" id="buyCarYear" value="" />
+					</div>
+				</div>
+				<div class="list">
+					<div class="mui-input-row">
+						<label class="title">
+						所在地区
+					</label>
+					</div>
+					<div class="mui-input-row to_bottom">
+						<label>
+						省&#12288;&#12288;市
+					</label>
+						<button id='showCityPicker' class="mui-btn choosebtn" type='button'></button>
+						<div id='cityResult' class="ui-alert" name="city"></div>
+						<input type="hidden" name="cityAndCounty" id="cityCounty" />
+					</div>
+					<div class="mui-input-row">
+						<label>
+						寄送地址
+					</label>
+						<input type="text" placeholder="寄送地址" name="address" id="address">
+					</div>
+					<div class="mui-input-row">
+						<label>
+						邮政编码
+					</label>
+						<input type="tel" maxlength="6" placeholder="邮政编码" name="zipCode" id="zipCode">
+					</div>
+				</div>
+
+				<div class="color-green">
+				</div>
+			</form>
+			<div class="mycard_submit_applicate">
+				<button id='applicate' class="mui-btn mui-btn-block mui-btn-primary">立即申请</button>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.picker.min.js"></script>
+		<script src="../../js/mui.poppicker.js"></script>
+		<script src="../../js/data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/constant.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			(function($, doc) {
+				mui.init();
+				$.ready(function() {
+					//选择性别
+					var sexPop = new $.PopPicker();
+					sexPop.setData([{
+						value: '1',
+						text: '男'
+					}, {
+						value: '2',
+						text: '女'
+					}]);
+					var showSexButton = doc.getElementById("showSexButton");
+					var sexResult = doc.getElementById("sexResult");
+					var sex = doc.getElementById("sex");
+					showSexButton.addEventListener('tap', function(e) {
+						document.getElementById("applyName").blur();
+						sexPop.show(function(i) {
+							sexResult.innerHTML = i[0].text;
+							sex.value = i[0].value;
+						});
+					});
+					//选择出生日期
+					var birthday = doc.getElementById("birthday");
+					var btns = $('#birthDate');
+					btns.each(function(i, btn) {
+						btn.addEventListener('tap', function() {
+							var optionsJson = this.getAttribute('data-options') || '{}';
+							var options = JSON.parse(optionsJson);
+							var id = this.getAttribute('id');
+							var picker = new $.DtPicker(options);
+							picker.show(function(bt) {
+								btn.nextElementSibling.innerText = bt.text;
+								birthday.value = bt.text;
+								picker.dispose();
+							});
+						}, false);
+					});
+					//选择品牌车型
+					var brand = new $.PopPicker({
+						layer: 2
+					});
+					setbrandPicker(brand);
+					var brandButton = doc.getElementById("brandButton");
+					var brandResult = doc.getElementById("brandResult");
+					var carBrand = doc.getElementById("carBrand");
+					brandButton.addEventListener('tap', function(ea) {
+						brand.show(function(a) {
+							brandResult.innerText = a[0].text + " / " + a[1].text;
+							carBrand.value = a[0].value + " / " + a[1].value;
+						});
+					});
+					//选择购车年份
+					var buyCarYear = doc.getElementById("buyCarYear");
+					var yearBtn = $("#timeButton");
+					yearBtn.each(function(e, year) {
+						year.addEventListener('tap', function() {
+							var optionsJson = this.getAttribute('data-options') || '{}';
+							var options = JSON.parse(optionsJson);
+							var id = this.getAttribute('id');
+							var picker = new $.DtPicker(options);
+							picker.show(function(yt) {
+								year.nextElementSibling.innerText = yt.text;
+								buyCarYear.value = yt.text;
+								picker.dispose();
+							});
+						}, false);
+					});
+					//选择城市地区
+					var cityCounty = doc.getElementById("cityCounty");
+					var cityPicker = new $.PopPicker({
+						layer: 2
+					});
+					setcityPicker(cityPicker);
+					var showCityPickerButton = doc.getElementById('showCityPicker');
+					var cityResult = doc.getElementById('cityResult');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.innerText = items[0].text + " / " + items[1].text;
+							cityCounty.value = items[0].value + " / " + items[1].value;
+						});
+					}, false);
+				});
+			})(mui, document);
+		</script>
+
+		<script src="../../js/validation.js"></script>
+		<script type="text/javascript">
+			$('#applicate').on('tap', function() {
+				//卡申请的字段校验
+				var applyName1 = $("#applyName").val();
+				var applySex = $("#sex").val();
+				var applyPhone = $("#tel").val();
+				//var birthday = $("input[name='birthday']").val;
+				var carBrandAndModel = $("#carBrand").val();
+				var licensePlateNumber = $("#licensePlateNumber").val();
+				var carYear = $("#buyCarYear").val();
+				var cityAndCounty = $("#cityCounty").val();
+				var address = $("#address").val();
+				if (applyName1.trim().length != 0) {
+					if (!/^[\u0391-\uFFE5\w]+$/.test(applyName1)) {
+						mui.toast('请填写正确的姓名');
+						return;
+					}
+				}
+				if (applyPhone.trim().length != 0) {
+					if (!/^((?:13\d|14\d|15[\d]|17[\d]|18[\d])-?\d{5}(\d{3}|\*{3}))$/.test(applyPhone)) {
+						mui.toast('请填写正确的手机号码');
+						return;
+					}
+				}
+				if (licensePlateNumber.trim().length != 0) {
+					var licence = /^[\u4E00-\u9FA5][\da-zA-Z]{6}$/;
+					if (!licence.test(licensePlateNumber)) {
+						mui.toast('请正确填写车牌号，例如：沪A3343S');
+						return;
+					}
+				}
+				var params = $("#applyForm").serializeObject();
+				params = prepareParams(params);
+				$.ajax({
+					type: "post",
+					url: webRoot + "/app/membership/cardApply",
+					dataType: 'json',
+					//data: prepareParams(params),
+					data: params,
+					success: function(msg) {
+						var data = msg.data;
+						if (msg.respCode == 1) {
+							var cardStatusHtml = plus.webview.getWebviewById('member/application_success.html');
+							var data = {
+								'cardNum': null
+							}
+							mui.fire(cardStatusHtml, 'refresh', data);
+							plus.webview.currentWebview().close();
+						} else {
+							mui.toast('服务器异常，申请失败');
+						}
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

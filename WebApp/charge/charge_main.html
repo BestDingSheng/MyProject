@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>充电首页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script src="../js/highlight.min.js"></script>
+		<style>
+			html,
+			body {
+				background: #000;
+			}
+			
+			.mui-content {
+				margin: 0;
+			}
+			
+			.mui-bar .mui-icon span,
+			.scanQRTop span {
+				font-size: 16px;
+				color: #4ca26e;
+			}
+			
+			.iscrool {
+				width: 60%;
+				margin: 20px auto;
+				/* position: absolute;*/
+				top: 13%;
+				left: 20%;
+				z-index: 10;
+			}
+			
+			.mui-backdrop {
+				top: 44px;
+				display: none;
+			}
+			
+			.mui-backdrop .showLoading {
+				text-align: center;
+				position: absolute;
+				top: 40%;
+				width: 100%;
+				color: #fff;
+			}
+			
+			.mui-backdrop .showLoading span {
+				vertical-align: -4px;
+				margin-right: 12px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left mui-pull-left" id="boundChargeBox"><img src="../images/scanQR.png" class="scanQR" /><span>绑定充电桩</span></a>
+			<h1 class="mui-title">充电</h1>
+			<a class="mui-icon mui-icon-more mui-pull-right" id="chargeMore"></a>
+		</header>
+		<div class="mui-content">
+			<div class="chargebg">
+				<div class="currentDevice">
+					<span class="currentName">当前设备:</span>
+					<span class="currentDeviceName">
+						<select id="device" name="device" class="chooseDevice">
+							<option value="none" selected="selected">未知</option>
+						</select>
+					</span>
+				</div>
+				<div class="iscrool">
+					<img src="../images/circle1.png" class="circle" />
+					<div class="beforeask statusAvailable" style="z-index: 20;">
+						<img src="../images/beforeask.png" />
+					</div>
+				</div>
+
+				<div class="station statusReady display">
+					<img src="../images/chargestation.png" class="" />
+				</div>
+				<div class="run statusRunning display">
+					<img src="../images/running.gif" class="aniStatus" id="chargigOnPic">
+					<img src="../images/stop.png" class="aniStatus display" id="chargigOffPic">
+					<div class="chargeMark">
+						<p class="chargeMarkTop">已充电量<br /><span id="enercy">0</span> 度</p>
+						<p class="chargeMarkBottom" id="chargeMarkBottom">开始充电时间<br/><span id='chargingStartTime'>00:00:00</span><br/>电流大小: <span id='currentElectric'>0</span> A</p>
+						<p class="chargeMarkBottom display" id="chargeMarkBottomStatus"><span class="chargestop">充电已停止</span></p>
+					</div>
+				</div>
+
+				<div class="on_off statusReady">
+					<img src="../images/pan.png" class="pan" />
+					<img src="../images/kaiguan.png" class="status_start" id="status_start" />
+				</div>
+			</div>
+
+			<div class="mask-black display">
+				<div class="scanQRTop">
+					<img src="../images/scanQR.png" class="scanQR" /><span>绑定充电桩</span>
+				</div>
+				<img src="../images/maskTips.png" class="maskTips" />
+			</div>
+			<!--<div class="mask-scan display">
+				<div class="scanQR2">
+					<img src="../images/beforeask.png" class="scanQR"/>
+				</div>
+				<img src="../images/maskScan.png" class="maskTips2"/>
+			</div>-->
+
+		</div>
+		<div class="chargeMore" id="chargeMoreList">
+			<div class="arrow-up"></div>
+			<ul class="chargeMoreList">
+				<li>
+					<a class="chargeRecord" id="chargeRecord">充电记录</a>
+				</li>
+				<li>
+					<a id="help" class="help">帮助</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mui-backdrop">
+			<div class="showLoading">
+				<span class="mui-spinner"></span>正在处理中
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery-ui.js"></script>
+		<!--<script src="../js/raindrops.js"></script>
+	<script src="../js/default.js"></script>-->
+		<script type="text/javascript" src="../js/constant.js"></script>
+		<script type="text/javascript" src="../js/page.switch.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/charging.js"></script>
+		<script>
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group label {
+				width: 22%;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 78%;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			
+			.mui-content-padded {
+				margin: 10px;
+			}
+			
+			.mui-btn {
+				padding: 10px;
+			}
+			
+			.list {
+				position: relative;
+			}
+			
+			#ercode {
+				position: absolute;
+				right: 0px;
+				top: 31px;
+				height: 40px;
+				width: 100px;
+			}
+			
+			.list p {
+				color: #333;
+				margin-bottom: 10px;
+				font-size: 16px;
+			}
+			
+			.mui-checkbox {
+				height: 40px;
+				padding-left: 30px;
+			}
+			
+			.mui-checkbox.mui-left input[type=checkbox] {
+				left: 3px;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 0;
+			}
+			
+			#mb {
+				vertical-align: -4px;
+				font-size: 14px;
+				margin-left: 3px;
+			}
+			
+			.mui-right {
+				float: right;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">手机快速注册</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="list">
+					<p>手机号码</p>
+					<input type="tel" placeholder="请输入手机号码" id="phone" />
+				</div>
+				<div class="list">
+					<p>验证码</p>
+					<input type="tel" placeholder="验证码" id="code-val" maxlength="10" />
+					<button class="mui-btn-green mui-btn-outlined" id="ercode">验证码</button>
+				</div>
+				<div class="list">
+					<p>设置登录密码</p>
+					<input type="password" placeholder="6 - 12 位" id="password" />
+				</div>
+				<!--<div class="list">
+					<p>确认登录密码</p>
+					<input type="text" placeholder="数字+字母    6 - 12 位" id="too" />
+				</div>-->
+				<div class="mui-input-row mui-checkbox mui-left">
+					<span id="mb">同意<a href="#" id="reg">《益虫充电注册协议》</a></span>
+					<input id="SelectAll" name="checkbox" type="checkbox" checked="">
+				</div>
+				<button class="mui-btn-block mui-btn-green" id="submit">注册</button>
+				<p class="mui-right">遇到问题? <a class="tel">请联系客服</a></p>
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/md5-min.js"></script>
+		<script type="text/javascript" src="../js/constant.js"></script>
+		<script type="text/javascript" src="../js/util.js"></script>
+		<script type="text/javascript" src="../js/page.switch.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script type="text/javascript" src="../js/validation.js"></script>
+		<script>
+			document.getElementById("reg").addEventListener('click', function() {
+				mui.openWindow({
+					id: 'registProtocol.html',
+					url: 'registProtocol.html',
+					show: {
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			})
+			$('.tel').on('click', function() {
+					var btnArray = ['拨打', '取消'];
+					mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+						if (e.index != 1) {
+							location.href = "tel:400-820-2298"
+						}
+					})
+				})
+				//				获取验证码倒计时
+			function Send_vercode() {
+				var oBtn = document.getElementById('ercode');
+				var num = 120;
+				var timer = null;
+
+				function click() {
+					oBtn.disabled = true;
+					timer = setInterval(function() {
+						num--;
+						oBtn.innerHTML = num;
+						if (num == 0) {
+							num = 120;
+							oBtn.innerHTML = '获取验证码';
+							clearInterval(timer);
+							oBtn.disabled = false;
+						}
+					}, 1000);
+				}
+				return click();
+			};
+
+			function allowClick() {
+				var oBtn = document.getElementById('ercode');
+				oBtn.disabled = false;
+			}
+
+			function banClick() {
+				var oBtn = document.getElementById('ercode');
+				oBtn.disabled = true;
+			}
+			$('#ercode').on('click', function() {
+				var phone = $('#phone').val();
+				if (!valiadation.phone(phone)) {
+					return;
+				};
+				banClick();
+				$.ajax({
+					type: "GET",
+					url: webRoot + "/app/register/sendVerCode",
+					dataType: 'json',
+					needValidateLogin: false,
+					data: {
+						mobilePhone: phone,
+						point: 'position_001',
+						clientId: getDeviceUuid()
+					},
+					success: function(data) {
+						if (data.respCode == 1) {
+							mui.toast('验证码已经发送');
+							Send_vercode()
+						} else {
+							mui.toast(data.respMsg);
+							allowClick();
+						}
+					},
+					error: function(e) {
+						mui.toast('服务器异常，发送验证码失败！');
+						allowClick();
+					}
+				});
+			});
+			$('#submit').on('click', function() {
+				var phone = $('#phone').val();
+				var validationCode = $('#code-val').val();
+				var pwd = $('#password').val().trim();
+				if (!valiadation.phone(phone)) {
+					return;
+				};
+				if (!(pwd.length >= 6 && pwd.length <= 12)) {
+					mui.toast('密码格式不正确');
+					return;
+				}
+				var password = hex_md5(pwd);
+				if ($('#SelectAll:checked').length == 0) {
+					mui.toast('请同意益虫充电协议');
+					return;
+				}
+				// 是否为第三方登录关联注册
+				var credentialId = null;
+				var loginInfo = {
+					loginId: phone,
+					password: password
+				};
+				if (isAssociatedLogin) {
+					var authStr = localStorage.getItem('OAUTH_INFO');
+					var auth = JSON.parse(authStr);
+					credentialId = getCredentialIdByOAuth(auth);
+					if (credentialId == null) {
+						mui.toast('缺少必要第三方登录认证信息，请重新登录！');
+						//toLogin();
+						mui.back();
+						return;
+					}
+					loginInfo.loginChannel = auth.id;
+				}
+				$.ajax({
+					type: "post",
+					url: webRoot + "/app/register/register",
+					dataType: 'json',
+					needValidateLogin: false,
+					data: {
+						loginId: phone,
+						password: password,
+						clientId: getDeviceUuid(),
+						verCode: validationCode,
+						point: 'position_001',
+						credentialId: credentialId
+					},
+					success: function(data) {
+						if (data.respCode == 1) {
+							clearLoginInfo();
+							storageLoginInfo(loginInfo);
+							if (isAssociatedLogin) {
+								var msg = '账号：' + phone + '注册成功，并且已经与您的' + auth.description + '账号成功关联!';
+								mui.alert(msg, '关联成功', '我知道了', function() {
+									mui.back();
+									var loginWebView = plus.webview.getWebviewById(WEBVIEW_IDS.LOGIN);
+									if (loginWebView) {
+										var openedViews = loginWebView.opened();
+										mui.each(openedViews,function(index,item){
+											//console.log("webview: " +item.id);
+											item.close();
+										});
+										mui.fire(loginWebView, "autoLoginOtherView");
+									}
+								});
+							} else {
+								//setTimeout(toLogin({auto:true}), 2000);
+								mui.toast('注册成功, 即将跳转自动登录...');
+								setTimeout(function() {
+									mui.back();
+									var loginWebView = plus.webview.getWebviewById(WEBVIEW_IDS.LOGIN);
+									if (loginWebView) {
+										mui.fire(loginWebView, "autoLoginOtherView");
+									} else {
+										//忘记密码入口来源于登录界面
+										//toLogin({auto:true})
+									}
+								}, 2000);
+							}
+						} else {
+							mui.toast(data.respMsg)
+						}
+					},
+					error: function(e) {
+						mui.toast('网络不给力，注册失败！');
+					}
+				});
+			})
+			// 是否为第三方关联登录
+			var isAssociatedLogin = false;
+			$(function() {
+				// 第三方关联登录注册处理
+				associatedLoginOperate()
+			});
+
+			function associatedLoginOperate() {
+				isAssociatedLogin = getUrlParam('isAssociatedLogin') ? true : false;
+				if (isAssociatedLogin) {
+					$('#phone').attr('disabled', 'disabled');
+					var credentialId = getCredentialIdByOAuth();
+					if (credentialId == null) {
+						mui.toast('缺少必要第三方登录认证信息，请返回登录界面重新授权登录！');
+						//toLogin();
+						mui.back();
+						return;
+					}
+					$.ajax({
+						type: "post",
+						url: webRoot + "/app/auth/isExistsPerson",
+						needValidateLogin: false,
+						dataType: 'json',
+						data: {
+							credentialId: credentialId
+						},
+						success: function(data) {
+							if (data.respCode == 1) {
+								var d = data.data;
+								if (d && d.mobilePhone) {
+									// 微信公众号老用户手机号，作为app新注册账号的登录ID
+									$('#phone').val(d.mobilePhone);
+								} else {
+									$('#phone').removeAttr('disabled');
+								}
+							} else {
+								mui.toast(data.respMsg)
+								//toLogin();
+								mui.back();
+							}
+						},
+						error: function(e) {
+							mui.toast('网络出现小差，请重新尝试！');
+							//toLogin();
+							mui.back();
+						}
+					});
+				}
+			}
+		</script>
+	</body>
+
+</html>

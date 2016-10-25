@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>关于我们</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+	</head>
+	<style>
+		.head {
+			text-align: center;
+			padding: 10px;
+		}
+		
+		.head img {
+			width: 30%;
+		}
+		
+		.text {
+			padding: 0 10px;
+			color: #303030;
+			line-height: 25px;
+		}
+		.text p{
+			color: #333;
+			text-indent: 20px;
+		}
+		.btn {
+			padding: 10px;
+		}
+		
+		.btn button {
+			background: #4ca26e;
+			border: 1px solid #4ca26e;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">关于我们</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="head">
+					<img src="../images/aboutuslogo.png" alt="" />
+				</div>
+				<div class="text">
+					<p>益虫充电，为上海森通智达旗下互联网服务品牌。专注于与智能充电网络相结合，为广大用户提供新能源汽车相关专业服务。</p>
+					<p>上海森通智达新能源技术服务有限公司，为上海今韬集团旗下子公司。专注于全国性私人充电服务，多品牌充电设备营销平台，以及公共充电服务运营。截至2015年底，已在全国范围内累计实施超过5000个充电桩项目，在北京上海地区运营公共充电站点超过100个。 2015年4月，以"益虫II代"设备为基础的"益虫云"综合运营解决方案成为中德政府E车充电项目唯一指定运营解决方案。</p>
+					<p>2015年底，森通智达成为奔驰/大众指定充电服务商，为其品牌4S店和购车客户提供配套充电服务。 2016年5月，益虫充电APP上线，为广大新能源车主提供更全面的服务，并与联网硬件相结合，提供更智能化人性化的解决放案。</p>
+				</div>
+				<div class="btn">
+					<button class="mui-btn-block mui-btn-green" id="Btn">客服电话：400-820-2298</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			var oBtn = document.getElementById("Btn");
+			oBtn.addEventListener('click', function() {
+				var btnArray = ['拨打', '取消'];
+				mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+					if (e.index != 1) {
+						location.href = "tel:400-820-2298";
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

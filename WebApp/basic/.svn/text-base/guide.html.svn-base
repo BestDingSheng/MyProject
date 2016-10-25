@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>引导页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<style>
+			#close {
+				position: absolute;
+				width: 160px;
+				left: 50%;
+				margin-left: -80px;
+				bottom: 12%;
+				padding: 10px;
+				color: #4ca26e;
+				border-color: #4ca26e;
+			}
+			
+			.item-logo {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			.item-logo a {
+				width: 200px;
+				height: 200px;
+				display: block;
+				border: 1px solid #FFFFFF;
+				border-color: rgba(255, 255, 255, 0.5);
+				text-align: center;
+				line-height: 200px;
+				border-radius: 50%;
+				font-size: 40px;
+				color: #fff;
+				position: absolute;
+				top: 15%;
+				left: 50%;
+				margin-left: -100px;
+			}
+			
+			.animate {
+				position: absolute;
+				left: 0;
+				bottom: 12%;
+				width: 100%;
+				color: #4ca26e;
+			}
+			
+			.animate h2 {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+			
+			.animate li {
+				width: 50%;
+				height: 30px;
+				line-height: 30px;
+				list-style: none;
+				font-size: 16px;
+				text-align: right;
+			}
+			
+			.animate li:nth-child(3) {
+				text-align: left;
+				float: right;
+			}
+			
+			.animated {
+				-webkit-animation-duration: 1s;
+				-webkit-animation-play-state: paused;
+				-webkit-animation-fill-mode: both;
+			}
+			
+			.guide-show .bounceInDown {
+				-webkit-animation-name: bounceInDown;
+				-webkit-animation-play-state: running;
+				-webkit-animation-delay: 1s;
+				display: block;
+			}
+			
+			.guide-show .bounceInLeft {
+				-webkit-animation-name: bounceInLeft;
+				display: block;
+				-webkit-animation-play-state: running;
+			}
+			
+			.guide-show .bounceInRight {
+				-webkit-animation-name: bounceInRight;
+				display: block;
+				-webkit-animation-play-state: running;
+				-webkit-animation-delay: 0.5s;
+			}
+			
+			@-webkit-keyframes bounceInDown {
+				0%,
+				60%,
+				75%,
+				90%,
+				100% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(0, -3000px, 0);
+					transform: translate3d(0, -3000px, 0);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(0, 25px, 0);
+					transform: translate3d(0, 25px, 0);
+				}
+				75% {
+					-webkit-transform: translate3d(0, -5px, 0);
+					transform: translate3d(0, -5px, 0);
+				}
+				90% {
+					-webkit-transform: translate3d(0, 3px, 0);
+					transform: translate3d(0, 3px, 0);
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none;
+				}
+			}
+			
+			@-webkit-keyframes bounceInLeft {
+				0%,
+				60%,
+				75%,
+				90%,
+				100% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(-3000px, 0, 0);
+					transform: translate3d(-3000px, 0, 0);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(25px, 0, 0);
+					transform: translate3d(25px, 0, 0);
+				}
+				75% {
+					-webkit-transform: translate3d(-10px, 0, 0);
+					transform: translate3d(-10px, 0, 0);
+				}
+				90% {
+					-webkit-transform: translate3d(5px, 0, 0);
+					transform: translate3d(5px, 0, 0);
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none;
+				}
+			}
+			
+			@-webkit-keyframes bounceInRight {
+				0%,
+				60%,
+				75%,
+				90%,
+				100% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(3000px, 0, 0);
+					transform: translate3d(3000px, 0, 0);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(-25px, 0, 0);
+					transform: translate3d(-25px, 0, 0);
+				}
+				75% {
+					-webkit-transform: translate3d(10px, 0, 0);
+					transform: translate3d(10px, 0, 0);
+				}
+				90% {
+					-webkit-transform: translate3d(-5px, 0, 0);
+					transform: translate3d(-5px, 0, 0);
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none;
+				}
+			}
+		</style>
+	</head>
+	<style type="text/css">
+		html,
+		body {
+			background: #f4f4f4 url(../images/splashbg.png) 0 0 repeat;
+			background-size: 2px;
+		}
+	</style>
+
+	<body>
+		<div id="slider" class="mui-slider mui-fullscreen">
+			<div class="mui-slider-group">
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo">
+						<img src="../images/splash1.jpg" style="width: 100%;height: 100%;">
+					</div>
+				</div>
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo">
+						<img src="../images/splash2.jpg" style="width: 100%;height: 100%;">
+					</div>
+				</div>
+				<!-- 第三张 -->
+				<div class="mui-slider-item">
+					<div class="item-logo">
+						<img src="../images/splash3.jpg" style="width: 100%;height: 100%;">
+						<div class="animate">
+							<button id='close' class="mui-btn mui-btn-white mui-btn-outlined">立刻体验</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			(function($, doc) {
+				var subPages = ['../charge/charge_main.html', '../nav/test_mian.html', '../account/account_main.html'];
+				var subpage_style = {
+					top: '0',
+					bottom: '51px'
+				};
+				$.init();
+				$.back = function() {};
+				$.plusReady(function() {
+					//					var mainPage = $.preload({
+					//						"id": 'main',
+					//						"url": 'main.html'
+					//					});
+					$.preload({
+						"id": subPages[0],
+						"url": subPages[0],
+						"styles": subpage_style
+					});
+					$.preload({
+						"id": subPages[1],
+						"url": subPages[1],
+						"styles": subpage_style
+					});
+					$.preload({
+						"id": subPages[2],
+						"url": subPages[2],
+						"styles": subpage_style
+					});
+					var toMain = function() {
+						setTimeout(function() {
+							$.openWindow({
+								id: 'main',
+								show: {
+									aniShow: 'pop-in'
+								},
+								waiting: {
+									autoShow: false
+								}
+							});
+						}, 0);
+					};
+					
+					
+					var isHideGuide = plus.storage.getItem("guideFlag");
+					var ding = localStorage.getItem("guideFlag");
+					document.getElementById("close").addEventListener("tap", function(event) {
+						plus.navigator.setFullscreen(false);
+						//toMain();
+						plus.webview.currentWebview().close();
+					})
+
+					//					if (isHideGuide) {
+					//						//toMain();
+					//						plus.webview.currentWebview().close();
+					//					} else {
+					//						//立即体验按钮点击事件
+					//						document.getElementById("close").addEventListener("tap", function(event) {
+					//								plus.storage.setItem("guideFlag", "true");
+					//								//plus.navigator.setFullscreen(false);
+					//								//toMain();
+					//								plus.webview.currentWebview().close();
+					//							})
+					//							// close splash
+					//						setTimeout(function() {
+					//							//关闭 splash
+					//							plus.navigator.closeSplashscreen();
+					//						}, 600);
+					//					}
+					if(mui.os.ios) {
+						plus.navigator.setFullscreen(true);
+					}
+				});
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

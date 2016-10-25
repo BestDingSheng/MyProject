@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>重置地图</title>
+		<style type="text/css">
+			html,
+			body {
+				overflow: hidden;
+			}
+			
+			#mylocation {
+				position: absolute;
+				left: 0;
+				margin: auto 5px;
+				padding: 3px 3px 0 3px;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+				background: rgba(250, 250, 250, 0.95);
+				border-radius: 5px;
+			}
+		</style>
+		<script type="text/javascript" charset="UTF-8">
+			function resetMap() {
+				plus.webview.currentWebview().opener().evalJS('resetMap()');
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id='mylocation' onclick="resetMap()">
+			<img src='../images/navi.png' style='width: 24px;'>
+		</div>
+
+	</body>
+
+</html>

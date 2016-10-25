@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的账户</title>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	</head>
+	<style type="text/css">
+		.loading {
+			text-align: center;
+			line-height: 30px;
+			color: #999;
+			display: none;
+		}
+		
+		.mui-spinner {
+			vertical-align: -4px;
+			margin-right: 10px;
+		}
+		
+		.mui-content {
+			margin: 0;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="backBtn"></a>
+			<h1 class="mui-title">我的账户</h1>
+		</header>
+		<div class="mui-content">
+			<section>
+				<ul class="account_list">
+					<li class="account_list_son3" id="Accounts_prepaid.html" onclick="payPrice()">
+						<span class="account_left">账户余额</span>
+						<span style="float: right;"><img src="../images/gold.png" class="golden"><img id='rightImg' src="../images/toRight.png" class="toImg"></span>
+						<span class="account_right" id="blance" style="margin-right:5px;">0&nbsp;</span>
+					</li>
+					<li class="account_list_son3">
+						<span class="account_left">绑定帐号</span>
+						<span class="account_right" id='accountNumber'></span>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<div class="account_list">
+					<div class="account_list_son3 accountRecord" id="prepaid_records.html" onclick="openAccList()">
+						<span class="account_left">充值记录</span>
+						<span class="account_right"><img src="../images/toRight.png" class="toImg"></span>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/constant.js"></script>
+		<!--		<script src="../js/public.js"></script>-->
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: false //启用右滑关闭功能
+			});
+			var accountCode;
+			var accAmount;
+			document.addEventListener("plusready", onPlusReady, false);
+
+			function onPlusReady() {
+				accAmount = plus.webview.currentWebview().accAmount;
+				accountCode = plus.webview.currentWebview().accountCode;
+				var partnerName = plus.webview.currentWebview().partnerName;
+				var type = plus.webview.currentWebview().type;
+				if(type == 'partner') {
+					$('#rightImg').remove();
+				}
+				$('#blance').html(accAmount);
+				$('#accountNumber').html(accountCode);
+				if(partnerName != "") {
+					$('.mui-title').html(partnerName + "账户");
+				}
+
+			}
+
+			function payPrice() {
+				var type = plus.webview.currentWebview().type;
+				if(type == 'partner') {
+					$('#rightImg').remove();
+					return;
+				}
+				mui.openWindow({
+					id: 'Accounts_prepaid.html',
+					url: 'Accounts_prepaid.html',
+					show: {
+						aniShow: "slide-in-right"
+					},
+					createNew: false,
+					extras: {
+						'accAmount': accAmount
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			}
+
+			function openAccList() {
+				mui.openWindow({
+					id: 'prepaid_records.html',
+					url: 'prepaid_records.html',
+					show: {
+						aniShow: "slide-in-right"
+					},
+					createNew: false,
+					extras: {
+						'accountCode': accountCode
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			}
+
+			//			document.getElementById("backBtn").addEventListener('tap',function(){
+			//				plus.webview.currentWebview().close();
+			//			})
+		</script>
+	</body>
+
+</html>

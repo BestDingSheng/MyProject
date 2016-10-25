@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>消息中心</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<style type="text/css">
+			.mui-segmented-control.active-red .mui-control-item.mui-active {
+				color: #4ca26e;
+				background: #FFF;
+				border-bottom: 2px solid #4ca26e;
+			}
+			
+			.mui-segmented-control.active-red {
+				border: none;
+				border-bottom: 1px solid #ECECEC;
+				border-radius: 0;
+				background: #FFF;
+			}
+			
+			.mui-segmented-control.active-red .mui-control-item {
+				border-left: none;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				color: #333;
+				font-weight: bold;
+			}
+			
+			.mui-table-view .mui-media-object {
+				max-width: 80px;
+				height: 60px;
+			}
+			
+			.mui-table-view .mui-media-object img {
+				width: 50px;
+				margin-top: 12px;
+			}
+			
+			.mui-table-view-chevron .mui-table-view-cell {
+				padding: 11px 15px;
+			}
+			
+			.mui-table-view-cell p {
+				margin-top: 5px;
+			}
+			
+			.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell {
+				padding: 11px 15px;
+			}
+			
+			.mui-table-view-cell.mui-collapse .mui-table-view.mui-table-view-chevron {
+				margin-right: -15px;
+			}
+			
+			.mui-table-view-chevron .mui-table-view-cell>a:not(.mui-btn) {
+				margin: -11px -15px;
+			}
+			
+			.mui-table-view-cell.mui-collapse.mui-active .mui-table-view-cell>a:not(.mui-btn).mui-active {
+				padding-left: 30px;
+				margin-left: -30px;
+			}
+			
+			.mui-table-view-chevron .layer {
+				border: 1px #adadad solid;
+				margin-bottom: 10px;
+				overflow: inherit;
+			}
+			
+			.mui-table-view-chevron .layer:before {
+				content: '';
+				width: 15px;
+				height: 15px;
+				background: url(../images/icon_down.png) no-repeat 0 0;
+				background-size: 100% auto;
+				position: absolute;
+				right: 10px;
+				bottom: -14px;
+			}
+			
+			.mui-table-view-cell.mui-collapse.mui-active:before {
+				width: 0;
+			}
+			
+			.mui-table-view-cell.mui-collapse.mui-active .up:before {
+				content: '';
+				width: 15px;
+				height: 15px;
+				background: url(../images/icon_up.png) no-repeat 0 bottom;
+				background-size: 100% auto;
+				position: absolute;
+				right: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-table-view-cell:after {
+				height: 0;
+			}
+			
+			#list {
+				margin: 0;
+				padding: 0;
+				background: #fff;
+			}
+			
+			#list .mark {
+				position: absolute;
+				top: 15px;
+				right: 20px;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: red;
+			}
+			
+			#list li {
+				display: table;
+				width: 100%;
+				vertical-align: middle;
+				height: 80px;
+				border: 1px solid #adadad;
+				margin-bottom: 10px;
+				position: relative;
+			}
+			
+			#list li div {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			#list li div:nth-of-type(1) {
+				width: 70px;
+				text-align: center;
+			}
+			
+			#list li div:nth-of-type(1) img {
+				width: 40px;
+				vertical-align: middle;
+			}
+			
+			#list li div:nth-of-type(2) {
+				padding-right: 10px;
+			}
+			
+			#list li div:nth-of-type(2) p {
+				margin: 0;
+				line-height: 30px;
+			}
+			
+			.color-black {}
+			
+			.layer .mark {
+				position: absolute;
+				top: 15px;
+				right: 20px;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: red;
+				z-index: 99;
+			}
+			
+			.act:before {
+				content: '';
+				position: absolute;
+				width: 8px;
+				height: 8px !important;
+				border-radius: 50%;
+				right: 22px;
+				top: 15px;
+				background: red;
+			}
+			
+			.mui-control-item {
+				position: relative;
+			}
+			
+			.actParentGroup:before {
+				content: '';
+				position: absolute;
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				right: 10px;
+				top:5px;
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">消息中心</h1>
+		</header>
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control active-red">
+				<a class="mui-control-item mui-active" href="#item_charging" alt="charging">
+						充电
+				</a>
+				<a class="mui-control-item" href="#item_vip" id="too_line" alt="vip">
+						会员
+				</a>
+				<a class="mui-control-item" href="#item_system" alt="system">
+						系统
+				</a>
+			</div>
+			<div id="item_charging" class="mui-control-content mui-active">
+				<!--<div class="mui-content-padded">
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell mui-collapse mui-media layer">
+							<span class="mark"></span>
+							<a href="#" class="up">
+								<div class="mui-media-object mui-pull-left">
+									<img src="../images/icon_msg_start.png" alt="">
+								</div>
+								<div class="mui-media-body">
+									<div>开始充电通知</div>
+									<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+									<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+								</div>
+							</a>
+							<ul class="mui-table-view mui-table-view-chevron">
+			
+								<li class="mui-table-view-cell mui-media">
+									<a>
+										<div class="mui-media-object mui-pull-left">
+											<img src="../images/nav-pic.png" alt="">
+										</div>
+										<div class="mui-media-body">
+											<div>结束充电通知</div>
+											<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+											<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+										</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media">
+									<a>
+										<div class="mui-media-object mui-pull-left">
+											<img src="../images/icon_msg_end.png" alt="">
+										</div>
+										<div class="mui-media-body">
+											<div>终止充电通知</div>
+											<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+											<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+										</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media">
+									<a>
+										<div class="mui-media-object mui-pull-left">
+											<img src="../images/nav-pic.png" alt="">
+										</div>
+										<div class="mui-media-body">
+											<div>开始充电通知</div>
+											<p class="mui-ellipsis">益虫充电开始通知益虫充电开始通知益虫充电充电...</p>
+											<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="mui-table-view-cell mui-collapse mui-media layer">
+							<span class="mark"></span>
+							<a href="#" class="up">
+								<div class="mui-media-object mui-pull-left">
+									<img src="../images/icon_msg_end.png" alt="">
+								</div>
+								<div class="mui-media-body">
+									<div>开始结束通知</div>
+									<p class="mui-ellipsis">益虫充电结束通知益虫充电开始通知益虫充电充电...</p>
+									<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+								</div>
+							</a>
+							<ul class="mui-table-view mui-table-view-chevron">
+			
+								<li class="mui-table-view-cell mui-media">
+									<a>
+										<div class="mui-media-object mui-pull-left">
+											<img src="../images/nav-pic.png" alt="">
+										</div>
+										<div class="mui-media-body">
+											<div>开始结束通知</div>
+											<p class="mui-ellipsis">益虫充电结束通知益虫充电开始通知益虫充电充电...</p>
+											<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</li>
+			
+					</ul>
+				</div>-->
+			</div>
+			<div id="item_vip" class="mui-control-content">
+				<div class="mui-content-padded">
+					<ul class="tab" id="list">
+						<li>
+							<span class="mark"></span>
+							<div>
+								<img src="../images/icon_vip_msg.png" alt="" />
+							</div>
+							<div>
+								<p class="color-black">益虫充电会员卡申请成功</p>
+								<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+							</div>
+						</li>
+						<li>
+							<span class="mark"></span>
+							<div>
+								<img src="../images/icon_vip_msg.png" alt="" />
+							</div>
+							<div>
+								<p class="color-black">益虫充电会员卡申请成功</p>
+								<p><span>2016-02-09</span><span class="fr">10:55</span></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="item_system" class="mui-control-content">
+				<div class="not_show">
+					<img src="../images/not_show.png" alt="" />
+					暂无消息
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/constant.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script>
+			mui.init();
+
+			function pageJump(Url) {
+				mui.openWindow({
+					id: Url,
+					url: Url,
+					show: {
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			}
+			//添加监听事件
+			function addWebViewEvent() {
+				// 显示隐藏消息红色图标
+				document.addEventListener('randerMessageByMainView', randerMessageByMainView, false);
+			}
+			
+			function randerMessageByMainView(event) {
+				var type = null;
+				var active = $("#segmentedControl a").filter('.mui-active');
+				if (active && active.length==1) {
+					type = active.attr('alt');
+				}
+				
+				if (!type) {
+					type = 'charging';
+				}
+				// 从服务器获取并默认渲染充电类型消息
+				getAndRanderMessageByType(type);
+			}
+			
+			mui.plusReady(function(){
+				//添加监听事件
+				addWebViewEvent();
+				// 从服务器获取并默认渲染充电类型消息
+				getAndRanderMessageByType('charging')
+				
+				// 注册选项卡切换事件
+				mui('#segmentedControl').on('tap', 'a', function(){
+					// TODO 根据isUpdate是否重新渲染界面
+					var group = this.getAttribute('alt');
+					if (group) {
+						setMsgReadedByParentGroup(group);
+						randerMessageByType(group);
+					}
+				});
+				mui('#list').on('tap', 'li', function() {
+					pageJump('msg_vipCardApplySuccess.html')
+				});
+				
+			});
+			
+			function registerEvent() {
+				// 注册事件
+				mui('.mui-content-padded').on('tap', '.up', function(){
+					var layerLi = $(this).parent('.layer');
+					if (layerLi) {
+						var id = layerLi.attr('id');
+						var mark = $('#' + id + " .mark");
+						if (mark && mark.length>0) {
+							// 清除未读图标
+							mark.remove();
+							// 设置消息已读
+							setMsgReadedByGroup(id);
+						}
+					}
+				});
+				mui('.layer').on('tap', 'li', function() {
+					var id = this.getAttribute('id');
+					var notifyType = this.getAttribute('alt');
+					var mark = $('#'+id);
+					if (mark && mark.hasClass('act')) {
+						// 清除未读图标
+						mark.removeClass('act');
+					}
+					// 更新当前点击消息为curMsg
+					updateCurMsg(id);
+					if (notifyType == PUSH_MSG_NOTIFY_TYPE.START_TRANS) {
+						toPage("account/message_details_start.html");
+					} else if (notifyType == PUSH_MSG_NOTIFY_TYPE.STOP_TRANS) {
+						toPage("account/message_details_stop.html");
+					} else if (notifyType == PUSH_MSG_NOTIFY_TYPE.ABORT_TRANS) {
+						toPage("account/message_details_abort.html");
+					}
+				});
+			}
+			
+			// 更新parentGroup如：charging对应isReaded=true
+			function setMsgReadedByParentGroup(parentGroup) {
+				if (parentGroup) {
+					var pushMsg = localStorage.getItem('PUSH_MSG');
+					pushMsg = JSON.parse(pushMsg);
+					if (pushMsg && pushMsg.historyMsgs && pushMsg.historyMsgs.length > 0) {
+						var isUpdateReaded = false;
+						var outerParentGroupCount = 0;
+						
+						for (var i in pushMsg.historyMsgs) {
+							var historyMsg = pushMsg.historyMsgs[i];
+							if(historyMsg.group == parentGroup) {
+								isUpdateReaded = true;
+								historyMsg.isReaded = true;
+							}
+							if (historyMsg.isReaded) {
+								outerParentGroupCount++;
+							}
+						}
+						
+						if (isUpdateReaded) {
+							if (outerParentGroupCount == pushMsg.historyMsgs.length) {
+								pushMsg.isReaded = true;
+								// 我的界面显示消息红色图标
+								var accountMain = plus.webview.getWebviewById(WEBVIEW_IDS.ACCOUNT_MAIN);
+								mui.fire(accountMain,'msgIconShow');
+							}
+							localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+						}
+					}
+				}
+			}
+			
+			// 更新当前click消息
+			function updateCurMsg(id) {
+				if (id && id.length>0 && id.indexOf("_")>0 && id.indexOf("-")>0) {
+					var parentGroup = id.substring(0, id.indexOf("_"));
+					var group = id.substring(id.indexOf("_")+1, id.indexOf("-"));
+					var msgOrderNo = id.substring(id.indexOf("-")+1);
+					
+					var pushMsg = localStorage.getItem('PUSH_MSG');
+					pushMsg = JSON.parse(pushMsg);
+					if (pushMsg && pushMsg.historyMsgs && pushMsg.historyMsgs.length > 0) {
+						// 1) 从缓存获取
+						for (var i in pushMsg.historyMsgs) {
+							var historyMsg = pushMsg.historyMsgs[i];
+							if(historyMsg.group == parentGroup) { // 充电消息
+								var msgs = historyMsg.msgs;
+								if (msgs && msgs.length>0) {
+									// 消息列表
+									for (var j in msgs) {
+										var msg = msgs[j];
+										if (group == msg.group) {
+											var msgList = msg.msgs; // 具体消息列表
+											if (msgList && msgList.length>0) {
+												for (var k in msgList) {
+													var m = msgList[k];
+													if (msgOrderNo == m.orderNo) {
+														pushMsg.curMsg = m;
+														// 更新
+														localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+														return true;
+													}
+												}
+											}
+											break;
+										}
+									}
+								}
+								break;
+							}
+						}
+					}
+				}
+				return false;
+			}
+			
+			// 设置消息已读
+			function setMsgReadedByGroup(id) {
+				if (id && id.length>0 && id.indexOf("_")>0 && id.indexOf("-")>0) {
+					var parentGroup = id.substring(0, id.indexOf("_"));
+					var group = id.substring(id.indexOf("-")+1);
+					
+					var pushMsg = localStorage.getItem('PUSH_MSG');
+					pushMsg = JSON.parse(pushMsg);
+					if (pushMsg && pushMsg.historyMsgs && pushMsg.historyMsgs.length > 0) {
+						// 1) 从缓存获取
+						for (var i in pushMsg.historyMsgs) {
+							var historyMsg = pushMsg.historyMsgs[i];
+							if(historyMsg.group == parentGroup) { // 充电消息
+								var msgs = historyMsg.msgs;
+								if (msgs && msgs.length>0) {
+									// 消息列表
+									for (var j in msgs) {
+										var msg = msgs[j];
+										if (group == msg.group) {
+											msg.isReaded = true;
+											// 更新
+											localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+											break;
+										}
+									}
+								}
+								break;
+							}
+						}
+					}
+				}
+			}
+			
+			/**
+			 * 存储消息
+			 * @param {Object} msgObj
+			 */
+			function storageMsg( pushMsgs, curParentGroup ) {
+				if (pushMsgs && pushMsgs.length > 0) {
+					var pushMsg = localStorage.getItem('PUSH_MSG');
+					pushMsg = JSON.parse(pushMsg);
+					if (!pushMsg) {
+						pushMsg = {curMsg:'', lastOrderNo:'', isReaded:true, isUpdate:true, historyMsgs:[]};
+					}
+					pushMsg.isReaded = true;
+					//alert(pushMsg)
+					for (var idx in pushMsgs) {
+						var msgObj = pushMsgs[idx];
+						if ( msgObj.payload ) {
+							var data = msgObj.payload.data;
+							if (data) {
+								var payload = msgObj.payload;
+//								payload.msgId = msgObj._id;
+								var lastOrderNo = payload.orderNo;
+								pushMsg.curMsg = payload;
+								pushMsg.lastOrderNo = lastOrderNo;
+								
+								
+								if (payload.parentGroup) {
+									var isExists = false;
+									for (var i in pushMsg.historyMsgs) {
+										var historyMsg = pushMsg.historyMsgs[i];
+										if (historyMsg.group == payload.parentGroup) { // charging/system/vip
+											var msgs = historyMsg.msgs;
+											if (!msgs || msgs.length<=0) {
+												msgs = [];
+											}
+											var isExistMsgGroup = false;
+											for (var j in msgs) {
+												var msg = msgs[j];
+												if (msg.group == payload.group) { // 具体消息列表分类
+													var msgList = msg.msgs;
+													var mIdx = -1;
+													if (!msgList || msgList.length<=0) {
+														msgList = [];
+													} else {
+														for (var k in msgList) {
+															var m = msgList[k];
+															if (m.orderNo==payload.orderNo) {
+																mIdx = k;
+																break;
+															}
+														}
+													}
+													if (mIdx == -1) {
+														mIdx = msgList.length;
+													}
+													msgList[mIdx] = payload;
+													isExistMsgGroup = true;
+													
+													if(!payload.isReaded) {
+														msg.isReaded = false;
+														historyMsg.isReaded = false;
+													}
+													break;
+												}
+											}
+											if (!isExistMsgGroup) {
+												var m = {group:payload.group, isReaded:payload.isReaded, msgs:[]};
+												m.msgs[0] = payload;
+												msgs[msgs.length] = m;
+												if(!payload.isReaded) {
+													historyMsg.isReaded = false;
+												}
+											}
+											isExists = true;
+											break;
+										}
+									}
+									
+									if (!isExists) {
+										var isReadedParentGroup = curParentGroup == payload.parentGroup ? true : false;
+										var historyMsg = {group:payload.parentGroup, isReaded:isReadedParentGroup, isUpdate:true, msgs:[]};
+										var m = {group:payload.group, isReaded:payload.isReaded, msgs:[]};
+										m.msgs[0] = payload;
+										historyMsg.msgs[0] = m;
+										pushMsg.historyMsgs[pushMsg.historyMsgs.length] = historyMsg;
+										isExists = true;
+									}
+								}
+							}
+						}
+					}
+					
+					// 清除消息缓存，保留最新的50组数据
+					clearAndStorageMsg(pushMsg);
+				}
+			}
+			
+			// 清除消息缓存，保留最新的50组数据
+			function clearAndStorageMsg(pushMsg) {
+				if (pushMsg && pushMsg.historyMsgs) {
+					for (var i in pushMsg.historyMsgs) {
+						var historyMsg = pushMsg.historyMsgs[i];
+						if (historyMsg && historyMsg.msgs && historyMsg.msgs.length>50) {
+							historyMsg.msgs.splice(0, historyMsg.msgs.length-50); // 删除50条以后数据
+						}
+					}
+				}
+				localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+			}
+			
+			function getAndRanderMessageByType(type) {
+				var pushMsg = localStorage.getItem('PUSH_MSG');
+				pushMsg = JSON.parse(pushMsg);
+				var orderNo = (pushMsg && pushMsg.lastOrderNo) ? pushMsg.lastOrderNo : '';
+				
+				var params = prepareParams({targetClientId:plus.push.getClientInfo().clientid, orderNo:orderNo});
+				$.ajax({
+					type: "get",
+					url: webRoot + "/app/msgCenter/getLastMsg",
+					dataType: 'json',
+					data: params,
+					success: function(msg) {
+						console.log("response msg: " + msg);
+						var pushMsgs = null;
+						if (msg.respCode == 1) {
+							var data = msg.data;
+							if (data && data.pushMsgs) {
+								pushMsgs = data.pushMsgs;
+							}
+						}
+						
+						// 存储消息到本地
+						storageMsg(pushMsgs, type);
+						
+						// 父类型已读
+						setMsgReadedByParentGroup(type);
+						
+						// 渲染消息列表
+						randerMessageByType(type);
+					},
+					error: function() {
+						// 父类型已读
+						setMsgReadedByParentGroup(type);
+						// 渲染消息列表
+						randerMessageByType(type);
+					}
+				});
+			}
+			
+			// 渲染消息列表
+			function randerMessageByType(type) {
+				
+				if (!type) {
+					return;
+				}
+				
+				var pushMsg = localStorage.getItem('PUSH_MSG');
+				//alert(pushMsg);
+				pushMsg = JSON.parse(pushMsg);
+				$('#item_'+type).html('');
+				if (pushMsg && pushMsg.historyMsgs && pushMsg.historyMsgs.length > 0) {
+					// 1) 从缓存获取
+					var isExistsType = false;
+					for (var i = pushMsg.historyMsgs.length-1; i >= 0; i--) {
+//					for (var i in pushMsg.historyMsgs) {
+						var historyMsg = pushMsg.historyMsgs[i];
+						if(historyMsg.group == type) { // 充电消息
+							isExistsType = true;
+							var msgs = historyMsg.msgs;
+							if (msgs && msgs.length>0) {
+								// 显示消息列表
+								for (var j = msgs.length-1; j >= 0; j--) {
+//								for (var j in msgs) {
+									var msg = msgs[j];
+									var group = msg.group; // transId
+									var isReaded = msg.isReaded;
+									var msgList = msg.msgs; // 具体消息列表
+									
+									if (!msgList || msgList.length<=0) {
+										continue;
+									}
+									
+									// 拼接界面
+									var groupHtml = ""; // 消息分组html串
+									var msgHtml = ""; // 消息信息列表html串
+									for (var k = msgList.length-1; k >= 0; k--) {
+//									for (var k in msgList) {
+										var m = msgList[k];
+										var data = m.data;
+										var isReadMsg = m.isReaded;
+										var groupTxt = data.notifyType==PUSH_MSG_NOTIFY_TYPE.START_TRANS?'开始':(data.notifyType==PUSH_MSG_NOTIFY_TYPE.STOP_TRANS?'结束':(data.notifyType==PUSH_MSG_NOTIFY_TYPE.ABORT_TRANS?'终止':''));
+										var notifyTypeTxt = data.notifyType==PUSH_MSG_NOTIFY_TYPE.START_TRANS?'您开启了益虫充电充电服务!':(data.notifyType==PUSH_MSG_NOTIFY_TYPE.STOP_TRANS?'您已经拔掉充电枪，结束本次充电服务！':(data.notifyType==PUSH_MSG_NOTIFY_TYPE.ABORT_TRANS?'您的电车充电服务已终止!':''));
+										var operateDate =  data.notifyType==PUSH_MSG_NOTIFY_TYPE.START_TRANS?data.startTime.substring(0,10):(data.notifyType==PUSH_MSG_NOTIFY_TYPE.STOP_TRANS?data.endTime.substring(0,10):(data.notifyType==PUSH_MSG_NOTIFY_TYPE.ABORT_TRANS?data.abortTime.substring(0,10):''));
+										var opreateTime =  data.notifyType==PUSH_MSG_NOTIFY_TYPE.START_TRANS?data.startTime.substring(11,16):(data.notifyType==PUSH_MSG_NOTIFY_TYPE.STOP_TRANS?data.endTime.substring(11,16):(data.notifyType==PUSH_MSG_NOTIFY_TYPE.ABORT_TRANS?data.abortTime.substring(11,16):''));
+										var msgSrc = data.notifyType==PUSH_MSG_NOTIFY_TYPE.START_TRANS?'icon_msg_start.png':(data.notifyType==PUSH_MSG_NOTIFY_TYPE.STOP_TRANS?'icon_msg_stop.png':(data.notifyType==PUSH_MSG_NOTIFY_TYPE.ABORT_TRANS?'icon_msg_end.png':'nav-pic.png'));
+										if (k == msgList.length-1) {
+//										if (k == 0) {
+											groupHtml = "<div class=\"mui-content-padded\"><ul class=\"mui-table-view mui-table-view-chevron\"><li class=\"mui-table-view-cell mui-collapse mui-media layer\" id=\""+type+"_g-"+group+"\">";
+											if (!isReaded) {
+												groupHtml += "<span class=\"mark\"></span>";
+											}
+											groupHtml += "<a href=\"#\" class=\"up\" style=\"margin:-20px -15px;\"><div class=\"mui-media-object mui-pull-left\"><img src=\"../images/T.png\" style=\"margin-top:5px;\"></div><div class=\"mui-media-body\">";
+											groupHtml += "<p class=\"mui-ellipsis\">充电服务";
+											groupHtml += groupTxt;
+											groupHtml += "充电通知</p><p><span>";
+											groupHtml += operateDate;
+											groupHtml += "</span><span class=\"fr\">";
+											groupHtml += opreateTime;
+											groupHtml += "</span></p></div></a>";
+											
+											msgHtml = "<ul class=\"mui-table-view mui-table-view-chevron\">";
+										}
+										
+										if (isReadMsg) {
+											msgHtml += "<li class=\"mui-table-view-cell mui-media\" id=\""+type+"_"+group+"-"+m.orderNo+"\" alt=\""+data.notifyType+"\">";
+										} else {
+											msgHtml += "<li class=\"mui-table-view-cell mui-media act\" id=\""+type+"_"+group+"-"+m.orderNo+"\" alt=\""+data.notifyType+"\">";
+										}
+										msgHtml += "<a><div class=\"mui-media-object mui-pull-left\"><img src=\"../images/"+msgSrc+"\" alt=\"\"></div><div class=\"mui-media-body\"><div>充电服务";
+										msgHtml += groupTxt;
+										msgHtml += "充电通知</div><p class=\"mui-ellipsis\">";
+										msgHtml += notifyTypeTxt;
+										msgHtml += "</p><p><span>";
+										msgHtml += operateDate;
+										msgHtml += "</span><span class=\"fr\">";
+										msgHtml += opreateTime;
+										msgHtml += "</span></p></div></a></li>";
+										
+									}
+									msgHtml += "</ul>";
+									groupHtml += msgHtml;
+									groupHtml += "</li></ul></div>";
+									$('#item_'+type).append(groupHtml);
+								}
+								registerEvent();
+							} else {
+								var msgHtml = "<div class=\"not_show\"><img src=\"../images/not_show.png\" alt=\"\" />暂无消息</div>";
+								$('#item_'+type).html(msgHtml);
+							}
+						}
+					}
+					
+					// 充电、会员、系统的未读图标
+					$('a', '#segmentedControl').each(function(i){
+						if (type == $(this).attr('alt')) {
+							$(this).removeClass('actParentGroup');
+						} else {
+							for (var i in pushMsg.historyMsgs) {
+								var historyMsg = pushMsg.historyMsgs[i];
+								if (historyMsg.group == $(this).attr('alt')) {
+									if (historyMsg.isReaded) {
+										$(this).removeClass('actParentGroup');
+									} else {
+										if (!$(this).hasClass('actParentGroup')) {
+											$(this).addClass('actParentGroup');
+										}
+									}
+								}
+							}
+						}
+					});
+					
+					if (!isExistsType) {
+						var msgHtml = "<div class=\"not_show\"><img src=\"../images/not_show.png\" alt=\"\" />暂无消息</div>";
+						$('#item_'+type).html(msgHtml);
+					}
+				} else {
+					// 2) 缓存没有，从服务器获取
+					var msgHtml = "<div class=\"not_show\"><img src=\"../images/not_show.png\" alt=\"\" />暂无消息</div>";
+					$('#item_'+type).html(msgHtml);
+				}
+				
+			}
+		</script>
+	</body>
+
+</html>

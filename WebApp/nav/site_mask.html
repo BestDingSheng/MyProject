@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>mask</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+	</head>
+	<style>
+		.mui-backdrop .content {
+			position: absolute;
+			bottom: 0;
+			height: 60%;
+			background: #F8F8F8;
+			width: 100%;
+			padding: 10px;
+			overflow: hidden;
+			transition: all 1s linear;
+		}
+		
+		.scrool {
+			height: -webkit-calc(100% - 54px);
+			overflow: scroll;
+			background: #f4f4f4;
+		}
+		
+		.close {
+			position: fixed;
+			width: 25px;
+			height: 25px;
+			background: url(../images/icon_close.png) no-repeat 0 0;
+			background-size: 100% auto;
+			right: 10px;
+			/*bottom: -webkit-calc(60% - 10px);*/
+			z-index: 9;
+			top: -15px;
+			transition: all 1s linear;
+		}
+		
+		.mui-backdrop .content input {
+			height: 30px;
+			border-radius: 30px;
+			text-align: center;
+		}
+		
+		.mui-backdrop .content input::-webkit-input-placeholder {
+			text-align: center;
+			font-size: 14px;
+		}
+		
+		.way {
+			margin-top: 10px;
+			border: 1px solid #e4e4e4;
+			padding: 0 10px;
+			margin-bottom: 10px;
+			background: #fff;
+		}
+		
+		.way .cell {
+			overflow: hidden;
+			/*padding: 10px 10px 10px 0;*/
+		}
+		
+		.way .list {
+			padding: 10px 0 15px;
+			/*padding-top: 10px;*/
+		}
+		
+		.way .cell .child_cell {
+			float: left;
+			width: 33.33%;
+			height: 40px;
+			line-height: 40px;
+		}
+		
+		.way .txt {
+			border-bottom: 1px solid #4ca26e;
+			line-height: 40px;
+			font-size: 16px;
+			padding-top: 10px;
+		}
+		
+		.way .cell .child_cell span {
+			border: 1px solid #adadad;
+			padding: 5px 15px;
+			border-radius: 13px;
+			color: #adadad;
+			font-size: 14px;
+			vertical-align: 1px;
+		}
+		
+		.way .cell .act span {
+			border: 1px solid #4ca26e;
+			color: #4ca26e;
+		}
+		
+		.way .list .child_cell {
+			width: 20%;
+			height: auto;
+			margin-bottom: 10px;
+		}
+		
+		.mui-switch.mui-active {
+			float: right;
+		}
+		
+		.mui-switch {
+			float: right;
+			top: 4px;
+		}
+		
+		.mui-switch:before {
+			top: -6px;
+		}
+		
+		.option p {
+			margin: 0;
+			line-height: 40px;
+			font-size: 16px;
+			color: #595959;
+		}
+		
+		.option p:nth-child(1) {
+			border-bottom: 1px solid #e4e4e4;
+		}
+		
+		.child_cell .act {
+			border: 1px solid #4ca26e;
+			color: #4CA26E;
+		}
+		
+		.child_cell p {
+			font-size: 12px;
+			text-align: center;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			margin: 0 auto;
+			border: 1px solid #8f8f94;
+			line-height: 30px;
+		}
+		
+		.child_cell p img {
+			width: 20px;
+			margin-top: 13px;
+		}
+		
+		.mui-btn-block {
+			font-size: 18px;
+			display: block;
+			width: 100%;
+			margin-bottom: 10px;
+			position: fixed;
+			bottom: 0;
+			z-index: 999;
+			margin: 0;
+		}
+		
+		#content {
+			padding-bottom: 40px;
+		}
+	</style>
+
+	<body>
+		<div class="content" id="content">
+			<div class="scrool">
+				<div class="way" style="margin-top:0;">
+					<div class="txt">充电方式</div>
+					<div id='chargeWay' class="cell tab">
+						<div class="child_cell act" data='0'><span>全部</span></div>
+						<div class="child_cell" style="text-align:center;" data='1'><span>快充</span></div>
+						<div class="child_cell" style="text-align: right;" data='2'><span>慢充</span></div>
+					</div>
+				</div>
+				<div class="way">
+					<div class="txt">站点距离</div>
+					<div id='siteDistance' class="cell tab siteDistance marsk_list">
+						<div class="child_cell _list" data='1'><span>一公里</span></div>
+						<div class="child_cell _list" style="text-align:center;" data='2'><span>三公里</span></div>
+						<div class="child_cell _list act" style="text-align: right;" data='3'><span>五公里</span></div>
+					</div>
+					<div class="cell tab siteDistance marsk_map">
+						<div class="child_cell _map" data='2'><span>三公里</span></div>
+						<div class="child_cell _map" style="text-align:center;" data='3'><span>五公里内</span></div>
+						<div class="child_cell _map act" style="text-align: right;" data='4'><span>全部</span></div>
+					</div>
+
+				</div>
+				<div class="way">
+					<div class="txt">选择运营商
+						<div class="mui-switch mui-switch-mini mui-active" id="Operator">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+					<div id='operator' class="cell list">
+						<div class="child_cell act">
+							<p class="act" data='6'>
+								<img src="../images/operator_ec.png" alt="" /><br /> 益虫充电
+							</p>
+						</div>
+						<div class="child_cell">
+							<p class="" data='2'>
+								<img src="../images/operator_dw.png" alt="" /><br /> 国家电网
+							</p>
+						</div>
+						<div class="child_cell">
+							<p class="" data='3'>
+								<img src="../images/operator_t.png" alt="" /><br /> 特斯拉
+							</p>
+						</div>
+						<div class="child_cell">
+							<p class="" data='4'>
+								<img src="../images/operator_xx.png" alt="" /><br /> 星星充电
+							</p>
+						</div>
+						<div class="child_cell">
+							<p class="" data='5'>
+								<img src="../images/operator_cd.png" alt="" /><br /> 充电网
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="way">
+					<div class="txt">停车筛选</div>
+					<div id='isParkingFee' class="txt" style="border:none;">免费停车
+						<div class="mui-switch mui-switch-mini" data=1>
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+					<div id='isChargeFee' class="txt" style="border:none;">免费充电
+						<div class="mui-switch mui-switch-mini" data=1>
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<button class="mui-btn-green mui-btn-block" id="submit">完成</button>
+			<script src="../js/mui.min.js"></script>
+			<script src="../js/location.js"></script>
+			<script src="../js/jQuery.js"></script>
+			<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=YS4BZ-IGTRD-UMK4S-PPP3R-BXUV5-F4FKL"></script>
+
+			<script>
+				var MarskStatus = {
+					set: function(key, val, exp) {
+						var obj = plus.storage;
+						val = JSON.stringify({
+							val: val,
+							exp: exp,
+						});
+						console.log('save key:' + key + ' ,value:' + val);
+						obj.setItem(key, val);
+					},
+					get: function(key) {
+						var obj = plus.storage;
+						var info = obj.getItem(key);
+						var network = plus.networkinfo.getCurrentType();
+						if (!info) {
+							return null;
+						}
+						info = JSON.parse(info);
+						//没网络不判断过期时间
+						if (network <= 1) {
+							return info.val
+						}
+						console.log('get key:' + key + ' ,value:' + info.val);
+						return info.val;
+					},
+					delete: function(key) {
+						var obj = plus.storage;
+						obj.removeItem(key);
+						this.set(key, null, 0);
+					},
+					clear: function(key) {
+						var obj = plus.storage;
+						obj.clear();
+					}
+				}
+				document.addEventListener("plusready", onPlusReady, false);
+				//loading init 初始化 筛选状态
+				function loadingInit(){
+					var fage = plus.storage.getItem('fage');														
+					var status;
+					if(fage=="false"){
+						status=MarskStatus.get("listStatus");
+					}else{
+						status=MarskStatus.get("mapStatus");						
+					}
+					//通过状态来修改样式
+					if(status.chargeWay!=undefined){
+						$('#chargeWay').find('div').removeClass('act');
+						$('#chargeWay').find('div').eq(status.chargeWay).addClass('act');
+					}
+					if(!status.operator!=undefined){
+						$('#operator').find('div').removeClass('act');
+						$('#operator').find('div').eq(status.operator).addClass('act');
+						$('#operator').find('p').removeClass('act');
+						$('#operator').find('p').eq(status.operator).addClass('act');
+					}
+					if(status.parking==0){
+						$('#isParkingFee .mui-switch-handle').css('transform', 'translate(0px, 0px)')
+						$('#isParkingFee .mui-switch').removeClass('mui-active');
+					}else{
+						$('#isParkingFee .mui-switch-handle').css('transform', 'translate(16px, 0px)')
+						$('#isParkingFee .mui-switch').addClass('mui-active');
+					}
+					if(status.charge==0){
+						$('#isChargeFee .mui-switch-handle').css('transform', 'translate(0px, 0px)')
+						$('#isChargeFee .mui-switch').removeClass('mui-active');
+					}else{
+						$('#isChargeFee .mui-switch-handle').css('transform', 'translate(16px, 0px)')
+						$('#isChargeFee .mui-switch').addClass('mui-active');
+					}
+				}
+				function onPlusReady() {
+					//var fage = plus.storage.getItem('fage');									
+					var listStatus = {
+						"chargeWay": 0,
+						"operator": 0,
+						"parking": 0,
+						"charge": 0
+					};
+					MarskStatus.clear("listStatus");
+					MarskStatus.clear("mapStatus");
+					MarskStatus.set("listStatus", listStatus);
+					MarskStatus.set("mapStatus", listStatus);
+					loadingInit();
+				}
+				document.addEventListener('showList', showList);
+				document.addEventListener('showMap', showMap);
+				document.addEventListener('loadingInit', loadingInit);
+
+				function showList() {
+					$('.marsk_list').show();
+					$('.marsk_map').hide()
+				}
+
+				function showMap() {
+					$('.marsk_list').hide();
+					$('.marsk_map').show();
+				}
+				$('.tab .child_cell').on('click', function() {
+					$(this).siblings().removeClass('act');
+					$(this).addClass('act');
+				});
+				$('#Operator').on('click', function() {
+					if ($(this).hasClass('mui-active')) {
+						$('.child_cell').find('p').eq(0).addClass('act');
+					} else {
+						$('.child_cell').find('p').removeClass('act');
+					}
+				});
+				$('.child_cell').find('p').on('click', function() {
+					var class_str = $('.child_cell').find('.act').length;
+					if (class_str == 0) {
+						$('#Operator .mui-switch-handle').css('transform', 'translate(16px, 0px)')
+						$('#Operator').addClass('mui-active');
+					}
+					$('.child_cell').find('p').removeClass('act');
+					$('.child_cell').find('p').parent().removeClass('act')
+					$(this).addClass('act');
+					$(this).parent().addClass('act');
+				});
+
+				function close() {
+					mui.fire(mui.currentWebview.opener(), "menu:close");
+				}
+				//点击“关闭侧滑菜单”按钮处理逻辑
+				//document.getElementById("submit").addEventListener("tap",close);
+				var nearby;
+				var orderby;
+				var filter;
+				var w;
+				var data = {};
+				var siteDis;
+				$('#submit').on('click', function() {
+					//判断当前是在哪个页面的状态
+					var fage = plus.storage.getItem('fage');	
+					//存储筛选状态
+					function saveStatus() {
+						var chargeWay = $('#chargeWay .act').index();
+						var operator = $('#operator div.act').index();
+						var parking = $('#isParkingFee .mui-active').length
+						var charge = $('#isChargeFee .mui-active').length
+						var listStatus = {
+							"chargeWay":chargeWay,
+							"operator":operator,
+							"parking":parking,
+							"charge":charge
+						}
+						if (fage == "false") {
+							MarskStatus.set("listStatus", listStatus);
+						}else{
+							MarskStatus.set("mapStatus", listStatus);							
+						}
+					}
+					saveStatus();
+					//var fage=sessionStorage.getItem('fage');
+
+					MyLocation.getPosition(function(position) {
+						curGPSLatLng = position.coords;
+						//var arr2 = GPS.gcj_encrypt(curGPSLatLng.latitude, curGPSLatLng.longitude);
+						var arr2 = GPS.bd_decrypt(curGPSLatLng.latitude, curGPSLatLng.longitude);
+						currentLatLng = new qq.maps.LatLng(
+							// 维度
+							arr2['lat'],
+							// 精度
+							arr2['lon']);
+						orderby = "distance(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ")";
+						filter = "x.site_status=3";
+						var chargeWay = $('#chargeWay .act').attr('data');
+						if (chargeWay == 1) {
+							filter = filter + " and x.charge_type=1"
+						} else if (chargeWay == 2) {
+							filter = filter + " and x.charge_type=2"
+						}
+						//siteDis = $('.siteDistance .act').attr('data');
+						if (fage == "true") {
+							siteDis = $('.marsk_map .act').attr('data');
+						} else {
+							siteDis = $('.marsk_list .act').attr('data');
+						}
+						if (siteDis == 1) {
+							nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",1000)";
+						} else if (siteDis == 2) {
+							nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",3000)";
+						} else if (siteDis == 3) {
+							nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",5000)";
+						} else {
+							nearby = null;
+						}
+						var operators = $('#operator .child_cell .act');
+						var operatorVal;
+						//				for (var i = 0; i < operators.length; i++) {
+						//					if (i == 0) {
+						operatorVal = operators.attr('data');
+						//					} else {
+						//						operatorVal = operatorVal + ',' + operators.eq(i).attr('data');
+						//					}
+						//				}
+						if (operatorVal != null) {
+							filter = filter + " and x.operators=" + operatorVal;
+						}
+						var isParkingFee = $('#isParkingFee .mui-active').attr('data');
+						var isChargeFee = $('#isChargeFee .mui-active').attr('data');
+						if (isParkingFee != 'undefined' && isParkingFee != null) {
+							filter = filter + ' and x.is_park_fee=0';
+						};
+						if (isChargeFee != 'undefined' && isChargeFee != null) {
+							filter = filter + ' and x.is_charge_fee=0';
+						};
+					});
+					//					orderby = "distance(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ")";
+					//					filter = "x.site_status=3";
+					//					var chargeWay = $('#chargeWay .act').attr('data');
+					//					if (chargeWay == 1) {
+					//						filter = filter + " and x.charge_type=1"
+					//					} else if (chargeWay == 2) {
+					//						filter = filter + " and x.charge_type=2"
+					//					}
+					//					var siteDis = $('#siteDistance .act').attr('data');
+					//					if (siteDis == 1) {
+					//						nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",1000)";
+					//					} else if (siteDis == 2) {
+					//						nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",3000)";
+					//					} else {
+					//						nearby = "nearby(" + currentLatLng.getLat() + "," + currentLatLng.getLng() + ",5000)";
+					//					}
+					//					var operators = $('#operator .child_cell .act');
+					//					var operatorVal;
+					//					//				for (var i = 0; i < operators.length; i++) {
+					//					//					if (i == 0) {
+					//					operatorVal = operators.attr('data');
+					//					//					} else {
+					//					//						operatorVal = operatorVal + ',' + operators.eq(i).attr('data');
+					//					//					}
+					//					//				}
+					//					if (operatorVal != null) {
+					//						filter = filter + " and x.operators=" + operatorVal;
+					//					}
+					//					var isParkingFee = $('#isParkingFee .mui-active').attr('data');
+					//					var isChargeFee = $('#isChargeFee .mui-active').attr('data');
+					//					if (isParkingFee != 'undefined' && isParkingFee != null) {
+					//						filter = filter + ' and x.is_park_fee=0';
+					//					};
+					//					if (isChargeFee != 'undefined' && isChargeFee != null) {
+					//						filter = filter + ' and x.is_charge_fee=0';
+					//					};
+					var _map = plus.webview.getWebviewById('site_map.html');
+					var _list = plus.webview.getWebviewById('site_list.html');
+					data.filter = filter;
+					data.nearby = nearby;
+					data.orderby = orderby;
+					data.siteDis = siteDis;
+					mui.fire(_list, 'changeNum', data)
+						//					for (var i in data) {
+						//						alert(data[i]);
+						//					}
+					if (fage && fage == "true") {
+						mui.fire(_map, 'filter', data)
+					} else {
+						mui.fire(_list, 'filter', data)
+					}
+					close(); //隐藏蒙版
+				})
+			</script>
+	</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>联合登录</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<style>
+	.img{
+		text-align: center;
+		margin-top: 20px;
+	}
+	.img img{
+		width: 80px;
+		height: 80px;
+		display: block;
+		margin: 0 auto;
+		border-radius: 5px;
+		border:1px solid #d6d6d6;
+	}
+	#posi{
+		vertical-align: -8px;
+		margin-right: 5px;
+		width: 30px;
+	}
+	section{
+		margin-top: 10px;
+	}
+	section:nth-child(3){
+		margin-top: 20px;
+	}
+	section:nth-child(4){
+		margin-top: 20px;
+	}
+	.mui-content{margin:0 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	}
+	button{
+		height: 39px;
+	}
+	.mui-content p {line-height: 30px;}
+</style>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">联合登录</h1>
+	</header>
+    <div class="mui-content">
+        <div class="img">
+        	<img src="../images/pic-tou.png" alt="" id="userImg" />
+        </div>
+        <section>
+        	<p>亲爱的<span id="credChannel"></span>用户: <b><span id="nickName">WECHAT</span></b></p>
+        	<p>为了给您更好的服务,请关联一个益虫充电账号</p>
+        </section>
+        <section>
+        	<p>还没有益虫充电账号?</p>
+        	<button class="mui-btn mui-btn-green" style="width: 100%;" onclick="toRegister()">快速注册</button>
+        </section>
+        <section>
+        	<p><img src="../images/aboutuslogo.png" id='posi' alt="" />已有益虫充电账号?</p>
+        	<button class="mui-btn mui-btn-white" style="width: 100%; margin-top:5px;" onclick="toNowAssociated()">立即关联</button>
+        </section>
+    </div>
+    <script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/jQuery.js" ></script>
+    <script type="text/javascript" src="../js/page.switch.js" ></script>
+    <script type="text/javascript" src="../js/public.js" ></script>
+    <script type="text/javascript">
+    		mui.init();
+    		$(function(){
+    			showUserInfo(getOAuthInfo())
+    		});
+    		function showUserInfo(auth) {
+    			console.log(auth);
+    			var nickname = auth.userInfo.nickname||auth.userInfo.name;
+    			var userImg = getHeadImgUrlByOAuth(auth);
+    			var channelDesc = getCredentialChannelDescByOAuth(auth);
+    			$('#nickName').html(nickname);
+    			$('#credChannel').html(channelDesc);
+    			$('#titleCredChannel').html(channelDesc);
+    			if (userImg && userImg.length > 0) {
+    				$('#userImg').attr('src', userImg);
+    			}
+    		}
+    		function toRegister() {
+//  			location.href = "reg.html?isAssociatedLogin=true";
+    			toPage("basic/reg.html?isAssociatedLogin=true");
+    		}
+    		function toNowAssociated() {
+    			toPage("basic/now_associated.html");
+    		}
+    </script>
+</body>
+</html>

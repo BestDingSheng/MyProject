@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Home</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../fonts/iconfont.css" />
+		<script type="text/javascript" src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/constant.js"></script>
+		<script type="text/javascript" src="../js/page.switch.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<style>
+			html,
+			body {
+				background-color: #fff;
+			}
+			
+			.mui-bar-tab .mui-tab-item .mui-icon {
+				overflow: hidden;
+			}
+			
+			.mui-bar-tab .mui-tab-item.mui-active {
+				color: #4ca26e;
+			}
+			
+			.mui-bar-tab {
+				border-top: #ddd 1px solid;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+		</header>-->
+
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item mui-active" href="../charge/charge_main.html">
+				<span class="mui-icon iconfont icon-chongdian"></span>
+				<span class="mui-tab-label">充电</span>
+			</a>
+			<a id="_nav" class="mui-tab-item" href="../nav/site_main.html">
+				<span class="mui-icon iconfont icon-daohang"></span>
+				<span class="mui-tab-label">导航</span>
+			</a>
+			<a class="mui-tab-item" href="../account/account_main.html" id='my'>
+				<span class="mui-icon iconfont icon-wode"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<script type="text/javascript" charset="utf-8">
+			var mainWebView; //当前主webview
+			var curTabItem; //当前被选中tabitem
+			var tabItemUrl = ['../charge/charge_main.html', '../nav/site_main.html', '../account/account_main.html'];
+			var tabItemWebView = {}; //每个tabitem所对应显示的页面对象
+			var subpage_style = {
+				top: '0',
+				bottom: '51px'
+			};
+			//var aniShow = {};
+			//创建子页面，首个选项卡页面显示，其它均隐藏；
+			mui.plusReady(function() {
+				//plus.navigator.setFullscreen(false);
+				mainWebView = plus.webview.currentWebview();
+				addBackForAndroid();
+				//初始化subPages
+				initTabitemWebviews();
+				//为每个bar－item添加点击事件
+				addEventForTabItem();
+				//预加载登陆页面
+				judgelogin();
+				// 添加监听事件
+				addWebViewEvent();
+				// 发送客户端设备信息到服务器
+				recordClientInfo();
+				// 消息监听处理
+				msgListener();
+
+				//				if(plus.storage.getItem("guideFlag")) {
+				//					setTimeout(function() {
+				//						//关闭 splash
+				//						plus.navigator.closeSplashscreen();
+				//					}, 100);
+				//				} else {
+				//					plus.storage.setItem("guideFlag", 'true');
+				//					mui.openWindow({
+				//						id: 'guide',
+				//						url: 'guide.html',
+				//						show: {
+				//							aniShow: 'none'
+				//						},
+				//						waiting: {
+				//							autoShow: false
+				//						}
+				//					});
+				//				}				
+					if(!plus.storage.getItem("guideFlag") && !localStorage.getItem("guideFlag")) {
+						plus.storage.setItem("guideFlag", "true");
+						localStorage.setItem('guideFlag','true');										
+						mui.openWindow({
+							id: 'guide',
+							url: 'guide.html',
+							show: {
+								aniShow: 'none'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					};
+			});
+
+			//判断是否登陆，并预加载登陆页面
+			function judgelogin() {
+				//判断是否已经登录成功/
+				if(!isLogin()) {
+					mui.preload({
+						url: 'login.html',
+						id: WEBVIEW_IDS.LOGIN,
+						styles: {
+							top: '0px',
+							bottom: '0px'
+						}
+					});
+				}
+			}
+			//初始化每个tabitem所对应的页面
+			function initTabitemWebviews() {
+				for(var i = 0; i < tabItemUrl.length; i++) {
+					var page = plus.webview.getWebviewById(tabItemUrl[i]);
+					if(page) {
+						tabItemWebView[i] = page;
+					} else {
+						tabItemWebView[i] = mui.preload({
+							url: tabItemUrl[i],
+							id: tabItemUrl[i],
+							styles: subpage_style,
+							waiting: {
+								autoShow: false
+							}
+						});
+					}
+					tabItemWebView[i].hide();
+					mainWebView.append(tabItemWebView[i]);
+				}
+				tabItemWebView[0].show();
+				//				tabItemWebView[0].onloaded = function(){
+				//					if(plus.storage.getItem("guideFlag")){
+				//							//关闭 splash
+				//							plus.navigator.closeSplashscreen();
+				//				}
+				//				}
+			}
+			//为每个tabitem添加监听
+			function addEventForTabItem() {
+				mui('.mui-bar-tab').on('tap', '.mui-tab-item', function() {
+					var tabitem = this;
+					if(tabitem == curTabItem) {
+						return;
+					}
+					curTabItem = tabitem;
+					//设置将显示当前webview
+					setTimeout(function() {
+							showCurWebView(tabitem.getAttribute('href'));
+							var id = tabitem.getAttribute('id');
+							if(id && id == 'my') {
+								// 我的界面显示消息红色图标
+								var accountMain = plus.webview.getWebviewById(WEBVIEW_IDS.ACCOUNT_MAIN);
+								mui.fire(accountMain, 'getUnReadedLastMsgCountAndMsgShowIcon');
+							}
+						}, 100)
+						//showCurWebView(tabitem.getAttribute('href'));
+				});
+			}
+			//设置webview的切换显示的函数
+			function showCurWebView(href) {
+				var index = 0;
+				for(var i = 0; i < tabItemUrl.length; i++) {
+					if(href == tabItemUrl[i]) {
+						index = i;
+					} else {
+						tabItemWebView[i].hide();
+					}
+				}
+				tabItemWebView[index].show();
+			}
+
+			//添加监听事件
+			function addWebViewEvent() {
+
+				window.addEventListener('newWebView', function(options) {
+					var id = options.detail.id;
+					var href = options.detail.href;
+					var aniShow = options.detail.aniShow;
+					var title = options.detail.title;
+					var extras = options.detail.extras;
+
+					//var list = plus.webview.all();
+					//mui.each(list,function(main,item){
+					//	console.log("webview: " +item.id);
+					//});
+					//					console.log("options id:" + id + ",title:" + title + ",href:" + href + "anishow:" + aniShow);
+					//需要特殊处理的地方，比如说登陆页面模态，需要有时候被控制在内存中。
+					if(id == WEBVIEW_IDS.LOGIN) {
+						var loginWebView = plus.webview.getWebviewById(id);
+						if(loginWebView) {
+							console.log("show login WebView")
+							loginWebView.show(aniShow);
+						} else {
+							console.log("reload login webView and show")
+								//这个条件下面是为了适应当登录页面并没有初始化，或者初始化之后用户又已经登录了这个页面被删除之后再次登录
+							loginWebView = mui.preload({
+								url: 'login.html',
+								id: WEBVIEW_IDS.LOGIN,
+								styles: {
+									top: '0px',
+									bottom: '0px'
+								},
+								extras: extras
+							});
+							loginWebView.addEventListener('loaded', function() {
+								loginWebView.show(aniShow);
+							}, false);
+						}
+					}
+				}, false);
+
+				//自定义事件，模拟点击“首页选项卡”
+				document.addEventListener('gohome', function() {
+					var defaultTab = document.getElementById("defaultTab");
+					//模拟首页点击
+					mui.trigger(defaultTab, 'tap');
+					//切换选项卡高亮
+					var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+					if(defaultTab !== current) {
+						current.classList.remove('mui-active');
+						defaultTab.classList.add('mui-active');
+					}
+				});
+
+				// app从后台切换到前台触发事件
+				if(plus.os.name == 'iOS') {
+					document.addEventListener("resume", onAppReume, false);
+				}
+			}
+
+			// app从后台切换到前台触发事件
+			function onAppReume() {
+				// 我的界面显示消息红色图标
+				var accountMain = plus.webview.getWebviewById(WEBVIEW_IDS.ACCOUNT_MAIN);
+				mui.fire(accountMain, 'getUnReadedLastMsgCountAndMsgShowIcon');
+			}
+
+			// app从后台切换到前台触发事件
+			function recordClientInfo() {
+				var imsi = plus.device.imsi.join(',');
+				var clientInfo = {
+					deviceUuid: plus.device.uuid,
+					deviceImei: plus.device.imei,
+					deviceImsi: imsi,
+					deviceModel: plus.device.model,
+					deviceVendor: plus.device.vendor,
+					pushClientId: plus.push.getClientInfo().clientid,
+					pushToken: plus.push.getClientInfo().token,
+					pushAppId: plus.push.getClientInfo().appid,
+					pushAppKey: plus.push.getClientInfo().appkey,
+					osLanguage: plus.os.language,
+					osName: plus.os.name,
+					osVersion: plus.os.version,
+					osVendor: plus.os.vendor
+				}
+
+				if(!clientInfo.pushClientId || !clientInfo.deviceUuid || !clientInfo.osName) {
+					return;
+				}
+
+				$.ajax({
+					type: "post",
+					url: webRoot + "/app/client/recordClientInfo",
+					dataType: 'json',
+					data: clientInfo,
+					needValidateLogin: false,
+					success: function(msg) {},
+					error: function(e) {}
+				});
+			}
+
+			/**
+			 * 消息监听处理
+			 */
+			function msgListener() {
+				// 监听点击消息事件
+				plus.push.addEventListener("click", function(msg) {
+					// 判断是从本地创建还是离线推送的消息
+					switch(msg.payload) {
+						case "LocalMSG":
+							console.log("点击本地创建消息启动：");
+							break;
+						default:
+							console.log("点击离线推送消息启动：");
+							break;
+					}
+					// 提示点击的内容
+					//					alert("click msg:" + JSON.stringify(msg));
+					console.log("消息中心：" + msg.content);
+
+					if(plus.os.name == "iOS") { // iOS特殊处理
+						if(msg.payload) {
+							if(typeof msg.payload == 'string') {
+								msg.payload = JSON.parse(msg.payload);
+							}
+
+							if(msg.payload.isMsgCreateByLocal) {
+								msg.payload.isMsgCreateByLocal = undefined;
+								if(msg.payload.payload) {
+									msg = msg.payload;
+								}
+							} else {
+								if(msg.payload.payload) {
+									msg = msg.payload.payload;
+								}
+							}
+						}
+					}
+					//					alert(JSON.stringify(msg))
+					// 处理其它数据
+					showMsg(msg);
+				}, false);
+				// 监听在线消息事件
+				plus.push.addEventListener("receive", function(msg) {
+					//					alert("receive msg:" + JSON.stringify(msg));
+					if(msg.aps) { // Apple APNS message
+						console.log("接收到在线APNS消息：");
+					} else {
+						console.log("接收到在线透传消息：");
+					}
+					if(plus.os.name == "iOS") { // iOS特殊处理
+						var payload = msg.payload;
+						if(payload) {
+							if(typeof payload == 'string') {
+								if(payload.indexOf('isMsgCreateByLocal') == -1) {
+									createLocalPushMsg(msg);
+								}
+							} else if(typeof payload == 'object') {
+								if(!payload.isMsgCreateByLocal) {
+									createLocalPushMsg(msg);
+								}
+							}
+						}
+					}
+
+					var messageCenter = plus.webview.getWebviewById(WEBVIEW_IDS.MSG_CENTER);
+					if(messageCenter) {
+						setMsgInfoCenterIcon(true);
+						// 如果当前页面打开的是消息中心界面，则刷新消息中心界面
+						mui.fire(messageCenter, 'randerMessageByMainView');
+					} else {
+						setMsgInfoCenterIcon(false);
+						// 我的界面显示消息红色图标
+						var accountMain = plus.webview.getWebviewById(WEBVIEW_IDS.ACCOUNT_MAIN);
+						mui.fire(accountMain, 'msgIconShow');
+					}
+
+				}, false);
+			}
+
+			/**
+			 * 本地创建一条推动消息
+			 */
+			function createLocalPushMsg(msg) {
+				var options = {
+					cover: false
+				};
+				var str = msg.content;
+				if(msg.payload && msg.payload.payload) {
+					var payload = msg.payload.payload;
+					if(typeof(payload) == "string") {
+						console.log("payload(String): " + payload);
+						payload = JSON.parse(payload);
+					} else {
+						console.log("payload(JSON): " + JSON.stringify(payload));
+					}
+
+					payload.isMsgCreateByLocal = true;
+					plus.push.createMessage(str, JSON.stringify(payload), options);
+				}
+			}
+
+			/**
+			 * 日志输入推送消息内容
+			 */
+			function showMsg(msg) {
+				//				console.log( "title: "+msg.title );
+				//				console.log( "content: "+msg.content );
+				if(msg.payload) {
+					if(typeof(msg.payload) == "string") {
+						msg.payload = JSON.parse(msg.payload);
+						console.log("payload(String): " + msg.payload);
+					} else {
+						console.log("payload(JSON): " + JSON.stringify(msg.payload));
+					}
+					var payload = msg.payload;
+					var data = payload.data;
+					if(data) {
+						var parentGroup = payload.parentGroup;
+						var group = payload.group;
+						var orderNo = payload.orderNo;
+
+						var pushMsg = localStorage.getItem('PUSH_MSG');
+						pushMsg = JSON.parse(pushMsg);
+						if(!pushMsg) {
+							pushMsg = {
+								curMsg: payload,
+								lastOrderNo: '',
+								isReaded: false,
+								isUpdate: true,
+								historyMsgs: []
+							};
+						} else {
+							pushMsg.isReaded = false;
+							pushMsg.curMsg = payload;
+						}
+						localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+						if(data.notifyType == PUSH_MSG_NOTIFY_TYPE.START_TRANS) {
+							toPage("account/message_details_start.html");
+						} else if(data.notifyType == PUSH_MSG_NOTIFY_TYPE.STOP_TRANS) {
+							toPage("account/message_details_stop.html");
+						} else if(data.notifyType == PUSH_MSG_NOTIFY_TYPE.ABORT_TRANS) {
+							toPage("account/message_details_abort.html");
+						}
+					}
+				} else {
+					//					console.log("payload: undefined");
+				}
+				if(msg.aps) {
+					//					console.log("aps: " + JSON.stringify(msg.aps));
+				}
+			}
+
+			// 设置我的页面消息是否已读图标状态
+			function setMsgInfoCenterIcon(isReaded) {
+				var pushMsg = localStorage.getItem('PUSH_MSG');
+				pushMsg = JSON.parse(pushMsg);
+				if(!pushMsg) {
+					pushMsg = {
+						curMsg: '',
+						lastOrderNo: '',
+						isReaded: isReaded,
+						isUpdate: true,
+						historyMsgs: []
+					};
+				} else {
+					pushMsg.isReaded = isReaded;
+				}
+				localStorage.setItem('PUSH_MSG', JSON.stringify(pushMsg));
+			}
+
+			document.getElementById("_nav").addEventListener('tap', function() {
+				//var list=plus.webview.getWebviewById(WEBVIEW_IDS.SITE_LIST);
+				//mui.fire(list,'hideMask');
+				var _map = plus.webview.getWebviewById(WEBVIEW_IDS.SITE_MAP);
+				if(_map) {
+					mui.fire(_map, 'hideMask');
+				}
+
+			})
+		</script>
+	</body>
+
+</html>

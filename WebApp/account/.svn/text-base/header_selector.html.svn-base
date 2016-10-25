@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<title>头像选择</title>
+		<!--		<link rel="stylesheet" href="../js/imagecropper/bootstrap.min.css" />-->
+		<link rel="stylesheet" href="../js/cropper/cropper.css" />
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jQuery.js"></script>
+		<!--<script type="text/javascript" src="../js/bootstrap.min.js"></script>-->
+		<script type="text/javascript" src="../js/cropper/cropper.js"></script>
+		<style type="text/css">
+			.flex-container a span {
+				padding: 15px;
+				background: #fff;
+				border: 1px solid #0044CC;
+				border-radius: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="changeAvatar" class="touxiang" onclick="showActionSheet()">
+			<!--//触发选择图片事件-->
+			<img src="../images/head-pic.png">
+			<!--//默认图片以及选择裁剪后展示的效果 -->
+		</div>
+		<!--<div style="width:90%;margin: 0 auto;margin-top:30px;">
+				<button type="button" class="mui-btn mui-btn-primary mui-btn-block" style="height: 40px;" onclick="postAvatar()">确认提交</button>
+				保存数据事件
+			</div>-->
+		<div style="text-align: center;z-index: 99;width: 100%;height: 2000px;background-color: #f2f2f2 ;position: absolute;top:40px;left: 0px;display: none;" id="spinner">
+			<div style="width:90px;padding-top:200px;margin:0 auto;height: 100%;">
+				<div style="width:30px;float: left;">
+					<span class="mui-spinner" style="height: 20px;"></span>
+					<!--//等待动画-->
+				</div>
+				<div style="width:60px;float: left;">请稍等...</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="showEdit" style="width:100%;height: 100%;background: #fff;position: absolute;top:0px;left: 0;display: none;z-index: 9;">
+			<div id="report" style="width:100%;height: 100%;z-index: 10; position: absolute; top: 0;">
+				<img id="readyimg" style="width:100%; display: block;">
+			</div>
+			<div class="mui-content-padded" style="width:100%;height: 100px;z-index: 110;position: absolute;top:80%;left:16%;">
+				<div class="flex-container" style="">
+					<a><span class="mui-icon mui-icon-closeempty" onclick="closepop()"></span></a>
+					<!--//关闭裁剪窗口-->
+					<a><span class="mui-icon mui-icon-undo" onclick="rotateimgleft()"></span></a>
+					<!--//左旋转90度-->
+					<a><span class="mui-icon mui-icon-redo" onclick="rotateimg()"></span></a>
+					<!--//右旋转90度-->
+					<a><span class="mui-icon mui-icon-checkmarkempty" onclick="confirm()"></span></a>
+					<!--//确定-->
+				</div>
+			</div>
+		</div>
+		<script>
+			//post内容  
+			function postAvatar() {
+				var petimage = $("#changeAvatar > img").attr("src");
+				//此时取到的图片已经是base64形式
+				//你的处理代码，改post到服务器了，服务器接收同接收普通post参数一样，只是，存图片的字段改成ntext，这是sql的数据类型，其他数据库同类型，jq的getJSON可能会不执行，因为getJSON是get模式，图片转成base64后，很容易超出最大长度，其实，经过压缩后，一般不会超出的，具体压缩方法下文有  
+			}
+			//拍照  
+			function getImage() {
+				var cmr = plus.camera.getCamera();
+				cmr.captureImage(function(p) {
+					plus.io.resolveLocalFileSystemURL(p, function(entry) {
+						var localurl = entry.toLocalURL(); //  
+						$("#report").html('<img src="/static/css/default/img/default.jpg" data-original="' + localurl + '">');
+						cutImg();
+						mui('#picture').popover('toggle');
+					});
+				});
+			}
+			//相册选取  
+			function galleryImgs() {
+				plus.gallery.pick(function(e) {
+					//alert(e);  
+					$("#readyimg").attr("src", e);
+					cutImg();
+					mui('#picture').popover('toggle');
+				}, function(e) {
+					mui.toast("取消选择图片");
+				}, {
+					filter: "image"
+				});
+			}
+			//照片裁剪类  
+			function cutImg() {
+				$(".mui-content").hide();
+				$("#showEdit").fadeIn();
+				var $image = $('#report > img');
+				$image.cropper({
+					//backgroud:false,
+					movable: true,
+        			zoomable: true,
+        			rotatable: false,
+        			scalable: false,
+					viewMode: 1,
+					dragMode: 'move',
+					autoCropArea: 1,
+					restore: false,
+					guides: false,
+					highlight: false,
+					cropBoxMovable: false,
+					cropBoxResizable: false,
+					checkImageOrigin: true,
+					aspectRatio: 1 / 1,
+					zoom: -0.2
+				});
+				//                  $image.cropper('zoom',-0.5);  
+			}
+			//确认照片，展示效果  
+			function confirm() {
+				$("#showEdit").fadeOut();
+				var $image = $('#report > img');
+				var dataURL = $image.cropper("getCroppedCanvas");
+				//var imgurl = dataURL.toDataURL("image/png", 0.5);  
+				//换成下边的方法，转成jpeg，但是把质量降低，  
+				//经测试51k的png，转成0.3质量，大小为3k多，0.5质量大小为4k多，  
+				//这回应该不会出现卡的情况了，  
+				//既然差别1k多，还是用0.5的质量，还是要兼顾下显示效果的。  
+				var imgurl = dataURL.toDataURL("image/jpeg", 0.5);
+				$("#changeAvatar > img").attr("src", imgurl);
+				//              $("#divbtn").show();  
+				$(".mui-content").show();
+			}
+			//旋转照片  
+			function rotateimg() {
+				$("#readyimg").cropper('rotate', 90);
+				//$("#readyimg").CSS('width', window.innerWidth);
+			}
+
+			function rotateimgleft() {
+				$("#readyimg").cropper('rotate', -90);
+			}
+
+			function closepop() {
+				$("#showEdit").fadeOut();
+				var $image = $('#report > img');
+				$image.cropper('destroy');
+				$(".mui-content").show();
+			}
+
+			function showActionSheet() {
+				var bts = [{
+					title: "拍照"
+				}, {
+					title: "从相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: bts
+					},
+					function(e) {
+						if (e.index == 1) {
+							getImage();
+						} else if (e.index == 2) {
+							galleryImgs();
+						}
+						//outLine( "选择了\""+((e.index>0)?bts[e.index-1].title:"取消")+"\"");  
+					}
+				);
+			}
+		</script>
+	</body>
+
+</html>

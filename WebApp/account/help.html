@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="action-back"></a>
+			<h1 class="mui-title">帮助</h1>
+		</header>
+		<div class="mui-content">
+			<center><img src="../images/aboutuslogo.png" border="0" class="img" /></center>
+			<div class="about_content">
+				<center>常见故障</center>
+				<p>不能充电：<br/> 1.账户余额不足;
+					<br/> 2.充电桩为私人充电桩，桩主未共享;
+					<br/> 3.充电桩断电或断网;
+					<br/> 4.充电枪接触不良;
+				</p>
+				<p>&nbsp;</p>
+				<p>充电卡损坏或丢失，请拨打客服热线重新申请！<br /> 如有其它问题，请拨打客服热线进行咨询。
+				</p>
+			</div>
+			<div class="mycard_submit_applicate">
+				<button class="mui-btn mui-btn-block" id="Btn" style="background: #4ca26e;color: #fff;">客服电话 : 400-820-2298</button>
+				<!--<button class="mui-btn mui-btn-block mui-btn-primary" id="gohome">立即充电</button>-->
+			</div>
+		</div>
+		<!--<script src="../js/public.js"></script>-->
+		<script>
+			//			plus.nativeUI.showWaiting("处理中，请等待...\n5");
+			function plusReady(){
+				plus.nativeUI.showWaiting("处理中，请等待...");
+				setTimeout(function(){
+					plus.nativeUI.closeWaiting();
+				},2000)
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+			var oBtn = document.getElementById("Btn");
+			var gohome = document.getElementById("gohome");
+			oBtn.addEventListener('click', function() {
+				var btnArray = ['拨打', '取消'];
+				mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+					if (e.index != 1) {
+						location.href = "tel:400-820-2298";
+					}
+				})
+			});
+			gohome.addEventListener('click', function() {
+				var child = plus.webview.getWebviewById('../charge/charge_main.html');
+				var main = child.parent();
+				mui.fire(main, 'gohome');
+				//				plus.webview.currentWebview().close();
+				//				plus.webview.getWebviewById('Personal_Settings.html').close();
+				setTimeout(close, 100);
+			})
+
+			function close() {
+				plus.webview.currentWebview().close();
+				plus.webview.getWebviewById('Personal_Settings.html').close();
+			}
+		</script>
+	</body>
+
+</html>

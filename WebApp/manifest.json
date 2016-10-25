@@ -1,0 +1,1092 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "evchong",
+	"name": "益虫充电",
+	"version": {
+		"name": "1.0.3",
+		"code": "84"
+	},
+	"description": "",
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "basic/main.html",
+	"developer": {
+		"name": "",
+		"email": "",
+		"url": "http://www.dcloud.io"
+	},
+	"permissions": {
+
+
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		"Camera": {
+			"description": "访问摄像头"
+		},
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+
+		"Device": {
+			"description": "访问设备信息"
+		},
+		"Downloader": {
+			"description": "文件下载管理"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"File": {
+			"description": "访问本地文件系统"
+		},
+		"Gallery": {
+			"description": "访问系统相册"
+		},
+		"Geolocation": {
+			"description": "访问位置信息"
+		},
+		"Invocation": {
+			"description": "使用Native.js能力"
+		},
+		"Storage": {
+			"description": "管理应用本地数据"
+		},
+		"Uploader": {
+			"description": "管理文件上传任务"
+		},
+		"Runtime": {
+			"description": "访问运行期环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络访问"
+		},
+
+		"Barcode": {
+			"description": "管理二维码扫描插件"
+		},
+		"Maps": {},
+
+		"Push": {},
+
+
+
+		"Webview": {
+			"description": "窗口管理"
+		},
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Navigator": {
+			"description": "浏览器信息"
+		},
+		"NativeObj": {},
+		"OAuth": {
+			"description": "登录授权"
+		},
+		"Payment": {
+			"description": "支付"
+		},
+		"Zip": {},
+		"Share": {}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": false,
+			"waiting": true
+		},
+		"runmode": "liberate",
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
+		"distribute": {
+			"plugins": {
+				"maps": {
+					"baidu":{
+						"appkey_ios":"xGip48A6ah9lRlYU5d8YBkzwGddylFxH",
+						"appkey_android":"EZdRzwlqUKGGftAfeGonStEGaDXZGsEH",
+						"appkey":"",
+						"description":""
+						}
+					
+				},
+				"share": {
+					"weixin": {
+						"appid": "wx63cfcf8e001eac38",
+						"appsecret": "fc61c3a322583b490ade46ec85f387c3",
+						"description": "微信分享"
+					}
+				},
+				"payment": {
+					"weixin": {
+						"description": "微信支付",
+						"appid": "wx63cfcf8e001eac38"
+					},
+					"alipay": {
+						"description": "阿里支付",
+						"scheme": ""
+					}
+				},
+				"oauth": {
+					"weixin": {
+						"appid": "wx63cfcf8e001eac38",
+						"appsecret": "fc61c3a322583b490ade46ec85f387c3"
+					}
+				},
+				"push": {
+					"igexin": {
+						"appid": "65bdwWQZbdAXbTLGS3Bgw3",
+						"appkey": "yOmiktYEjU64qy6M0e0XS8",
+						"appsecret": "bCTkCgEwd18BJfNQwOkE8"
+					}
+				}
+			},
+			"apple": {
+				"appid": "",
+				"mobileprovision": "",
+				"password": "",
+				"p12": "",
+				"devices": "universal",
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",
+				"keystore": "",
+				"password": "",
+				"aliasname": "",
+				"permissions": ["<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.GET_TASKS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+			},
+			"orientation": [
+				"portrait-primary"
+			],
+			"icons": {
+				"ios": {
+					"prerendered": true, 
+					"auto": "", 
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png",
+						"retina": "unpackage/res/icons/114x114.png",
+						"retina7": "unpackage/res/icons/120x120.png",
+						"spotlight-normal": "unpackage/res/icons/29x29.png", 
+						"spotlight-retina": "unpackage/res/icons/58x58.png",
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",
+						"settings-normal": "unpackage/res/icons/29x29.png",
+						"settings-retina": "unpackage/res/icons/58x58.png",
+						"retina8": "unpackage/res/icons/180x180.png",
+						"settings-retina8": "unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png", 
+						"retina": "unpackage/res/icons/144x144.png", 
+						"normal7": "unpackage/res/icons/76x76.png",
+						"retina7": "unpackage/res/icons/152x152.png", 
+						"spotlight-normal": "unpackage/res/icons/50x50.png",
+						"spotlight-retina": "unpackage/res/icons/100x100.png",
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",
+						"settings-normal": "unpackage/res/icons/29x29.png",
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", 
+					"ldpi": "unpackage/res/icons/48x48.png",
+					"hdpi": "unpackage/res/icons/72x72.png",
+					"xhdpi": "unpackage/res/icons/96x96.png",
+					"xxhdpi": "unpackage/res/icons/144x144.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "",
+						"retina35": "unpackage/res/start/splash640_960.png",
+						"retina40": "unpackage/res/start/splash640_1136.png",
+						"retina47": "unpackage/res/start/splash750_1334.png",
+						"retina55": "unpackage/res/start/splash1224_2208.png"
+					},
+					"ipad": {
+						"portrait": "", 
+						"portrait-retina": "",
+						"landscape": "", 
+						"landscape-retina": "",
+						"portrait7": "", 
+						"portrait-retina7": "",
+						"landscape7": "",
+						"landscape-retina7": ""
+					}
+				},
+				"android": {
+					"mdpi": "", 
+					"ldpi": "", 
+					"hdpi": "unpackage/res/start/splash480_762.png",
+					"xhdpi": "unpackage/res/start/splash720_1242.png",
+					"xxhdpi": "unpackage/res/start/splash1080_1882.png"
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"basic/setting.html": {
+				"href": "basic/setting.html",
+				"resources": [],
+				"refer": [
+					"basic/login.html"
+				],
+				"priority": 1
+			},
+			"basic/main.html": {
+				"href": "basic/main.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"fonts/iconfont.css",
+					"charge/charge_main.html",
+					"fonts/iconfont.ttf",
+					"js/mui.min.js",
+					"js/public.js",
+					"js/page.switch.js",
+					"js/jQuery.js",
+					"js/login.filter.js",
+					"account/account_main.html",
+					"nav/navi_main.html",
+					"js/date.js",
+					"js/constant.js"
+				],
+				"refer": [
+					"basic/setting.html",
+					"basic/login.html",
+					"nav/container.html",
+					"nav/test_mian.html",
+					"nav/sitelist.html",
+					"nav/site_main.html"
+				],
+				"priority": 1
+			},
+			"basic/unlock.html": {
+				"href": "basic/unlock.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf"
+				],
+				"refer": [
+					"basic/login.html",
+					"basic/main.html"
+				],
+				"priority": 0
+			},
+			"basic/forget_password.html": {
+				"href": "basic/forget_password.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"images/line.png",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 1
+			},
+			"basic/reg.html": {
+				"href": "basic/reg.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"images/line.png",
+					"js/mui.min.js",
+					"js/app.js",
+					"js/jQuery.js",
+					"js/util.js",
+					"basic/associated.html",
+					"basic/login.html",
+					"js/md5-min.js",
+					"js/constant.js",
+					"js/validation.js",
+					"js/public.js",
+					"js/page.switch.js"
+				],
+				"refer": [],
+				"priority": 3
+			},
+			"basic/login.html": {
+				"href": "basic/login.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"images/line.png",
+					"css/swiper-3.3.1.min.css",
+					"js/mui.min.js",
+					"js/mui.enterfocus.js",
+					"js/app.js",
+					"js/jQuery.js",
+					"js/swiper-3.3.1.min.js",
+					"images/eye-act.png",
+					"images/eye.png",
+					"images/Slider-1.jpg",
+					"images/Slider-2.jpg",
+					"images/Slider-3.jpg",
+					"images/user.png",
+					"images/pwd.png",
+					"images/wechat.png",
+					"images/qq.png",
+					"images/sinaweibo.png",
+					"js/public.js",
+					"js/md5-min.js",
+					"js/common.js",
+					"js/oauth.js",
+					"js/date.js",
+					"js/page.switch.js",
+					"js/constant.js",
+					"js/immersed.js",
+					"js/validation.js",
+					"basic/my.html",
+					"basic/reg.html",
+					"basic/RetrievePassword.html",
+					"basic/main.html",
+					"/basic/main.html",
+					"js/login.filter.js",
+					"images/banner.png",
+					"account/Personal_Settings.html"
+				],
+				"refer": [
+					"basic/unlock.html",
+					"basic/forget_password.html",
+					"basic/associated.html"
+				],
+				"priority": 0
+			},
+			"basic/associated.html": {
+				"resources": [
+					"images/icon-logo.png",
+					"images/pic-tou.png",
+					"basic/now_associated.html",
+					"basic/reg.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"js/page.switch.js",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/style.css",
+					"js/public.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"basic/now_associated.html": {
+				"resources": [
+					"css/public.css",
+					"basic/associated.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"js/validation.js",
+					"js/md5-min.js",
+					"basic/login.html",
+					"js/public.js",
+					"js/page.switch.js",
+					"js/constant.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"basic/my.html": {
+				"resources": [
+					"basic/login.html",
+					"js/oauth.js",
+					"js/public.js",
+					"js/jQuery.js",
+					"js/page.switch.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"basic/RetrievePassword.html": {
+				"resources": [
+					"basic/login.html",
+					"js/md5-min.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/page.switch.js",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/style.css",
+					"js/constant.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"charge/charge_main.html": {
+				"resources": [
+					"images/beforeask.png",
+					"images/maskTips.png",
+					"images/circle.png",
+					"images/scanQR.png",
+					"images/chargebg.png",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"images/chargestation.png",
+					"images/charging.png",
+					"images/kaiguan.png",
+					"images/chargebg.jpg",
+					"images/maskScan.png",
+					"images/toBottom.png",
+					"js/raindrops.js",
+					"js/jquery-ui.js",
+					"js/highlight.min.js",
+					"images/pan.png",
+					"js/default.js",
+					"js/public.js",
+					"js/jQuery.js",
+					"js/common.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/date.js",
+					"basic/login.html",
+					"js/page.switch.js",
+					"js/constant.js",
+					"images/chargeRecord.png",
+					"images/qa.png",
+					"js/charging.js",
+					"images/stop.png",
+					"images/running.gif",
+					"images/circle1.png"
+				],
+				"refer": [
+					"charge/device_scan.html"
+				],
+				"priority": 0
+			},
+			"account/account_main.html": {
+				"resources": [
+					"images/iconfont-shezhi.png",
+					"images/gold.png",
+					"images/iconfont-kefuzhongxin.png",
+					"images/icon-note.png",
+					"images/icon-vipcard.png",
+					"images/head-pic.png",
+					"images/my-bg.png",
+					"images/icon-account.png",
+					"images/icon-fenxi.png",
+					"account/Personal_Settings.html",
+					"fonts/mui.ttf",
+					"images/icon_msg.png",
+					"css/public.css",
+					"js/constant.js",
+					"js/public.js",
+					"js/jQuery.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/icon_call_phone.png",
+					"images/icon-wangluo.png"
+				],
+				"refer": [
+					"account/Accounts_prepaid.html",
+					"account/member/vip_card_apply.html",
+					"account/charge_record.html",
+					"account/refund_record.html",
+					"account/Person_info.html",
+					"basic/login.html",
+					"account/Charging_analysis.html",
+					"account/member/application_success.html",
+					"account/message_center.html"
+				],
+				"priority": 0
+			},
+			"nav/navi_main.html": {
+				"resources": [
+					"images/navi.png",
+					"js/location.js",
+					"images/loc.png",
+					"js/jquery.selectlist.js",
+					"css/style.css",
+					"images/icon_screening.png",
+					"css/public.css",
+					"images/icon_map.png",
+					"css/nav_main.css",
+					"images/operator_dw.png",
+					"images/icon_close.png",
+					"images/operator_ec.png",
+					"images/operator_cd.png",
+					"images/operator_t.png",
+					"images/operator_xx.png",
+					"images/icon-nav.png",
+					"images/icon_map_list.png",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/jQuery.js",
+					"js/constant.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/aboutuslogo.png",
+					"images/icon_no_network.png"
+				],
+				"refer": [
+					"nav/navigation.html"
+				],
+				"priority": 0
+			},
+			"account/Personal_Settings.html": {
+				"resources": [
+					"css/public.css",
+					"basic/login.html",
+					"fonts/iconfont.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"js/validation.js",
+					"basic//login.html",
+					"js/public.js",
+					"js/constant.js",
+					"js/login.filter.js"
+				],
+				"refer": [
+					"account/change_password.html",
+					"account/about.html"
+				],
+				"priority": 0
+			},
+			"charge/device_scan.html": {
+				"resources": [
+					"css/common.css",
+					"js/common.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/Accounts_prepaid.html": {
+				"resources": [
+					"images/gold.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/icon_def.png",
+					"js/jQuery.js",
+					"css/style.css",
+					"css/public.css",
+					"images/weixin.png",
+					"images/alipay.png",
+					"js/validation.js",
+					"js/public.js",
+					"js/constant.js",
+					"images/icon_act.png",
+					"account/refund_record.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/member/vip_card_apply.html": {
+				"resources": [
+					"fonts/iconfont.css",
+					"images/toBottom.png",
+					"js/mui.picker.min.js",
+					"js/mui.poppicker.js",
+					"js/public.js",
+					"js/data.js",
+					"css/mui.poppicker.css",
+					"css/mui.picker.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/jQuery.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/validation.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/refund_record.html": {
+				"resources": [
+					"images/toRight.png",
+					"images/seal_finish.png",
+					"images/arrow_right.png",
+					"images/gold.png",
+					"images/toBottom.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/style.css",
+					"js/constant.js",
+					"account/prepaid_records.html",
+					"js/common.js",
+					"account/Accounts_prepaid.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/header_selector.html": {
+				"resources": [
+					"js/cropper/cropper.css",
+					"js/cropper/cropper.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/Person_info.html": {
+				"resources": [
+					"fonts/iconfont.css",
+					"js/mui.picker.min.js",
+					"images/head-pic.png",
+					"js/mui.poppicker.js",
+					"js/data.js",
+					"css/mui.poppicker.css",
+					"css/mui.picker.min.css",
+					"js/validation.js",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"css/style.css",
+					"js/jQuery.js",
+					"images/toBottom.png",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/cropper/cropper.css",
+					"js/cropper/cropper.js",
+					"css/public.css",
+					"js/constant.js"
+				],
+				"refer": [
+					"account/header_selector.html",
+					"account/account_main.html",
+					"basic/login.html"
+				],
+				"priority": 0
+			},
+			"account/charge_record.html": {
+				"resources": [
+					"fonts/iconfont.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/public.css",
+					"js/constant.js",
+					"images/not_show.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"nav/container.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"images/icon_screening.png",
+					"images/icon_map.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"basic/guide.html": {
+				"resources": [
+					"images/splash2.jpg",
+					"js/mui.min.js",
+					"images/splash3.jpg",
+					"css/mui.min.css",
+					"images/splash1.jpg",
+					"css/public.css",
+					"images/splashbg.png"
+				],
+				"refer": [
+					"basic/main.html",
+					"nav/test_mian.html",
+					"charge/charge_main.html",
+					"account/account_main.html"
+				],
+				"priority": 0
+			},
+			"nav/test_mian.html": {
+				"resources": [
+					"nav/navigation.html",
+					"css/public.css",
+					"nav/sitelist.html",
+					"nav/navi_main.html",
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"nav/navigation.html": {
+				"resources": [
+					"css/navigation_list.css",
+					"images/loading.gif",
+					"images/icon_map.png",
+					"images/nav-slow.png",
+					"images/nav-pic.png/",
+					"images/operator_dw.png",
+					"js/location.js",
+					"images/operator_ec.png",
+					"images/operator_t.png",
+					"images/operator_cd.png",
+					"images/icon_screening.png",
+					"images/operator_xx.png",
+					"images/nav-pic.png",
+					"js/jQuery.js",
+					"css/public.css",
+					"js/constant.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"images/icon-nav.png"
+				],
+				"refer": [
+					"nav/details.html"
+				],
+				"priority": 0
+			},
+			"nav/sitelist_sub.html": {
+				"resources": [
+					"images/operator_dw.png",
+					"css/navigation_list.css",
+					"images/loading.gif",
+					"js/location.js",
+					"images/operator_ec.png",
+					"images/operator_t.png",
+					"images/operator_cd.png",
+					"images/operator_xx.png",
+					"images/nav-pic.png",
+					"images/nav-slow.png",
+					"images/icon-nav.png",
+					"js/jQuery.js",
+					"css/public.css",
+					"js/constant.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/icon_close.png"
+				],
+				"refer": [
+					"nav/details.html"
+				],
+				"priority": 0
+			},
+			"nav/sitelist.html": {
+				"resources": [
+					"images/icon_screening.png",
+					"nav/sitelist_sub.html",
+					"images/icon_map.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"nav/navi_main.html",
+					"images/operator_dw.png",
+					"images/loading.gif",
+					"images/operator_ec.png",
+					"images/operator_t.png",
+					"images/operator_cd.png",
+					"images/operator_xx.png",
+					"js/jQuery.js",
+					"js/constant.js",
+					"js/location.js",
+					"images/icon_close.png",
+					"nav/navi_map.html",
+					"css/public.css",
+					"nav/details.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"nav/details.html": {
+				"resources": [
+					"images/details-icon-07.png",
+					"images/details-icon-04.png",
+					"images/details-icon-08.png",
+					"images/details-icon-03.png",
+					"images/details-icon-06.png",
+					"images/details-bg.png",
+					"images/details-icon-01.png",
+					"images/details-icon-05.png",
+					"images/details-icon-02.png",
+					"js/swiper-3.3.1.min.js",
+					"css/swiper-3.3.1.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/public.css",
+					"js/constant.js",
+					"js/common.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/Charging_analysis.html": {
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"images/icon_share-all.png",
+					"js/constant.js",
+					"js/immersed.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/member/application_success.html": {
+				"resources": [
+					"js/mui.min.js",
+					"images/noapplication.png",
+					"images/mycard.png",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/style.css",
+					"js/constant.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/prepaid_records.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"images/seal_finish.png",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/style.css",
+					"css/public.css",
+					"images/arrow_right.png",
+					"js/constant.js",
+					"images/not_show.png",
+					"account/prepaid_records_sub.html",
+					"account/refund_record.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/prepaid_records_sub.html": {
+				"resources": [
+					"images/seal_finish.png",
+					"css/public.css",
+					"images/arrow_right.png",
+					"images/not_show.png",
+					"js/public.js",
+					"js/jQuery.js",
+					"css/style.css",
+					"js/constant.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/change_password.html": {
+				"resources": [
+					"js/md5-min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/about.html": {
+				"resources": [
+					"images/aboutuslogo.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"nav/navi_map.html": {
+				"resources": [
+					"images/navi.png",
+					"images/icon-nav.png",
+					"js/mui.min.js",
+					"js/public.js",
+					"images/icon_no_network.png",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/style.css",
+					"js/jquery.selectlist.js",
+					"css/public.css",
+					"js/constant.js",
+					"css/nav_main.css",
+					"js/location.js",
+					"nav/map_reset.html"
+				],
+				"refer": [
+					"nav/map_siteinfo.html",
+					"nav/navi_search.html"
+				],
+				"priority": 0
+			},
+			"nav/map_reset.html": {
+				"resources": [
+					"images/navi.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"nav/map_siteinfo.html": {
+				"resources": [
+					"images/icon-nav.png",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"js/jquery.selectlist.js",
+					"js/constant.js",
+					"css/nav_main.css"
+				],
+				"refer": [
+					"nav/details.html"
+				],
+				"priority": 0
+			},
+			"nav/site_main.html": {
+				"resources": [
+					"nav/site_map.html",
+					"images/icon_screening.png",
+					"images/icon_map_list.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/public.css",
+					"nav/site_list.html",
+					"images/icon_map.png"
+				],
+				"refer": [
+					"nav/site_mask.html",
+					"nav/details.html"
+				],
+				"priority": 0
+			},
+			"nav/site_map.html": {
+				"resources": [
+					"nav/map_reset.html",
+					"js/mui.min.js",
+					"js/public.js",
+					"js/location.js",
+					"images/icon_no_network.png",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"css/style.css",
+					"js/jquery.selectlist.js",
+					"css/public.css",
+					"js/constant.js",
+					"css/nav_main.css",
+					"nav/map_siteinfo.html"
+				],
+				"refer": [
+					"nav/navi_search.html"
+				],
+				"priority": 0
+			},
+			"nav/site_list.html": {
+				"resources": [
+					"css/navigation_list.css",
+					"images/loading.gif",
+					"images/nav-pic.png",
+					"images/nav-slow.png",
+					"images/operator_dw.png",
+					"images/operator_ec.png",
+					"images/operator_t.png",
+					"images/operator_cd.png",
+					"images/operator_xx.png",
+					"js/location.js",
+					"js/jQuery.js",
+					"js/constant.js",
+					"css/public.css",
+					"images/icon-nav.png",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/icon_search.png"
+				],
+				"refer": [
+					"nav/details.html"
+				],
+				"priority": 0
+			},
+			"nav/site_mask.html": {
+				"resources": [
+					"images/operator_dw.png",
+					"js/mui.min.js",
+					"js/location.js",
+					"images/operator_ec.png",
+					"images/operator_t.png",
+					"css/mui.min.css",
+					"js/jQuery.js",
+					"images/operator_cd.png",
+					"images/operator_xx.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/message_center.html": {
+				"resources": [
+					"js/mui.min.js",
+					"images/icon_vip_msg.png",
+					"images/icon_msg_end.png",
+					"images/nav-pic.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/icon_down.png",
+					"js/jQuery.js",
+					"css/public.css",
+					"images/icon_msg_start.png",
+					"images/not_show.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"nav/navi_search.html": {
+				"resources": [
+					"css/mui.min.css",
+					"images/icon_search.png"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"产品/原型设计/登录注册IB 20160316.zip",
+				"js/service.js",
+				"js/jquery.slides.min.js",
+				"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+				"产品/原型设计/登录注册IB 20160316 V2.zip",
+				"libs/easymob-webim-sdk/quickstart.md",
+				"images/iconfont-tianjia.png",
+				"basic/register.html",
+				"libs/easymob-webim-sdk/json2.js",
+				"libs/easymob-webim-sdk/jquery-1.11.1.js",
+				"js/mui.locker.js",
+				"js/feedback.js",
+				"css/feedback-page.css",
+				"js/feedback-page.js",
+				"images/user-photo.png",
+				"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+				"basic/resstPassword.html",
+				"README.md",
+				"js/mui.view.js"
+			]
+		}
+	},
+	"unpackage": [
+		"产品/原型设计/登录注册IB 20160316 V2.zip",
+		"产品/原型设计/登录注册IB 20160316.zip",
+		"basic/register.html",
+		"basic/resstPassword.html",
+		"css/feedback-page.css",
+		"images/iconfont-tianjia.png",
+		"images/user-photo.png",
+		"js/feedback-page.js",
+		"js/feedback.js",
+		"js/jquery.slides.min.js",
+		"js/mui.locker.js",
+		"js/mui.view.js",
+		"js/service.js",
+		"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+		"libs/easymob-webim-sdk/jquery-1.11.1.js",
+		"libs/easymob-webim-sdk/json2.js",
+		"libs/easymob-webim-sdk/quickstart.md",
+		"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+		"README.md"
+	]
+}

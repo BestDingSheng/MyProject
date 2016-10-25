@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的账户</title>
+		<!--<title>合作伙伴账户页面</title>-->
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/public.js"></script>
+		<script src="../js/constant.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/partner.css" />
+	</head>
+	<style type="text/css">
+		.loading {
+			text-align: center;
+			line-height: 30px;
+			color: #999;
+			display: none;
+		}
+		
+		.mui-spinner {
+			vertical-align: -4px;
+			margin-right: 10px;
+		}
+		
+		.mui-content {
+			margin: 0;
+		}
+		
+		.img_logo {
+			width: 25px;
+			vertical-align: -6px;
+		}
+		
+		.membervip_top .member_pic {
+			width: 15%;
+			margin: 8% 5%;
+		}
+		
+		.membervip_top .member_pic img {
+			border-radius: 0;
+		}
+		
+		.membervip_top .member_pic {
+			border: none;
+			box-shadow: none;
+		}
+		
+		.membervip_top .membervip_pic {
+			width: 10%;
+			margin-top: 11%;
+		}
+		
+		.member_name {
+			float: left;
+			font-size: 20px;
+			margin-top: 12%;
+		}
+		.membervip{
+			width: 96%;
+		}
+		a:active{
+			color: #444;
+		}
+		.mui-content{
+			background:url(../images/diamond_bg.png) no-repeat bottom center;
+			background-size:100% auto;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="backBtn"></a>
+			<h1 class="mui-title">我的账户</h1>
+		</header>
+		<div id="account_list" class="mui-content">
+			<!--<div class="membervip">
+				<a href="#">
+					<div class="membervip_top">
+						<div class="member_pic">
+							<img src="../images/alipay.png">
+						</div>
+						<div class="member_name">
+							LOGO
+						</div>
+						<div class="membervip_pic">
+							<img src="../images/diamond_vip.png">
+						</div>
+					</div>
+					<div class="membervip_bottom">
+						<ul>
+							<li class="borderright">账户：<span>ACC1605234566</span>
+							</li>
+							<li style="width: 35%;">余额：<span>0元</span></li>
+						</ul>
+					</div>
+				</a>
+			</div>-->
+			
+		</div>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: false //启用右滑关闭功能
+			});
+
+			document.addEventListener("plusready", onPlusReady, false);
+
+			function onPlusReady() {
+				var paramsJson = prepareParams({});
+				$.ajax({
+					type: "GET",
+					url: webRoot + "/app/personInfo/intoAccountInfo",
+					dataType: 'json',
+					data: paramsJson,
+					success: function(msg) {
+						var data = msg.data;
+						if(msg.respCode == 1) {
+							var img=null;
+							for(var i = 0; i < data.length; i++) {
+								var dataMap = data[i];
+								var type='partner';
+								img="<img src='../images/default_icon.png'>"
+								if(i==0){
+									type='stzd'
+									img="<img src='../images/aboutuslogo.png'>"
+								}
+								if(dataMap.logo!=""){
+									img="<img src='"+dataMap.logo+"'>"
+								}
+								var html = "<div class='membervip' type="+type+" partnerName='"+dataMap.partnerName+"' accCode='"+dataMap.accCode+"' amount='"+dataMap.amount+"'>"+
+														"<div class='membervip_top'> "+
+															"<div class='member_pic'>"+
+																img+
+															"</div>"+
+															"<div class='member_name'>"+
+																dataMap.partnerName+"账户"+
+															"</div>"+
+															"<div class='membervip_pic'>"+
+																"<img src='../images/diamond_vip.png'>"+
+															"</div>"+
+														"</div>"+
+														"<div class='membervip_bottom'>"+
+															"<ul>"+
+																"<li class='borderright'>账户：<span>"+dataMap.accCode+"</span>"+
+																"</li>"+
+																"<li style='width: 35%;'>余额：<span>"+dataMap.amount+"元</span></li>"+
+															"</ul>"+
+														"</div>"+
+										    "</div>";
+								$("#account_list").append(html);
+							}
+							$('.membervip').click(function(event) {
+								var accCode = $(this).attr('accCode');
+								var type=$(this).attr('type');
+								var amount=$(this).attr('amount');
+								var partnerName=$(this).attr('partnerName');
+								mui.openWindow({
+									id: 'refund_record.html',
+									url: 'refund_record.html',
+									show: {
+										aniShow: "slide-in-right"
+									},
+									createNew: false,
+									extras: {
+										'accAmount':amount,
+										'accountCode': accCode,
+										'partnerName':partnerName,
+										'type':type
+									},
+									waiting: {
+										autoShow: false
+									}
+								});
+							})
+
+						} else {
+							mui.toast(msg.respMsg);
+						}
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				})
+			}
+		</script>
+	</body>
+
+</html>

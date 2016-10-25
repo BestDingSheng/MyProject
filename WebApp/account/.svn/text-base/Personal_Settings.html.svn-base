@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>设置</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<style type="text/css">
+			.mui-btn-block {
+				width: 90%;
+				margin: 10px auto;
+			}
+		</style>
+	</head>
+		<body>
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-title">设置</h1>
+			</header>
+			<div class="mui-content">
+				<ul class="mui-table-view" id="list">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="change_password.html">
+						修改密码
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="change_Bind.html">
+						修改绑定手机号
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="about.html">
+						关于我们
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="help.html">
+						帮助
+						</a>
+					</li>
+				</ul>
+				<button class="mui-btn-block mui-btn-green" onclick="logoutAll()" id="exitBtn">退出登录</button>
+			</div>
+			<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../js/jQuery.js"></script>
+			<script src="../js/validation.js"></script>
+			<script type="text/javascript" src="../js/constant.js" ></script>
+			<script type="text/javascript" src="../js/public.js" ></script>
+			<!--<script type="text/javascript" src="../js/oauth.js" ></script>-->
+			<!--<script type="text/javascript" src="../js/page.switch.js" ></script>-->
+			<script>
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+				
+				mui('#list').on('tap', 'a', function() {
+					var id = this.getAttribute('href');
+					var href = this.href;
+					var type = this.getAttribute("open-type");
+					console.log(id);
+					if(id==null){
+						mui.toast('暂无页面');
+						return;
+					}
+					mui.openWindow({
+						id: id,
+						url: this.href,
+						show: {
+							aniShow: "slide-in-right"
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				})
+				var auths = {};
+
+				function plusReady() {
+					// 获取登录认证通道
+					plus.oauth.getServices(function(services){
+						for(var i in services){
+							var service=services[i];
+							console.log(service.id+": "+service.authResult+", "+service.userInfo);
+							auths[service.id]=service;
+						}
+					},function(e){
+						console.log("获取登录认证失败："+e.message);
+					});
+				}
+				mui.plusReady(plusReady);
+				// 注销登录
+				function logoutAll() {
+					var loginInfo = getLoginInfo();
+					var clientId = getDeviceUuid();
+					if (loginInfo == null || loginInfo.loginId == null || loginInfo.ticket == null || clientId == null) {
+						mui.toast('没有获取到有效用户信息，退出登录操作失败！')
+						return;
+					}
+					$.ajax({
+						type:"GET",
+						url:webRoot + "/app/auth/logout",
+						dataType: 'json',
+						data: { loginId: loginInfo.loginId, clientId: clientId, ticket: loginInfo.ticket },
+						success: function(msg) {
+							
+								console.log("----- 注销登录认证 -----");
+								//退出登入会把所有的本地缓存清空
+								localStorage.clear();
+								//所以在清空后在把已经进入过APP的状态添加上去
+								localStorage.setItem('IS_READ_CHARGING_README', "Y");
+								localStorage.setItem('guideFlag','true');										
+								
+								
+								for(var i in auths){
+									logout(auths[i]);
+								}
+								//执行我的页面自定义事件
+								var main = plus.webview.getWebviewById('../account/account_main.html');
+								mui.fire(main,'refresh');
+								mui.back();
+							if(msg.respCode!=1) {
+								mui.toast(msg.respMsg);
+							}
+						},
+						error: function(e) {
+							mui.toast('网络不给力，退出登录操作失败！');
+						}
+					});
+				}
+				function logout(auth){
+					auth.logout(function(){
+						console.log("注销\""+auth.description+"\"成功");
+					},function(e){
+						console.log("注销\""+auth.description+"\"失败："+e.message);
+					});
+				}
+			</script>
+		</body>
+
+</html>

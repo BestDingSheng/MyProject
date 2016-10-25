@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>会员卡激活</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+	</head>
+	<style type="text/css">
+		.mui-input-group {
+			margin-top: 10px;
+		}
+		/*.mui-input-group .mui-input-row:after{
+			height: 0;
+		}*/
+		
+		.mui-input-group .mui-input-row:after {
+			left: 0;
+		}
+		
+		.mui-input-row .title {
+			color: #96D8A1;
+		}
+		
+		span.fr {
+			line-height: 40px;
+			margin-right: 35px;
+		}
+		
+		.mui-input-row label~input::-webkit-input-placeholder {
+			text-align: right;
+		}
+		
+		.mui-input-row label~input {
+			text-align: right;
+		}
+		
+		.mui-input-group .to_bottom {
+			background: url(../../images/toBottom.png) no-repeat 98% center;
+			background-size: 20px auto;
+		}
+		
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		
+		.list .title {
+			color: #96D8A1;
+		}
+		
+		.list {
+			margin-top: 10px;
+			background: #fff;
+			border-bottom: 1px solid #dadada;
+		}
+		
+		.list div {
+			line-height: 40px;
+			border-top: 1px solid #dadada;
+			padding-left: 15px;
+		}
+		
+		.list ul {
+			font-size: 0;
+			height: 40px;
+		}
+		
+		.list li {
+			display: inline-block;
+			width: 50%;
+			font-size: 14px;
+			position: relative;
+			background: url(../../images/toBottom.png) no-repeat 95% center;
+			background-size: 20px auto;
+		}
+		
+		.list li:nth-last-child(1) {
+			padding-left: 10px;
+		}
+		
+		.list input {
+			border: 0;
+			margin: 0;
+			width: 50%;
+			float: right;
+			text-align: right;
+		}
+		
+		.list .first:before {
+			content: '';
+			position: absolute;
+			width: 1px;
+			height: 80%;
+			background: #96D8A1;
+			right: 0px;
+			top: 10%;
+		}
+		
+		.list input::-webkit-input-placeholder {
+			text-align: right;
+		}
+		
+		span.ml {
+			margin-left: 10px;
+			color: #999;
+		}
+		
+		.list .to_bottom {
+			background: url(../../images/toBottom.png) no-repeat 98% center;
+			background-size: 20px auto;
+		}
+		
+		.list .top_border {
+			border-top: 1px solid #96D8A1;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">会员卡激活</h1>
+		</header>
+		<div class="mui-content">
+			<form class="list">
+				<div class="mui-input-row">
+					<label class="title">
+						会员卡号
+					</label>
+					<input type="text" maxlength="11" placeholder="请正确输入会员卡号" id="cardNumber" />
+				</div>
+			</form>
+			<div class="mycard_submit_applicate">
+				<button id='activate' class="mui-btn mui-btn-block mui-btn-primary">会员卡激活</button>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.picker.min.js"></script>
+		<script src="../../js/mui.poppicker.js"></script>
+		<script src="../../js/data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/constant.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/validation.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+		</script>
+		<script type="text/javascript">
+			$('#activate').on('tap', function() {
+				var cardNumber = document.getElementById("cardNumber").value;
+				//					//会员卡的正则校验
+				//					if(!valiadation.card_Number(cardNumber)){
+				//					return;
+				//				}
+				params = prepareParams({
+					'cardNumber': cardNumber
+				});
+				//alert("123");
+				$.ajax({
+					type: "post",
+					url: webRoot + "/app/membership/cardActivation",
+					dataType: 'json',
+					data: params,
+					success: function(msg) {
+						var data = msg.data;
+						if (msg.respCode == 1) {
+							var cardStatusHtml = plus.webview.getWebviewById('member/application_success.html');
+							var data = {
+								'cardNum': cardNumber
+							}
+							mui.fire(cardStatusHtml, 'refresh', data);
+							plus.webview.currentWebview().close();
+						} else if (msg.respCode == 'failed') {
+							mui.toast('激活失败，请输入正确卡号');
+						} else {
+							mui.toast('服务器异常，激活失败');
+						}
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

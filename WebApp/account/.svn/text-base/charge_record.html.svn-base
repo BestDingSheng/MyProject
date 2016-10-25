@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>充电记录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../css/public.css" />
+	</head>
+	<style>
+		.mui-segmented-control.active-red .mui-control-item.mui-active {
+			color: #4ca26e;
+			background: #FFF;
+			border-bottom: 2px solid #4ca26e;
+		}
+		
+		.mui-segmented-control.active-red {
+			border: none;
+			border-bottom: 1px solid #ECECEC;
+			border-radius: 0;
+			background: #FFF;
+		}
+		
+		.mui-segmented-control.active-red .mui-control-item {
+			border-left: none;
+		}
+		
+		.mui-segmented-control .mui-control-item {
+			color: #767478;
+		}
+		
+		.iconfont {
+			color: #4ca26e;
+		}
+		
+		.mui-table-view-cell {
+			color: #4ca26e;
+		}
+		
+		.fl {
+			width: 50%;
+			position: relative;
+		}
+		
+		.start:before {
+			content: '';
+			position: absolute;
+			width: 1px;
+			height: 100%;
+			background: #96D8A1;
+			right: 0px;
+		}
+		
+		.end {
+			padding-left: 10px;
+		}
+		
+		.margin {
+			margin: 0;
+			margin-bottom: 5px;
+			box-shadow: 1px 2px 1px #dcdcdc;
+		}
+		
+		.mui-table-view-cell.title:after {
+			left: 0;
+			background-color: #96d8a1;
+		}
+		
+		#item2mobile .mui-table-view {
+			margin-bottom: 10px;
+			color: #5b595e;
+		}
+		
+		#item2mobile .mui-table-view .mui-table-view-cell span {
+			font-size: 16px;
+			color: #5b595e;
+		}
+		
+		.color-black {
+			margin-left: 10px;
+		}
+		
+		.mR {
+			margin-right: 10px;
+			float: right;
+		}
+		
+		.loading {
+			text-align: center;
+			line-height: 30px;
+			color: #999;
+			display: none;
+		}
+		
+		.mui-spinner {
+			vertical-align: -4px;
+			margin-right: 10px;
+		}
+		.not_show{
+			display:none;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">充电记录</h1>
+		</header>
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control active-red">
+				<a class="mui-control-item mui-active" href="#item1mobile">
+						充电记录
+				</a>
+				<a class="mui-control-item" href="#item2mobile">
+						充电统计
+				</a>
+			</div>
+			<div id="item1mobile" class="mui-control-content mui-active">
+				<div class="loading">
+					<span class="mui-spinner"></span> 加载中,请稍等...
+				</div>
+				<div class="not_show">
+					<img src="../images/not_show.png" alt="">
+					暂无充电记录
+				</div>
+			</div>
+			<div id="item2mobile" class="mui-control-content">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						充电总量
+						<span class="fr" id="totalKwh">0.00度</span>
+					</li>
+					<li class="mui-table-view-cell">
+						充电总次数
+						<span class="fr" id="totalTimes">0次</span>
+					</li>
+					<li class="mui-table-view-cell">
+						充电总时间
+						<span class="fr" id="totalHours">0h</span>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						平均每次充电量
+						<span class="fr" id="perKwh">0.00度</span>
+					</li>
+					<li class="mui-table-view-cell">
+						平均每次充时间
+						<span class="fr" id="perHours">0h</span>
+					</li>
+					<li class="mui-table-view-cell">
+						平均每次充电量时间间隔
+						<span class="fr" id="intervalTime">0天</span>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/constant.js"></script>
+		<script src="../js/public.js"></script>
+		<script type="text/javascript">
+		   var accCode=null;
+			var pageIndex = 1;
+			var accAmount = 0;
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+			document.addEventListener("plusready", onPlusReady, false);
+
+			function getChargingList() {
+				var params = prepareParams({
+					pageSize: 5,
+					pageIndex: pageIndex,
+					'accCode':accCode
+				});
+				$.ajax({
+					type: "get",
+					url: webRoot + "/app/chargingRecord/getSpendingRecord",
+					dataType: 'json',
+					data: params,
+					success: function(msg) {
+						var data = msg.data;
+						if(data.length==0){
+							$('.not_show').show();
+						}
+//						alert(data.length)
+						if (msg.respCode == 1) {
+							var innerHtml = chargingrecord(data);
+							if(pageIndex==1){
+								localStorage.setItem('chargingRecordList',JSON.stringify(data));
+							}
+							$('.loading').before(innerHtml);
+							if (msg.data.length > 0) {
+								pageIndex++;
+							} else {
+								$('.loading').html('暂无更多数据')
+							}
+						} else {
+							mui.toast('服务器异常');
+						}
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				});
+			}
+				function getChargingTotal() {
+				//充电统计请求
+				var params = prepareParams({});
+				$.ajax({
+					type: "get",
+					url: webRoot + "/app/chargingRecord/getChargingRecordCount",
+					dataType: 'json',
+					data: params,
+					success: function(msg) {
+						var data = msg.data;
+						
+						if (msg.respCode == 1) {
+							var date = new Date();
+							localStorage.setItem('chargingRecordCountData', JSON.stringify(data));
+							localStorage.setItem('chargingRecordCountDataTime', date.getTime());
+						    chargingCountValue(data);
+						} else {
+							mui.toast('服务器异常');
+						}
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				});
+			}
+			function chargingCountValue(data) {
+				$("#totalKwh").html(data.totalKwh==null?0:data.totalKwh + " 度");
+				$("#totalHours").html(data.totalHours==null?0:data.totalHours + " h");
+				$("#totalTimes").html(data.chargeingNum==null?0:data.chargeingNum + " 次");
+				$("#perKwh").html(data.perKwh==null?0:data.perKwh + " 度");
+				$("#perHours").html(data.perHours==null?0:data.perHours+ " h");
+				$("#intervalTime").html(data.chargingIntervals==null?0:data.chargingIntervals + " 天");
+			}
+			function deflutTimeToDateStr(timestamp) {
+				return datetimeToDateStr(timestamp, "yyyy-MM-dd hh:mm");
+			}
+			function datetimeToDateStr(timestamp, formatStr) {
+				var date = new Date();
+				date.setTime(timestamp);
+				var retval = date.Format(formatStr);
+				return retval;
+			}
+			//拼接字符串显示充电记录
+			function chargingrecord(data) {
+				var innerHtml = "";
+				var i = 0;
+				var dat = new Date()
+				for (i; i < data.length; i++) {
+					innerHtml = innerHtml + "<ul class='mui-table-view margin'>" + "<li class='mui-table-view-cell title'>" + "<span><span class='mui-icon iconfont icon-chongdian'></span>充电</span>" + "<span class='fr'>" + datetimeToDateStr(data[i].startDate, 'yyyy-MM-dd') + "</span>" + "</li>" + "<li class='mui-table-view-cell'>" + "充电地点<span class='color-black'>" + data[i].siteName + "</span>" + "</li>" + "<li class='mui-table-view-cell'>开始时间" + "<span class='color-black mui-ellipsis'>" + deflutTimeToDateStr(data[i].startDate) + "</span>" + "</li>" + "<li class='mui-table-view-cell'>结束时间" + "<span class='color-black mui-ellipsis'>" + deflutTimeToDateStr(data[i].endDate) + "</span>" + "</li>" + "<li class='mui-table-view-cell'>" + "<div class='start fl'>充电电量" + "<span class='color-black'>" + data[i].chargingKwh + "</span>" + "</div>" + "<div class='end fl'>消费金额" + "<span class='color-black'>" + data[i].chargingPrice + "</span>" + "</div>" + "</li>" + "</ul>"
+				}
+				return innerHtml;
+			}
+			function onPlusReady() {
+				accCode=plus.webview.currentWebview().accountCode;
+				getChargingTotal();
+				getChargingList();
+			}
+
+			function getScrollTop() {
+				var scrollTop = 0;
+				if (document.documentElement && document.documentElement.scrollTop) {
+					scrollTop = document.documentElement.scrollTop;
+				} else if (document.body) {
+					scrollTop = document.body.scrollTop;
+				}
+				return scrollTop;
+			}
+			//获取当前可是范围的高度 
+			function getClientHeight() {
+				var clientHeight = 0;
+				if (document.body.clientHeight && document.documentElement.clientHeight) {
+					clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+				} else {
+					clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+				}
+				return clientHeight;
+			}
+			//获取文档完整的高度 
+			function getScrollHeight() {
+				return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+			}
+			//
+			window.onscroll = function() {
+				if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+					$('.loading').show();
+					setTimeout(function() {
+							getChargingList();
+						}, 1000)
+				}
+			}
+			function charge_re() {}
+			function add_node() {
+				var str = '<ul class="mui-table-view margin"><li class="mui-table-view-cell title"><span><span class="mui-icon iconfont icon-chongdian"></span>充电</span><span class="fr">2015-12-10</span></li><li class="mui-table-view-cell">充电地点<span class="color-black">今韬集团龙华总部</span></li><li class="mui-table-view-cell"><div class="start fl">开始时间<span class="color-black">11:12:13</span></div><div class="end fl">结束时间<span class="color-black">11:12:13</span></div></li><li class="mui-table-view-cell"><div class="start fl">充电电量<span class="color-black">30</span></div><div class="end fl">消费金额<span class="color-black">50</span></div></li></ul>'
+				$('.loading').before(str);
+			}
+		</script>
+
+		<script type="text/javascript">
+		
+
+			
+		</script>
+	</body>
+
+</html>

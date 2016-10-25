@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<title>搜索</title>
+		<!--<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>-->
+		<style type="text/css">
+			html,body{
+				background: transparent;
+			}
+			#searchBox{
+				font-size:0;
+				margin: 10px;
+				border-radius: 5px;
+			}
+			#searchBox input{
+				width:90%;
+				height:35px;
+				padding-left: 35px;
+				margin: 0;
+				border:none;
+				box-shadow:0 0 3px #cbcbcb;
+				background:#fff url(../images/icon_search.png) no-repeat 10px center;
+				background-size:auto 20px;
+			}
+			#searchBox button{
+				width:20%;
+				margin-left: -10%;
+				border:none;
+				background: #4fa16f;
+				color: #fff;
+				padding:8px 12px;
+				box-shadow: 0 0 2px #4FA16F;
+				
+			}
+		</style>
+		<script type="text/javascript" charset="UTF-8">
+			function search() {
+				var word = document.getElementById("searchTxt").value;
+				plus.webview.currentWebview().opener().evalJS("search('" + word + "')");
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id='searchBox'>
+			<input id="searchTxt" type="text" required="" placeholder="请输入目的地地址"  x-webkit-speech="" x-webkit-grammar="builtin:search">
+			<button class="mui-btn mui-btn-white" onclick="search()">搜索</button>
+		</div>
+
+	</body>
+
+</html>

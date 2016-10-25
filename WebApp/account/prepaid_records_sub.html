@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />-->
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>充值记录</title>
+		
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/public.css" />
+	</head>
+	<style type="text/css">
+		.loading {
+			text-align: center;
+			line-height: 30px;
+			color: #999;
+			display: none;
+		}
+		
+		.mui-spinner {
+			vertical-align: -4px;
+			margin-right: 10px;
+		}
+		
+		.recharge_list li {
+			width: 100%;
+			background: #fff;
+			margin: 10px auto;
+			padding: 10px 0;
+			border-top: 1px solid #dadada;
+			border-bottom: 1px solid #dadada;
+		}
+		.not_show{
+			display: none;
+		}
+	</style>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">充值记录</h1>
+		</header>-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll recharge_list" id="recharge">
+				<ul id="list" class='mui-table-view'>
+				</ul>
+				<div class="loading">
+					<span class="mui-spinner"></span> 加载中,请稍等...
+				</div>
+			</div>
+			<div class="not_show">
+					<img src="../images/not_show.png" alt="">
+					暂无充值记录
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/constant.js"></script>
+		<script src="../js/public.js"></script>
+		<script type="text/javascript">
+			var pageIndex = 1;
+			var accAmount = 0;
+			var accCode;
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						contentrefresh: "正在刷新...",
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			function pulldownRefresh() {
+				setTimeout(function() {
+					pageIndex = 1;
+					$('#list li').remove();
+					w = plus.nativeUI.showWaiting();
+					payrecord();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					w.close();
+					//mui('.mui-content').pullRefresh().refresh(true);
+				}, 1500)
+			}
+
+			function pullupRefresh() {
+				setTimeout(function(){
+					payrecord();
+				},1500);
+				
+			}
+//			(function($) {
+//				//阻尼系数
+//				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+//				$('.mui-scroll-wrapper').scroll({
+//					bounce: false,
+//					indicators: true, //是否显示滚动条
+//					deceleration: deceleration
+//				});
+//			})(mui);
+			document.addEventListener("plusready", onPlusReady, false);
+			
+			function onPlusReady() {
+				accCode=plus.webview.currentWebview().accCode;
+				payrecord();
+			}
+		</script>
+		<script type="text/javascript">
+			function payrecord() {
+				var paramsJson = prepareParams({
+					pageSize: 5,
+					pageIndex: pageIndex,
+					'accCode':accCode
+				});
+				//充电消费记录的请求
+				$.ajax({
+					type: "get",
+					url: webRoot + "/app/chargingRecord/getChargingRecord",
+					dataType: 'json',
+					data: paramsJson,
+					success: function(msg) {
+						var data = msg.data;
+						//判断是否有数据
+						if(pageIndex==1){
+							if(data.length==0){
+								$('.not_show').show()
+							}
+						};
+						if (msg.respCode == 1) {
+							if (pageIndex == 1) {
+								$('#list').empty();
+							}
+							var innerHtml = chargingrecord(data);
+							$('#list').append(innerHtml);
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+							if (msg.data.length > 0) {
+								pageIndex++;
+							} else {
+								//								mui('.mui-content').pullRefresh().endPullupToRefresh(true);
+								$('.loading').html('暂无更多数据')
+							}
+						} else {
+							mui.toast('服务器异常');
+						}
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				});
+			}
+
+			function datetimeToDateStr(timestamp) {
+				var date = new Date();
+				date.setTime(timestamp);
+				var retval = date.Format("yyyy-MM-dd hh:mm");
+				return retval;
+			}
+			//拼接字符串显示充电记录
+			function chargingrecord(data) {
+				var innerHtml = "";
+				var i = 0;
+				for (i; i < data.length; i++) {
+					innerHtml = innerHtml + "<li class='mui-table-view-cell'><div class='recharge_title'><span class='charge'>充值</span><span class='time'>" + datetimeToDateStr(data[i].operationTime) + "</span></div>" +
+						"<div class='recharge_content'><p>充值金额 :" + data[i].transAmt + "</p><p>账户余额 :" + data[i].balance + "</p><p>充值方式 :" + data[i].payTypeName + "</p></div></li>"
+				}
+				return innerHtml
+			}
+		</script>
+	</body>
+
+</html>

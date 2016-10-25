@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>更改绑定手机</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+	</head>
+	<style type="text/css">
+	.mui-content{
+		margin: 0 10px;
+	}
+		.list{
+			display: table;
+			width: 100%;
+			margin: 0;
+			padding:0;
+			margin: 20px 0;
+		}
+		.list li{
+			display: table-cell;
+			width: 50%;
+			height: 150px;
+			vertical-align: middle;
+			text-align: center;
+		}
+		.list .cl{
+			text-align: left;
+		}
+		.first div{
+			width: 50%;
+			background:url(../images/phone.png) no-repeat center center;
+			background-size: 100% auto;
+			margin:0 auto;
+			height: 100%;
+		}
+		.text{
+			text-align: center;
+		}
+		div.mui-ellipsis{
+			margin-bottom: 10px;
+		}
+		.tel{
+			display: block;
+			line-height: 40px;
+			width: 90%;
+			margin:0 auto;
+			text-align: center;
+			background: #4ca26e;
+			border-radius: 5px;
+			color: #fff;			
+		}
+		a:active{
+			color: #fff;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">更改绑定手机号码</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="list">
+				<li class="first">
+					<div></div>
+				</li>
+				<li class="cl">
+					<div class="mui-ellipsis">当前绑定手机号</div>
+					<div id='mobile'></div>										
+				</li>
+			</ul>
+			<div class="text mui-ellipsis">您可以使用该手机号进行“APP登录”和“找回密码”</div>
+			<div class="text mui-ellipsis">如需更改绑定手机号，请联系客服热线，谢谢！</div>
+			<div style="padding-top: 25px;"><a class="tel">客服电话：400-820-2298</a></div>
+			
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script src="../js/validation.js"></script>
+		<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.init();
+			$('.tel').on('click', function() {
+				var btnArray = ['拨打', '取消'];
+				mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+					if (e.index != 1) {
+						location.href="tel:400-820-2298"
+					} 
+				})
+			})
+			document.addEventListener("plusready", onPlusReady, false);
+
+			function onPlusReady(){
+				var loginInfo = loginInfo || getLoginInfo()
+				var loginId=loginInfo.loginId;
+				var start=loginId.substr(0,3);
+				var end=loginId.substr(7,11);
+				var mobile=start+'****'+end;
+				$('#mobile').append(mobile);
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>充电服务完成通知</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+	</head>
+	<style>
+		.mui-table-view{
+			margin-bottom: 10px;
+			border:1px solid #adadad;
+		}
+		.newline .fl{
+			width: 85px;
+		}
+		.newline .fr{
+			width:-webkit-calc(100% - 85px);
+		}
+		.mui-table-view .mui-media-object.mui-pull-left{
+			margin-top: 7px;
+		}
+		h5{
+			line-height: 20px;
+			font-size: 16px;
+			color:#333333;
+		}
+		.mui-table-view:after{
+			height: 0;
+		}
+		.mui-table-view-cell{
+			font-size: 14px;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">充电服务完成通知</h1>
+		</header>
+		<div class="mui-content">
+		    <div class="mui-content-padded">
+		    	<ul class="mui-table-view">
+		    		<li class="mui-table-view-cell mui-media-body">
+		    			<img src="../images/icon_msg_stop.png" alt="" class="mui-media-object mui-pull-left" />
+		    			<div class="mui-media-body">
+		    				<h5 class="">账号为（<span id="accountCode"></span>）用户您好，</h5>
+		    				<h5 class="">感谢您使用益虫充电充电服务，具体如下：</h5>		    						    			
+		    			</div>
+		    		</li>
+		    		<li class="mui-table-view-cell newline">
+		    			<span class="fl">服务站点:</span><span class="fr" id="site">未知</span>	    			
+		    		</li>		    		
+		    		<!--<li class="mui-table-view-cell newline">		    			
+		    			<span class="fl">开始时间:</span><span class="fr" id="startTime"></span>
+		    		</li>-->
+		    		<li class="mui-table-view-cell newline">		    			
+		    			<span class="fl">结束时间:</span><span class="fr" id="endTime"></span>
+		    		</li>
+		    		<li class="mui-table-view-cell newline">		    			
+		    			<span class="fl">充电时长:</span><span class="fr" id="chargingTime"></span>
+		    		</li>
+		    		<li class="mui-table-view-cell newline">		    			
+		    			<span class="fl">充电量:</span><span class="fr" id="energy"></span>
+		    		</li>
+		    	</ul>
+		    	<ul class="mui-table-view newline">
+		    		<li class="mui-table-view-cell">
+		    			<span class="fl">消费金额:</span><span class="fr" id="chargingAmount">元</span>
+		    		</li>
+		    		<li class="mui-table-view-cell">
+		    			<span class="fl">账户余额:</span><span class="fr" id="balance">元</span>
+		    		</li>
+		    	</ul>
+		    </div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jQuery.js" ></script>
+		<script type="text/javascript" src="../js/constant.js" ></script>
+		<script type="text/javascript" src="../js/public.js" ></script>
+		<script>
+			mui.init();
+			mui.plusReady(plusReady);
+			function plusReady() {
+				
+				var pushMsg = localStorage.getItem('PUSH_MSG');
+				pushMsg = JSON.parse(pushMsg);
+				
+				if (!pushMsg || !pushMsg.curMsg) {
+					return;
+				}
+				
+				// 显示消息
+				showMsg(pushMsg.curMsg.data);
+				
+				var parentGroup = pushMsg.curMsg.parentGroup;
+				var group = pushMsg.curMsg.group;
+				var orderNo = pushMsg.curMsg.orderNo;
+				var isReaded = pushMsg.curMsg.isReaded;
+				
+				if (!isReaded && orderNo && parentGroup && group) {
+					
+					// 设置消息已读（服务端）
+					var params = prepareParams({targetClientId:plus.push.getClientInfo().clientid, orderNo:orderNo, group:parentGroup});
+
+					$.ajax({
+						type: "post",
+						url: webRoot + "/app/msgCenter/setMsgReaded",
+						dataType: 'json',
+						data: params,
+						success: function(msg) {
+							if (msg.respCode == 1) {
+								setMsgReaded(pushMsg);
+							}
+						},
+						error: function() {
+						}
+					});
+				}
+			}
+			
+			function setMsgReaded(pushMsg) {
+				if (pushMsg && pushMsg.curMsg && pushMsg.historyMsgs && pushMsg.historyMsgs.length > 0) {
+					
+					var parentGroup = pushMsg.curMsg.parentGroup;
+					var group = pushMsg.curMsg.group;
+					var orderNo = pushMsg.curMsg.orderNo;
+					
+					var outerParentGroupCount = 0;
+					
+					for (var i in pushMsg.historyMsgs) {
+						var historyMsg = pushMsg.historyMsgs[i];
+						var pGroupCount = 0;
+						
+						if(historyMsg.group == parentGroup) { // 充电消息
+							var msgs = historyMsg.msgs;
+							if (msgs && msgs.length>0) {
+								// 消息列表
+								for (var j in msgs) {
+									var msg = msgs[j];					
+									var gMsgCount = 0;
+									
+									if (group == msg.group) {
+										var msgList = msg.msgs; // 具体消息列表
+										if (msgList && msgList.length>0) {
+											for (var k in msgList) {
+												var m = msgList[k];
+												if (orderNo == m.orderNo) {
+													m.isReaded = true;
+													m.readTime = new Date();
+													if (msg.isReaded) {
+														// 更新
+														updateMsgs(pushMsg);
+													}
+												}
+												
+												if (m.isReaded) {
+													gMsgCount++;
+												}
+											}
+											
+											if (gMsgCount == msgList.length) {
+												msg.isReaded = true;
+												if (historyMsg.isReaded) {
+													// 更新
+													updateMsgs(pushMsg);
+												}
+											}
+										}
+									}
+									
+									if (msg.isReaded) {
+										pGroupCount++;
+									}
+								}
+								
+								if (pGroupCount == msgs.length) {
+									historyMsg.isReaded = true;
+									if (pushMsg.isReaded) {
+										// 更新
+										updateMsgs(pushMsg);
+									}
+								}
+							}
+						}
+						if (historyMsg.isReaded) {
+							outerParentGroupCount++;
+						}
+					}
+					
+					if (outerParentGroupCount == pushMsg.historyMsgs.length) {
+						pushMsg.isReaded = true;
+					}
+					// 更新
+					updateMsgs(pushMsg);
+				}
+			}
+			
+			function updateMsgs(pushMsg) {
+				if (typeof pushMsg == 'object') {
+					pushMsg = JSON.stringify(pushMsg);
+				}
+				localStorage.setItem('PUSH_MSG', pushMsg);
+				
+				// 我的界面显示消息红色图标
+				var accountMain = plus.webview.getWebviewById(WEBVIEW_IDS.ACCOUNT_MAIN);
+				mui.fire(accountMain,'msgIconShow');
+			}
+			
+			function showMsg(data) {
+				if (data) {
+					var hours = (Math.floor(data.chargingTime/60)==0) ? "":Math.floor(data.chargingTime/60)+"小时";
+					var site = data.siteName?(data.siteName+(data.siteCode?"（"+data.siteCode+"）":'')):'';
+					$('#accountCode').html(data.accountCode?data.accountCode:'');
+					$('#site').html(site);
+					$('#endTime').html(data.endTime?data.endTime:'');
+					$('#chargingTime').html(data.chargingTime?(hours + (data.chargingTime%60) + "分钟"):'0分钟');
+					$('#energy').html(data.energyTxt?data.energyTxt+"千瓦时":'0千瓦时');
+					$('#chargingAmount').html(data.chargingAmountTxt?data.chargingAmountTxt+'元':'0元');
+					$('#balance').html(data.balanceTxt?data.balanceTxt+'元':'');
+				}
+			}
+		</script>
+	</body>
+
+</html>

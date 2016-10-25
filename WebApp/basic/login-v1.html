@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" href="../css/login.css" />
+	</head>
+	<style>
+		header {
+			height: 200px;
+			background: #96d8a1;
+			position: relative;
+			text-align: center;
+			line-height: 200px;
+		}
+		
+		header img {
+			width: 100px;
+			line-height: 200px;
+			vertical-align: middle;
+		}
+	</style>
+
+	<body>
+		<div class="mui-content">
+			<header>
+				<img src="../images/login_logo.png" alt="" />
+			</header>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jQuery.js"></script>
+		<script>
+			mui.init();
+
+if(window.orientation!=0){
+        var obj=document.getElementById('orientation');
+        alert('横屏内容太少啦，请使用竖屏观看！');
+        obj.style.display='block';
+}
+
+window.onorientationchange=function(){ 
+var obj=document.getElementById('orientation');
+
+if(window.orientation==0){
+                obj.style.display='none';
+        }else
+        {
+                alert('横屏内容太少啦，请使用竖屏观看！');
+                obj.style.display='block';
+        }
+}; 
+		</script>
+	</body>
+
+</html>

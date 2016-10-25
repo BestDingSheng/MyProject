@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="action-back"></a>
+	    <h1 class="mui-title">帮助</h1>
+	</header>
+	<div class="mui-content">
+		<center><img src="../images/aboutuslogo.png" border="0" class="img"/></center>
+		<div class="about_content">
+			<center>常见故障</center>
+			<p>不能充电：<br/>
+				1.账户余额不足;<br/>
+				2.充电桩为私人充电桩，桩主未共享;<br/>
+				3.充电桩断电或断网;<br/>
+				4.充电枪接触不良;
+			</p>
+			<p>&nbsp;</p>
+			<p>充电卡损坏或丢失，请拨打客服热线重新申请！<br />
+				如有其它问题，请拨打客服热线进行咨询。
+			</p>
+		</div>
+		<div class="mycard_submit_applicate">
+			<button class="mui-btn mui-btn-block mui-btn-primary" id="tel">客服电话 : 400-820-2298</button>
+			<!--<button class="mui-btn mui-action-back mui-btn-block mui-btn-primary">立即充电</button>-->
+		</div>
+	</div>
+	<script>
+		document.getElementById("tel").addEventListener('tap',function(){
+			var btnArray = ['拨打', '取消'];
+					mui.confirm("拨打:400-820-2298", '', btnArray, function(e) {
+						if (e.index != 1) {
+							location.href = "tel:400-820-2298"
+						}
+					})			
+		})
+					
+	</script>
+</body>
+</html>

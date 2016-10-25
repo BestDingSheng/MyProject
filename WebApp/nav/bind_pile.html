@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>绑定充电桩</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+			<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+	</head>
+	<style type="text/css">
+			.main{
+				padding:20px;
+			}
+			/*.mui-bar-nav{
+				border-bottom: 1px solid #adadad;
+			}*/
+			
+			.tit{
+				font-weight: bold;
+			}
+			.txt{
+				margin-top: 10px;
+			}
+			#margin{
+				margin-top: 20px;
+			}
+			.status{
+				padding:0 10px;
+			}
+			.status p{
+				font-size: 22px;
+				color: #96d8a1;
+				font-weight: bold;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+			.mui-content{
+				background: #f8f8f8;
+			}
+			.mui-bar .mui-title{
+				color: #96d8a1;
+			}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">绑定充电桩</h1>
+		</header>
+		<div class="mui-content">
+			<div class="main">
+				<div class="tit">当前设备</div>
+				<div class="txt">充电桩编码<span id='chargeBoxSerialNumber'></span></div>
+				<div class="tit" id="margin">充电桩位置:</div>
+				<div class="txt" id="boxPosition"></div>
+			</div>
+			<div class="status">
+				<p>尊敬的用户，请稍等...</p>
+				<button class="mui-btn-green mui-btn-block">Loading...</button>
+			</div>
+		</div>
+		<input type="hidden" id="chargeBoxSerialNumberHidden" />
+		<input type="hidden" id="siteNameHidden" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jQuery.js" ></script>
+		<script type="text/javascript" src="../js/constant.js" ></script>
+		<script type="text/javascript" src="../js/public.js" ></script>
+		<script>
+			mui.init();
+			mui.plusReady(plusReady);
+			mui('.status').on('tap', 'button', function() {
+				if ('立即充电' == $('button', '.status').html()) {
+					mui.back();
+					var webView = plus.webview.getWebviewById(WEBVIEW_IDS.CHARGE_MAIN);
+					if (webView) {
+						var params = {chargingBoxSerialNumber:$('#chargeBoxSerialNumberHidden').val(), siteName: $('#siteNameHidden').val()}
+						mui.fire(webView, "showPageByBoundPileView", params);
+					} else {
+						console.log('WEBVIEW_IDS.CHARGE_MAIN is not Exists.')
+					}
+				} else if ('返回' == $('button', '.status').html()) {
+					mui.back();
+				} else if ('确认绑定' == $('button', '.status').html()) {
+					boundChargeBox();
+				}
+			});
+			
+			function plusReady() {
+				showBoundChargeboxInfo();
+			}
+			
+			function showBoundChargeboxInfo() {
+				var curView = plus.webview.currentWebview();
+				var barcodeUrl = curView.barcodeUrl;
+				if (!barcodeUrl) {
+					$('p','.status').html('没有获取到充电桩信息！');
+					$('button','.status').html('返回');
+					return;
+				}
+				// 获取当前 充电桩信息
+				var paramsJson = { barcodeUrl:barcodeUrl};
+				paramsJson = prepareParams(paramsJson);
+				$.ajax({
+					url:webRoot + "/app/charge/getChargingBox",
+					type:"GET",
+					datatype:"json",
+					data: paramsJson,
+					success: function(msg) {
+						if (msg.respCode==1) {
+							var data = msg.data;
+							if (data) {
+								// 界面
+								$('#chargeBoxSerialNumberHidden').val(data.chargeBoxSerialNum);
+								$('#siteNameHidden').val(data.siteName);
+								$('#chargeBoxSerialNumber').html(data.chargeBoxSerialNum);
+								$('#boxPosition').html(data.chargeBoxPosition);
+								$('p','.status').html('尊敬的用户，请确认绑定！');
+								$('button','.status').html('确认绑定');
+							} else {
+								$('p','.status').html('没有获取到充电桩信息！');
+								$('button','.status').html('返回');
+							}
+						} else {
+							$('p','.status').html(msg.respMsg);
+							$('button','.status').html('返回');
+						}
+					},
+					error:function(e) {
+						$('p','.status').html('服务器异常，请返回重新绑定！');
+						$('button','.status').html('返回');
+					}
+				});
+			}
+			
+			function boundChargeBox() {
+				var btnArray = ['否', '是'];
+				mui.confirm('确认绑定此充电桩？', '绑定确认', btnArray, function(e) {
+					if (e.index == 1) {
+						var chargeBoxSerialNumber = $('#chargeBoxSerialNumberHidden').val();
+						var siteName = $('#siteNameHidden').val();
+						if (!chargeBoxSerialNumber) {
+							$('p','.status').html('没有获取到充电桩信息！');
+							$('button','.status').html('返回');
+							return;
+						}
+						var paramsJson = { chargeBoxSerialNumber:chargeBoxSerialNumber};
+						paramsJson = prepareParams(paramsJson);
+						$.ajax({
+							url:webRoot + "/app/charge/boundChargingBox",
+							type:"post",
+							datatype:"json",
+							data: paramsJson,
+							success: function(msg) {
+								var device = {chargeBoxSerialNumber: chargeBoxSerialNumber, siteName: siteName};
+								if (msg.respCode==1) {
+									storageBoundDevice(device);
+									$('p','.status').html('尊敬的用户，恭喜您绑定成功！');
+									$('button','.status').html('立即充电');
+								} else {
+									$('p','.status').html(msg.respMsg);
+									if ("您已经绑定过此充电桩，您可以立即充电！"==msg.respMsg) {
+										storageBoundDevice(device);
+										$('button','.status').html('立即充电');
+									} else {
+										$('button','.status').html('返回');
+									}
+								}
+							},
+							error:function(e) {
+								$('p','.status').html('服务器异常，绑定充电桩失败！');
+								$('button','.status').html('返回');
+							}
+						});
+					}
+				})
+			}
+			
+			// 存储已绑定设备信息到本地缓存
+			function storageBoundDevice(device) {
+				var boundDevices = localStorage.getItem('BOUND_DEVICE');
+				boundDevices = JSON.parse(boundDevices);
+				var isExists = false;
+				if (boundDevices && boundDevices.length>0) {
+					for (var idx in boundDevices) {
+						var boundDevice = boundDevices[idx];
+						if (boundDevice.chargeBoxSerialNumber == device.chargeBoxSerialNumber) {
+							isExists = true;
+							break;
+						}
+					}
+					if (!isExists) {
+						boundDevices[boundDevices.length] = device;
+					}
+				} else {
+					boundDevices = new Array();
+					boundDevices[0] = device;
+				}
+				localStorage.setItem("BOUND_DEVICE", JSON.stringify(boundDevices));
+			}
+		</script>
+	</body>
+
+</html>

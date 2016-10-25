@@ -1,0 +1,259 @@
+</html>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>充电分析</title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<script src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script src="../js/constant.js"></script>
+		<script type="text/javascript" charset="utf-8">
+var ws=null,embed=null;
+var share_text;
+// 扩展API加载完毕，现在可以正常调用扩展API 
+function plusReady(){
+	ws=plus.webview.currentWebview();
+	//ws.addEventListener('show',createEmbed,false);
+	createEmbed();
+}
+// 判断扩展API是否准备，否则监听"plusready"事件
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+
+// 创建子Webview
+function createEmbed(){
+	var topoffset='45px';
+	var href=webRoot+'/appReport/chargingReport/Charging_analysis.html?accCode='+ws.accountCode
+
+	if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
+		topoffset=(Math.round(plus.navigator.getStatusbarHeight())+45)+'px';
+	}
+	plus.nativeUI.showWaiting('',{style:'black',modal:false,background:'rgba(0,0,0,0)'});
+	embed=plus.webview.create(href,'embed',{top:topoffset,bottom:'0px',position:'dock',dock:'bottom',bounce:'vertical'});
+	ws.append(embed);
+	embed.addEventListener('loaded',function(e){
+		plus.nativeUI.closeWaiting();
+		share_text=embed.getTitle();
+	},false);
+	embed.addEventListener('loading',function(){
+		plus.nativeUI.showWaiting('',{style:'black',modal:false,background:'rgba(0,0,0,0)'});
+	},false);
+}
+// 打开网址
+function openUrl(){
+	var url=document.getElementById("url");
+	embed.loadURL(url.value);
+	url.blur();
+}
+// 页面加载后自动打开
+document.addEventListener("DOMContentLoaded",function(){
+	if(embed){
+		openUrl();
+	}else{
+		auto=true;
+	}
+},false);
+// 页面跳转完成事件
+function onBrowserLoading(){
+	document.getElementById("url").value=embed.getURL();
+}
+		</script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8"/>
+		<style type="text/css">
+#url{
+	width:98%;
+	-webkit-user-select:auto;
+	padding-left:0;
+	padding-right:0;
+	background: rgba(0,0,0,0);
+	border: 0px;
+	border-bottom:1px solid #ECB100;
+	border-radius: 0;
+	outline:none;
+}
+.mui-icon{
+	padding: 10px 0;
+}
+.nvbt{
+	vertical-align: middle;
+}
+.nvbt img{
+	width: 30px;
+	margin-top: 5px;
+}
+		</style>
+	</head>
+	<body>
+		<header id="header">
+			<a class="nvbt mui-icon mui-icon-left-nav" onclick="back(),plus.nativeUI.closeWaiting();"></a>
+			<div class="nvtt">
+				<form action="?" method="get" onsubmit="openUrl();return false;">
+				<!--<input id="url" type="url" value="http://weibo.com/dhnetwork"/>-->
+				<p style="margin: 0;font-size: 16px;color: #333;">充电分析</p>
+				</form>
+			</div>
+			<div class="nvbt" onclick="shareShow()">
+				<img src="../images/icon_share-all.png" alt="" />
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../js/immersed.js" ></script>
+	<script type="text/javascript">
+		var shares=null,bhref=false;
+var Intent=null,File=null,Uri=null,main=null;
+// H5 plus事件处理
+function plusReady(){
+	updateSerivces();
+	if(plus.os.name=="Android"){
+		Intent = plus.android.importClass("android.content.Intent");
+		File = plus.android.importClass("java.io.File");
+		Uri = plus.android.importClass("android.net.Uri");
+		main = plus.android.runtimeMainActivity();
+	}
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+/**
+ * 更新分享服务
+ */
+function updateSerivces(){
+	plus.share.getServices( function(s){
+		shares={};
+		for(var i in s){
+			var t=s[i];
+			shares[t.id]=t;
+			console.log("id: "+t.id+', t:'+t);
+		}
+		
+	}, function(e){
+		outSet( "获取分享服务列表失败："+e.message );
+	} );
+}
+/**
+   * 分享操作
+   * @param {String} id
+   */
+function shareAction(id,ex) {
+	console.log(id);
+	console.log(ex);
+	var s=null;
+	console.log( "分享操作：" );
+	if(!id||!(s=shares[id])){
+		console.log( "无效的分享服务！" );
+		return;
+	}
+	if ( s.authenticated ) {
+		console.log( "---已授权---" );
+		shareMessage(s,ex);
+	} else {
+		console.log( "---未授权---" );
+		s.authorize( function(){
+				shareMessage(s,ex);
+			},function(e){
+			console.log( "认证授权失败："+e.code+" - "+e.message );
+		});
+	}
+}
+/**
+   * 发送分享消息
+   * @param {plus.share.ShareService} s
+   */
+function shareMessage(s,ex){
+	var msg={content:'',extra:{scene:ex}};
+//	if(bhref){
+		msg.href=webRoot+'/appReport/chargingReport/Charging_analysis.html?accCode='+ws.accountCode
+//		if(sharehrefTitle&&sharehrefTitle.value!=""){
+//			
+//		}
+//		if(sharehrefDes&&sharehrefDes.value!=""){
+//			msg.content=sharehrefDes.value;
+//		}
+		//msg.title='环保先锋！[益虫充电]本周减少碳排放xxxkg';
+		msg.title=share_text;
+		msg.thumbs=["_www/images/icon_share_wx.png"];
+		msg.pictures=["_www/images/icon_share_wx.png"];
+	//}
+//else{
+//		if(pic&&pic.realUrl){
+//			msg.pictures=[pic.realUrl];
+//		}
+//	}
+	console.log(JSON.stringify(msg));
+	s.send( msg, function(){
+		console.log( "分享到\""+s.description+"\"成功！ " );
+	}, function(e){
+		console.log( "分享到\""+s.description+"\"失败: "+e.code+" - "+e.message );
+	} );
+}
+/**
+ * 解除所有分享服务的授权
+ */
+function cancelAuth(){try{
+	outSet( "解除授权：" );
+	for ( var i in shares ) {
+		var s = shares[i];
+		if ( s.authenticated ) {
+			console.log( "取消\""+s.description+"\"");
+		}
+		s.forbid();
+	}
+	// 取消授权后需要更新服务列表
+	updateSerivces();
+	console.log( "操作成功！" );}catch(e){console.log(e);}
+}
+// 使用Logo图片分享
+function shareLogoPicture(){
+	outSet("使用Logo分享图片：");
+	var url="_www/logo.png";
+	plus.io.resolveLocalFileSystemURL(url,function(entry){
+		pic.src=entry.toLocalURL();
+		pic.realUrl=url;
+	},function(e){
+		console.log("读取Logo文件错误："+e.message);
+	} );
+}
+// 打开分享
+function shareShow(){
+	bhref=false;
+	var ids=[{id:"weixin",ex:"WXSceneSession"},{id:"weixin",ex:"WXSceneTimeline"}],
+	bts=[{title:"发送给微信好友"},{title:"分享到微信朋友圈"}];
+	if(plus.os.name=="iOS"){
+		ids.push({id:"qq"});
+		bts.push({title:"分享到QQ"});
+	};
+	plus.nativeUI.actionSheet({cancel:"取消",buttons:bts},function(e){
+			var i=e.index;
+			console.log(i);
+			if(i>0){
+				shareAction(ids[i-1].id,ids[i-1].ex);
+			}
+		}
+	);
+}
+// 分析链接
+function shareHref(){
+	bhref=true;
+	var ids=[{id:"weixin",ex:"WXSceneSession"},{id:"weixin",ex:"WXSceneTimeline"},{id:"qq"}],
+	bts=[{title:"发送给微信好友"},{title:"分享到微信朋友圈"},{title:"分享到QQ"}];
+	plus.nativeUI.actionSheet({cancel:"取消",buttons:bts},
+		function(e){
+			console.log(1111)
+			var i=e.index;
+			if(i>0){
+				shareAction(ids[i-1].id,ids[i-1].ex);
+			}
+		}
+	);
+}
+	</script>
+</html>

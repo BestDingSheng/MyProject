@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>会员卡申请成功</title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<script src="../../js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/constant.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="UTF-8">
+			document.addEventListener("plusready", onPlusReady, false);
+			mui.init({});
+			var cardNum;
+			window.addEventListener('refresh', function(event) {
+				cardNum = event.detail.cardNum;
+				validCardStatus();
+			});
+
+			function onPlusReady() {
+				cardNum = plus.webview.currentWebview().cardNum;
+				validCardStatus();
+			}
+
+			function validCardStatus() {
+				var w = plus.nativeUI.showWaiting();
+				var params = prepareParams({});
+				$.ajax({
+					type: "post",
+					url: webRoot + "/app/membership/getIntoCardApply",
+					dataType: 'json',
+					data: params,
+					success: function(msg) {
+						var data = msg.data;
+						if (msg.respCode == 1) {
+							CardStatus(data.status)
+							$("#cardStatus").val(data.status);
+							localStorage.setItem("card_cardStatus", data.status);
+							w.close();
+						} else {
+							var status = localStorage.getItem("card_cardStatus");
+							CardStatus(status)
+							$("#cardStatus").val(data.status);
+							w.close();
+						}
+					},
+					error: function() {
+						var status = localStorage.getItem("card_cardStatus");
+						CardStatus(status)
+						$("#cardStatus").val(status);
+						$('#backHome').attr({
+							"disabled": "disabled"
+						});
+						mui.toast('网络不给力');
+						w.close();
+					}
+				});
+			}
+
+			function CardStatus(status) {
+				var str0="会员卡为所有会员的唯一标识，与益虫充电APP账号绑定；<br />"+
+						"会员卡可以确保您在只支持刷卡充电的设备上正常使用；<br />"+
+						"会员卡内无储值信息，及时挂失可找回余额，请放心使用。<br /><br />"+
+						"点击下方，立即申请！";
+				var str1="会员卡为所有会员的唯一标识，与益虫充电APP账号绑定；<br />"+
+						"会员卡可以确保您在只支持刷卡充电的设备上正常使用；<br />"+
+						"会员卡内无储值信息，及时挂失可找回余额，请放心使用。<br /><br />"+
+						"您的会员卡申请资料正在审核中，请耐心等待！";	
+				var str3="会员卡为所有会员的唯一标识，与益虫充电APP账号绑定；<br />"+
+						"会员卡可以确保您在只支持刷卡充电的设备上正常使用；<br />"+
+						"会员卡内无储值信息，及时挂失可找回余额，请放心使用。<br />"+
+						"您的会员卡申请资料已审核通过，卡片正在寄送中，请耐心等待。<br />"+
+						"收到卡片后，点击下方，输入会员卡号，立即激活！";
+				var str5="会员卡为所有会员的唯一标识，与益虫充电APP账号绑定；<br />"+
+						"会员卡可以确保您在只支持刷卡充电的设备上正常使用；<br />"+
+						"会员卡内无储值信息，及时挂失可找回余额，请放心使用。<br /><br />"+
+						"您的会员卡已激活成功！"
+						
+						
+				if (status == "0") {
+					$('#cardStatus').attr('src', '../../images/noapplication.png');
+					$('#backHome').bind('click', function() {
+						mui.openWindow({
+							id: 'vip_card_apply',
+							url: 'vip_card_apply.html',
+							show: {
+								aniShow: "slide-in-right"
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					});
+					$('#success').show();
+					$('#success').html(str0);
+					$('#backHome').text('立即申请');
+				} else if (status == "1") {
+					$('#cardStatus').attr('src', '../../images/shenhe.png');
+					$('#apply').show();
+					$('#apply').html(str1);
+					$('#backHome').attr({
+						"disabled": "disabled"
+					});
+					$('#backHome').text('申请成功');
+				} else if (status == "3") {
+					$('#cardStatus').attr('src', '../../images/shenhe.png');
+					$('#apply').show();
+					$('#apply').show();
+					$('#backHome').attr({
+						"disabled": "disabled"
+					});
+					$('#backHome').text('审核中');
+				} else if (status == "4") {
+					$('#cardStatus').attr('src', '../../images/sending.png');
+					$('#backHome').bind('click', function() {
+						mui.openWindow({
+							id: 'vipcardactivation',
+							url: 'vipcardactivation.html',
+							show: {
+								aniShow: "slide-in-right"
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					});
+					$('#activation').show();
+					$('#activation').html(str3);
+					$('#backHome').text('立即激活');
+				} else if (status == "5") {
+					$('.cardNumber').append(cardNum);
+					$('#cardStatus').attr('src', '../../images/activate_success.png');
+					$('#activation').show();
+					$('#activation').html(str5);
+					$('#backHome').attr({
+						"disabled": "disabled"
+					});
+					$('#backHome').text('激活成功');
+				} else {
+					//出现网络问题取不到状态
+					$('#activation').show();
+					$('#backHome').attr({
+						"disabled": "disabled"
+					});
+					
+				}
+			}
+		</script>
+		<style type="text/css">
+			.card_Status {
+				width: 20%;
+				position: absolute;
+				top: 15px;
+				right: 18px;
+				z-index: 10;
+			}
+			
+			.mycard_info p.cardNumber {
+				font-size: 16px;
+				color: #333;
+				position: absolute;
+				top: 80%;
+				right: 5%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="action-back"></a>
+			<h1 class="mui-title">我的会员卡</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mycard_info">
+				<img id='cardStatus' src="" class="card_Status" />
+				<span style="display: block; position: relative;">
+					<img src="../../images/mycard.png" class="vipcard">
+					<p class="cardNumber"></p>
+				</span>
+
+				<p id='apply' style="display: none;">
+					<!--//森通会员卡申请成功，我们会尽快将卡寄送到您的手中！-->
+					会员卡为所有会员的唯一标识，与益虫充电APP账号绑定；<br />
+					会员卡可以确保您在只支持刷卡充电的设备上正常使用；<br />
+					会员卡内无储值信息，及时挂失可找回余额，请放心使用。<br />
+					
+					您的会员卡申请资料正在审核中，请耐心等待！
+
+					
+				</p>
+				<p id='activation' style="display: none;">益虫会员卡可以在所有支持刷卡充电的充电桩进行充电，会员卡号唯一与益虫充电APP账号绑定，为您的新能源汽车立即充电带来便利，点击下方立即激活！</p>
+				<p id='success' style="display: none;">
+						会员卡为所有会员的唯一标识，与益虫充电APP账号绑定；<br />
+						会员卡可以确保您在只支持刷卡充电的设备上正常使用；<br />
+						会员卡内无储值信息，及时挂失可找回余额，请放心使用。<br /><br />
+						
+						点击下方，立即申请！
+
+				</p>
+			</div>
+			<div class="mycard_submit_applicate">
+				<button id='backHome' class="mui-btn mui-btn-block mui-btn-primary">立即申请</button>
+			</div>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>个人信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.poppicker.css" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<link rel="stylesheet" href="../js/cropper/cropper.css" />
+		<link rel="stylesheet" href="../css/public.css" />
+	</head>
+	<style type="text/css">
+		img.fr {
+			width: 30px;
+			height: 30px;
+			margin-right: 25px;
+		}
+		
+		span.fl {
+			margin-top: 5px;
+		}
+		
+		.mui-table-view:before {
+			top: -1px;
+		}
+		
+		.mui-table-view-cell:after {
+			left: 0;
+		}
+		
+		.mui-table-view-cell>a:not(.mui-btn).mui-active {
+			background: transparent;
+		}
+		
+		.mui-table-view-cell.mui-active {
+			background: transparent;
+		}
+		
+		.colro-green {
+			color: #4ca26e;
+		}
+		
+		input.fr {
+			width: 50%;
+			font-size: 16px;
+			margin-bottom: 0;
+			border: none;
+			height: 20px;
+			padding: 0;
+			text-align: right;
+		}
+		
+		input.fr::-webkit-input-placeholder {
+			text-align: right;
+		}
+		
+		.car_info {
+			line-height: 40px;
+			background: #fff;
+			margin-top: 10px;
+			border-bottom: 1px solid #dadada;
+		}
+		
+		.car_info .line {
+			border-top: 1px solid #dadada;
+			padding-left: 15px;
+		}
+		
+		.car_info .line ul {
+			font-size: 0;
+			height: 40px;
+		}
+		
+		.car_info .line li {
+			display: inline-block;
+			position: relative;
+			width: 50%;
+			font-size: 16px;
+			background: url(../images/toBottom.png) no-repeat 95% center;
+			background-size: 20px;
+		}
+		
+		.car_info .line li:nth-child(1):before {
+			content: '';
+			position: absolute;
+			width: 1px;
+			height: 80%;
+			background: #96D8A1;
+			top: 10%;
+			right: 0;
+		}
+		
+		.car_info .line li:nth-child(2) {
+			padding-left: 10px;
+		}
+		
+		.line input {
+			width: 50%;
+			border: none;
+			float: right;
+			text-align: right;
+		}
+		
+		.line input::-webkit-input-placeholder {
+			text-align: right;
+		}
+		
+		span.ml {
+			margin-left: 10px;
+		}
+		
+		#file_clcik {
+			pointer-events: none;
+		}
+		
+		.flex-container a span {
+			font-size: 15px;
+			color: #fff;
+		}
+		
+		img {
+			max-width: 100%;
+		}
+		
+		.cropper-view-box,
+		.cropper-face {
+			border-radius: 50%;
+		}
+		
+		.cropper-bg {
+			background: rgba(0, 0, 0, 0.8);
+		}
+		
+		.mui-content-padded .flex-container {
+			padding-top: 20px;
+		}
+		
+		.mui-content-padded .flex-container span.mui-icon {
+			font-size: 16px;
+			color: #fff;
+		}
+		
+		.mui-content-padded .flex-container span.cancel {
+			float: left;
+			margin-left: 20px;
+			margin-top: 15px;
+		}
+		
+		.mui-content-padded .flex-container span.sure {
+			float: right;
+			margin-right: 20px;
+			margin-top: 15px;
+		}
+		
+		input.uncorrect {
+			border: 1px solid red;
+		}
+		
+		.uncorrect {
+			color: red;
+			line-height: 43px;
+			width: 100%;
+		}
+		
+		.mui-content {
+			margin: 0;
+		}
+		
+		.mui-table-view {
+			margin-top: 10px;
+		}
+		
+		#brandButton {
+			text-align: right;
+			color: #8F8F94;
+			font-size: 16px;
+		}
+		
+		.ui-alert {
+			right: 15px;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">个人信息</h1>
+		</header>
+		<div class="mui-content">
+			<form name="savePersonInfo" id="savePersonInfo">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell" id="file_clcik" onclick="showActionSheet()">
+						<a class="mui-navigate-right">
+							<img class="fr" id="imgPre" src="../images/head-pic.png" alt="" style="border-radius: 50%;" />
+
+							<span class="fl">头&#12288;&#12288;像</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+
+						昵&#12288;&#12288;称
+						<input type="text" class="fr" placeholder="点击在此输入" name="nickName" id="nickname" required onblur="validation()" />
+
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" id="showUserPicker" href="#">性&#12288;&#12288;别
+							<span class="fr" style="margin-right: 25px;" id="userResult" name="userResult" required></span>
+							<input type='hidden' name='sex' id='sex' />
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+
+						真实姓名
+						<input type="text" class="fr" placeholder="点击在此输入" name="realName" id="realName" required onblur="validation()" />
+
+					</li>
+					<li class="mui-table-view-cell">
+						身份证号
+						<input type="text" class="fr" placeholder="点击在此输入" name="identification" id="identification" required onblur="validation()" />
+					</li>
+				</ul>
+
+				<div class="car_info">
+					<div class="title line" style="color: #4ca26e;">我是车主</div>
+					<div class="text mui-input-row line">
+						<label>
+							品牌车型
+						</label>
+						<button id='brandButton' class="mui-btn choosebtn" type='button'>请选择车型车系</button>
+						<div id='brandResult' class="ui-alert" name="car" required></div>
+						<input type="hidden" name="carBrandAndModel" id="carBrand" />
+					</div>
+					<div class="line">
+						填写车号牌
+						<input type="text" placeholder="点击此处输入" name="licensePlateNumber" id="licensePlateNumber" onblur="validation()" required/>
+					</div>
+				</div>
+
+			</form>
+			<div class="mycard_submit_applicate">
+				<button id='applicate' class="mui-btn mui-btn-block mui-btn-primary">保存</button>
+			</div>
+		</div>
+		<div style="text-align: center;z-index: 99;width:100%;height: 2000px;background-color: #f2f2f2 ;position: absolute;top:40px;left: 0px;display: none;" id="spinner">
+			<div style="width:90px;padding-top:200px;margin:0 auto;height: 100%;">
+				<div style="width:30px;float: left;">
+					<span class="mui-spinner" style="height: 20px;"></span>
+					<!--//等待动画-->
+				</div>
+				<div style="width:60px;float: left;">请稍等...</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="showEdit" style="width:100%;height: 100%;background: #fff;position: absolute;top:0px;left: 0;display: none;z-index: 100;">
+			<div id="report" style="width:100%;height: 100%;position: absolute; top: 0;">
+				<img id="readyimg" style="width:100%; display: block;">
+			</div>
+			<div class="mui-content-padded" style="width:100%;height: 80px;background:rgba(0,0,0,0.8);z-index: 110;position: absolute;bottom:0;left:0;">
+				<div class="flex-container">
+					<a><span class="mui-icon cancel" onclick="closepop()">取消</span></a>
+					<a><span class="mui-icon sure" onclick="confirm()">确定</span></a>
+				</div>
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jQuery.js"></script>
+		<script type="text/javascript" src="../js/cropper/cropper.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+		<script src="../js/validation.js"></script>
+		<script src="../js/constant.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/data.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			document.addEventListener("plusready", onPlusReady, false);
+
+			function onPlusReady() {
+				var personInfo = localStorage.getItem('personInfo');
+				var personHeadPhoto = localStorage.getItem('personInfo_headPhoto');
+				var carBrandAndModelName = localStorage.getItem('carBrandAndModelName');
+				personInfo = $.parseJSON(personInfo);
+				if(personInfo == null) {
+					initInfo();
+				} else {
+					$("#nickname").val(personInfo.nickName);
+					$("#sex").val(personInfo.sex);
+					if(personInfo.sex == '1') {
+						$("#userResult").append("男");
+					} else {
+						$("#userResult").append("女");
+					}
+					$("#realName").val(personInfo.realName);
+					//					alert(carBrandAndModelName)
+					//					alert(personInfo.carBrandAndModelName)
+					if(carBrandAndModelName == null) {
+						$('#brandButton').html('');
+						$("#brandResult").html(personInfo.carBrandAndModelName);
+					} else {
+						$("#brandResult").html(carBrandAndModelName);
+					};
+					$("#carBrand").val(personInfo.carBrandAndModel);
+					$("#licensePlateNumber").val(personInfo.licensePlateNumber);
+					$("#identification").val(personInfo.identification);
+					if(personHeadPhoto != null) {
+						$("#imgPre").attr('src', 'data:image/jpg;base64,' + personHeadPhoto);
+					}
+				}
+			}
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			(function($, doc) {
+				mui.init();
+				$.ready(function() {
+					//选择性别
+					var sexPop = new $.PopPicker();
+					sexPop.setData([{
+						value: '1',
+						text: '男'
+					}, {
+						value: '2',
+						text: '女'
+					}]);
+					var showSexButton = doc.getElementById("showUserPicker");
+					var sexResult = doc.getElementById("userResult");
+					var sex = doc.getElementById('sex');
+					showSexButton.addEventListener('tap', function(e) {
+						document.getElementById("nickname").blur();
+						sexPop.show(function(i) {
+							sexResult.innerHTML = i[0].text;
+							sex.value = i[0].value;
+						});
+					});
+				});
+			})(mui, document);
+			(function($, doc) {
+				mui.init();
+				$.ready(function() {
+					//选择品牌车型
+					var brand = new $.PopPicker({
+						layer: 2
+					});
+					setbrandPicker(brand);
+					var brandButton = doc.getElementById("brandButton");
+					var brandResult = doc.getElementById("brandResult");
+					var carBrand = doc.getElementById("carBrand");
+					brandButton.addEventListener('tap', function(ea) {
+						brandButton.innerHTML = '';
+						brand.show(function(a) {
+							brandResult.innerText = a[0].text + " / " + a[1].text;
+							carBrand.value = a[0].value + " / " + a[1].value;
+						});
+					});
+				});
+			})(mui, document);
+			//进入页面请求个人信息回显
+			//			var params=prepareParams();
+			function initInfo() {
+				var paramsJson = prepareParams({});
+				$.ajax({
+					type: "GET",
+					url: webRoot + "/app/personInfo/getIntoMyCenter",
+					dataType: 'json',
+					data: paramsJson,
+					success: function(msg) {
+						var data = msg.data;
+						if(msg.respCode == 1) {
+							//将返回的数据回填
+							$("#nickname").val(data.nickName + "");
+							//将返回的数据回填
+							$("#nickname").val(data.nickName);
+							$("#userResult").append(data.sex);
+							if(data.sex == '男') {
+								$("#sex").val(1);
+							} else {
+								$("#sex").val(2);
+							}
+							$("#realName").val(data.realName);
+							if(data.carBrandAndModelName) {
+								$('#brandButton').html('');
+							}
+							alert(data.carBrandAndModelName);
+							$("#brandResult").html(data.carBrandAndModelName);
+							$("#carBrand").val(data.carBrandAndModelCode);
+							$("#licensePlateNumber").val(data.licensePlateNumber);
+							$("#identification").val(data.identification);
+							if(data.basePicture != null) {
+								//								var src = webRoot + "/picture/getThumbnailPicture/StaticResource_PersonHeadPicture/" + data.conventionPicture;
+								$("#imgPre").attr('src', 'data:image/jpg;base64,' + data.basePicture);
+							}
+						} else {
+							mui.toast(msg.respMsg);
+						}
+					},
+					error: function() {
+						mui.toast('网络不给力');
+					}
+				})
+			}
+			$(function() {
+				//防止上层tap事件穿透直接出发头像点击事件;
+				setTimeout(function() {
+					$('#file_clcik').css('pointer-events', 'all');
+				}, 1000)
+			});
+		</script>
+		<script type="text/javascript">
+			function validation() {
+				var nickname = $('#nickname').val();
+				var userResult = $('#userResult').html();
+				var realName = $('#realName').val();
+				var identification = $('#identification').val();
+				var brandResult = $('#brandResult').html();
+				var licensePlateNumber = $('#licensePlateNumber').val();
+				//				if (nickname.trim().length != 0) {
+				//					if (!(nickname.trim().length >=2 && nickname.trim().length < 8)) {
+				//						mui.toast('昵称须要2到8位');
+				//						return;
+				//					}
+				//				}
+				if(realName.trim().length != 0) {
+					if(!/^[\u0391-\uFFE5\w]+$/.test(realName)) {
+						mui.toast('请填写正确的姓名');
+						return;
+					}
+				}
+				if(identification.trim().length != 0) {
+					if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(identification)) {
+						mui.toast('请填写正确的身份证号码');
+						return;
+					}
+				}
+				if(licensePlateNumber.trim().length != 0) {
+					var licence = /^[\u4E00-\u9FA5][\da-zA-Z]{6}$/;
+					if(!licence.test(licensePlateNumber)) {
+						mui.toast('请正确填写车牌号，例如：沪A3343S');
+						return;
+					}
+				}
+				return true;
+			}
+			//	表格提交
+			$(function() {
+				$('#applicate').on('tap', function() {
+					if(!validation()) {
+						return;
+					}
+					var params = $("#savePersonInfo").serializeObject();
+					//								params = prepareParams(params);
+					console.log(JSON.stringify(params));
+					params = prepareParams(params);
+					$.ajax({
+						type: "post",
+						url: webRoot + "/app/personInfo/savePersonInfo",
+						dataType: 'json',
+						data: params,
+						success: function(msg) {
+							var data = msg.data;
+							if(msg.respCode == 1) {
+								plus.nativeUI.alert("保存成功！", function() {
+									var imgSrc = $("#imgPre").attr('src');
+									var brandAndModel = $("#brandResult").text();
+									localStorage.setItem('personInfo_headPhoto', data.basePricture);
+									localStorage.setItem('carBrandAndModelName', brandAndModel);
+									localStorage.setItem('personInfo', JSON.stringify(params));
+									plus.webview.currentWebview().close();
+									//个人信息页面保存了刷新一下我的页面；
+									//自动登入了刷新一下我的页面
+									var account_main = plus.webview.getWebviewById('../account/account_main.html');
+									mui.fire(account_main, 'refresh');
+								}, "益虫充电");
+							}
+						},
+						error: function() {
+							mui.toast('网络不给力');
+						}
+					});
+				});
+			});
+		</script>
+		<script>
+			//post内容  
+			function postAvatar() {
+				var petimage = $("#changeAvatar > img").attr("src");
+				//此时取到的图片已经是base64形式
+				//你的处理代码，改post到服务器了，服务器接收同接收普通post参数一样，只是，存图片的字段改成ntext，这是sql的数据类型，其他数据库同类型，jq的getJSON可能会不执行，因为getJSON是get模式，图片转成base64后，很容易超出最大长度，其实，经过压缩后，一般不会超出的，具体压缩方法下文有  
+			}
+			//拍照  
+			function getImage() {
+				var cmr = plus.camera.getCamera();
+				cmr.captureImage(function(p) {
+					plus.io.resolveLocalFileSystemURL(p, function(entry) {
+						var localurl = entry.toLocalURL(); //  
+						compressImage(localurl);
+						//						$("#report").html('<img id="readyimg" src="' + localurl + '">');
+						//						cutImg();
+						//	mui('#picture').popover('toggle');
+					});
+				});
+			}
+			//相册选取  
+			function galleryImgs() {
+				plus.gallery.pick(function(e) {
+					compressImage(e);
+					//					$('#report > img').attr("src", e);
+					//					cutImg();
+					//	mui('#picture').popover('toggle');
+				}, function(e) {
+					mui.toast("取消选择图片");
+				}, {
+					filter: "image"
+				});
+			}
+			//压缩图片
+			function compressImage(filePath) {
+				var timestamp = new Date().getTime();
+				var dstPath = "_www/temp_" + timestamp + ".jpg";
+				var compressOptions = {
+						src: filePath,
+						dst: dstPath,
+						quality: 80,
+						width: "50%"
+					}
+					//				if('iOS'==plus.os.name){
+					//					compressOptions.rotate = 90
+					//				}
+				plus.zip.compressImage(compressOptions,
+					function(event) {
+						var target = event.target; // 压缩转换后的图片url路径，以"file://"开头
+						//						var size = event.size; 		// 压缩转换后图片的大小，单位为字节（Byte）
+						//						var width = event.width; 	// 压缩转换后图片的实际宽度，单位为px
+						//						var height = event.height; // 压缩转换后图片的实际高度，单位为px
+						//						alert("Compress success! size: " + size+ "，width: "+ width +",url:" + target);
+						$("#report").html('<img id="readyimg" src="' + target + '">');
+						cutImg();
+					},
+					function(error) {
+						$("#report").html('<img id="readyimg" src="' + target + '">');
+						cutImg();
+					});
+			}
+
+			function getRoundedCanvas(sourceCanvas) {
+				var canvas = document.createElement('canvas');
+				var context = canvas.getContext('2d');
+				var width = sourceCanvas.width;
+				var height = sourceCanvas.height;
+				canvas.width = width;
+				canvas.height = height;
+				context.beginPath();
+				context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI);
+				context.strokeStyle = 'rgba(0,0,0,0)';
+				context.stroke();
+				context.clip();
+				context.drawImage(sourceCanvas, 0, 0, width, height);
+				return canvas;
+			}
+			//照片裁剪类  
+			function cutImg() {
+				//$(".mui-content").hide();
+				$("#showEdit").show();
+				var $image = $('#report > img');
+				$image.cropper({
+					movable: true,
+					zoomable: true,
+					rotatable: false,
+					scalable: false,
+					viewMode: 1,
+					dragMode: 'move',
+					autoCropArea: 1,
+					restore: false,
+					guides: false,
+					highlight: false,
+					cropBoxMovable: false,
+					cropBoxResizable: false,
+					checkImageOrigin: true,
+					aspectRatio: 1,
+					zoom: 1,
+					built: function() {
+						croppable = true;
+					}
+				});
+				//                  $image.cropper('zoom',-0.5);  
+			}
+			//确认照片，展示效果  
+			function confirm() {
+				$("#showEdit").hide();
+				var $image = $('#report > img');
+				var croppedCanvas = $image.cropper("getCroppedCanvas");
+				var croppedThumbCanvas = $image.cropper("getCroppedCanvas", {
+					width: 256,
+					height: 256
+				});
+				// Round
+				//	roundedCanvas = getRoundedCanvas(croppedCanvas);
+				//var imgurl = dataURL.toDataURL("image/png", 0.5);  
+				//换成下边的方法，转成jpeg，但是把质量降低，  
+				//经测试51k的png，转成0.3质量，大小为3k多，0.5质量大小为4k多，  
+				//这回应该不会出现卡的情况了，  
+				//既然差别1k多，还是用0.5的质量，还是要兼顾下显示效果的。  
+				var imgurl = croppedCanvas.toDataURL("image/jpeg", 0.5);
+				var imgThumbUrl = croppedThumbCanvas.toDataURL("image/jpeg", 0.5);
+				croppedCanvas
+				$("#imgPre").attr("src", imgurl);
+				$("#imgPre").css("border-radius", "50%");
+				var url = webRoot + "/app/personInfo/saveHeadPicture";
+				var paramsJson = prepareParams({
+					'img': imgurl,
+					'imgThumb': imgThumbUrl
+				});
+				mui.ajax(url, {
+					data: paramsJson,
+					dataType: 'json',
+					type: 'post',
+					success: function(msg) {
+						var data = msg.data;
+						if(msg.respCode == 1) {
+							localStorage.setItem('personInfo_headPhoto', data.basePricture);
+						} else {
+							mui.toast('服务器异常');
+						}
+					}
+				})
+			}
+
+			function closepop() {
+				var $image = $('#report > img');
+				$image.cropper('destroy');
+				$("#showEdit").hide();
+				//$(".mui-content").show();
+			}
+
+			function showActionSheet() {
+				var bts = [{
+					title: "拍照"
+				}, {
+					title: "从相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: bts
+					},
+					function(e) {
+						if(e.index == 1) {
+							getImage();
+						} else if(e.index == 2) {
+							galleryImgs();
+						}
+						//outLine( "选择了\""+((e.index>0)?bts[e.index-1].title:"取消")+"\"");
+					}
+				);
+			}
+		</script>
+	</body>
+
+</html>

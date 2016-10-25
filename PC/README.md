@@ -6,3 +6,5 @@
 * [苏宁](https://github.com/7270401471/MyProject/tree/master/PC/suning)
 
 * [高德](https://github.com/7270401471/MyProject/tree/master/PC/gaode)
+
+* [微赛](https://github.com/7270401471/MyProject/tree/master/PC/weisai)

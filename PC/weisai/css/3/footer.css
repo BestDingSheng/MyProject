@@ -1,0 +1,104 @@
+.container{
+	padding-left:0;
+	padding-right: 0;
+}
+ul,li{
+	list-style: none;
+}
+.footer {
+	height: 500px;
+	background: #1a1917;
+}
+
+.footer a {
+	color: #fff;
+	font-size: 16px;
+	font-family: "微软雅黑";
+}
+
+.footer li {
+	/*line-height: 45px;*/
+	margin-bottom: 25px;
+}
+
+.footer .row {
+	margin-top: 50px;
+	border-bottom: 2px solid #71706f;
+	padding-bottom: 30px;
+}
+
+.footer .appStore {
+	margin: 60px 0 20px 0;
+}
+
+#footerRight {
+	height: 290px;
+	border-left: 1px solid #fff;
+	box-sizing: border-box;
+	padding-top: 90px;
+	margin-top: -10px;
+}
+
+#footerRight button {
+	display: block;
+	width: 140px;
+	height: 40px;
+	outline: none;
+	border: none;
+	margin: 0 auto;
+}
+
+#footerRight .joinCompetition {
+	background:#ffaf17;
+	border-radius: 30px;
+	color: #2c2926;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	margin-bottom: 25px;
+}
+
+#footerRight .handleCompetition {
+	border:3px solid #3ECDE2;
+	background: transparent;
+	border-radius: 30px;
+	color: #3ecde2;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+
+.shareSite {
+	font-size: 0;
+}
+
+.shareSite span {
+	margin-right: 24px;
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+}
+.shareSite .wexin{
+	background: url(../../images/3/sprite/icons.png) no-repeat 0 -117px;
+}
+.shareSite .sina{
+	background: url(../../images/3/sprite/icons.png) no-repeat 0 -77px;
+}
+.shareSite .kongjian{
+	background: url(../../images/3/sprite/icons.png) no-repeat 0 -154px;
+}
+.shareSite .zhihu{
+	background: url(../../images/3/sprite/icons.png) no-repeat 0 -39px;
+}
+.shareSite .tieba{
+	background: url(../../images/3/sprite/icons.png) no-repeat 0 -1px;
+}
+.copyright {
+	margin-top: 48px;
+}
+.copyright p{
+	display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    line-height: 34px;
+    font-family: "微软雅黑";
+}
+   

@@ -1,0 +1,627 @@
+*{
+	padding: 0;
+	margin: 0;
+	font:"微软雅黑" helvetica arial ;
+}
+a{
+	text-decoration: none;
+	color: #222;
+}
+li{
+	list-style: none;
+}
+#header{
+	width: 96%;
+	margin: 0 auto;
+	height: 50px;
+	position: relative;
+}
+#header .logo{
+	margin-top: 1%;
+	width: 33%;
+	float: left;
+}
+#header .logo-pic{
+	width: 100%;
+	height: 100%;
+}
+#header .place-W{
+	position: absolute;
+	top: 32%;
+	right: 12%;
+}
+#header .place-W a{
+	color: #777;
+	font-size: 2vw;
+}
+#header .open{
+	width:4.5%;
+	float: right;
+	margin:5% 3% 0 0;
+}
+#header .open img{
+	width: 100%;
+	height: 100%;
+}
+#sousuo{
+	width: 95%;
+	height: 40px;
+	margin: 0 auto;
+	border: 1px solid #3385ff;
+	position: relative;
+	background: #fff;
+}
+#sousuo .left{
+	float: left;
+	width: 75%;
+}
+#sousuo input.sousuokuang{
+	height: 35px;
+	width: 60%;
+	position: absolute;
+	left: 10%;
+	top: 5%;
+	font-size: 4.5vw;
+	border:none; 
+	outline: none;
+}
+#sousuo .sousuo-pic{
+	width:4.5%;
+	position: absolute;
+	top: 30%;
+	left: 3%;
+}
+#sousuo .sousuo-pic img{
+	width: 100%;
+}
+#sousuo .queren{
+	width: 100%;
+	background: none;
+	border: none;
+}
+#sousuo .baidu{
+	width: 25%;
+	height: 100%;
+	float: right;
+	background: #3385ff;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#sousuo .baidu span{
+	position: absolute;
+	right: 10%;
+	top: 2%;
+	color: #fff;
+	font-size: 4vw;
+	line-height: 10vw;
+}
+/*搜索栏下推荐内容*/
+#sousuo-bottom{
+	width: 95%;
+	height: 30px;
+	position: relative;
+	margin-bottom: 2%;
+}
+#sousuo-bottom a{
+	font-size: 13.5px;
+	color: #000000;
+	display: inline-block;
+	padding: 3vw;
+	padding-right: 0;
+}
+#sousuo-bottom img{
+	width: 5%;
+	position: absolute;
+	right: 0;
+	top:30%;
+}
+/*导航栏*/
+#nav{
+	position: relative;
+	width: 99.6%;
+	height: 40px;
+	background:#EEEEEE ;
+	color: #777777;
+}
+
+#nav .jiantou{
+	position: absolute;
+	display: block;
+	width: 8%;
+	height: 38px;
+	right: 0;
+}
+#nav .jiantou img{
+	width: 35%;
+	position: absolute;
+	right: 40%;
+	top: 45%;
+}
+#nav i{
+	display: block;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: #ff6300;
+	border: #525151;
+	position: absolute;
+	right: 25%;
+	top: 25%;
+}
+#nav ul.nav-more{
+	width: 90%;
+}
+#nav ul.nav-more a{
+	display: inline-block;
+	float: left;
+	line-height: 40px;
+	color: #777777;
+	padding: 0 5% 0 5%;
+}
+#nav ul.nav-more a.life{
+	color: #FF6300; 
+	font-size: 4vw;
+	padding: 0;
+	position: absolute;
+	right: 2%;
+}
+#nav ul.nav-more a  img{
+	width: 35%;
+}
+/*网*/
+#mz-zf {
+	width:100%;
+	height:33px;
+}
+#mz-zf a{
+	height: 33px;
+	line-height: 34px;
+	width: 16.66%;
+	display: block;
+	float: left;
+	text-align: center;
+	font-size: 14px;
+}
+#mz-zf a span{
+	padding: 1px 6px;
+	border-radius: 16px;
+	border: 1px solid #eee;
+	font-size: 12px;
+}
+/*百度/凤凰/腾讯/搜狐*/
+#mz-icon{
+	width: 100%;
+}
+#mz-icon li{
+	border-bottom: 1px solid #eee;
+	width: 100%;
+	height: 38px;
+}
+#mz-icon a{
+	display: block;
+	float: left;
+	width:19%;
+	height: 50px;
+	position: relative;
+	font-size: 15px;
+	height: 39px;
+	line-height: 39px;	
+	padding-left: 18px;
+	text-align: center;
+	margin-left: 1px;
+}
+#mz-icon a img{
+	display: block;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	left: 9px;
+	float: left;
+	position: absolute;
+}
+/*搜狐视频-NBA-HAO到家-天涯社区-百度视频*/
+#mz-card{
+	width: 100%;
+	position: relative;
+	float: left;
+}
+#mz-card .mz-kz{
+	width: 100%;
+	background: #FFFFFF;
+}
+#mz-card .mz-kz a{
+	width: 19.6%;
+	float: left;
+	font-size: 13.5px;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+#mz-card .mz-kz a img.jia{
+	width: 14%;
+}
+#mz-card .tuizhan{
+	width: 100%;
+	height: 46px;
+	line-height: 40px;
+	text-align: center;
+	background: #EEEEEE;
+	float: left;
+}
+#mz-card .tuizhan a{
+	color:#24a500 ;
+	display: inline-block;
+	margin-right: 15px;
+	line-height: 46px;
+	font-size: 13.5px;
+}
+/*必备网站*/
+#mz-card-bottom{
+	width: 100%;
+	height: 258px;
+	position: relative;
+	border-bottom: 1px solid #EEEEEE;
+	border-top: 1px solid #EEEEEE;
+	float: left;
+}
+#mz-card-bottom  .cn-td{
+	width: 100%;
+	height: 41px;
+	border-bottom: 1px solid #C7C7C7;
+}
+#mz-card-bottom  .cn-td h2{
+	position: absolute;
+	padding-left: 15px;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 41px;
+	float: left;
+	color: #222;
+}
+#mz-card-bottom .cn-td h2 a{
+	display: block;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 41px;
+}
+#mz-card-bottom .cn-td h2 img{
+	width: 6%;
+	padding-left: 5px;
+}
+#mz-card-bottom .cn-td ul{
+	float: right;
+	line-height: 41px;
+	position: absolute;
+	right: 15px;
+}
+#mz-card-bottom .cn-td li{
+	float: left;
+	padding: 0 8px;
+	text-align: center;
+	font-size: 15px;
+	color: #777777;
+	height: 41px;
+}
+/*<!--新闻-小说-体育-汽车-分类-->*/
+#mz-card-bottom .cn-bd{
+	padding: 6px 0 10px;
+	font-size: 4.5vw;
+}
+#mz-card-bottom .cn-bd .fl{
+	padding-right: 22px;
+	height: 35px;
+	position: relative;
+	margin: 0 10px 0 15px;
+}
+#mz-card-bottom .cn-bd .fl a{
+	display: block;
+	height: 35px;
+	line-height: 35px;
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+#mz-card-bottom .cn-bd .fl a:first-of-type{
+	color: #24A500;
+	font-size: 12.5px;
+	line-height: 20px;
+}
+#mz-card-bottom .cn-bd .fl b{
+	text-decoration: none;
+	font-weight: 400;
+	display: block;
+	width: 46px;
+	height: 18px;
+	margin-top: 7.5px;
+	border: 1px solid #66c04d;
+	border-radius: 12px;
+}
+#mz-card-bottom .cn-bd .fl img{
+	width: 3%;
+	position: absolute;
+	right: 2%;
+	top: 15px;
+}
+#mz-card-bottom .huitiao{
+	width: 100%;
+	height: 15px;
+	background:#EEEEEE;
+}
+/*hao到家*/
+.haodaojia{
+	width: 100%;
+	height: 265px;
+	position: relative;
+	float: left;
+	top: 13px;
+}
+.haodaojia img.logo{
+	width: 25%;
+	float: left;
+}
+.haodaojia .place{
+	line-height:26px;
+	float: left;
+	width: 16%;
+	border: 1px solid #eee;
+	border-radius: 15px;
+	padding: 0 5px;
+	height: 26px;
+	margin: 6px 0 0 5px;
+	font-size: 15px;
+}
+.haodaojia .place img{
+	float: left;
+	margin-top: 3px;
+}
+.haodaojia .right{
+	float: left;
+	width:38%;
+	height: 40px;
+	margin-left: 7%;
+}
+.haodaojia .right li{
+	float: left;
+	padding: 0 5px;
+	text-align: center;
+	font-size: 15px;
+	color: #777777;
+	line-height: 40px;
+	width: 25%;
+}
+.haodaojia .cont{
+	width: 5%;
+	margin: 12px 5px 0 0 ;
+}
+.haodaojia .tab{
+	border-top: 1px solid #EEEEEE;
+	width: 95%;
+	height: 180px;
+	float: left;
+	padding: 15px 5px 0 ;
+}
+.haodaojia .tab li{
+	width: 20%;
+	height: 90px;
+	line-height: 40px;
+	border-right: 1px solid #e0e0e0;
+	border-bottom: 1px solid #E0E0E0;
+	border: 0;
+	text-align: center;
+	float: left;
+}
+.haodaojia .tab li a{
+	width: 18%;
+}
+.haodaojia .tab li img{
+	float: left;
+	width: 65%;
+	padding: 0 16px;
+}
+.haodaojia .huitiao{
+	width: 100%;
+	height: 15px;
+	float: left;
+	background: #EEEEEE;
+}
+.zixun{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	float: left;
+	border-bottom:1px solid #eee; 
+}
+.zixun .zixun-top{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	border-bottom: 1px solid #EEEEEE;
+}
+.zixun .zixun-top h2{
+	float: left;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 41px;
+	padding-left: 18px;
+}
+.zixun .zixun-top .shu{
+	width: 5%;
+	float: right;
+	margin: 10px 10px 0 5px;
+}
+.zixun .zixun-top ul{
+	float: right;
+}
+.zixun .zixun-top ul li{
+	float: left;
+	line-height: 41px;
+	padding: 0 8px;
+	font-size: 15px;
+}
+/*轮播图区域*/
+.zixun .lunbo{
+	margin-bottom: 10px;
+	margin-top: 15px;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+.zixun .lunbo a{
+	width: 90%;
+	height: 114px;
+	position: relative;
+}
+.zixun .lunbo a img{
+	width: 90%;
+}
+.zixun .lunbo a span{
+	display: block;
+	width: 90%;
+	height: 32px;
+	line-height:32px;
+	position: absolute;
+	left: 0px;
+	bottom: 5px;
+	color: #fff;
+}
+/*轮播图区域*/
+.zixun .text-center a{
+	margin-left: 20px;
+}
+.zixun .text-center a.jing{
+	font-size: 18px;
+	margin-bottom: 10px;
+	height: 29px;
+	line-height: 29px;
+	display: block;
+}
+.zixun .text-center a.m{
+	border: 1px solid #EEEEEE;
+	border-radius: 18px;
+	font-size: 13px;
+	padding: 3px 10px;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+.zixun .text-center p{
+	display: block;
+	height: 35px;
+	line-height: 35px;
+	opacity: 1;
+	margin: 1px 0;
+	overflow: hidden;
+	font-size: 15px;
+}
+/*hao妹子*/
+.zixun .text-center b.haomei{
+	width: 64px;
+	border: 1px solid #ff7c00;
+	color: #ff7c00;
+	border-radius: 10px;
+	height: 18px;
+	display: inline-block;
+	padding: 0 3px ;
+	line-height: 20px;
+	font-size: 12.5px;
+	text-align: center;
+}
+/*查看更多*/
+.zixun .text-center .more{
+	font-size: 14px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;	
+}
+.zixun .text-center .more .gifjiantou{
+	width: 2.5%;
+}
+/*猜你喜欢*/
+.youlove{
+	width: 90%;
+	height: 175px;
+	float: left;
+	margin-left: 5%;
+}
+.youlove .love-top{
+	height: 54px;
+	width: 100%;
+}
+.youlove .love-top h3{
+	width: 25%;
+	font-weight: 500;
+	color: #fb6300;
+	font-size: 17px;
+	float: left;
+	height: 54px;
+	line-height: 54px;
+}
+.youlove .love-top span{
+	height: 54px;
+	line-height: 54px;
+	display: block;
+	float: right;
+	width: 25%;
+}
+.youlove .love-top span img{
+	width: 20%;
+	margin:5px 10px 0 0;
+}
+/*猜你喜欢-内容*/
+.youlove .love-bottom{
+	width: 100%;
+	overflow: hidden;
+}
+.youlove .love-bottom a{
+	display: block;
+	width: 50%;
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	font-weight: 400;
+	font-size: 15px;
+	color: #222222;
+}
+.youlove .love-bottom a img{
+	width: 10%;
+}
+/*灰条*/
+.huitiao{
+	width: 100%;
+	height: 20px;
+	background: #EEEEEE;
+	float: left;
+}
+/*搞笑*/
+/*
+.gaoxiao{
+	width: 100%;
+	height: 200px;
+	float: left;
+}
+.gaoxiao h3{
+	float: left;
+}
+.gaoxiao ul {
+	float: right;
+}
+.gaoxiao ul li{
+	float: right;
+	margin-right: ;
+}
+*/
+.jiazai{
+	margin-top: 30px;
+	width: 100%;
+	color: #676867;
+	display: inline-block;
+	text-align: center;
+	font-size: 30px;
+	float: left;
+}
+img.jiazai{
+	width: 50%;
+	margin-left: 25%;
+}

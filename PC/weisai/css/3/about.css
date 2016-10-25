@@ -1,0 +1,54 @@
+.contact{
+	width: 750px;
+	height:627px;
+	background: url(../../images/3/about.png) no-repeat center center;
+	margin: 20px auto 90px;
+	box-sizing: border-box;
+	padding:0 10px;
+	
+}
+.contact .header{
+	font-size: 30px;
+	line-height: 72px;
+	color: #fff;
+	box-sizing: border-box;
+	padding-left: 30px;
+}
+.contact .text{
+	padding:38px 0 32px 28px;
+	border-bottom:1px solid #d1d1d1;
+	font-size: 16px;
+}
+.contact .pull-left{
+	padding-left: 28px;
+}
+.contactLeft{
+	width: 360px;
+}
+.contact .pull-left .title{
+	margin-top: 36px;
+	margin-bottom: 24px;
+	font-size: 18px;
+}
+.IconText {
+	margin: 0;
+}
+.IconText li{
+	margin-bottom:25px;
+	font-size: 15px;
+	position: relative;
+}
+.IconText li span{
+	display: inline-block;
+	margin-right: 10px;
+	/*background: url(../../images/3/sprite/icon42.png) no-repeat 0 0;*/
+}
+.posi{
+	position: absolute;
+	right:85px;
+	top:-3px;
+	font-style: normal;
+}
+.mapImg{
+	margin-bottom: 14px;
+}

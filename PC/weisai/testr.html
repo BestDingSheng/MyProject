@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<img src="" alt="" />
+		<script src="js/3/jquery.js"></script>
+		<script>
+			(function(window) {
+				$(function() {
+					
+						$.ajax({
+							type: "post",
+							url: "http://image.baidu.com/channel/listjson?pn=0&rn=30&tag1=%E7%BE%8E%E5%A5%B3&tag2=%E5%85%A8%E9%83%A8",
+							dataType: "json",
+							success: function(data) {
+								var data = data.data;
+								for(var i =0; i<10;i++){
+									var str = "<img src="+data[i].download_url+"  />"
+									$('body').append(str);
+								}
+							}
+						});
+				
+				});
+			})(window)
+		</script>
+	</body>
+
+</html>

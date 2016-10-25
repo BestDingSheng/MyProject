@@ -1,0 +1,106 @@
+body {
+  font-family: "微软雅黑";
+}
+.content {
+  width: 900px;
+  margin: 0 auto;
+  min-height: 600px;
+}
+.content label {
+  display: inline-block;
+}
+.header h1 {
+  margin-left: 25px;
+  margin-top: 27px;
+  margin-bottom: 20px;
+}
+.main {
+  padding-left: 80px;
+}
+.main .regTitle {
+  font-family: "微软雅黑";
+  font-size: 22px;
+  color: #343434;
+  margin-bottom: 20px;
+  margin-top: 70px;
+}
+.main .form div {
+  margin-bottom: 10px;
+  position: relative;
+}
+.main .form div span img {
+  vertical-align: -2px;
+  margin-right: 5px;
+}
+.main .form div .codeBtn {
+  position: absolute;
+  right: 125px;
+  top: 5px;
+  padding: 2px 5px;
+  background: #fff;
+  outline: none;
+  border: 1px solid #dadada;
+}
+.main .form label {
+  width: 85px;
+  text-align: right;
+  margin-right: 25px;
+}
+.main .form input {
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  width: 225px;
+  line-height: 35px;
+  height: 35px;
+  padding: 0;
+  text-indent: 20px;
+  border: 1px solid #dadada;
+  margin-right: 10px;
+}
+input[type=text]:focus{
+	-webkit-box-shadow:none;
+}
+.main .form .regBtn {
+  color: #fff;
+  background: #ffa80b;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  font-family: "microsoft yahei";
+  font-size: 16px;
+  text-indent: 0;
+}
+.main .describe {
+  padding: 25px 35px;
+  margin-top: 20px;
+  margin-left: 30px;
+  border-left: 1px #e6e6e6 solid;
+}
+.main .describe .txt {
+  font-size: 16px;
+  font-family: "微软雅黑";
+}
+.main .describe div.txt {
+  margin: 28px 0;
+}
+.main .describe div.txt a {
+  color: #ffa80b;
+}
+.main .describe .img {
+  text-align: center;
+}
+.main .describe span {
+  color: #a8a8a8;
+}
+.main .describe span a {
+  color: #ffa80b;
+  margin-left: 5px;
+}
+.color_correct {
+  color: #66b03e;
+}
+.color_error {
+  color: #cd1722;
+}
+/*# sourceMappingURL=reg.css.map */

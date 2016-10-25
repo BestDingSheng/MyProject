@@ -1,0 +1,158 @@
+.swiper-wrapper{
+	height: 100%;
+}
+.swiper-wrapper img{
+	width: 100%;
+}
+.downMain .main{
+	height: 447px;
+	background: url(../../images/3/downLoad/banner_bg.png) no-repeat center center;
+	box-sizing: border-box;
+	padding-left:240px;
+	padding-top:70px;
+}
+.downMain .main .title{
+	font-size:30px;
+	line-height:40px;
+	color: #3f3f3f;
+	margin-bottom: 10px;
+}
+.downMain .main .text{
+	color: #7b7b7b;
+	font-size: 16px;
+	line-height: 30px;
+}
+.downMain .main .pull-left{
+	width: 320px;
+}
+.ercode{
+	margin-bottom: 8px;
+}
+.ercode a{
+	color:#FFAF17;
+}
+.ercode span{
+	color: #a9a9a9;
+	margin-right: 63px;
+}
+.platformIcon{
+	float: right;
+}
+.platformIcon span{
+	display:inline-block;
+	width: 50px;
+	height: 50px;
+	margin-right:5px;
+	border-radius:50%;
+	/*transition: all 0.5s linear;*/
+}
+.platformIcon span:nth-child(1){
+	background: url(../../images/3/downLoad/phoeIcon.png) no-repeat -35px 6px;
+}
+.platformIcon span:nth-child(1).act{
+	background: url(../../images/3/downLoad/phoeIcon.png) no-repeat -37px -45px;
+	border:2px solid #666463;
+	
+}
+.platformIcon span:nth-child(2){
+	background: url(../../images/3/downLoad/phoeIcon.png) no-repeat 7px 6px;
+	
+
+}
+.platformIcon span:nth-child(2).act{
+	background: url(../../images/3/downLoad/phoeIcon.png) no-repeat 5px -43px;
+	border:2px solid #666463;
+	
+}
+/**/
+.list{
+	padding-left:240px;
+	height:285px;
+	box-sizing: border-box;
+	padding-top:46px;
+	position: relative;	
+	
+}
+.list .line{
+	position: absolute;
+	width: 1px;
+	background:#babab9;
+	height: 200px;
+	left: 500px;
+	top: 26px;
+}
+.clickBtn{
+	margin-right: 10px;
+}
+.list .yelloIcon{
+	padding-left: 0;
+	padding-right: 46px;
+}
+.list ul{
+	margin:0;
+	display: inline-block;
+	/*width:245px;*/
+	padding-left: 46px;
+	padding-right: 46px;
+	font-family: "微软雅黑";
+}
+.list ul>.title{
+font-size: 18px;
+margin-bottom: 20px;
+
+}
+.list ul>li{
+	font-size: 16px;
+	color: #babab9;
+	margin-bottom:7px;
+	padding-left: 20px;
+	position:relative;
+}
+.list .yelloIcon li{
+	color:#FEA511;
+}
+.list .yelloIcon li:before{
+	background:#FEA511;
+	
+}
+.list ul>li:before{
+	position: absolute;
+	content: '';
+	width: 6px;
+	height: 6px;
+	background:#babab9;
+	left: 5px;
+	top: 8px;
+	border-radius: 50%;
+}
+.main .Box{
+	width: 206px;
+	height: 331px;
+	position: relative;
+	margin-right:190px;
+	top:0;
+}
+.phoneContent{
+	position: absolute;
+	width:130px;
+	height: 230px;
+	top:35px;
+	right:37px;
+}
+.swiper-pagination{
+	right: -30px;
+	width: 20px;
+	top:130px;
+}
+.swiper-pagination-bullet-active{
+	background:#fcc024 !important;
+	
+}
+.swiper-pagination-bullet{
+	display: block;
+	margin-bottom: 14px;
+	width: 13px;
+	height: 13px;
+	background:#dadad8;
+	opacity: 1;
+}

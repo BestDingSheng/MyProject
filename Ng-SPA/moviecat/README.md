@@ -1,4 +1,4 @@
-# 豆瓣电影SPA-Deom
+# 豆瓣电影SPA-Demo
 
 ###效果展示
 <center>

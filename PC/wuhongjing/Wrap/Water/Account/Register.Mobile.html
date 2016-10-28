@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>注册-创建账号</title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />
+<link rel="stylesheet" type="text/css" href="../resources/css/wap/style.css" />
+</head>
+
+<body>
+<section id="page">
+  <div class="page_bg_r">
+    <div class="page_bg_l"> 
+      <!--header-->
+      <header id="header">
+        <section class="login"> <a href="../Ucenter/Index.Mobile.html" class="btn btn_blue"><em class="txt">sifeel<i class="ico ico_reg"></i></em></a> <a href="javascript:void(0);" class="btn btn_blue1"><em class="txt">退&nbsp;出</em></a> </section>
+        <h1 class="logo"></h1>
+      </header>
+      <!--/header--> 
+      <!--nav-->
+    <nav class="nav">
+    	<ul class="zhu_nav">
+          <li><a href="../index.mobile.html" class="btn"><em class="txt">首&nbsp;页</em></a></li>
+          <li><a href="javascript:void(0);" class="btn cur"><em class="txt">会员登录</em></a></li>
+          <li><a href="javascript:void(0);" class="btn backBtn"><em class="txt">返&nbsp;回</em></a></li>
+        </ul>
+      </nav>
+      <!--/nav--> 
+      <!--content-->
+      <section class="content con_regist">
+        <header class="title">
+          <ul>
+            <li class="progress_01 cur">
+              <div class="trapezoid"></div>
+              <div class="trapezoid_fan"></div>
+              <dl class="main_tl">
+                <dt class="ico"></dt>
+                <dd >
+                    <h4>创建账号</h4>
+                    <span>获得10积分</span>
+                 </dd>
+              </dl>
+            </li>
+            <li class="progress_02">
+              <div class="parallelogram-lt"></div>
+              <div class="parallelogram-lb"></div>
+              <dl class="main_tl">
+                <dt class="ico ico_02"></dt>
+                <dd >
+                    <h4>完善资料</h4>
+                    <span>获得20积分</span>
+                 </dd>
+              </dl>
+            </li>
+            <li class="progress_02">
+              <div class="parallelogram-lt"></div>
+              <div class="parallelogram-lb"></div>
+              <dl class="main_tl">
+                <dt class="ico ico_03"></dt>
+                <dd >
+                    <h4>饮水调查</h4>
+                    <span>获得20积分</span>
+                 </dd>
+              </dl>
+            </li>
+          </ul>
+        </header>
+        <p class="tips">完成注册即可获得 10 积分！</p>
+        <div class="main">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th scope="row">用户名：</th>
+                <td><input type="text" class="inp_txt">
+                  <p class="remarks"><span class="tips fr">请牢记，下次登录时使用</span><em class="error">用户名已占用</em></p></td>
+              </tr>
+              <tr>
+                <th scope="row">手机：</th>
+                <td><input type="text" class="inp_txt">
+                  <p class="remarks"><a href="javascript:void(0);" class="btn_yanz">获取验证码</a><em class="error fr">手机号已注册</em></p></td>
+              </tr>
+              <tr>
+                <th scope="row">验证码：</th>
+                <td><input type="text" class="inp_txt inp_txt1">
+                  <em class="error">验证码错误</em></td>
+              </tr>
+              <tr>
+                <th scope="row">邮箱：</th>
+                <td><input type="text" class="inp_txt"></td>
+              </tr>
+              <tr>
+                <th scope="row">密码：</th>
+                <td><input type="text" class="inp_txt">
+                  <p class="remarks"><span class="tips"> 6~16个字符（字母、数字），区分大小写</span></p></td>
+              </tr>
+              <tr>
+                <th scope="row">确认密码：</th>
+                <td><input type="text" class="inp_txt">
+                  <p class="remarks"><em class="error">两次密码输入不一致</em></p></td>
+              </tr>
+              <tr>
+                <th scope="row">&nbsp;</th>
+                <td><label>
+                    <input type="checkbox" />
+                    <a href="Agreement.Mobile.html" class="tips">已阅读《昆仑峰汇服务协议》，同意遵守</a></label></td>
+              </tr>
+            </table>
+            <span class="btn ">
+            <input type="submit" class="btn_sub" value="下一步" onClick="url('RegisterStep2.mobile.html')"/>
+            </span>
+        </div>
+      </section>
+      <!--/content--> 
+      <!--footer-->
+      <footer id="footer">&copy;2014&nbsp;昆仑山矿泉水有限公司</footer>
+      <!--/footer--> 
+    </div>
+  </div>
+</section>
+<!--layer-->
+<div class="layer_box"></div>
+<!--用户名错误-->
+<section class="layer layer_acct">
+  <div class="main">
+    <h3 class="title">请填写正确的用户名</h3>
+    <a href="javascript:void(0);" class="btn"><em class="txt">确&nbsp;定</em></a> </div>
+</section>
+<!--/用户名错误--> 
+<!--/layer-->
+<script type="text/javascript" src="../resources/scripts/wap/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../resources/scripts/wap/base.js"></script>
+</body>
+</html>

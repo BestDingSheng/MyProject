@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设置样式</title>
+<style>
+body{background:#efefef}
+#div1{font-size:26px;font-family:"微软雅黑";font-weight:bold;}
+#btn{width:100px;height:40px;background:#F00;color:#FFF;font-size:16px;font-family:"微软雅黑";font-weight:bold;border:none;}
+#div2{width:100px;height:100px;background:#FFF;border:3px solid #393129;margin-top:50px;}
+#black{width:100%;height:100%;background:#000;position:absolute;top:0;left:0;opacity:0.5;filter:alpha(opacity:50);display:none;}
+#show{width:260px;height:160px;border:20px solid #9c949c;background:#FFF;position:absolute;left:50%;top:50%;margin-left:-150px;margin-top:-100px;padding:20px;display:none;}
+#color,#kuan,#gao{font-family:"微软雅黑";font-size:16px;margin-bottom:13px;}
+#color input{font-family:"微软雅黑";font-size:14px;width:40px;height:34px;margin-left:10px;color:#FFF;border:none;cursor:pointer}
+.red{background:#df000b}
+.yellow{background:#efbd00}
+.blue{background:#5a94ef}
+#kuan input{font-family:"微软雅黑";font-size:14px;width:40px;height:30px;margin-left:12px;color:#c0c0c0;border:1px solid #c0c0c0;cursor:pointer}
+#gao input{font-family:"微软雅黑";font-size:14px;width:40px;height:30px;margin-left:12px;color:#c0c0c0;border:1px solid #c0c0c0;cursor:pointer}
+#an{height:32px;width:140px;margin:0 auto;}
+#an input{width:60px;height:32px;margin-right:10px;background:#002952;border:none;font-family:"微软雅黑";font-size:14px;color:#FFF;cursor:pointer}
+</style>
+<script>
+window.onload=function(){
+var oBtn=document.getElementById('btn');
+var oBlack=document.getElementById('black');
+var oShow=document.getElementById('show');
+var oDiv=document.getElementById('div2');
+var oRed=document.getElementById('red');
+var oYello=document.getElementById('yellow');
+var oBlue=document.getElementById('blue');
+var oW2=document.getElementById('w_two');
+var oW3=document.getElementById('w_three');
+var oW4=document.getElementById('w_four');
+var oH2=document.getElementById('h_two');
+var oH3=document.getElementById('h_three');
+var oH4=document.getElementById('h_four');
+var oRe=document.getElementById('reset');
+var oQd=document.getElementById('qd');
+
+oBtn.onclick=function(){
+oBlack.style.display='block';
+oShow.style.display='block';
+	}
+oRed.onmouseover=function(){	
+this.style.backgroundColor='#fa0e24';	 
+	 }
+oRed.onmouseout=function(){	
+this.style.backgroundColor='';	 
+	 }
+oRed.onclick=function(){ 
+oDiv.style.backgroundColor='red'
+   }
+oYello.onmouseover=function(){	
+this.style.backgroundColor='#f9d453';	 
+	 }
+oYello.onmouseout=function(){	
+this.style.backgroundColor='';	 
+	 }
+oYello.onclick=function(){ 
+oDiv.style.backgroundColor='#efbd00'
+   }
+oBlue.onmouseover=function(){	
+this.style.backgroundColor='#0010df';	 
+	 }
+oBlue.onmouseout=function(){	
+this.style.backgroundColor='';	 
+	 }
+oBlue.onclick=function(){ 
+oDiv.style.backgroundColor='#5a94ef'
+   }
+oW2.onmouseover=function(){
+this.style.backgroundColor="#da3b03";
+this.style.color="white"	
+	}
+oW2.onmouseout=function(){
+this.style.backgroundColor="";
+this.style.color=""
+	}
+oW2.onclick=function(){
+oDiv.style.width="200px";	
+	}
+oW3.onmouseover=function(){
+this.style.backgroundColor="#da3b03";
+this.style.color="white"	
+	}
+oW3.onmouseout=function(){
+this.style.backgroundColor="";
+this.style.color=""
+	}
+oW3.onclick=function(){
+oDiv.style.width="300px";	
+	}
+oW4.onmouseover=function(){
+this.style.backgroundColor="#da3b03";
+this.style.color="white"	
+	}
+oW4.onmouseout=function(){
+this.style.backgroundColor="";
+this.style.color=""
+	}
+oW4.onclick=function(){
+oDiv.style.width="400px";	
+	}
+oH2.onmouseover=function(){
+this.style.backgroundColor="#da3b03";
+this.style.color="white"	
+	}
+oH2.onmouseout=function(){
+this.style.backgroundColor="";
+this.style.color=""
+	}
+oH2.onclick=function(){
+oDiv.style.height="200px";	
+	}
+oH3.onmouseover=function(){
+this.style.backgroundColor="#da3b03";
+this.style.color="white"	
+	}
+oH3.onmouseout=function(){
+this.style.backgroundColor="";
+this.style.color=""
+	}
+oH3.onclick=function(){
+oDiv.style.height="300px";	
+	}
+oH4.onmouseover=function(){
+this.style.backgroundColor="#da3b03";
+this.style.color="white"	
+	}
+oH4.onmouseout=function(){
+this.style.backgroundColor="";
+this.style.color=""
+	}
+oH4.onclick=function(){
+oDiv.style.height="400px";	
+	}
+oRe.onclick=function(){
+oDiv.style.backgroundColor='';
+oDiv.style.width='';
+oDiv.style.height='';	
+	}
+oQd.onclick=function(){
+oBlack.style.display='';
+oShow.style.display='';	
+}										
+	}
+</script>
+</head>
+
+<body>
+<div id='div1'>请为下面的DIV设置样式：<input type="button" value="点击设置" id='btn' /></div>
+<div id='div2'></div>
+<div id="black"></div>
+<div id="show">
+   <div id="color">请选择背景色:<input type="button" id='red' value='红色' class="red" /><input type="button" id='yellow' value='黄色' class="yellow" /><input type="button" id='blue' value='蓝色' class="blue" /></div>
+   <div id="kuan">请选择宽(px):<input type="button" value="200" id="w_two"/><input type="button" value="300" id="w_three" /><input type="button" value="400" id="w_four" /></div>
+    <div id="gao">请选择高(px):<input type="button" value="200" id="h_two"/><input type="button" value="300" id="h_three" /><input type="button" value="400" id="h_four" /></div>
+    <div id="an"><input type="button" value="恢复"  id="reset"/><input type="button" value="确定"  id="qd" /></div>
+</div>
+</body>
+</html>

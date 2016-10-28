@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>拉钩网（穿墙效果）</title>
+<style>
+*{padding:0;margin:0;list-style:none}
+ul{width:660px; overflow:hidden; margin:100px auto;}
+ul li{width:200px;height:200px;background:#ccc;margin:5px;font-size:50px;text-align:center;line-height:200px;overflow:hidden;position:relative;top:0;left:0;float:left;}
+ul li span{position:absolute;top:0;left:-200px;width:100%;height:100%;background:red;opacity:0.4;filter:alpha(opacity:40);} 
+</style>
+<script src="move.js"></script>
+<script>
+function a2d(a){
+	return a*180/Math.PI;
+};
+function getDir(oEvent,obj){
+	var x=obj.offsetLeft+obj.offsetWidth/2-oEvent.clientX;
+	var y=obj.offsetTop+obj.offsetHeight/2-oEvent.clientY;
+	return Math.round((a2d(Math.atan2(y,x))+180)/90)%4;
+};
+function cq(obj){
+	var oS=obj.children[0];
+	obj.onmouseover=function(ev){
+		var oEvent=ev||event;
+		var oFrom=oEvent.FromElement||relatedTarget;
+		if(this.contains(oFrom)) return;
+		var dir=getDir(oEvent,this);
+		//oLi.innerHTML=dir;
+		switch(dir){
+			case 0:
+			oS.style.top='0';
+			oS.style.left='200px';
+			break;
+			
+			case 1:
+			oS.style.top='200px';
+			oS.style.left='0';
+			break;
+			
+			case 2:
+			oS.style.top='0';
+			oS.style.left='-200px';
+			break;
+			
+			case 3:
+			oS.style.top='-200px';
+			oS.style.left='0';
+			break;						
+		}
+		startMove(oS,{left:0,top:0})		
+	};
+	obj.onmouseout=function(ev){
+		var oEvent=ev||event;
+		var oTo=oEvent.toElement||relatedTarget;
+		if(this.contains(oTo)) return;
+		var dir=getDir(oEvent,this);
+		switch(dir){
+			case 0:
+			startMove(oS,{left:200,top:0});
+			break;
+			
+			case 1:
+			startMove(oS,{left:0,top:200});
+			break;
+
+			case 2:
+			startMove(oS,{left:-200,top:0});
+			break;
+
+			case 3:
+			startMove(oS,{left:0,top:-200});
+			break;		
+		};
+	};	
+};
+window.onload=function(){
+	var oUl=document.getElementsByTagName('ul')[0];
+	var aLi=oUl.getElementsByTagName('li');
+	for(var i=0;i<aLi.length;i++){
+		cq(aLi[i]);
+	};
+};
+</script>
+</head>
+
+<body>
+<ul>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

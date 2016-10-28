@@ -1,0 +1,36 @@
+/*
+------------------------------------------------
+- 文件名	： css.css
+- 作用		： 网站前端样式表
+- 作者		： wuhongjing
+- 邮箱		： wuhongjing88@126.cn
+- 电话		： 13488828261
+-  QQ		： 496399912
+- 日期		： 2011-03-08
+- 修改记录	： 2011-03-16 created by hongjing
+------------------------------------------------
+*/
+body{font-size:12px;line-height:150%;}
+body,ul,li,ol,p,dl,dt,dd,span{margin:0;padding:0;}
+ul,ol{overflow:hidden;list-style:none;}
+img{border:0}
+a:link,a:visited,a:active,a:hover{text-decoration:none;color:#000;font-size:12px;line-height:150%}
+a:hover{COLOR: #b00;}
+#top,#search,#menu,#main_bottom{width:966px;margin:0 auto;}
+#top{margin:20px auto 0}
+#top .left{float:left;text-indent:-9999px;width:440px;background:url(../images/logo.gif) no-repeat 10px center;height:70px}
+#top .right{float:right;width:300px;padding-top:30px;height:40px}
+
+#search{background:url(../images/search.gif) no-repeat;height:22px;margin-top:4px}
+#search .left{color:#4b4747;padding-left:10px;float:left;line-height:22px}
+#search .right{float:right;line-height:22px}
+#search .right span{display:block;float:left}
+#search .search{height:12px;margin-right:10px;padding-bottom:4px;overflow:hidden}
+#search .go{padding-right:10px;margin-top:2px}
+#search input{maring:0;padding:0}
+
+#menu li{float:left;}
+#main_bottom{height:20px}
+#bottom{background:url(../images/bottom.jpg) repeat-x;height:132px}
+#bottom ul{width:430px;margin:0 auto;padding-top:10px}
+#bottom li{width:86px;float:left;background:url(../images/tex_01.jpg) no-repeat center;height:21px;text-align:center;}#bottom li a{line-height:21px}#bottom p{text-align:center;margin-top:20px}

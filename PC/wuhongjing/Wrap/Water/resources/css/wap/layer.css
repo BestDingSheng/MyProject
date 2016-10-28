@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.layer_box{ display:none; width:100%; height:100%; background:hsla(207, 72%, 52%, .75); position:fixed; top:0; left:0;}
+.layer{ display:none; position:fixed; left:50%; top:50%; width:90%; margin:-139px 0 0 -45%; border:1px solid #fff; background:#e0f2ff; padding:42px 0;}
+.layer .title{ text-align:center; color:#1a4ea1; font-size:13px; line-height:1.25;}
+.layer .btn{ margin:30px auto 0;}
+.layer .main{ margin:0 auto;}
+
+.layer_doub{ padding:15px; box-sizing:border-box; -webkit-box-sizing:border-box;}
+.layer_doub .ico_close{ margin:-20px -15px 0 0;}
+.btn_double .btn{ display:inline-block; margin-right:10px; width:100px;}
+.layer_doub .up_img_none{}
+.layer_doub .up_img{ overflow:hidden;}
+.layer_doub .up_img dt{ width:111px; height:111px; border:2px solid #f1f9ff; background:#9ed3f8;}
+.layer_doub .up_img dt,
+.layer_doub .up_img dd{ float:left;}
+.layer_doub .up_img dd{ margin-left:7px; width:183px; margin-top:20px;}
+.layer_doub .up_img .explain{ margin-bottom:14px;}
+.layer .inp_tab th{ width:26%;}
+.layer .inp_tab dt.error{ text-align:center; padding-top:20px}
+.layer_acct h2.error{ text-align:center; font-size:15px;}
+.layer .btn_share{ width:30px; height:30px; display:inline-block; margin:15px 15px 0;}
+.layer .info{ border:1px solid #205ec2; text-align:center; padding:5px 0; margin:10px;}

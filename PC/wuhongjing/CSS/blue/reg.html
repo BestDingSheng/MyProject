@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新会员注册-北京蓝通精电网站</title>
+<meta name="keywords" content="{keywords}">
+<meta name="description" content="{description}">
+<LINK href="css/css.css" type=text/css rel=stylesheet>
+<LINK href="css/surface.css" type=text/css rel=stylesheet>
+<script language="javascript" src="js/area.js"></script>
+</head>
+<body onload="init()">
+<ul id="top"><li class="left">logo</li><li class="right"><a href="">会员登陆</a> | <a href="">用户注册</a> &nbsp; <a href="">会员专区</a> | <a href="">收藏本站</a></li></ul>
+<ul id="menu"><li><a href="#"><img src="images/path01.jpg"></a></li><li><a href="#"><img src="images/path02.jpg"></a></li><li><a href="#"><img src="images/path03.jpg"></a></li><li><a href="#"><img src="images/path04.jpg"></a></li><li><a href="#"><img src="images/path05.jpg"></a></li><li><a href="#"><img src="images/path06.jpg"></a></li><li><a href="#"><img src="images/path07.jpg"></a></li><li><a href="#"><img src="images/path08.jpg"></a></li><li><a href="#"><img src="images/path09.jpg"></a></li></ul>
+<ul id="search"><li class="left">[8小时在级服务] 400-810-5000</li><from><li class="right">站内搜索:<input type="text" class="search" name="search"><input type="image" src="images/go.jpg"></li></from></ul>
+<!--top-->
+<ul id="reg_main">
+  <li class="top"></li>
+  <li class="center">
+    <form action="/huiyuan/reg.php" method=post name="creator" enctype="multipart/form-data">
+      <dl>
+        <dt class="reg_r1">会员代号:</dt>
+        <dd class="reg_r1">
+          <p>&nbsp;
+            <input type="text" name="user" />
+            <span>*</span><br />
+            合法的会员代号应该由汉字、a-z 的小写英文字母、0-9 的数字或下划线组成，会员代号长度应在 2-16 个字符之间[一个英文字母或数字算一个字符，一个汉字算两个字符] ，请勿使用空白键。</p>
+          <p></p>
+        </dd>
+        <dt class="reg_r2">密码:</dt>
+        <dd class="reg_r2">
+          <p>&nbsp;
+            <input type="password" name="pass" />
+            <span>*</span></p>
+        </dd>
+        <dt class="reg_r3">确认密码:</dt>
+        <dd class="reg_r3">
+          <p>&nbsp;
+            <input type="password" name="pass2" />
+            <span>*</span></p>
+        </dd>
+        <dt class="reg_r4">您的姓名:</dt>
+        <dd class="reg_r4">
+          <p>&nbsp;
+            <input type="text" name="name" />
+            <span>*</span>(必须填写真实姓名，以便参加各项抽奖活动和优惠活动能够联系到您)</p>
+        </dd>
+        <dt class="reg_r5">年龄:</dt>
+        <dd class="reg_r5">
+          <p>&nbsp;
+            <input type="text" name="age" />
+          </p>
+        </dd>
+        <dt class="reg_r6">性别:</dt>
+        <dd class="reg_r6">
+          <p>&nbsp;
+            <input name="sex" type="radio" value="1" checked="checked" />
+            男
+            <input type="radio" name="sex" value="2" />
+          女</p>
+        </dd>
+        <dt class="reg_r7">所在省市:</dt>
+        <dd class="reg_r7">&nbsp;省份
+          <select name="province" onchange = "select()">
+          </select>
+          城市
+          <select name="city" onchange = "select()">
+          </select>
+        </dd>
+        <dt class="reg_r8">联系电话:</dt>
+        <dd class="reg_r8">
+          <p>&nbsp;
+            <input type="text" name="tel" />
+            <span>*</span></p>
+        </dd>
+        <dt class="reg_r9">E-main:</dt>
+        <dd class="reg_r9">
+          <p>&nbsp;
+            <input type="text" name="mail" />
+            <span>*</span></p>
+        </dd>
+        <dt class="reg_r10">通讯地址:</dt>
+        <dd class="reg_r10">
+          <p>&nbsp;
+            <input type="text" name="addes" />
+            <span>*</span></p>
+        </dd>
+        <dt class="reg_r11">邮政编码:</dt>
+        <dd class="reg_r11">
+          <p>&nbsp;
+            <input type="text" name="zip" />
+            <span>*</span></p>
+        </dd>
+        <dt class="reg_r12">单位名称:</dt>
+        <dd class="reg_r12">
+          <p>&nbsp;
+            <input type="text" name="unit" />
+          </p>
+        </dd>
+        <dt class="reg_r13">所在部门:</dt>
+        <dd class="reg_r13">
+          <p>&nbsp;
+            <input type="text" name="bran" />
+          </p>
+        </dd>
+        <dt class="reg_r14">文化程度:</dt>
+        <dd class="reg_r14">
+          <input name="rblDegree" type="radio" value="高中" checked="checked" />
+          高中
+          <input type="radio" name="rblDegree" value="专科" />
+          专科
+          <input type="radio" name="rblDegree" value="本科" />
+          本科
+          <input type="radio" name="rblDegree" value="硕士" />
+          硕士
+          <input type="radio" name="rblDegree" value="博士" />
+        博士</dd>
+        <dt class="reg_r15">您的职务:</dt>
+        <dd class="reg_r15">
+          <input type="radio" name="rblDuty" value="总经理、厂长" />
+          总经理、厂长
+          <input type="radio" name="rblDuty" value="部门经理、负责人" />
+          部门经理、负责人
+          <input type="radio" name="rblDuty" value="技术人员" />
+          技术人员
+          <input type="radio" name="rblDuty" value="业务人员" />
+          业务人员
+          <input type="radio" name="rblDuty" value="普通员工" />
+          普通员工</dd>
+        <dt class="reg_r16">贵单位的行业归属:</dt>
+        <dd class="reg_r16">&nbsp;
+          <select name="ddlIndustry" id="ddlIndustry">
+            <option selected="selected" value="">－请选择－</option>
+            <option value="农林牧副渔">农林牧副渔</option>
+            <option value="水电能源">水电能源</option>
+            <option value="电子电脑">电子电脑</option>
+            <option value="航空航天">航空航天</option>
+            <option value="海陆运输">海陆运输</option>
+            <option value="地质矿产">地质矿产</option>
+            <option value="石油化工">石油化工</option>
+            <option value="冶金煤炭">冶金煤炭</option>
+            <option value="公交铁路">公交铁路</option>
+            <option value="机械制造">机械制造</option>
+            <option value="建筑建材">建筑建材</option>
+            <option value="轻纺食品">轻纺食品</option>
+            <option value="邮电通讯">邮电通讯</option>
+            <option value="信息咨询">信息咨询</option>
+            <option value="科研教育">科研教育</option>
+            <option value="文化体育">文化体育</option>
+            <option value="旅游娱乐">旅游娱乐</option>
+            <option value="文体娱乐">文体娱乐</option>
+            <option value="医疗卫生">医疗卫生</option>
+            <option value="公职机构">公职机构</option>
+            <option value="银行保险">银行保险</option>
+            <option value="商业贸易">商业贸易</option>
+            <option value="金融证卷">金融证卷</option>
+            <option value="新闻出版">新闻出版</option>
+            <option value="广播影视">广播影视</option>
+            <option value="工商税务">工商税务</option>
+            <option value="军队警察">军队警察</option>
+            <option value="其它">其它</option>
+          </select>
+        </dd>
+        <dt class="reg_r17">您的月平均收入为:</dt>
+        <dd class="reg_r17">
+          <input type="radio" name="rblIncome" value="1千以下" />
+          1千以下
+          <inpu type="radio" name="rblIncome" value="1千~3千元" />
+          1千~3千元
+          <input type="radio" name="rblIncome" value="3千~5千元" />
+          3千~5千元
+          <input type="radio" name="rblIncome" value="5千~8千元" />
+          5千~8千元
+          <input type="radio" name="rblIncome" value="8千~1万元" />
+          8千~1万元
+          <input type="radio" name="rblIncome" value="1万元以上" />
+          1万元以上</dd>
+        <dt class="reg_r18"><span>通常您获得GPS信息<br />
+          的方式:</span></dt>
+        <dd class="reg_r18">
+          <p>
+            <input type="checkbox" name="cblGetInfo" />
+            报刊杂志
+            <input type="checkbox" name="cblGetInfo" />
+            媒体广告
+            <input type="checkbox" name="cblGetInfo" />
+            网站搜索
+            <input type="checkbox" name="cblGetInfo" />
+            商场专卖店
+            <input type="checkbox" name="cblGetInfo" />
+            朋友互通<br />
+            其它：&nbsp;
+            <input name="tbOther" type="text" id="tbOther" class="Webkuang" />
+          </p>
+        </dd>
+        <dt class="reg_r19"><span>您最关心GPS的<br />
+          哪些指标:</span></dt>
+        <dd class="reg_r19">
+          <p>
+            <input type="checkbox" name="cblTarget" value="最新技术" />
+            最新技术
+            <input type="checkbox" name="cblTarget" value="易用性" />
+            易用性
+            <input type="checkbox" name="cblTarget" value="价格" />
+            价格
+            <input type="checkbox" name="cblTarget" value="地图" />
+            地图
+            <input type="checkbox" name="cblTarget" value="功能"/>
+            功能
+            <input type="checkbox" name="cblTarget" value="性能" />
+            性能
+            <input type="checkbox" name="cblTarget" value="采购方便" />
+            采购方便
+            <input type="checkbox" name="cblTarget" value="售后服务" />
+            售后服务<br />
+            <input type="checkbox" name="cblTarget" value="升级能力" />
+            升级能力
+            <input type="checkbox" name="cblTarget" value="通用配置" />
+            通用配置</p>
+        </dd>
+      </dl>
+      <div class="note"><span>注 意：</span> 带 <span>*</span>为必须填写内容。</div>
+      <div class="reg">
+        <input type="image" name="submit" src="images/tex_06.jpg" />
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <input type="image" src="images/tex_07.jpg" onclick="return resetBtn(this.form);" />
+      </div>
+    </form>
+  </li>
+  <li class="bottom"></li>
+</ul>
+<!--bottom-->
+<div id="main_bottom"></div>
+<div id="bottom"><ul><li><a href="#">嘉宾来访</a></li><li><a href="#">学习课堂</a></li><li><a href="#">友情链接</a></li><li><a href="#">版权声明</a></li><li><a href="#">意见反馈</a></li></ul><p>版权所有&#169; 2010北京蓝通精电科技有限公司　 经营许可证编号:京ICP备10014063<br>联系地址：北京市海淀区西三环莲花桥华宝大厦12A-20</p></div>
+</body>
+</html>

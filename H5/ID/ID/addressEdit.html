@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>收货地址</title>
+	<!-- 默认宽度，静止双击缩放 -->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<link rel="stylesheet" type="text/css" href="css/swiper3.06.min.css">
+	<link rel="stylesheet" type="text/css" href="css/publicStyle.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<!-- header -->
+	<header class="pub_header">
+		<div class="pub_back iconRetuen">
+			<a href="address.html"></a>
+		</div>
+		<div class="pub_title">
+			收货地址
+		</div>
+	</header>
+	<!-- header end!-->
+
+	<!-- mainCon -->
+	<section class="pub_mianCon">
+		<!-- 第二层，显示滚动条容器 -->
+		<section class="pub_Con">
+			
+			<form class="addressEditForm" id="addressEditForm">
+				<ul class="addressEditUl">
+					<li>
+						<span>收货人</span>
+						<div class="inputCon">
+							<input type="text" FunctionName="userName">
+						</div>
+						<p></p>
+					</li>
+
+					<li>
+						<span>手机号</span>
+						<div class="inputCon">
+							<input type="text" FunctionName="phoneNumber">
+						</div>
+						<p></p>
+					</li>
+
+					<li>
+						<span>收货时间</span>
+						<div class="inputCon">
+							<input type="text" FunctionName="noValue">
+						</div>
+						<p></p>
+					</li>
+
+					<li>
+						<span>地区</span>
+						<div class="inputCon">
+							<input type="text" FunctionName="noValue" readonly="readonly" id="chngeYourAdd" placeholder="点击选择">
+						</div>
+						<p></p>
+					</li>
+
+					<li>
+						<span>详细地址</span>
+						<div class="inputCon">
+							<input type="text" FunctionName="noValue">
+						</div>
+						<p></p>
+					</li>
+
+					<li>
+						<input type="submit" value="保存">
+					</li>
+
+				</ul>
+			</form>
+
+		</section>
+	</section>
+	<!-- mainCon end-->
+
+	<!-- 地址选择A 选择省份 -->
+	<section class="changeProvince" id="Province">
+		<header class="addressNameHeader">
+			选择省份
+		</header>
+		<ul class="AddressNameList">
+			<li>北京</li>
+			<li>河南</li>
+			<li>吉林</li>
+			<li>哈尔滨</li>
+			<li>西伯利亚</li>
+		</ul>
+	</section>
+
+	<!-- 地址选择A 选择城市 -->
+	<section class="changeProvince" id="city">
+		<header class="addressNameHeader">
+			选择城市
+		</header>
+		<ul class="AddressNameList">
+			<li>A城市</li>
+			<li>B城市</li>
+			<li>C城市</li>
+			<li>D城市</li>
+			<li>E城市</li>
+			<li>F城市</li>
+		</ul>
+	</section>
+
+	<!-- 地址选择A 选择街道 -->
+	<section class="changeProvince" id="street">
+		<header class="addressNameHeader">
+			选择街道
+		</header>
+		<ul class="AddressNameList">
+			<li>A街道</li>
+			<li>B街道</li>
+			<li>C街道</li>
+			<li>D街道</li>
+			<li>E街道</li>
+			<li>F街道</li>
+		</ul>
+	</section>
+
+
+
+
+
+
+	<script type="text/javascript" src="js/zepto.js"></script>
+	<script type="text/javascript" src="js/zeptoTouch.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/formeCheck.js"></script>
+	<script type="text/javascript" src="js/personal.js"></script>
+
+
+</body>
+</html>

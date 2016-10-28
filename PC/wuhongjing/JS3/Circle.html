@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>圆</title>
+<style>
+*{padding:0;margin:0;}
+#box{width:300px;height:300px;border:2px solid #000;border-radius:50%;position:absolute;top:100px;left:300px;}
+#box span{width:50px;height:50px;background:red;border-radius:50%;position:absolute;top:0;left:50%;margin-left:-25px;margin-top:-25px;}
+</style>
+<script>
+function d2a(d){
+	return d*Math.PI/180;	
+}
+function a2d(a){
+	return a*180/Math.PI;
+};
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var R=oBox.offsetWidth/2;
+	var a=0;  //假设角度
+	var N=10;
+for(var i=0;i<N;i++){
+	var oS=document.createElement('span');
+	oBox.appendChild(oS);
+}
+var aS=oBox.children;
+var bOk=true;
+oBox.onclick=function(){
+	for(var i=0;i<aS.length;i++){
+		if(bOk){
+			move(aS[i],360/N*i)	
+		}else{
+			move(aS[i],0)	
+		};
+	};
+	bOk=!bOk;
+};	
+function move(obj,iTarget){
+	var start=obj.a||0;
+	var dis=iTarget-start;
+	var count=Math.floor(1000/30);
+	var n=0;
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){
+		n++;
+		var cur=start+dis/count*n;
+		obj.a=cur;
+		var x=R+Math.sin(d2a(cur))*R;
+		var y=R-Math.cos(d2a(cur))*R;
+		obj.style.left=x+'px';
+		obj.style.top=y+'px';
+		if(n==count){
+			clearInterval(obj.timer)
+		}
+	},30)
+};
+	
+/*
+	for(var i=0;i<N;i++){
+		var oS=document.createElement('span'); 
+		oBox.appendChild(oS);
+		var x=R+Math.sin(d2a(360/N*i))*R;
+		var y=R-Math.cos(d2a(360/N*i))*R;
+		oS.style.left=x+'px';
+		oS.style.top=y+'px';		
+	}
+
+	
+
+oBox.onclick=function(){
+	move(oS,360);
+};
+
+*/
+/*	setInterval(function(){
+		a+=1;
+		var x=R+Math.sin(a*Math.PI/180)*R;
+		var y=R-Math.cos(a*Math.PI/180)*R;
+		oS.style.left=x+'px';
+		oS.style.top=y+'px';	
+	},30)*/
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+
+</div>
+</body>
+</html>

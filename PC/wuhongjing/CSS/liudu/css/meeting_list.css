@@ -1,0 +1,40 @@
+/*meeting_list css style*/
+#content{width:1000px;height:auto;margin:0 auto;overflow:hidden;}
+.column{width:1000px;height:35px;}
+.column li{height:35px;float:left;}
+.col_l{width:8px;background:url(../img/col_l.jpg) no-repeat;}
+.col_c{width:980px;background:url(../img/col_c.jpg) repeat-x;}
+.col_c p{margin:8px 0 0 10px;}
+.not_con{float:left;width:800px;height:22px;margin-top:8px;color:#525252;}
+.col_r{width:12px;background:url(../img/col_r.jpg) no-repeat;}
+
+.left{clear:both;width:238px;height:auto;border:1px solid #ccc;margin-top:15px;background:url(../img/ex_bg.jpg) repeat-x;float:left;}
+.left span{display:block;width:216px;height:30px;margin:0 auto;font-size:14px;font-weight:bold;padding-top:10px;border-bottom:3px solid #e00000;}
+.left ol{width:216px;height:auto;margin:0 auto 20px auto;background:#FFF;}
+.left ol li{width:190px;height:22px;margin:0 auto;border-bottom:1px dashed #666;padding-top:8px;overflow:hidden;white-space:nowrap;}
+.left ol li a:link{text-decoration:none;color:#666;font-size:12px;font-family:"宋体";}
+.left ol li a:visited{text-decoration:none;color:#666;font-size:12px;font-family:"宋体";}
+.left ol li a:hover{color:#e71c17;text-decoration:underline;font-family:"宋体";}
+.right{width:732px;height:auto;float:right;margin:15px 0;}
+.adv{width:732px;height:152px;}
+.adv img{width:732px;height:152px;}
+.list{width:730px;height:auto;border:1px solid #dfdfdf;margin-top:15px;border-bottom:3px solid #d6d9e2}
+.news_tit{width:664px;height:36px;margin:20px auto;font-size:22px;border-bottom:1px solid #e8e8e8;}
+.news_tit p{display:block;width:200px;height:36px;border-bottom:1px solid #000;}
+.news_tit span{font-size:16px;margin-left:10px;}
+.news_list{width:664px;height:440px;margin:0 auto;}
+.news_list li{width:644px;height:22px;border-bottom:1px dashed #999;background:url(../img/r_ico.jpg) left center no-repeat;padding-top:8px;padding-left:20px;}
+.news_list li a{display:block;height:16px;float:left;width:516px;overflow:hidden;white-space:nowrap;}
+.news_list li span{float:right;margin-right:30px;color:#666;}
+.news_list li a:link{text-decoration:none;color:#666;font-size:12px;}
+.news_list li a:visited{text-decoration:none;color:#666;font-size:12px;}
+.news_list li a:hover{color:#e71c17;text-decoration:underline;}
+.page{width:620px;margin:20px auto;clear:both;padding:0px 20px;}
+.page li{float:right;margin-top:5px;padding-left:15px;}
+
+
+/*meeting_news css style*/
+.news_tit1{text-align:center;width:664px;height:36px;margin:20px auto;font-size:22px;border-bottom:1px solid #e8e8e8;}
+.news_con{width:664px;height:auto;margin:0 auto 20px auto;color:#4e4e4e;}
+.news_con p{width:664px;height:auto;margin:10px 0 0 0;line-height:25px;text-indent:2em;}
+.news_con p img{max-width:600px;height:auto;}

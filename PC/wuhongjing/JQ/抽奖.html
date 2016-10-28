@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+ul{ width:328px;}
+li{ width:100px; height:100px; border:1px #000 solid; float:left; margin-left:5px; list-style:none;}
+.active{ background:red;}
+</style>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+	var iNow=0;
+	var $Li=$('li');
+	var Step=0;
+	$('input').click(function(){
+		Step=Math.floor(Math.random()*$Li.length);
+		var timer=setInterval(function(){
+			$Li.eq(iNow).attr('class','active').siblings().attr('class','');
+
+			Step--;
+			if(Step==0){
+				clearInterval(timer);
+				alert($Li.eq(iNow).html())
+			};
+			
+			iNow++;
+			if(iNow==$Li.length){
+				iNow=0;
+			};
+
+		},200)
+	})	
+})
+</script>
+</head>
+
+<body>
+<input type="button" value="抽奖">
+<ul>
+	<li>1等奖</li>
+    <li>2等奖</li>
+    <li>3等奖</li>
+    <li>4等奖</li>
+    <li>5等奖</li>
+    <li>6等奖</li>
+    <li>7等奖</li>
+    <li>8等奖</li>
+    <li>9等奖</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,20 @@
+#main_bottom,#main,#main_top,#banner{margin:0 auto;width:966px}
+#banner{margin-top:6px}
+
+#main_top{border-bottom:1px #dadbe3 solid;height:12px}
+#main{background:url(../images/main.gif) no-repeat;}
+#main li{height:250px}
+#main .left{float:left;width:316px;background:url(../images/main-l.jpg) no-repeat;}
+#main .left div{margin:5px 0 0 10px}
+#main .center{float:left;width:342px;background:#fff}
+#main .right{float:right;background:url(../images/main-r.jpg) no-repeat;width:275px}
+#main_bottom{height:27px}
+
+#main .center div{background:url(../images/news.jpg) no-repeat;height:42px;margin-top:6px}
+#main .center dl{clear:both;height:25px}
+#main .center dl:hover{background:#f8f8f8}
+#main .center dt{float:left;background:url(../images/jiantou.gif) no-repeat left center;padding-left:10px}
+#main .center dd{float:right;}
+
+#main .right dl{margin:0 auto;width:260px;margin-top:6px}
+#main .right dd{padding-top:6px;height:90px;overflow:hidden}

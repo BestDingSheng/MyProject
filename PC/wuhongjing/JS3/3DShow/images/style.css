@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;}
+li{list-style:none;}
+body{background: #444;}
+img{border:0;}
+.btn{width:100%;height:30px;text-align:center;padding-top:20px;}
+#btn1,#btn2{width:80px;height:30px;font-size:16px;font-family:"微软雅黑"}
+#RotatePic{width:900px;height:380px;margin:80px auto 0;position:relative;background:#000 url(bg.jpg) no-repeat;overflow:hidden;}
+#RotatePic li{width:250px;height:340px;position:absolute;text-align:center;}
+#RotatePic li span{width:212px;height:90px;overflow:hidden;position:absolute;bottom:0;left:20px;
+	background:url(shade.png) !important;
+	background:none;
+	filter:none!important;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/shade.png',sizingMethod='images');
+}
+#RotatePic img {position:relative;top:0;}
+#RotatePic .pic1 {top:20px;left:97px;z-index:1;}
+#RotatePic .pic1 img {top:20px;}
+#RotatePic .pic2 {top:55px;left:336px;z-index:2;}
+#RotatePic .pic3 {top:20px;left:595px; z-index:1;}
+#RotatePic .pic3 img {top:20px;}
+#RotatePic .unactive {filter:alpha(opacity=20);opacity: 0.2;}

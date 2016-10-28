@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>兼容版吸顶条</title>
+<style>
+	#nav{ height:30px; background:#CCC; width:100%;}
+	#shadow{ height:30px; display:none;}
+</style>
+<script>
+window.onload=function(){
+	var oNav=document.getElementById('nav');
+	var oShow=document.getElementById('shadow');
+	var oNT=oNav.offsetTop;
+	window.onscroll=function(){
+		var sT=document.documentElement.scrollTop||document.body.scrollTop;
+		if(oNT<=sT){
+			if(window.navigator.userAgent.indexOf('MSIE 6.0')!=-1){
+				oNav.style.position='absolute';
+				oNav.style.top='0px';
+			}else{
+				oNav.style.position='fixed';
+				oNav.style.top='0px';					
+			}
+			oNav.style.left='0px';
+			oShow.style.display='block';
+		}else{
+			oNav.style.position='';
+			oShow.style.display='';
+		}
+	};	
+};
+</script>
+</head>
+
+<body>
+<body>
+	<p>无标题文档</p>
+	<p>无标题文档</p><p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<div id="nav">导航</div>
+	<div id="shadow"></div>
+	<p>1无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p><p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p><p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+	<p>无标题文档</p>
+    <input name="" type="text">
+</body>
+</body>
+</html>

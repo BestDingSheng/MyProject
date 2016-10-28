@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ILoveYou</title>
+	
+	<script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua) ) {//如果是安卓浏览器
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {//如果版本大于2.3
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {//如果版本不大于2.3
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {//如果不是安卓浏览器
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+	
+	<link rel="shortcut icon" href="images/bj.jpg" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="style/swiper3.06.min.css">
+    <link rel="stylesheet" type="text/css" href="style/index.css">
+
+</head>
+<body>
+	
+	<!-- 终极容器 -->
+	<section class="maxCon">
+	
+		<!-- loading	 -->
+		<section class="loadingCon" id="loadingCon">
+
+			<div class="loadImgWorCon">
+				<!-- 上方的文字 -->
+				<ul class="loadingWord">
+					<li><img src="images/loading/loadWord_03.png"></li>
+					<li><img src="images/loading/loadWord_06.png"></li>
+					<li><img src="images/loading/loadWord_08.png"></li>
+				</ul>
+				
+				<!-- 树 -->
+				<div class="loadImg">
+					<img src="images/loading/meishu_03.png">
+
+					<!-- 花朵 -->
+					<ul class="FlowerBig">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+
+				<!-- 下方提示文字 -->
+				<ul class="loadingNow">
+					<li><img src="images/loading/loadWord_10.png"></li>
+					<li><img src="images/loading/loadWord_13.png"></li>
+				</ul>
+
+			</div>
+
+			
+		</section>
+		<!-- loading end!-->
+
+		
+		<!-- swiper -->
+		<div class="swiper-container mianSwiper">
+		    <div class="swiper-wrapper">
+				
+				<div class="swiper-slide pageACon" id="pageA">
+					<ul class="pageALineUl">
+						<li></li>
+						<li></li>
+					</ul>
+					<!-- 色块A -->
+					<div class="pageColorACon"></div>
+					<div class="pageColorBCon"></div>
+					<!-- peopleA -->
+					<div class="pageAPeopleA" id="pageAPeopleA">
+						<img src="images/gbtc/gbtc_03.png">
+						<img src="images/gbtc/gbtc_04.png">
+						<img src="images/gbtc/gbtc_05.png">
+						<img src="images/gbtc/gbtc_07.png">
+						<img src="images/gbtc/gbtc_09.png">
+						<img src="images/gbtc/gbtc_10.png">
+						<img src="images/gbtc/gbtc_11.png">
+						<img src="images/gbtc/gbtc_13.png">
+						<img src="images/gbtc/gbtc_14.png">
+						<img src="images/gbtc/gbtc_15.png">
+					</div>
+
+					<ul class="pageAWordA">
+						<li><img src="images/gbtc/blg_03.png"></li>
+						<li><img src="images/gbtc/blg_04.png"></li>
+						<li><img src="images/gbtc/blg_06.png"></li>
+					</ul>
+
+					<!-- peopleB -->
+					<div class="pageAPeopleB" id="pageAPeopleB">
+						<img src="images/xwz/xwz_03.png">
+						<img src="images/xwz/xwz_04.png">
+						<img src="images/xwz/xwz_05.png">
+						<img src="images/xwz/xwz_06.png">
+						<img src="images/xwz/xwz_07.png">
+						<img src="images/xwz/xwz_08.png">
+						<img src="images/xwz/xwz_09.png">
+					</div>
+
+					<ul class="pageAWordB">
+						<li><img src="images/xwz/db_03.png"></li>
+						<li><img src="images/xwz/db_05.png"></li>
+						<li><img src="images/xwz/db_07.png"></li>
+						<li><img src="images/xwz/db_08.png"></li>
+					</ul>
+					
+				</div>
+
+		    	<!-- 自由 海贼王-->
+		        <div class="swiper-slide haiZeiWangCon" id="HZW">
+		        	<ul class="HzwAniUl">
+		        		<li><img src="images/hzw/hzw_07.png"></li>
+		        		<li><img src="images/hzw/hzw_08.png"></li>
+		        		<li><img src="images/hzw/hzw_09.png"></li>
+		        		<li><img src="images/hzw/hzw_10.png"></li>
+		        		<li><img src="images/hzw/hzw_11.png"></li>
+		        		<li><img src="images/hzw/hzw_12.png"></li>
+		        		<li><img src="images/hzw/hzw_13.png"></li>
+		        		<li><img src="images/hzw/hzw_14.png"></li>
+		        		<li><img src="images/hzw/hzw_15.png"></li>
+		        	</ul>
+					
+					<ul class="HzwWordUl">
+						<li><img src="images/hzw/hzwWord_03.png"></li>
+						<li><img src="images/hzw/hzwWord_06.png"></li>
+						<li><img src="images/hzw/hzwWord_09.png"></li>
+						<li><img src="images/hzw/hzwWord_12.png"></li>
+						<li><img src="images/hzw/hzwWord_15.png"></li>
+					</ul>
+
+					<ul class="HzwMissImgUl popImgShowNow">
+						<li><img src="images/hzw/peoA.jpg"></li>
+						<li><img src="images/hzw/peoE.jpg"></li>
+						<li><img src="images/hzw/peoB.jpg"></li>
+						<li><img src="images/hzw/peoD.jpg"></li>
+					</ul>
+
+					<div class="HzwLastLine">
+						<img src="images/hzw/hzw_03.png">
+					</div>
+		        </div>
+		    	<!-- 自由 海贼王 end!-->
+				
+				<!-- 恋爱时光 -->
+		        <div class="swiper-slide loveTime" id="loveTime">
+		        	<ul class="loveTimeWordUl">
+		        		<li><img src="images/shayu/lasg_03.png"></li>
+		        		<li><img src="images/shayu/lasg_05.png"></li>
+		        		<li><img src="images/shayu/lasg_08.png"></li>
+		        		<li><img src="images/shayu/lasg_10.png"></li>
+		        		<li><img src="images/shayu/lasg_12.png"></li>
+		        		<li><img src="images/shayu/lasg_14.png"></li>
+		        		<li><img src="images/shayu/lasg_16.png"></li>
+		        	</ul>
+
+		        	<ul class="loveTimeLine">
+		        		<li><img src="images/pz/peoTwo_06.png"></li>
+		        		<li><img src="images/pz/peoTwo_03.png"></li>
+		        	</ul>
+
+		        	<ul class="loveYouImgUl popImgShowNow">
+		        		<li><img src="images/pz/xx.jpg"></li>
+		        		<li><img src="images/pz/xx2.jpg"></li>
+		        		
+		        	</ul>
+
+		        </div>
+				<!-- 恋爱时光 -->
+		
+				<!-- 鱼 -->
+		        <div class="swiper-slide fishCon" id="fishCon">
+					<!-- 表白文字 -->
+					<ul class="xxWorldUl">
+						<li><img src="images/xxWord/xxWord_03.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_06.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_09.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_11.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_14.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_17.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_19.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_22.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_25.png" alt=""></li>
+						<li><img src="images/xxWord/xxWord_27.png" alt=""></li>
+					</ul>
+					
+					<!-- 表白文字 -->
+		        	
+		        	
+					<!-- 游泳池 -->
+					<div class="whatchRoom">
+						<!-- 波浪 -->
+						<div class="wather"></div>
+
+						<div class="fishNow">
+							<img class="fish" src="images/shayu/shayu_05.png">
+							<img class="fishCenter" src="images/shayu/shayu_12.png">
+							<img class="fishEnd" src="images/shayu/shayu_07.png">
+						</div>
+					</div>
+					
+		        </div>
+				
+				<!-- 结婚 -->
+		        <div class="swiper-slide merryYou" id="merryYou">
+		        	
+					<ul class="merryYouImg">
+						<li><img src="images/JHZ/jhz_03.png"></li>
+						<li><img src="images/JHZ/jhz_04.png"></li>
+						<li><img src="images/JHZ/jhz_08.png"></li>
+						<li><img src="images/JHZ/jhzw_03.png"></li>
+						<li><img src="images/JHZ/jhzw_06.png"></li>
+						<li><img src="images/JHZ/jhz_11.png"></li>
+					</ul>
+
+					<ul class="merryImg">
+						<li><img src="images/JHZ/ai_07.png" alt=""></li>
+						<li><img src="images/JHZ/ai_03.png" alt=""></li>
+						<li><img src="images/JHZ/ai_05.png" alt=""></li>
+					</ul>
+
+					<ul class="merryIU popImgShowNow">
+						<li><img src="images/JHZ/merry.jpg" alt=""></li>
+						<li><img src="images/JHZ/merryB.jpg" alt=""></li>
+					</ul>
+
+		        </div>
+
+				<!-- 时间 -->
+		        <div class="swiper-slide timeGoCon" id="timeGoCon">
+
+					<ul class="TimerWordUl">
+						<li><img src="images/zb/timer_03.png"></li>
+						<li><img src="images/zb/timer_05.png"></li>
+						<li><img src="images/zb/timer_07.png"></li>
+						<li><img src="images/zb/timer_09.png"></li>
+						<li><img src="images/zb/timer_11.png"></li>
+						<li><img src="images/zb/timer_13.png"></li>
+					</ul>
+		        	
+					<section class="timeCon">
+						<img src="images/zb/zb_03.png">
+						<img class="shizheng" src="images/zb/zb_04.png">
+						<img class="fenzheng" src="images/zb/zb_05.png">
+					</section>
+
+					<ul class="TimerWordUlB">
+						<li><img src="images/zb/timer_16.png"></li>
+						<li><img src="images/zb/timer_19.png"></li>
+					</ul>
+
+					<ul class="TimerImgUl popImgShowNow">
+						<li><img src="images/zb/tl2.jpg"></li>
+						<li><img src="images/zb/tl.jpg"></li>
+					</ul>
+		        </div>
+
+		        <!-- 旅行 -->
+		        <div class="swiper-slide lvxingCon" id="lvxingCon">
+					
+					<ul class="lvXingWord">
+						<li><img src="images/lvxing/lxw_03.png"></li>
+						<li><img src="images/lvxing/lxw_05.png"></li>
+						<li><img src="images/lvxing/lxw_07.png"></li>
+						<li><img src="images/lvxing/lxw_09.png"></li>
+						<li><img src="images/lvxing/lxw_11.png"></li>
+						<li><img src="images/lvxing/lxw_13.png"></li>
+						<li><img src="images/lvxing/lxw_15.png"></li>
+						<li><img src="images/lvxing/lxw_17.png"></li>
+						<li><img src="images/lvxing/lxw_18.png"></li>
+					</ul>
+
+					<ul class="lvXingImg popImgShowNow">
+						<li><img src="images/lvxing/lx.jpg"></li>
+						<li><img src="images/lvxing/lx2.jpg"></li>
+						<li><img src="images/lvxing/lx3.jpg"></li>
+						<li><img src="images/lvxing/lx4.jpg"></li>
+					</ul>
+		        	
+		        </div>
+		        <!-- 照片墙 -->
+		        <div class="swiper-slide photoWallCon" id="photoWallCon">
+					
+					<div class="photoTitle"><img src="images/photoW/photoW_03.png"></div>
+
+		        	<div class="photoBotton">
+		        		<img src="images/photoW/syc_03.png">
+		        	</div>
+					
+					<ul class="photoImgUl popImgShowNow">
+						<li><img src="images/photoW/a1.jpg"></li>
+						<li><img src="images/photoW/a2.jpg"></li>
+						<li><img src="images/photoW/a3.jpg"></li>
+						<li><img src="images/photoW/a4.jpg"></li>
+
+						<li><img src="images/photoW/a5.jpg"></li>
+						<li><img src="images/photoW/a6.jpg"></li>
+
+						<li><img src="images/photoW/a7.jpg"></li>
+
+						<li><img src="images/photoW/a8.jpg"></li>
+						<li><img src="images/photoW/a9.jpg"></li>
+						<li><img src="images/photoW/a10.jpg"></li>
+						<li><img src="images/photoW/a11.jpg"></li>
+						<li><img src="images/photoW/a12.jpg"></li>
+						<li><img src="images/photoW/a13.jpg"></li>
+						<li><img src="images/photoW/a14.jpg"></li>
+						<li><img src="images/photoW/a15.jpg"></li>
+
+					</ul>
+
+		        </div>
+		       	<!-- 结束语 -->
+		        <div class="swiper-slide endPage" id="endPage">
+		        	
+		        	<!-- 结束语文字 -->
+		        	<ul class="endPageWordUl">
+		        		<li><img src="images/endWord/endWord_03.png"></li>
+		        		<li><img src="images/endWord/endWord_05.png"></li>
+		        		<li><img src="images/endWord/endWord_07.png"></li>
+		        	</ul>
+		        	<!-- 结束语文字 end!-->
+
+					<!-- 微信添加 -->
+		        	<ul class="endPersonal">
+		        		<li><img src="images/endWord/weixin.png"></li>
+		        		<li><img src="images/endWord/endWord_09.png"></li>
+		        		<li><img src="images/endWord/endWord_11.png"></li>
+		        		<li><img src="images/endWord/endWord_13.png"></li>
+		        	</ul>
+					<!-- 微信添加 end!-->
+
+
+					<!-- 长颈鹿 -->
+					<ul class="endPageAn">
+						<li><img src="images/endWord/endImg_11.png"></li>
+						<li><img src="images/endWord/endImg_03.png"></li>
+						<li><img src="images/endWord/endImg_06.png"></li>
+					</ul>
+					<!-- 长颈鹿 end!-->
+
+		        </div>
+		    </div>
+		</div>
+		<!-- swiper end!-->
+
+		<!-- 图片查看弹出层 -->
+		<section class="publicPopCon" id="publicPopCon">
+			<div class="popClose"></div>
+
+		</section>
+		<!-- 弹出层 -->
+
+
+		
+
+		<section class="musicPlay" id="musicPlay">
+			<img class="musA" src="images/mus/music_03.png">
+			<img class="musB" src="images/mus/musicB_03.png">
+
+			<audio src="song/Johann Pachelbel-卡农(小提琴和竖琴).mp3" id="audio" loop="loop"></audio>
+		</section>
+
+
+
+
+	</section>
+	<!-- 终极容器 end!-->
+
+
+
+	<script type="text/javascript" src="js/zepto.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

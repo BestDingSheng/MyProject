@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+/*#df0615
+#1a4ea1*/
+input.txt{ width:270px; height:38px; border:1px solid #1475cf; width:250px; height:38px; line-height:38px; padding:0 10px;}
+input{ color:#205ec2!important;}
+.btn_zc{ margin:2px 0 0 -31px;}
+.btn{ display:inline-block; background:url(../../images/pc/btn_nav.png) no-repeat left top; width:40px; height:40px;}
+.ico{display:inline-block; vertical-align:middle; overflow:hidden; background-repeat:no-repeat;}
+.btn_lt{background-position:0 0; float:left;}
+.btn_rt{background-position:-40px 0; float:right; float:right;}
+.ico_star{ width:19px; height:19px; background-image:url(../../images/pc/ico_star.png);}
+.ico_user_ts{ width:13px; height:13px; background-image:url(../../images/pc/ico_user_ts.png);}
+.ico_user{ width:31px; height:28px; background-image:url(../../images/pc/ico_user.png);}
+.ico_jf{ width:58px; height:40px; background-image:url(../../images/pc/ico_user_02.png);}
+.ico_cj{  width:58px; height:40px; background-image:url(../../images/pc/ico_user_03.png);}
+.ico_dh{  width:58px; height:40px; background-image:url(../../images/pc/ico_user_04.png);}
+.ico_sj{  width:58px; height:40px; background-image:url(../../images/pc/ico_user_01.png);}
+.ico_upimg{  width:23px; height:19px; background-image:url(../../images/pc/ico_user_10.png);}
+.ico_user_index{  width:31px; height:31px; background-image:url(../../images/pc/ico_index_01.png);}
+.ico_tc_index{  width:31px; height:31px; background-image:url(../../images/pc/ico_index_02.png);}
+.ico_top_index{  width:31px; height:31px; background-image:url(../../images/pc/ico_index_03.png);}
+.ico_zc_index{  width:31px; height:31px; background-image:url(../../images/pc/ico_index_04.png);}
+.bule_col{ color:#1a4ea1;}
+.bold{ font-weight:bold;}
+.ico_zs{ background-image:url(../../images/pc/ico_jf_01.png); width:24px; height:19px;}
+.ico_vip{ background-image:url(../../images/pc/ico_jf_02.png); width:32px; height:14px;}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+    color:hsla(217, 72%, 44%,.7);
+}
+input:-moz-placeholder, textarea:-moz-placeholder { 
+    color:hsla(217, 72%, 44%,.7);
+}
+input::-moz-placeholder, textarea::-moz-placeholder { 
+    color:hsla(217, 72%, 44%,.7);
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+    color:hsla(217, 72%, 44%,.7);
+}
+.texter{ width:345px; height:90px; border:1px solid #1475cf; background:#d0eeff;}
+textarea{ color:#205ec2;}
+
+#zsgun,
+#zsgun_13,
+#zsgun_14{ overflow:hidden; height: 250px; margin-bottom:30px;}
+.hScrollPane_dragbar{width:843px; position: absolute; border-bottom:#8bc8f6 1px solid; padding:0 39px; top:220px;}
+.hScrollPane_draghandle{position:absolute; width:80px; height:10px; overflow:hidden; background:url(../../images/pc/gunbar.png) no-repeat left top; bottom:-5px; cursor:pointer; margin:0 39px; left:0;}
+.s_memory_list{ width:843px; position:relative; margin-left:55px; padding-top:22px; float:left; display:inline;height:180px; overflow:hidden;}
+.s_memory_list li{ width:155px; height:180px; overflow:hidden; float:left; margin-right:17px;position:relative;}
+.s_memory_list li p{ display:none; height:18px; line-height:18px; text-align:center; overflow:hidden;}
+.s_memory_list li p a:link,#gundiv li p a:visited{ color: #53711C; font-size: 12px; }
+.s_memory_list li.zslion p{ display:block;}

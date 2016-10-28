@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript简易日历</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script>
+var show=["1.快过年了，大家可以商量着去哪玩吧～","2.比不过CEO马克扎克伯格Facebook股价","3.飙升帮助扎克伯格成为世界上第九富有的人","4.马克·扎克伯格目前身价430亿美元超过了宜家创始人","5.和瑞典首富坎普拉德。不过，他可能很快就能上升到第七位","6.扎克伯格现在稍微落后于亚马逊首席执行官杰夫·贝佐斯","7.和甲骨文董事长拉里·埃利森，两者身家皆","8.不过，扎克伯格并不是Facebook唯一的亿万富翁","9.根据福布斯数据，Facebook的前","10.林的身价分别为101亿美元和60亿美","11.帕克身价为31亿美元。而现任","12.视频和电子商务领域，该公司应该还有进一步的发展空间"]
+
+
+window.onload=function(){
+	var oTab=document.getElementById('tab');
+	var aLi=oTab.getElementsByTagName('li');
+	var oTxt=oTab.getElementsByTagName('div')[0];
+	
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].index=i;
+		aLi[i].onmouseover=function(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className='';
+			}
+			this.className='active';
+			oTxt.innerHTML='<h2>'+(this.index+1)+'月活动</h2><p>'+show[this.index]+'</p>'
+		};
+	};
+};
+</script>
+</head>
+<body>
+<div id="tab" class="calendar">
+    <ul>
+        <li class="active"><h2>1</h2><p>JAN</p></li>
+        <li><h2>2</h2><p>FER</p></li>
+        <li><h2>3</h2><p>MAR</p></li>
+        <li><h2>4</h2><p>APR</p></li>
+        <li><h2>5</h2><p>MAY</p></li>
+        <li><h2>6</h2><p>JUN</p></li>
+        <li><h2>7</h2><p>JUL</p></li>
+        <li><h2>8</h2><p>AUG</p></li>
+        <li><h2>9</h2><p>SEP</p></li>
+        <li><h2>10</h2><p>OCT</p></li>
+        <li><h2>11</h2><p>NOV</p></li>
+        <li><h2>12</h2><p>DEC</p></li>
+    </ul>
+    
+    <div class="text">
+        <h2>1月活动</h2>
+        <p>快过年了，大家可以商量着去哪玩吧～</p>
+    </div>
+
+</div>
+
+</body>
+</html>

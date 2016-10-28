@@ -1,0 +1,968 @@
+.IndexMainCon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.indexChangeBg {
+  width: 640px;
+  height: 1040px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -999;
+}
+.indexChangeBg > img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+.indexChangeBg .opacityZero {
+  opacity: 0;
+}
+.indexChangeBg .indexBgBut {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 3rem;
+  text-align: center;
+}
+.indexChangeBg .indexBgBut span {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  margin: 0 0.2rem;
+  background-color: #d1d4d9;
+  border-radius: 50%;
+}
+.indexChangeBg .indexBgBut .active {
+  background-color: #ca7826;
+}
+.indexLogoCon {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  margin-left: -154px;
+}
+.indexRound {
+  position: absolute;
+  right: 0;
+  top: 232px;
+  opacity: 0;
+  transform: translate(100px, 0);
+  -webkit-transform: translate(100px, 0);
+}
+.indexNavUl {
+  position: absolute;
+  left: 0;
+  top: 190px;
+}
+.indexNavUl li {
+  opacity: 0;
+  transform: translate(100px, 0);
+  -webkit-transform: translate(100px, 0);
+}
+.indexNavUl li:nth-child(2) {
+  margin-top: 35px;
+}
+.indexNavUl li:nth-child(3) {
+  margin-top: 107px;
+}
+.indexNavUl li:nth-child(4) {
+  margin-top: 105px;
+}
+.indexNavUl li:nth-child(5) {
+  margin-top: 35px;
+}
+.IndexMainConAni .indexRound {
+  opacity: 1;
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  transition: all 1.5s;
+  -webkit-transition: all 1.5s;
+}
+.IndexMainConAni .indexNavUl li {
+  opacity: 1;
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  transition: all 1.5s;
+  -webkit-transition: all 1.5s;
+}
+.IndexMainConAni .indexNavUl li:nth-child(1) {
+  transition-delay: 5s;
+  -webkit-transition-delay: 1s;
+}
+.IndexMainConAni .indexNavUl li:nth-child(2) {
+  transition-delay: 2s;
+  -webkit-transition-delay: 2s;
+}
+.IndexMainConAni .indexNavUl li:nth-child(3) {
+  transition-delay: 3s;
+  -webkit-transition-delay: 3s;
+}
+.IndexMainConAni .indexNavUl li:nth-child(4) {
+  transition-delay: 4s;
+  -webkit-transition-delay: 4s;
+}
+.IndexMainConAni .indexNavUl li:nth-child(5) {
+  transition-delay: 5s;
+  -webkit-transition-delay: 5s;
+}
+.publicLogoCon {
+  padding: 1.2rem 0 1.2rem 1rem;
+  float: left;
+  height: 100%;
+}
+.publicLogoCon img {
+  height: 100%;
+}
+.publicMenuCon {
+  height: 100%;
+  padding: 1.5rem;
+  float: right;
+}
+.publicMenuCon img {
+  height: 100%;
+}
+.pageTitleCon {
+  width: 100%;
+  height: 4rem;
+  position: relative;
+  background-color: #e8e6e6;
+}
+.pageTitleCon .CanBack {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0.8rem 0 0.8rem 2rem;
+}
+.pageTitleCon .CanBack img {
+  height: 100%;
+}
+.pageTitleCon h1 {
+  width: 100%;
+  line-height: 4rem;
+  text-align: center;
+  color: #050200;
+  font-size: 2rem;
+}
+.articleCon {
+  width: 100%;
+  padding: 1.5rem 2rem 1rem;
+}
+.articleCon h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #000100;
+  font-weight: bold;
+}
+.articleCon h3 {
+  padding-top: 0.5rem;
+  text-align: center;
+  font-size: 0.6rem;
+  color: #8b8a8a;
+}
+.articleCon h3 span {
+  padding-left: 0.5rem;
+}
+.articleCon .articleImg {
+  width: 100%;
+  padding-top: 1.5rem;
+}
+.articleCon .articleImg img {
+  width: 100%;
+}
+.articleCon p {
+  padding-top: 1rem;
+  text-indent: 2em;
+  color: #686765;
+  font-size: 1rem;
+}
+.articleCon .wordCon {
+  padding-bottom: 5rem;
+}
+.NewsRecommendReadCon {
+  width: 100%;
+}
+.NewsRecommendReadCon .recommendReadHeader {
+  padding: 1.5rem 1rem;
+  background-image: url(../images/news/nwes_14.png);
+  background-repeat: no-repeat;
+  background-size: 3rem;
+  background-position: 1rem center;
+  border-top: 1px solid #c2bebe;
+  border-bottom: 1px dashed #cececd;
+}
+.NewsRecommendReadCon .recommendReadHeader h3 {
+  padding-left: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  color: #686765;
+}
+.articleNameList {
+  width: 100%;
+}
+.articleNameList li {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 1.3rem;
+}
+.articleNameList a {
+  color: #000;
+}
+.articleNameList span {
+  float: right;
+  color: #959393;
+  font-size: 1rem;
+}
+.lookMoreArticList {
+  padding-top: 2rem;
+  padding-bottom: 10rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.lookMoreArticList a {
+  color: #000;
+}
+.newListBanner {
+  width: 100%;
+}
+.newListBanner img {
+  width: 100%;
+}
+.newListBanner .swiper-pagination span {
+  background-color: #f9fbfc;
+}
+.newListBanner .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #e17300;
+}
+.ulPddingBottom {
+  padding-bottom: 5rem;
+}
+.reserverList {
+  padding: 0 0 5rem 0;
+}
+.reserverList li {
+  padding: 1rem 5rem 1rem 1rem;
+  position: relative;
+  border-bottom: 1px solid #d8d8d8;
+}
+.reserverList li:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.reserverList .reseverImg {
+  width: 5rem;
+  height: 5rem;
+  float: left;
+}
+.reserverList .reseverImg > img {
+  width: 100%;
+  height: 100%;
+}
+.reserverList h3 {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding-left: 6rem;
+  font-size: 1.3rem;
+  color: #252525;
+}
+.reserverList h4 {
+  margin-top: 0.3rem;
+  padding-left: 6rem;
+  font-size: 1rem;
+  color: #252525;
+}
+.reserverList h5 {
+  margin-top: 0.3rem;
+  padding-left: 6rem;
+  font-size: 1rem;
+  color: #fd7f19;
+}
+.reserverList h6 {
+  margin-top: 0.3rem;
+  padding-left: 6rem;
+  font-size: 1rem;
+  color: #7d7d7d;
+}
+.reserverList .reserverNow {
+  width: 5rem;
+  height: 2rem;
+  display: block;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  text-align: center;
+  line-height: 2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #fd7f19;
+}
+.reserverList .reserverNowB {
+  background-color: #7f7f7f;
+}
+.consultForm {
+  width: 100%;
+  padding: 0 1rem 5rem;
+}
+.consultFormUl li {
+  width: 100%;
+  min-height: 3rem;
+  margin-top: 1rem;
+  padding-left: 5rem;
+  position: relative;
+}
+.consultFormUl li span {
+  width: 5rem;
+  height: 3rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-left: 1rem;
+  float: left;
+  display: block;
+  line-height: 3rem;
+  text-justify: inter-ideograph;
+  text-align: justify;
+}
+.consultFormUl li p {
+  color: #fd7f19;
+}
+.consultFormUl input[type=text],
+.consultFormUl input[type=number] {
+  width: 100%;
+  height: 3rem;
+  padding: 0 0.5rem;
+  display: block;
+  border: none;
+  border: 1px solid #c2bebe;
+}
+.consultFormUl input[type=radio],
+.consultFormUl input[type=checkbox] {
+  -webkit-appearance: none;
+  /*去掉系统自带的样式*/
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+  background-image: url(../images/icon/checkbox_05.jpg);
+  /*默认显示*/
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.consultFormUl input[type=radio]:checked,
+.consultFormUl input[type=checkbox]:checked {
+  background-image: url(../images/icon/checkbox_03.png);
+}
+.consultFormUl label {
+  padding-right: 1rem;
+  display: inline-block;
+  line-height: 3rem;
+}
+.consultFormUl textarea {
+  width: 100%;
+  min-height: 7rem;
+  padding: 1rem 0.5rem;
+  border: none;
+}
+.consultFormBut {
+  width: 100%;
+  height: 3rem;
+  margin-top: 2rem;
+  text-align: center;
+  line-height: 3rem;
+  color: #fff;
+  font-size: 1.5rem;
+  background-color: #fd7f19;
+}
+.consultFormUl:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.FormLogin {
+  width: 100%;
+  padding: 0 1rem;
+}
+.FormLogin .loginNow {
+  width: 100%;
+  height: 3rem;
+  margin-top: 3rem;
+  text-align: center;
+  line-height: 3rem;
+  color: #fff;
+  font-size: 1.5rem;
+  background-color: #c2bebe;
+}
+.FormLogin .signinNow {
+  width: 100%;
+  height: 3rem;
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 3rem;
+  color: #fff;
+  font-size: 1.5rem;
+  background-color: #fd7f19;
+}
+.FormLoginUl li {
+  width: 100%;
+  min-height: 3rem;
+  margin-top: 1.5rem;
+  position: relative;
+}
+.FormLoginUl li p {
+  color: #fd7f19;
+}
+.FormLoginUl input[type=text],
+.FormLoginUl input[type=password] {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  padding: 0 1rem;
+  border: 1px solid #c2bebe;
+}
+.FormLoginUl input[type=text]:focus,
+.FormLoginUl input[type=password]:focus {
+  border-color: #fd7f19;
+  box-shadow: 0 0 0.5rem #fd7f19;
+  -webkit-box-shadow: 0 0 0.5rem #fd7f19;
+}
+.FormLoginUl .forgetPassword {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.8rem;
+  color: #c2bebe;
+}
+.FormLoginUl .verificationCode {
+  width: 10rem;
+  height: 3rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+  line-height: 3rem;
+  background-color: #fd7f19;
+  color: #fff;
+}
+.iAgreeCon {
+  width: 100%;
+  padding-top: 2rem;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+.iAgreeCon input[type=radio],
+.iAgreeCon input[type=checkbox] {
+  -webkit-appearance: none;
+  /*去掉系统自带的样式*/
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: inline-block;
+  background-image: url(../images/icon/checkbox_05.jpg);
+  /*默认显示*/
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.iAgreeCon input[type=radio]:checked,
+.iAgreeCon input[type=checkbox]:checked {
+  background-image: url(../images/icon/checkbox_03.png);
+}
+.sucessReserverUserImg {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px dashed #c2bebe;
+}
+.sucessReserverUserImg img {
+  width: 4rem;
+  height: 4rem;
+  float: left;
+  border-radius: 1rem;
+}
+.sucessReserverUserImg h1 {
+  padding-left: 5rem;
+  font-size: 1.5rem;
+  line-height: 4rem;
+}
+.sucessReserverUserImg:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.sucessREprice {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.sucessREprice h4 {
+  font-size: 1.5rem;
+  color: #070000;
+}
+.sucessREprice h1 {
+  margin-top: 1rem;
+  text-align: right;
+  font-size: 2.5rem;
+  color: #fd7f19;
+}
+.sucessREorderInformation {
+  width: 100%;
+  padding: 1.5rem 1rem;
+}
+.sucessREorderInformation h3 {
+  font-size: 1.5rem;
+}
+.sucessREorderInformation li {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+.sucessREorderInformation span {
+  width: 5rem;
+  display: inline-block;
+  text-justify: inter-ideograph;
+  text-align: justify;
+}
+.sucessPlay {
+  width: 100%;
+  height: 3rem;
+  margin-top: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: #c2bebe;
+  background-image: url(../images/icon/sucessReserver_03.png);
+  background-size: 2rem 2rem;
+  background-position: 35% center;
+  background-repeat: no-repeat;
+}
+.orderHeaderUl {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.orderHeaderUl li {
+  margin-top: 1rem;
+}
+.orderHeaderUl span {
+  width: 5rem;
+  display: inline-block;
+}
+.reserveInformationCon {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.reserveInformationCon h1 {
+  font-size: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.reserveInformationConUl {
+  border: 1px solid #c2bebe;
+}
+.reserveInformationConUl li {
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  line-height: 3rem;
+  position: relative;
+  border-bottom: 1px solid #c2bebe;
+}
+.reserveInformationConUl li:last-child {
+  border-bottom: none;
+}
+.reserveInformationConUl span {
+  float: right;
+}
+.reserveInformationConUl .changeNumber {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.reserveInformationConUl .changeNumber span {
+  width: 3rem;
+  height: 100%;
+  display: block;
+  float: left;
+  text-align: center;
+  background-color: #fd7f19;
+  color: #fff;
+  font-size: 2rem;
+}
+.reserveInformationConUl .changeNumber input {
+  width: 3rem;
+  height: 100%;
+  display: block;
+  border: none;
+  float: left;
+  text-align: center;
+}
+.reserveInformationConUl:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.linkManINformation {
+  padding: 1.5rem 1rem;
+}
+.linkManInforHeader {
+  font-size: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.linkManInforHeader span {
+  float: right;
+}
+.linkManInforHeader:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.linkManINforUl li {
+  min-height: 3rem;
+  position: relative;
+  line-height: 3rem;
+}
+.linkManINforUl li p {
+  line-height: normal;
+  color: #fd7f19;
+}
+.linkManINforUl span {
+  width: 5rem;
+  height: 100%;
+  padding-left: 0.5rem;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.linkManINforUl input[type=text],
+.linkManINforUl input[type=password] {
+  width: 100%;
+  height: 3rem;
+  padding-left: 5.5rem;
+  border: 1px solid #c2bebe;
+}
+.linkManSubmit {
+  height: 3rem;
+  margin: 3rem 0;
+  text-align: center;
+  line-height: 3rem;
+  color: #fff;
+  font-size: 1.5rem;
+  background-color: #fd7f19;
+}
+.publicMainContainer {
+  padding-bottom: 5rem;
+}
+.personalInformationUl li {
+  min-height: 3rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.personalInformationUl li:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.personalInformationUl li:first-child {
+  padding: 1rem 0;
+  line-height: 5rem;
+}
+.personalInformationUl a {
+  padding: 0 3rem 0 1rem;
+  display: block;
+  color: #6a6a6a;
+  padding-right: 3rem;
+  background-image: url(../images/icon/right.png);
+  background-repeat: no-repeat;
+  background-position: 96% center;
+  background-size: auto 1.5rem;
+}
+.personalInformationUl span {
+  float: right;
+}
+.personalInformationUl .userImg {
+  width: 5rem;
+  height: 5rem;
+  float: right;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.personalInformationUl .userImg img {
+  width: 100%;
+  height: 100%;
+}
+.personalCenterCon {
+  padding-bottom: 5rem;
+}
+.personalCenterHeader {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.personalCenterHeader .personalCenterImg {
+  width: 5rem;
+  height: 5rem;
+  float: left;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+.personalCenterHeader .personalCenterImg img {
+  width: 100%;
+  height: 100%;
+}
+.personalCenterHeader h1 {
+  padding: 0.8rem 0 0 6rem;
+  font-size: 1.5rem;
+}
+.personalCenterHeader h3 {
+  padding: 0.2rem 0 0 6rem;
+  font-size: 1rem;
+  color: #7c7c7c;
+}
+.personalCenterHeader h3 span {
+  color: #fe851c;
+}
+.personalCenterHeader:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.personalCenterUl li {
+  height: 3rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #c2bebe;
+  background-image: url(../images/icon/right.png);
+  background-repeat: no-repeat;
+  background-position: 96% center;
+  background-size: auto 1.5rem;
+}
+.personalCenterUl a {
+  display: block;
+  padding-left: 3.5rem;
+  color: #686868;
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: 1rem center;
+}
+.publicChangeCon {
+  padding-bottom: 5rem;
+  color: #8e8e8e;
+}
+.publicChangeCon > header {
+  height: 3rem;
+  padding: 0 1rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.publicChangeCon .submit {
+  width: 100%;
+  padding: 3rem 1rem 5rem;
+}
+.publicChangeCon .submit > div {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 3rem;
+  color: #fff;
+  background-color: #fd7f19;
+}
+.publicChangeUl li {
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.publicChangeUl input[type=radio],
+.publicChangeUl input[type=checkbox] {
+  -webkit-appearance: none;
+  /*去掉系统自带的样式*/
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+  background-image: url(../images/icon/checkbox_05.jpg);
+  /*默认显示*/
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.publicChangeUl input[type=radio]:checked,
+.publicChangeUl input[type=checkbox]:checked {
+  background-image: url(../images/icon/checkbox_03.png);
+}
+.publicChangeUl label {
+  display: block;
+}
+.changeNameUl li {
+  min-height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem;
+  position: relative;
+}
+.changeNameUl p {
+  line-height: normal;
+  color: #fd7f19;
+}
+.changeNameUl .inputWidth[type=text] {
+  width: 10rem;
+}
+.changeNameUl input[type=text] {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-bottom: 1px solid #c2bebe;
+}
+.changeNameUl input[type=text]:focus {
+  border-bottom: 1px solid #fd7f19;
+}
+.changeNameUl .getVerfacition {
+  width: 8rem;
+  height: 3rem;
+  position: absolute;
+  right: 1rem;
+  top: 0;
+  text-align: center;
+  color: #fff;
+  background-color: #fd7f19;
+}
+.changeNameUl .getingVerfacition {
+  background-color: #c8c8c8;
+}
+.iconPhone {
+  background-image: url(../images/icon/personCenter_03.png);
+}
+.iconPeople {
+  background-image: url(../images/icon/personCenter_06.png);
+}
+.iconFaborable {
+  background-image: url(../images/icon/personCenter_08.png);
+}
+.iconSet {
+  background-image: url(../images/icon/personCenter_10.png);
+}
+.iconPlayPhoto {
+  background-image: url(../images/icon/changeImg_03.png);
+}
+.iconPhoto {
+  background-image: url(../images/icon/changeImg_06.png);
+}
+.changeDatePup {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  padding-top: 4rem;
+  background-color: #fff;
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+.changeDatePup header {
+  width: 100%;
+  height: 4rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 4rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.changeDatePup ul {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.changeDatePup ul li {
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.changeDatePup .phone {
+  float: right;
+}
+.changeDatePupNow {
+  transform: translate(-100%, 0);
+  -webkit-transform: translate(-100%, 0);
+}
+.changeImg {
+  width: 100%;
+}
+.changeImg li {
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.changeImg a {
+  display: block;
+  padding-left: 4rem;
+  color: #929292;
+  background-position: 1rem center;
+  background-size: 2rem;
+  background-repeat: no-repeat;
+}
+.personalSeting li {
+  background-image: url(../images/icon/right.png);
+  background-position: 95% center;
+  background-size: 1.3rem;
+  background-repeat: no-repeat;
+}
+.myReserver li {
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  line-height: 3rem;
+  color: #686868;
+  position: relative;
+  border-bottom: 1px solid #c2bebe;
+}
+.myReserver span {
+  float: right;
+  color: #fd7f19;
+}
+.myReserver .lastLi {
+  padding-right: 3rem;
+  background-image: url(../images/icon/right.png);
+  background-position: 97% center;
+  background-size: 1.3rem;
+  background-repeat: no-repeat;
+}
+.myReserver .changeNumber {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.myReserver .changeNumber span {
+  width: 3rem;
+  height: 100%;
+  display: block;
+  float: left;
+  text-align: center;
+  background-color: #fd7f19;
+  color: #fff;
+  font-size: 2rem;
+}
+.myReserver .changeNumber input {
+  width: 3rem;
+  height: 100%;
+  display: block;
+  border: none;
+  float: left;
+  text-align: center;
+}
+.myReserver a {
+  color: #686868;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>2-1简易留言板</title>
+<style>
+*{padding:0;margin:0;}
+.content{width:600px;margin:50px auto;}
+h3{border-bottom:1px solid #000;color:red;height:40px;}
+#list{width:560px;border:1px solid #000;padding:10px 10px 10px 30px;margin:20px 0;}
+#list li{line-height:25px;height:25px;font-size:14px;list-style:decimal;}
+#txt{width:540px;padding:2px 5px;font-size:14px;}
+</style>
+<script>
+window.onload=function(){
+	var oList=document.getElementById('list');
+	var oTxt=document.getElementById('txt');
+	var oBtn=document.getElementById('but');
+	var aLi=oList.getElementsByTagName('li');
+	
+	oBtn.onclick=function(){
+		
+		//增加留言内容
+		var val=oTxt.value;
+		if(!val){alert('您输入的留言内容为空，请重新输入！'); return false;}
+		var oLi=document.createElement('li');
+		oLi.innerHTML=val+'&nbsp;&nbsp;<a href="javascript:;">删除</a>&nbsp;&nbsp;'+'<a href="javascript:;">上移</a>&nbsp;&nbsp;'+'<a href="javascript:;">下移</a>';
+		if(oList.children.length){
+			oList.insertBefore(oLi,oList.appendChild[0]);
+		}else{
+			oList.appendChild(oLi);	
+		}
+		
+	   //删除留言内容
+	   oLi.children[0].onclick=function(){
+		    oList.removeChild(this.parentNode);
+		 };
+		 
+	  //上移一条数据
+	  //上移过程:首选做上移的点击事件,判断如果是第一个就提示无法上移,不是第一条的话找到它的上一个兄弟节点，然后把这一条插入它前一个兄弟节
+	   oLi.children[1].onclick=function(){
+		   var oPar=this.parentNode;     
+		   if(oPar==aLi[0]){
+			    alert('这已经是第一条数据了，无法上移了！');
+				return false;
+			 }
+			var prev=oPar.previousElementSibling||oPar.previousSibling;
+			oList.insertBefore(oPar,prev);
+		};
+		
+		//下移一条数据
+		//下移过程:首选做下移的点击事件,判断如果是最后一个就提示无法下移,如果不是最后一个，则找到要移动的条的下一个的下一个，然后插到下的前面
+		oLi.children[2].onclick=function(){
+			var oPar=this.parentNode;
+			if(oPar==aLi[aLi.length-1]){
+				alert('这已经是最后一条数据了，无法下移了！');
+				return false;
+			};
+			var next=oPar.nextElementSibling||oPar.nextSibling;
+			var Nnext=next.nextElementSibling||next.nextSibling;
+			oList.insertBefore(oPar,Nnext);
+		};
+		oTxt.value='';
+	};
+};
+</script>
+</head>
+
+<body>
+<div class="content">
+	<h3>留言内容</h3>
+    <ul id="list">
+    </ul>
+    <input type="text" id="txt" />
+    <input type="button" id="but" value="留言" />
+</div>
+</body>
+</html>

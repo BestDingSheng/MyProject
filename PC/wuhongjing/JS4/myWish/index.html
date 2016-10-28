@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>许愿墙</title>
+<link rel="stylesheet" href="./Css/index.css" />
+<script src="Js/ajax.js"></script>
+<script>
+function toDou(iNum){
+	return iNum<10?'0'+iNum:''+iNum;
+}
+function getCnTime(time){
+	var oDate=new Date(time);
+	return oDate.getFullYear()+'年'+toDou((oDate.getMonth()+1))+'月'+toDou(oDate.getDate())+'日'+' '
++toDou(oDate.getHours())+':'+toDou(oDate.getMinutes())+':'+toDou(oDate.getSeconds());	
+};
+
+var zIndex = 1;
+function drag(obj){
+	obj.onmousedown=function(ev){
+		zIndex++;
+		obj.style.opacity=0.4;
+		obj.style.filter='alpha(opacity:40)';
+		obj.style.zIndex = zIndex;
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-obj.offsetLeft;
+		var disY=oEvent.clientY-obj.offsetTop;
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;
+			var l=oEvent.clientX-disX;
+			var t=oEvent.clientY-disY;
+			if(l<=10){
+			   l=10;
+			}
+			if(l>=document.documentElement.clientWidth-obj.offsetWidth-20){
+				l=document.documentElement.clientWidth-obj.offsetWidth-20
+			}
+			if(t<=0){
+				t=0
+			}
+			if(t>=document.documentElement.clientHeight-obj.offsetHeight-126){
+				t=document.documentElement.clientHeight-obj.offsetHeight-126
+			}
+			obj.style.left=l+'px';
+			obj.style.top=t+'px';
+		};
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+			obj.style.opacity=1;
+			obj.style.filter='alpha(opacity:100)';
+			obj.releaseCapture&&obj.releaseCapture();
+		}
+			return false;
+			obj.setCapture&&obj.setCapture()
+	};
+};
+var arr = ['抱抱','害羞','花心','挤眼','酷','钱','太开心','偷笑','嘻嘻','抓狂'];
+var arr2 = ['baobao','haixiu','huaxin','jiyan','ku','qian','taikaixin','touxiao','xixi','zhuakuang'];
+window.onload=function(){
+	var oSend=document.getElementById('send');
+	var oWindow=document.getElementById('send-form');
+	var oClose=document.getElementById('close');
+	var oUser=document.getElementById('username');
+	var oCon=document.getElementById('content');
+	var oWinBtn=document.getElementById('send-btn');
+	var oMain=document.getElementById('main');
+	var oPhiz=document.getElementById('phiz');
+	var aImg=oPhiz.getElementsByTagName('img');
+	var oFontNum=document.getElementById('font-num');
+	var URL='wish.php';
+	
+	for(var i=0;i<aImg.length;i++){
+		aImg[i].onclick=function(){
+			oCon.value+='['+this.alt+']'	
+		}
+	};
+	getMsg()
+	oSend.onclick=function(){
+		oWindow.style.display='block';
+	};
+	oClose.onclick=function(){
+		oWindow.style.display='none';
+	};
+	oWinBtn.onclick=function(){
+		ajax({
+			url:URL,
+			data:{
+				 act:'add',
+				 username:oUser.value,
+				 content:oCon.value
+			    },
+			success:function(str){
+				   //msg:[{'id':1, 'username':'xxx', 'content':'xxx', time: 1435567718},{},{},{}.......]}
+				   var json=eval('('+str+')');
+				   if(!json.error){
+					 getMsg()
+					 oUser.value='';
+			         oCon.value='';
+			         oWindow.style.display='none';
+					}else{
+						alert('发表失败！')  
+					  }
+			       },
+			error:function(){
+					alert('不好意思，失败了！')
+			      }
+			})
+	};
+	
+	function createWish(id,user,content,time){
+		for(var i=0;i<arr.length;i++){
+			if(content.indexOf('['+arr[i]+']')!=-1){
+				content=content.replace('['+arr[i]+']','<img src="Images/phiz/'+arr2[i]+'.gif" />')
+				i--;
+			};
+		};		
+		var oDl=document.createElement('dl');
+		oDl.innerHTML='<dt>'
+   			+'<span class="username">'+user+'</span>'
+   			+'<span class="num">No.'+id+'</span>'
+			+'</dt>'
+			+'<dd class="content">'+content+'</dd>'
+			+'<dd class="bottom">'
+  			+'<span class="time">今天'+time+'</span>'
+  			+'<a href="javascript:;" class="close"></a>'
+			+'</dd>';    
+			oDl.className='paper a'+(id%5+1); 
+			oMain.appendChild(oDl);
+			
+			if(window.navigator.userAgent.indexOf('MSIE 9.0')!=-1){
+			var timer=null;
+			oCon.onfocus=function(){
+				timer=setInterval(function(){
+					oFontNum.innerHTML=50-oCon.value.length;
+					oCon.onchange='this.value=this.value.substring(0, 50)';
+					oCon.onkeydown='this.value=this.value.substring(0, 50)';
+					oCon.onkeyup="this.value=this.value.substring(0, 50)";	
+				},100)
+			}
+			oCon.onblur=function(){
+				clearInterval(timer);
+			}
+			}else{
+				oCon.oninput=oCon.onpropertychange=function(){
+				oFontNum.innerHTML=50-oCon.value.length;
+				oCon.onchange='this.value=this.value.substring(0, 50)';
+				oCon.onkeydown='this.value=this.value.substring(0, 50)';
+				oCon.onkeyup="this.value=this.value.substring(0, 50)";
+				}	
+			};
+			oDl.style.left=(Math.random()*(document.documentElement.clientWidth-10-oDl.offsetWidth)-10)+10+'px';
+			oDl.style.top=(Math.random()*(document.documentElement.clientHeight-126-oDl.offsetHeight)-126)+126+'px';
+
+			var oDel=oDl.getElementsByTagName('a')[0];
+				oDel.onclick=function(){
+				var result=confirm('您确定要删除吗？')
+				if(result){
+					oMain.removeChild(this.parentNode.parentNode)
+			}
+		}
+		drag(oDl)	
+		return oDl	
+	}
+	function getMsg(){
+		//wish.php?act=get
+		//{error:0, msg:[{'id':1, 'username':'xxx', 'content':'xxx', time: 1435567718},{},{},{}.......]}
+		ajax({
+			url:URL,
+			data:{
+				act:'get'
+			},
+			success:function(str){
+				var json=eval('('+str+')');
+				var arr=json.msg;
+				if(!json.error){
+					oMain.innerHTML='';
+					for(var i=0;i<arr.length;i++){
+						createWish(arr[i].id,arr[i].username,arr[i].content,getCnTime(arr[i].time*1000))
+					}
+				}else{
+					alert(json.msg);
+				}
+			},
+			error:function(){
+				alert('失败了！')
+			}	
+		})
+	}
+};
+</script>
+</head>
+<body>
+<div id="top">
+    <span id="send"></span>
+</div>
+<div id="main">
+    <!--<dl class="paper a1">
+        <dt>
+            <span class="username">北京天安门</span>
+            <span class="num">No.00001</span>
+        </dt>
+        <dd class="content">欢迎来到北京天安门</dd>
+        <dd class="bottom">
+            <span class="time">今天08:30</span>
+            <a href="javascript:;" class="close"></a>
+        </dd>
+    </dl>-->
+</div>
+
+<div id="send-form">
+    <p class="title"><span>许下你的愿望</span><a href="javascript:;" id="close"></a></p>
+    <form action="" name='wish'>
+        <p>
+            <label for="username">昵称：</label>
+            <input type="text" name="username" id="username"/>
+        </p>
+        <p>
+            <label for="content">愿望：(您还可以输入&nbsp;<span id="font-num">50</span>&nbsp;个字)</label>
+            <textarea name="content" id='content' maxlength="50"></textarea>
+            <div id="phiz">
+                <img src="./Images/phiz/zhuakuang.gif" alt="抓狂" />
+                <img src="./Images/phiz/baobao.gif" alt="抱抱" />
+                <img src="./Images/phiz/haixiu.gif" alt="害羞" />
+                <img src="./Images/phiz/ku.gif" alt="酷" />
+                <img src="./Images/phiz/xixi.gif" alt="嘻嘻" />
+                <img src="./Images/phiz/taikaixin.gif" alt="太开心" />
+                <img src="./Images/phiz/touxiao.gif" alt="偷笑" />
+                <img src="./Images/phiz/qian.gif" alt="钱" />
+                <img src="./Images/phiz/huaxin.gif" alt="花心" />
+                <img src="./Images/phiz/jiyan.gif" alt="挤眼" />
+            </div>
+        </p>
+        <span id="send-btn"></span>
+    </form>
+</div>
+<!--[if IE 6]>
+<script type="text/javascript" src="./Js/iepng.js"></script>
+<script type="text/javascript">
+    DD_belatedPNG.fix('#send,#close,.close','background');
+</script>
+<![endif]-->
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义滚动条</title>
+<style>
+*{margin:0;padding:0;}
+#box{width:600px;height:300px;margin:100px auto;border:1px solid #ccc;overflow:hidden;}
+#conBox{width:560px;float:left;padding:10px;}
+#scrollBox{width:20px;height:300px;float:right;background:#ebeaea;position:relative;}
+#scroll{width:20px;height:20px;position:absolute;top:0;left:0;background:#CCC;cursor:pointer;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oConBox=document.getElementById('conBox');
+	var oScrollBox=document.getElementById('scrollBox');
+	var oScroll=document.getElementById('scroll');
+	
+	oScroll.onmousedown=function(ev){
+		var oEvent=ev||event;
+		var disY=oEvent.clientY-oScroll.offsetTop;
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;
+			var t=oEvent.clientY-disY;
+			if(t<0){t=0};
+			if(t>oScrollBox.offsetHeight-oScroll.offsetHeight){t=oScrollBox.offsetHeight-oScroll.offsetHeight}
+			var scale=t/(oScrollBox.offsetHeight-oScroll.offsetHeight);
+			var oT=-(oConBox.offsetHeight-oBox.offsetHeight)*scale;
+			oConBox.style.marginTop=oT+'px';
+			oScroll.style.top=t+'px';
+		};
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+			oScroll.releaseCapture&&oScroll.setCapture();
+		};
+		oScroll.setCapture&&oScroll.setCapture();
+		return false;		
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div id="conBox">
+    网易科技讯 5月20日消息，三星电子和支付宝宣布正式达成Samsung Pay合作。此次合作意味着用户不仅可以通过Samsung Pay管理和使用绑定的银行卡，同时还可以通过Samsung Pay绑定支付宝账户进行支付宝支付。三星电子大中华区产品战略及研发总裁王彤表示：“本次与支付宝的合作，为Samsung Pay开启了一种新的使用场景，也为习惯使用支付宝的用户提供了一个更快捷的使用方式。”
+蚂蚁金服支付事业群总裁樊治铭表示：“支付宝与三星的合作，打通了手机支付的顶层技术，当用户在线下消费时，可以用支付宝更安全、便捷地完成手机支付。”
+在Samsung Pay里绑定了支付宝账号之后，无论是锁屏、黑屏或主屏幕，无需查找并启动应用，只需从Home键上方向上滑动即可调出支付宝二维码支付界面。网易科技讯 5月20日消息，三星电子和支付宝宣布正式达成Samsung Pay合作。此次合作意味着用户不仅可以通过Samsung Pay管理和使用绑定的银行卡，同时还可以通过Samsung Pay绑定支付宝账户进行支付宝支付。三星电子大中华区产品战略及研发总裁王彤表示：“本次与支付宝的合作，为Samsung Pay开启了一种新的使用场景，也为习惯使用支付宝的用户提供了一个更快捷的使用方式。”
+蚂蚁金服支付事业群总裁樊治铭表示：“支付宝与三星的合作，打通了手机支付的顶层技术，当用户在线下消费时，可以用支付宝更安全、便捷地完成手机支付。”
+在Samsung Pay里绑定了支付宝账号之后，无论是锁屏、黑屏或主屏幕，无需查找并启动应用，只需从Home键上方向上滑动即可调出支付宝二维码支付界面。
+    网易科技讯 5月20日消息，三星电子和支付宝宣布正式达成Samsung Pay合作。此次合作意味着用户不仅可以通过Samsung Pay管理和使用绑定的银行卡，同时还可以通过Samsung Pay绑定支付宝账户进行支付宝支付。三星电子大中华区产品战略及研发总裁王彤表示：“本次与支付宝的合作，为Samsung Pay开启了一种新的使用场景，也为习惯使用支付宝的用户提供了一个更快捷的使用方式。”
+蚂蚁金服支付事业群总裁樊治铭表示：“支付宝与三星的合作，打通了手机支付的顶层技术，当用户在线下消费时，可以用支付宝更安全、便捷地完成手机支付。”
+在Samsung Pay里绑定了支付宝账号之后，无论是锁屏、黑屏或主屏幕，无需查找并启动应用，只需从Home键上方向上滑动即可调出支付宝二维码支付界面。
+    </div>
+    <div id="scrollBox">
+    	<div id="scroll"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>1.自动生成V字形2</title>
+<style>
+#box{width:300px;height:300px;border:1px solid #ccc;position:relative}
+#box div{width:50px;height:50px;background:#ff0238;position:absolute}
+</style>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById('btn');
+	var oBox=document.getElementById('box');
+	var n=5; //定义正方形的个数
+	var middle=Math.floor(n/2);  //获取中间数
+	var status=0;
+	var htmlDiv='';
+
+	oBtn.onclick=function(){
+		var htmlDiv='';
+		if(status%4==0){
+	//箭头向右的时候
+	for(var i=0;i<n;i++){
+		var m=i*50;
+		var k= i<=middle?m:(n-1-i)*50
+		htmlDiv+='<div style="top:'+m+'px;left:'+k+'px"></div>';
+		    };
+		}else if(status%4==1){
+
+	//箭头向下的时候
+	for(var i=0;i<n;i++){
+		var m=i*50;
+		var k= i<=middle?m:(n-1-i)*50
+		htmlDiv+='<div style="top:'+k+'px;left:'+m+'px"></div>';
+			};
+		}else if(status%4==2){
+
+             //箭头向左的时候
+	for(var i=0;i<n;i++){
+		var m=i*50;
+		var k= i<=middle?(n-1-i)*50:m;
+		htmlDiv+='<div style="top:'+m+'px;left:'+k+'px"></div>';
+		};
+		
+		}else if(status%4==3){
+	//箭头向上的时候
+	for(var i=0;i<n;i++){
+		var m=i*50;
+		var k= i<=middle?(n-1-i)*50:m
+		htmlDiv+='<div style="top:'+k+'px;left:'+m+'px"></div>';
+			};
+		}
+		oBox.innerHTML=htmlDiv;
+		status++;	
+	       };
+	};
+</script>
+</head>
+
+<body>
+<input type="button" value="旋转" id="btn"  />
+<div id="box"></div>
+</body>
+</html>

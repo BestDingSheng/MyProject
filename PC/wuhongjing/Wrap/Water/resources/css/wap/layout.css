@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#page{ background:#b2e3ff; width:100%; min-height:100%;}
+.page_bg_r{ background:url(../../images/wap/bg_cont_02.png) repeat-r left top; width:100%; background-size:100%;}
+.page_bg_l{ background:url(../../images/wap/bg_cont_03.png) no-repeat center 20px; width:100%; background-size:100%;}
+#header{ overflow:hidden; padding:16px 15px 13px;}
+.logo{ background:url(../../images/wap/logo.png) no-repeat left top; background-size:100%; width:140px; height:28px}
+.content{ padding-top:39px;}
+#footer{ margin-top:20px; text-align:center; background:#1a4ea1; font-size:10px; line-height:28px; width:100%; height:28px; color:#fff;}
+.zhu_nav{ position:relative; overflow:hidden; height:41px; margin-left:-11%;}
+.zhu_nav li{ width:36%; float:left; margin:0 1px;}
+.zhu_nav .btn{ display:inline-block; font-size:13px;}
+.zhu_nav .cur,
+.zhu_nav .btn{ width:100%; height:41px;}
+.zhu_nav .btn .txt{ line-height:41px;}
+.zhu_nav li:first-child{  padding-left:5%; width:31%;}
+.zhu_nav li:last-child{ margin-right:-10%; padding-right:5%; width:31%;}
+
+.con_login{ padding:60px 20px 0;}
+.content .main{ overflow:hidden; width:95%; margin:auto; box-sizing:border-box;}
+.sub_nav { background:#95cfff; overflow:hidden; margin-left:-20px; margin-top:1px;}
+.sub_nav .btn{ float:left; width:24%; background:none; border-right:1px solid hsla(211, 77%, 41%,.6); height:24px; line-height:24px; }
+.sub_nav .btn .txt{color:#1149a3;}
+.sub_nav .cor_red .txt{ color:#df0615;}
+.sub_nav li:first-child{  padding-left:4%;}
+.sub_nav li:last-child{ margin-right:-10%;}
+.nav .smil{ padding-left: 90px; margin-left:0;}
+.nav .smil_01{ padding-left: 40px; margin-left:0;}

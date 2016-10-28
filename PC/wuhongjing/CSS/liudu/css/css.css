@@ -1,0 +1,112 @@
+body{width:980px;margin:0 auto;padding:0px;font-family:"宋体";font-size:12px;color:#000;line-height:150%;background:#f9ffff}
+ul,li,dl,dt,dd,p{overflow:hidden;margin:0;padding:0;list-style:none}
+a:link,a:visited,a:hover{font-size:12px;color:#555;font-family:"宋体";text-decoration:none;}a:hover{color:#f00}
+.m_10{margin-top:10px}
+.p_10{padding-top:10px}
+ul{background:#fff}
+img{border:0}
+
+#top .left{width:298px;float:left;padding-top:8px}
+#top .right{width:680px;float:right}
+#top li{text-align:center}
+
+#path {height:37px;background:url(../images/path_bg.jpg) repeat-x}
+#path li{float:left;line-height:37px;background:url(../images/path_li.jpg) no-repeat right;padding:0px 26px}
+#path a{font-size:14px;font-weight:bold;color:#fff}
+
+#main{overflow:hidden;height:100%}
+#main .a_left{float:left;width:200px}#main .a_right{float:right;width:770px}
+
+span.t3{display:block;float:left;padding-left:8px;background:url(../images/csg-918.png) no-repeat 4px 13px;padding-top:6px}
+span.t3 a{font-weight:bold;color:#0d85d3}
+dl.about dd{height:216px}
+dl.anli  dd{height:200px;padding:10px;background:#eee}
+dl.anli  dd p{margin:0 auto;text-align:center;padding-top:5px}
+dl.anli  dd img{border:1px solid #eee;padding:1px}
+dl.links dd{height:155px;padding:20px}
+
+/*左小框*/
+dl.box_a {background:url(../images/left_c.jpg)}
+dl.box_a dt{height:28px;background:url(../images/left_t.jpg) no-repeat;line-height:28px;font-size:13px;font-weight:bold;padding-left:20px;color:#fff}
+dl.box_a dt a{color:#fff}
+dl.box_a dd{background:url(../images/left_b.jpg) no-repeat bottom;padding:4px 6px}
+/*右大框*/
+dl.box_b {background:url(../images/pic_r1.jpg) no-repeat}
+dl.box_b dt.tit{height:29px;line-height:28px;font-size:13px;font-weight:bold;padding-left:20px;color:#fff}
+dl.box_b dt a{color:#fff}
+dl.box_b dd{height:100%;}
+dl.box_b dd.bot{background:url(../images/pic_r1.jpg) no-repeat left bottom}
+dl.box_b dl.img{float:left;width:24.5%;text-align:center;padding-top:10px}
+
+dl.box_b .bott{background:url(../images/pic_r1.jpg) no-repeat 0px bottom;height:130px}
+dl.box_b .bott dl.img{float:left;width:150px;text-align:center;padding-top:10px}
+dl.box_b dl.img dt.i{width:120px;height:90px;margin:0 auto}
+
+
+dd.bot span{font-weight:bold;background:url(../images/csg-918.png) no-repeat;height:34px;line-height:25px}
+dd.bot span a{color:#0101ff;text-decoration:underline;}
+span.t1,span.t2{float:left;display:block;padding:0;margin:0}
+dd.bot span.t1{background-position:10px -54px;padding-left:25px}
+dd.bot span.t2{background-position:10px -20px;padding-left:20px}
+/*首页三个图片*/
+ul.pic .left{width:245px;float:left}ul.pic .right{float:right;width:245px}
+ul.pic .center{width:278px;float:left}ul.pic li{text-align:center}
+ul.pic dl{width:245px;background:url(../images/pic_r2.jpg) no-repeat;margin:0 auto;height:170px}
+ul.pic dt{padding-top:4px}ul.pic dd{text-align:left;width:226px;margin:7px auto;padding-left:10px}
+
+
+#indemo {float: left;width: 800%} 
+#demo {overflow:hidden;width:750px;margin:0 auto} 
+#demo1,#demo2{float: left;} 
+#demo_a {background: #FFF;overflow:hidden;height: 196px;} 
+
+ul.news .left{width:468px;float:left}ul.news .right{width:286px;float:right}
+ul.news li{background:url(../images/pic_r1.jpg) no-repeat left bottom;height:196px}
+ul.news dl{width:100%;}
+ul.news dt{height:29px;line-height:28px;font-size:13px;font-weight:bold;padding-left:20px;color:#fff;background:url(../images/pic_r1.jpg) no-repeat;}
+ul.news dt a:link,ul.news dt a:visited{color:#fff}
+ul.news dd{height:157px;background:url(../images/pic_r1.jpg) no-repeat right bottom;width:98%;float:right;padding-top:10px}
+ul.news dd p{width:222px;float:left;line-height:200%}
+
+.bottom{border-top:2px solid #00b6c2;padding-top:12px;text-align:center}
+
+/*下拉菜单*/
+#nav {height:37px;background:url(../images/path_bg.jpg) repeat-x}
+#nav li {float:left;line-height:37px;background:url(../images/path_li.jpg) no-repeat right;padding:0px 26px}
+#nav a {font-size:14px;font-weight:bold;color:#fff;display: block;}
+#nav a:hover{color:#ccc}
+
+#nav li ul {text-align:left;left: -999em; width: 160px; position:absolute;}
+#nav li ul li{float: left; width: 160px;padding:0px;padding-left:5px;line-height:220%;
+ background: #e2fafb;}
+#nav ul a{color:#00a0a5;}
+
+#nav li ul a:hover  {color:#049deb;background:#fff}
+#nav li:hover ul {FILTER: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+ left: auto;
+}
+#nav li.sfhover ul {
+ left: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

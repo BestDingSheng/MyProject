@@ -1,0 +1,158 @@
+/*字体初始化*/
+@media only screen and (max-width: 340px) and (min-width: 320px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 380px) and (min-width: 340px) {
+  html {
+    font-size: 11px;
+  }
+}
+@media only screen and (max-width: 410px) and (min-width: 380px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 440px) and (min-width: 410px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 470px) and (min-width: 440px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 500px) and (min-width: 470px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  html {
+    font-size: 16px;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+/*初始化html,body*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Microsoft YaHei";
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  position: relative;
+}
+/*清除浮动*/
+.clear {
+  clear: both;
+}
+/*隐藏元素*/
+.hide {
+  display: none;
+}
+a {
+  text-decoration: none;
+}
+input[type=button],
+input[type=submit] {
+  -webkit-appearance: none;
+  outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+ul {
+  list-style: none;
+}
+.publicLimitContainer {
+  width: 100%;
+  height: 100%;
+  padding-top: 5rem;
+  position: relative;
+}
+.publicHeaderCon {
+  width: 100%;
+  height: 5rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: url(../images/news/headerBg.jpg);
+  background-position: center;
+  background-size: auto 100%;
+}
+.publicMainContainer {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.popMenuCon {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  padding-top: 5rem;
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  z-index: 999;
+}
+.popMenuCon header {
+  width: 100%;
+  height: 5rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.popMenuCon .menuCon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.popMenuCon .closeThis {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.popMenuCon ul {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.popMenuCon ul li {
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #c2bebe;
+}
+.popMenuCon a {
+  display: block;
+  color: #fff;
+}
+.popMenuConNow {
+  transform: translate(-100%, 0);
+  -webkit-transform: translate(-100%, 0);
+}

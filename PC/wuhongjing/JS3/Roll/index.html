@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无缝滚动</title>
+<style>
+*{padding:0;margin:0;list-style:none}
+#box{width:848px;height:174px;border:1px solid #ccc;margin:100px auto;position:relative;overflow:hidden;}
+#ul{position:absolute;top:0;left:0;padding:1px 0;}
+#ul li{width:200px;height:169px;float:left;margin-right:10px;border:1px solid #ccc;}
+#left{position:absolute;left:0;top:0;width:50%;height:174px;background:red;opacity:0;filter:alpha(opacity:0);z-index:2;}
+#right{position:absolute;right:0;top:0;width:50%;height:174px;background:yellow;opacity:0;filter:alpha(opacity:0);z-index:2;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oPrev=document.getElementById('left');
+	var oNext=document.getElementById('right');
+	var oUl=document.getElementById('ul');
+	
+	//把内容重新复制一次
+	oUl.innerHTML+=oUl.innerHTML;
+	//重新计算Ul的长度
+
+	oUl.style.width=(oUl.children[0].offsetWidth+10)*oUl.children.length+'px';
+	//取ul宽度的一半
+	var w=oUl.offsetWidth/2;
+	
+	oPrev.onmouseover=function(){
+		var n=0;
+		clearInterval(oPrev.timer);
+		clearInterval(oNext.timer);
+		oPrev.timer=setInterval(function(){
+			n--;      //n从0开始慢慢变成负数，它小到oUl的长度一半的时候就变回0
+			if(n<=-w){  
+				n=0;	
+			}
+			oUl.style.left=n+'px';	
+		},10)
+	};
+	oNext.onmouseover=function(){
+		var n=0;
+		clearInterval(oPrev.timer);
+		clearInterval(oNext.timer);
+		oNext.timer=setInterval(function(){
+			n++;
+			if(n>0){
+				n=-w;
+			}
+			oUl.style.left=n+'px';
+		},10)
+	};
+};
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<a id="left" href="javascript:;">←</a>
+    	<a id="right" href="javascript:;">→</a>
+        <ul id="ul">
+            <li><img src="img/pic01.jpg" alt="" /></li>
+            <li><img src="img/pic02.jpg" alt="" /></li>
+            <li><img src="img/pic03.jpg" alt="" /></li>
+            <li><img src="img/pic04.jpg" alt="" /></li>
+        </ul>
+    </div>
+</body>
+</html>

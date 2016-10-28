@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自动播放的选项卡</title>
+<style>
+*{padding:0;margin:0;list-style:none;font-family:'微软雅黑'}
+#box{width:682px;height:382px;margin:100px auto;position:relative;}
+#prev{width:27px;height:30px;position:absolute;padding:10px;background:#000;position:absolute;top:170px;left:0;cursor:pointer;}
+#next{width:27px;height:30px;position:absolute;padding:10px;background:#000;position:absolute;top:170px;right:0;cursor:pointer;}
+#prev:hover,#next:hover{background:#ef3929;}
+.red{background:#ef3929;cursor:pointer;}
+ul li{width:682px;height:382px;display:none;z-index:1px;position:relative;}
+ul li img{border:0;}
+ul li span{display:block;width:682px;height:120px;background:#000000;filter:alpha(opacity=60);opacity:0.6;z-index:2px;position:absolute;top:262px;left:0;}
+ul li em{width:560px;height:30px;font-size:22px;color:#FFFFFF;font-style:normal;position:absolute;top:270px;left:40px;z-index:4;}
+ul li i{width:560px;height:50px;font-size:12px;color:#FFF;font-style:normal;position:absolute;top:310px;left:20px;z-index:4;line-height:20px;}
+ul li i a{color:#ef3929;text-deocation:0;font-size:14px;text-decoration:none;}
+ol{width:80px;height:10px;position:absolute;bottom:10px;right:0;}
+ol li{width:10px;height:10px;float:left;margin-right:5px;background:#FFF;cursor:pointer;}
+.active{background:#ef3929;}
+</style>
+<script>
+window.onload=function(){
+var oBox=document.getElementById('box');
+var aPic=document.getElementsByTagName('ul')[0].getElementsByTagName('li');
+var aBtn=document.getElementById('btn').getElementsByTagName('li');
+var oPrev=document.getElementById('prev');
+var oNext=document.getElementById('next');
+var time=null;	
+var iNow=0;
+	
+for(var i=0;i<aBtn.length;i++){
+ aBtn[i].index=i;
+ aBtn[i].onclick=function(){
+ iNow=this.index;
+ tab(iNow);	 	 
+	  }	
+	 }
+function tab(num){
+  for(var i=0;i<aBtn.length;i++){
+ aBtn[i].className='';
+ aPic[i].style.display='';	 	 
+	 } 
+ aBtn[iNow].className='active';
+ aPic[iNow].style.display='block';	
+	}
+
+oPrev.onclick=function(){
+  iNow--;
+  if(iNow==-1){
+	iNow=aBtn.length-1;  
+	  }
+	tab(iNow);
+	}
+oNext.onclick=function(){
+  iNow++;
+  if(iNow==aBtn.length){
+	iNow=0;  
+	  }	
+   tab(iNow);
+	}
+time=setInterval(function(){
+  iNow++;
+  if(iNow==aBtn.length){
+	iNow=0;  
+	  }	
+   tab(iNow);	
+	},2000)
+
+oBox.onmouseover=function(){
+	clearInterval(time);
+	}
+	
+oBox.onmouseout=function(){
+  time=setInterval(function(){
+  iNow++;
+  if(iNow==aBtn.length){
+	iNow=0;  
+	  }	
+   tab(iNow);	
+	},2000)
+	}
+	}
+</script>
+</head>
+
+<body>
+<div id='box'>
+ <ul>
+   <li style="display:block;"><a href="#"><img src="img/pic01.jpg" /></a><span></span><em>《男神时代》定档9.2 任言恺李贤宰颜值扛票房 </em><i>影片集结了中韩泰三国众多男神女神，因此主演群被称作是 “逆天颜值团”，而影片也已定档9月2日<a href="">……[详细]</a></i></li>
+   <li><a href="#"><img src="img/pic02.jpg" /></a><span></span><em>《犹太女孩在上海2》定档8.28 发悬疑情节海报</em><i>这是一部纪念反法西斯胜利70周年，在二战背景下根据真实历史事件进行再创作的的暖心动画电影，是机会又是挑战<a href="">……[详细]</a></i></li>
+   <li><a href="#"><img src="img/pic03.jpg" /></a><span></span><em>《熊猫大侠》曝终极预告 熊猫大侠霸气“追萌”</em><i>《熊猫大侠》中的主人公熊猫哈比决心告别蠢萌的形象变身熊猫大侠，成为世外竹林的守护者，以消灭坏人为己任<a href="">……[详细]</a></i></li>
+   <li><a href="#"><img src="img/pic05.jpg" /></a><span></span><em>《我是奋青》曝终极海报 8月唯一青春喜剧来袭</em><i>两大男神孙坚、范逸臣，两大花旦毛晓彤、杨洋都经历了绝大多数年轻人所经历的青春，真实地展现了当下年轻人的青春实景<a href="">……[详细]</a></i></li>
+   <li><a href="#"><img src="img/pic04.jpg" /></a><span></span><em>用速度纪念保罗·沃克</em><i>故事发生在多米尼克（范·迪塞尔VinDiesel饰）和布莱恩（保罗·沃克PaulWalker饰）重获自由一年多后，他们摆脱暗无天日的亡命生活，却发现这个家脱离现<a href="">……[详细]</a></i></li>
+ </ul>
+ <a id="prev"><img src="img/prev.png" /></a>
+ <a id="next"><img src="img/next.png" /></a>
+ <ol id="btn">
+   <li class="active"></li>
+   <li></li>
+   <li></li>
+   <li></li>
+   <li></li>
+ </ol>
+</div>
+</body>
+</html>

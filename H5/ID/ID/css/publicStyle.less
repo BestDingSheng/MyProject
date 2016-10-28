@@ -1,0 +1,224 @@
+
+// 这个文件为本项目的公共样式
+
+/*字体初始化*/
+@media only screen and (max-width:340px) and(min-width:320px){ html{font-size: 10px;} }
+@media only screen and (max-width:380px) and(min-width:340px){ html{font-size: 11px;} }
+@media only screen and (max-width:410px) and(min-width:380px){ html{font-size: 12px;} }
+@media only screen and (max-width:440px) and(min-width:410px){ html{font-size: 13px;} }
+@media only screen and (max-width:470px) and(min-width:440px){ html{font-size: 14px;} }
+@media only screen and (max-width:500px) and(min-width:470px){ html{font-size: 15px;} }
+@media only screen and (max-width:500px){ html{font-size: 16px;} }
+
+/*全局样式*/
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+/*初始化html,body*/
+html,body{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-family: "微软雅黑";
+	-webkit-font-smoothing: antialiased;
+}
+body{
+	position: relative;
+}
+img{
+	border:none;
+	vertical-align: bottom;
+}
+a{
+	text-decoration: none;
+}
+
+input[type=button],input[type=submit],{
+	-webkit-appearance:none;
+	outline:none
+}
+
+/*清除浮动*/
+.clear{
+	clear: both;
+}
+/*隐藏元素*/
+.hide{
+	display: none;
+}
+
+
+// 头部
+.pub_header{
+	width: 100%;
+	height: 3rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #000;
+	z-index: 10;
+}
+
+//中间容器
+.pub_mianCon{
+	width: 100%;
+	height: 100%;
+	padding: 3rem 0 3rem 0;
+}
+.pub_Con{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow-y:auto; 
+	-webkit-overflow-scrolling:touch;
+}
+
+// 底部
+.pub_footer{
+	width: 100%;
+	height: 3rem;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	font-size: 0.9rem;
+	z-index: 10;
+}
+
+// 返回按钮
+.pub_back{
+	width: 1.5rem;
+	height: 1.5rem;
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	margin-top: -0.74rem;
+	
+	background-size: 100% 100%;
+
+	> a{
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+}
+
+
+
+
+.pub_title{
+	width: 100%;
+	height: 100%;
+	padding: 0 3rem;
+	text-align: center;
+	line-height: 3rem;
+	font-size: 0.9rem;
+	color: #fff;
+}
+
+.pub_share{
+	height: 1rem;
+	position: absolute;
+	right: 1rem;
+	top: 50%;
+	margin-top: -0.5rem;
+	padding-left: 0.5rem;
+	font-size: 0.9rem;
+	color: #fff;
+	line-height: 1rem;
+	border-left: 1px solid #fff;
+}
+
+
+/*home页面中，用到的框架，距离*/
+
+.homeTitle{
+	font-size: 1.5rem;
+}
+
+.home_mainCon{
+	.pub_mianCon;
+	padding-bottom: 0;
+}
+
+.home_footerCon{
+	width: 8rem;
+	height:2rem;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	line-height: 2rem;
+	margin-left: -4rem;
+	font-size: 0.8rem;
+	background-color: #000;
+	border-radius: 0.3rem;
+	color: rgba(255,255,255,0.8);
+
+	a{
+		width: 3.3rem;
+		height: 100%;
+		display: inline-block;
+		color: rgba(255,255,255,0.8);
+	}
+
+	a:first-child{
+		width: 3rem;
+		text-align: right;
+	}
+
+	strong{
+		padding: 0 0.2rem;
+	}
+}
+
+/*address*/
+
+.addressMainCon{
+	.pub_mianCon;
+	padding-bottom: 0;
+}
+
+
+//cart
+
+.cart_allPrices{
+	width: 100%;
+	height: 100%;
+	padding-right: 10rem;
+	text-align: center;
+	line-height: 3rem;
+	background-color: rgba(0,0,0,0.5);
+}
+.acrt_accounts{
+	width: 10rem;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0 1rem;
+
+	a{
+		width: 100%;
+		height: 2rem;
+		display: block;
+		margin-top: 0.5rem;
+		text-align: center;
+		line-height: 2rem;
+		color: #fff;
+		background-color: #b6a064;
+		border-radius: 0.3rem;
+	}
+}
+
+
+// icon
+.iconRetuen{
+	background-image: url(../images/icon/detail_03.png);
+}
+
+.iconMenu{
+	background-image: url(../images/icon/menu_03.png);
+}

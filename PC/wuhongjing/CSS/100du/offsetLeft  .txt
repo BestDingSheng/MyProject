@@ -1,0 +1,30 @@
+offsetLeft到当前元素offsetParent的定位距离
+
+IE7以下:如果元素本身没有定位，就算是有定位父级，那么offsetLeft[top]是到body的距离  
+
+      
+    如果没有定位父级的话 它自身就算是有定位父级
+    offsetParent->body
+    offsetLeft->html
+
+
+oDiv.style.width  样式宽
+oDiv.clientWidth: 样式宽+padding  可视区宽
+offsetWidth:样式宽+padding+border  占位宽
+
+面且上面几个没有什么兼容性问题
+IE7下默认的margin-top是15像素
+
+getPos()
+
+
+function getPos(obj){
+var iTop=0;
+var obj=oDiv3
+while(obj){
+
+	iTop+=obj.offsetTop;
+	obj=obj.offsetParent
+  }
+	return obj
+}

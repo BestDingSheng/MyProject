@@ -1,0 +1,53 @@
+#profile,#member_main,#main_top,#banner,#main,#main_bottom{margin:0 auto;width:966px}
+/*二级页面*/
+#banner{margin-top:10px}
+#main_top{height:10px;border-bottom:1px solid #e0e0e0;}
+#main{background:url(../images/text_03.gif) no-repeat;height:283px;margin-top:6px}
+#m_left{width:494px;float:left;}#m_right{float:left;width:470px}
+#m_left ol{width:440px;margin:0 auto;margin-top:20px}
+#m_left div{text-align:center;font-weight:bold;padding-top:14px}
+#m_left p{margin-top:10px}
+#m_left span{color:#002595;font-size:14px;font-weight:bold;position:relative;left:44px;top:24px}
+#m_left .left{width:178px;float:left;}
+#m_left .right{width:238px;text-align:center;float:right}
+#m_right ol{width:430px;margin:0 auto;margin-top:20px}
+#m_right div{font-weight:bold;padding-top:14px;width:134px;margin:0 auto}
+#m_right p{margin-top:10px;width:134px;margin:0 auto}
+#m_right span{color:#002595;font-size:14px;font-weight:bold;position:relative;left:50px;top:24px}
+#m_right .left{width:178px;float:left;}
+#m_right .right{width:238px;text-align:center;float:right}
+#main_bottom{height:20px}
+/*会员登录*/
+#member_main{margin-top:20px}
+#member_main li{float:left;height:360px}
+#member_main .left{width:644px;background:url(../images/tex_02.jpg) no-repeat center right;}
+#member_main .right{width:292px;background:url(../images/member.gif) no-repeat}
+#member_main #user{padding:55px 0 0 68px;}.user,.pass{width:156px;height:19px}
+#member_main #pass{padding:18px 0 0 68px}
+#member_main #remember{padding:7px 0 0 68px}
+#member_main #login{padding:7px 0 0 68px}
+#member_main #back{padding:18px 0 0 66px}
+#member_main #reg{padding:24px 0 0 80px}
+/*会员注册*/
+#reg_main{width:930px;margin:10px auto 0;background:#d5e9f8 url(../images/tex_03.jpg) repeat-y}
+#reg_main .top{height:94px;background:#d5e9f8 url(../images/texx_08.gif) no-repeat center top;padding-top:10px;}
+#reg_main dl{width:698px;margin:0 auto;border:1px solid #e6e6e6;border-top:0px}
+#reg_main dt{width:129px;border-right:1px solid #e6e6e6;border-top:1px solid #e6e6e6;background:#f7f7f7;color:#505050;font-size:12px;font-weight:bold;text-align:right;padding-right:4px;float:left}
+#reg_main dd{border-top:1px solid #e6e6e6}
+#reg_main dt,#reg_main dd{height:33px;line-height:33px}
+#reg_main dd p{width:98px;margin:0px 3px 0px 4px;width:97%}
+#reg_main dd span{color:#c00}
+#reg_main .reg_r1{height:72px;line-height:72px}
+#reg_main .reg_r4{height:53px;line-height:53px}
+#reg_main .reg_r8{height:59px;line-height:59px}
+#reg_main .reg_r18{height:79px;line-height:150%;}
+#reg_main .reg_r19{height:92px;line-height:150%;}
+#reg_main .reg_r18 p,#reg_main .reg_r19 p{margin-top:20px}
+#reg_main .reg_r18 span,#reg_main .reg_r19 span{padding-top:24px;display:block}
+#reg_main dd.reg_r1{line-height:150%;}
+#reg_main .reg_r1 p{margin-top:5px}
+#reg_main .center .note{width:698px;margin:0 auto;border-left:1px solid #e6e6e6;border-right:1px solid #e6e6e6;border-bottom:5px solid #e6e6e6;height:27px;line-height:27px;text-align:center}
+#reg_main .center .reg{height:32px;background:#e6e6e6;width:700px;margin:0 auto;line-height:32px;text-align:center}
+#reg_main .bottom{background:url(../images/texx_09.gif) no-repeat;height:83px}
+#reg_main .reg_r9 input,#reg_main .reg_r10 input,#reg_main .reg_r12 input{width:270px}
+.note span{color:#c00}

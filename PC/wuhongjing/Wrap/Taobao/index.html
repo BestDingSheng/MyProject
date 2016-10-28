@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html style="font-size: 54px;">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>手机淘宝网</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<script>
+var iWidth=document.documentElement.getBoundingClientRect().width;iWidth=iWidth>540?540:iWidth;
+document.getElementsByTagName("html")[0].style.fontSize=iWidth/10+"px";
+</script>
+<style>
+body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,form,input,th,td,p,pre{margin:0;padding:0;}
+table{border-collapse:collapse;}
+img{border:none; vertical-align:top;}
+li{list-style:none}
+a{text-decoration:none}
+em,i{font-style:normal;}
+strong{ font-weight:normal;}
+textarea{ resize:none; overflow:auto;}
+input,textarea,select,lable{ outline:none; border:none;}
+.clear{zoom:1;}
+.clear:after{content:"";display:block;clear:both;}
+html{height:100%;overflow:hidden; background: #fff;}
+body{height:100%;overflow:auto;margin:0; background:#eee;}
+/*页面头部*/
+#top{
+	width:100%;
+	height: 50px;
+	background:url(img/top.png) repeat-x;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	box-sizing: border-box;
+	padding: 10px 30px 10px 15px;
+}
+.h2{
+	float: left;
+	width:100%;
+	height: 37px;
+	background: url(img/h2-bg.png) no-repeat;
+	padding-left: 0.9444444444rem;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+.search{
+	float: left;
+	width: 100%;
+}
+.seek{
+	display: block;
+	height: 33px;
+	width: 100%;
+	background: url(img/seek.png) no-repeat 1.777778rem 9px;
+	background-color: #e8512a;
+	font: 16px/33px arial;
+	padding-left: 2.5rem;
+	border-radius:5px ;
+}
+.seek::-webkit-input-placeholder{
+	color: #fff;
+}
+/*页面内容*/
+#theme{
+	background: #fff;
+	margin: 50px auto 0;
+	max-width: 540px;
+}
+.Picture{
+	height: 3.1388888889rem;
+}
+.Picture img{
+	max-width: 540px;
+	max-height: 169px;
+	height: 3.138888889rem;
+}
+.icon{
+	height:4.30555556rem ;
+}
+.icon li{
+	float: left;
+	width: 2rem;
+	height: 2.138888889rem;
+	text-align: center;
+	margin-left:0.416667rem ;
+}
+.icon span{
+	display:block;
+	font-size: 12px;
+	margin-top: 0.138889rem;
+	color: #666;
+}
+.icon img{
+	width:1.1944444rem ;
+	margin-top: 0.33333333rem;
+}
+.border-bottom{
+	height:0.3055556rem ;
+	background: #eee;
+}
+.purchase{
+	height:4.80555556rem;
+}
+.pur-left{
+	width:4rem;
+	height:4.80555556rem;
+	float: left;
+	display: block;
+}
+.pur-top{
+	width:6rem ;
+	height:1.9166667rem;
+	float: right;
+	border-left:1px solid #eee ;
+	border-bottom: 1px solid #eee;
+	margin-left: -1px;
+}
+.pur-bo{
+	width: 2.8888889rem;
+	float: left;
+	border-left:1px solid #eee ;
+	margin-left: -1px;
+}
+.pur-rig{
+	width: 2.8888889rem;
+	float: left;
+	border-left:1px solid #eee ;
+}
+.feature-top{
+	height: 0.9444444rem;
+	border-left:6px solid #2f5de0;
+}
+.feature-top h3{
+	font-size: 16px;
+	line-height:0.9444444rem;
+	margin-left: 0.194444rem;
+	color: #222;
+	font-family: sans-serif;
+	width: 7.77778rem;
+	float: left;
+}
+.feature-top a{
+	display:block;
+	font-size: 12px;
+	width:1.666667rem ;
+	float: right;
+	line-height:0.9444444rem ;
+	font-family: sans-serif;
+	background: url(img/morn.png) no-repeat 0.7777778rem 0.2777778rem;
+	background-size: 0.38888889rem;
+	color: #666;
+}
+.supermarket{
+	border-top:2px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+}
+.sup-l{
+	width: 4.9444444rem;
+	height: 4.4722222rem;
+	border-right: 1px solid #e8e8e8;
+	float: left;
+}
+.sup-t{
+	width:5rem;
+	height:2.22222rem;
+	border-bottom: 1px solid #e8e8e8;
+	float: left;
+}
+.sup-b{
+	width:5rem;
+	height:2.22222rem;
+	float: left;
+}
+.sup-list li{
+	float: left;
+	border-right: 1px solid #e8e8e8;
+	width: 2.444444rem;
+	height:2.916667rem;
+}
+.sup-list .right-no{
+	border-right: none;
+}
+.sup-list span{
+	display: block;
+	font-size: 14px;
+	font-family: sans-serif;
+	color: #222;
+	margin-top:0.333333rem;
+	margin-left:0.44444rem;
+	width: 1.94444444rem;
+	height: 0.5rem;
+}
+.sup-list i{
+	font-size: 12px;
+	font-family: sans-serif;
+	color: #999;
+	margin-left:0.44444rem;
+	width: 1.94444444rem;
+	height:0.4166667rem;
+	display: block;
+}
+.sup-list img{
+	width: 2.388889rem;
+	height:1.694444rem;
+}
+.sup-text{
+	border-top:2px solid #e8e8e8;
+}
+.sup-text li{
+	float: left;
+	width:2.3888889rem;
+	height:1.1388888889rem;
+	background: url(img/ico.png) no-repeat 0.416667rem center;
+	background-size: 0.08333333rem;
+}
+.sup-text .fist{
+	width:2.583333rem ;
+}
+.sup-text a{
+	display: block;
+	margin-top: 0.1388889rem;
+	margin-left: 0.555556rem;
+	color: #222;
+	font-size: 14px;
+	line-height:0.86111rem;
+	font-family: sans-serif;
+	width: 2rem;
+	position: relative;
+}
+.sup-text span{
+	height: 0.5rem;
+	display: inline-block;
+	border-right: 1px solid #e8e8e8;
+	position: absolute;
+	top: 0.166666667rem;
+	right: 0.0833333rem;
+}
+.sup-bottom{
+	border-top: 1px solid #e8e8e8;
+}
+.day{
+	height: 2rem;
+	margin-bottom: 1px;
+}
+.hot-header{
+	border-left:6px solid #f40;
+}
+.hot-general{
+	border-top: 1px solid #e8e8e8;
+}
+.hot-general li{
+	float: left;
+}
+.hot-general h4{
+	font-family: sans-serif;
+	font-size: 14px;
+	color: #222;
+}
+.hot-general span{
+	display: block;
+	font-family: sans-serif;
+	color: #999;
+	font-size: 12px;
+}
+.hot-top li{
+	width: 4.97222222rem;
+	height:3.83333333rem;
+}
+.hot-top h4{
+	margin-left: 0.4166667rem;
+	margin-top: 0.33333333rem;
+	height: 0.55555556rem;
+}
+.hot-top span{
+	margin-left: 0.4166667rem;
+}
+.hot-top img{
+	width: 4.97222222rem;
+	height:2.30555556rem ;
+}
+.hot-mian li{
+	width: 2.3888889rem;
+	height:2.86111111111rem;
+}
+.hot-mian h4{
+	margin-left: 0.4166667rem;
+	margin-top: 0.33333333rem;
+	height: 0.4722222222rem;
+}
+.hot-mian span{
+	margin-left: 0.4166667rem;
+}
+.hot-mian img{
+	width: 2.3888889rem;
+	height:1.66666667rem ;
+}
+.shop-header{
+	border-left: 6px solid #ff9b43;
+}
+.shop-header h3{
+	width:5.5555556rem;
+}
+.shop-header span{
+	width: 3.05555556rem;
+	font-family: sans-serif;
+	display: block;
+	font-size: 12px;
+	color: #999;
+	background-position:2.13888889rem 0.2777778rem ;
+}
+.shop-pic{
+	border-top: 1px solid #e8e8e8;
+	padding: 0.1944444rem;
+}
+.shop-main{
+	width: 4.8055556rem;
+	float: left;
+}
+.shop-main p{
+	width:4.72222222rem;
+	height: 0.5rem;
+	font-size: 13px;
+	font-family: sans-serif;
+	float: left;
+	margin-top: 0.13888889rem;
+}
+.shop-main p a{
+	color: #222;
+}
+.shop-l{
+	width: 3.138889rem;
+	height: 3.194444rem;
+	float: left;
+	margin-right: 0.055555556rem;
+}
+.shop-bigl{
+	background: url(img/shop-a.jpg) no-repeat center center;
+	background-size: cover;
+}
+.shop-bigr{
+	background: url(img/shop-d.jpg) no-repeat center center;
+	background-size: cover;
+}
+.shop-t{
+	width: 1.555556rem;
+	height:1.555556rem;
+	float: left;
+}
+.shop-smalll{
+	background: url(img/shop-b.jpg) no-repeat center center;
+	background-size: cover;
+}
+.shop-smallr{
+	background: url(img/shop-e.jpg) no-repeat center center;
+	background-size: cover;
+}
+.shop-b{
+	width: 1.555556rem;
+	height:1.555556rem;
+	float: left;
+	margin-top: 0.08333333rem;
+}
+.shop-bottoml{
+	background: url(img/shop-c.jpg) no-repeat center center;
+	background-size: cover;
+}
+.shop-bottomr{
+	background: url(img/shop-f.jpg) no-repeat center center;
+	background-size: cover;
+}
+.love{
+	margin: 0.25rem;
+	height: 0.44444rem;
+	padding: 0.4722222222rem 0;
+	position: relative;
+}
+.one-px{
+	border-top:1px solid #ddd;
+	margin-bottom: 0.4722222222rem;
+	position: absolute;
+	bottom: 8px;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+}
+#bottom{
+	max-width: 540px;
+	margin: 0 auto;
+}
+.love span{
+	display: block;
+	color: #5f646e;
+	height: 0.44444rem;
+	font-family: sans-serif;
+	font-size: 12px;
+	text-align: center;
+	width: 2.277778rem;
+	position: absolute;
+	left: 40%;
+	top: 0.4722222222rem;
+	z-index: 20;
+	background: #eee;
+}
+.bottom-list{
+	height: 7.11111rem;
+	padding: 0.25rem;
+	box-sizing: border-box;
+}
+.bottom-same{
+	width:4.5833333rem;
+	height: 6.888889rem;
+	background: #fff;
+	border-radius: 4px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #ddd;
+}
+.bottom-same p{
+	color: #666;
+	width: 4.0277778rem;
+	height: 0.8055556rem;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: sans-serif;
+	margin: 0.222222rem 0.27777778rem;
+}
+.bottom-same span{
+	border-top: 1px dashed #ddd;
+	box-sizing: border-box;
+	display: block;
+	height: 0.8611111rem;
+	color: #f50;
+	font-size: 16px;
+	font-family: sans-serif;
+	line-height: 0.8611111rem;	
+	margin-left: 0.27777778rem;
+}
+.bottom-img{
+	width:4.52777778 rem;
+	height:4.5833333rem;
+}
+.bottom-a{
+	background: url(img/bottom-a.jpg) no-repeat center 0;
+	background-size: contain;
+}
+.bottom-b{
+	background: url(img/bottom-b.jpg) no-repeat center 0;
+	background-size: contain;
+}
+.left-bott{
+	float: left;
+}
+.right-bott{
+	float: right;
+}
+#foot{
+	width: 100%;
+	height: 68px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(66,66,74,0.96);
+	padding: 20px 8px 0;
+	box-sizing: border-box;
+}
+.foot-pic{
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+.foot-pic img{
+	width: 100%;
+	height: 100%;
+}
+.foot-p{
+	margin: 8px 12px 0;
+	width: 210px;
+	height: 16px;
+	font: 14px/16px sans-serif;
+	float: left;
+}
+.foot-p a{
+	color: #fff;
+}
+.foot-span{
+	float: right;
+	padding: 0 12px;
+	text-align: center;
+	height: 30px;
+	border-radius: 5px;
+	font: 14px/30px sans-serif;
+	color: #3d4245;
+	background-color: #e5e5e5;
+}
+.foot-left{
+	position: absolute;
+	top: -42px;
+	left: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	padding: 6px;
+	box-sizing: border-box;
+	background-color: #ff5000;
+}
+.foot-left span{
+	background: url(img/sprite-foot.png) no-repeat;
+	background-size: 100%;
+	margin-top: 3px;
+	width: 27px;
+	height: 34px;
+	display: block;
+}
+.foot-right{
+	position: absolute;
+	top: -42px;
+	right: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	padding: 6px;
+	box-sizing: border-box;
+	background: url(img/foot-rig.png) no-repeat 16px 6px;
+	background-color: #fff;
+	display: block;
+}
+.foot-right span{
+	color: #ccc;
+	font: 12px/12px sans-serif;
+	display: inline-block;
+	margin-top: 18px;
+	margin-left: 2px;
+	position: absolute;
+	z-index: 5;
+}
+</style>
+</head>
+<body>
+<header id="top">
+	<div class="h2">
+		<form class="search">
+			<input type="text" placeholder="搜索宝贝、店铺" class="seek">
+		</form>
+	</div>
+</header>
+<section id="theme" class="clear">
+	<ul class="Picture">
+		<li>
+			<a href="./image/手机淘宝网.html"><img src="./image/Picture.jpg"></a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html"></a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html"></a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html"></a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html"></a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html"></a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html"></a>
+		</li>
+	</ul>
+	<ul class="icon">
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/tm.png">
+				<span>天猫</span>
+			</a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/jhs.png">
+				<span>聚划算</span>
+			</a>	
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/tsh.png">
+				<span>淘生活</span>
+			</a>
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/tdd.png">
+				<span>淘点点</span>
+			</a>	
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/cz.png">
+				<span>充值</span>
+			</a>	
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/qa.png">
+				<span>去啊</span>
+			</a>	
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/ljb.png">
+				<span>领金币</span>
+			</a>	
+		</li>
+		<li>
+			<a href="./image/手机淘宝网.html">
+				<img src="./image/lm.png">
+				<span>类目</span>
+			</a>	
+		</li>
+	</ul>
+	<div class="border-bottom"></div>
+	<div class="purchase">
+		<a href="./image/手机淘宝网.html"><img src="./image/purchase-left.jpg" class="pur-left"></a>
+		<a href="./image/手机淘宝网.html"><img src="./image/purchase-top.jpg" class="pur-top"></a>
+		<a href="./image/手机淘宝网.html"><img src="./image/purchase-rig.jpg" class="pur-rig"></a>
+		<a href="./image/手机淘宝网.html"><img src="./image/purchase-bo.jpg" class="pur-bo"></a>
+	</div>
+	<div class="border-bottom"></div>
+	<div class="feature">
+		<header class="feature-top">
+			<h3>特色市场</h3>
+			<a href="./image/手机淘宝网.html">更多</a>
+		</header>
+		<div class="supermarket clear">
+			<a href="./image/手机淘宝网.html"><img src="./image/super-l.jpg" class="sup-l"></a>
+			<a href="./image/手机淘宝网.html"><img src="./image/super-t.jpg" class="sup-t"></a>
+			<a href="./image/手机淘宝网.html"><img src="./image/super-b.jpg" class="sup-b"></a>
+		</div>
+		<ul class="sup-list clear">
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<span>特色中国</span>
+					<i>三亚芒果王</i>
+					<img src="./image/liat-a.jpg">
+				</a>
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<span>聚名品</span>
+					<i>达人教你搭</i>
+					<img src="./image/liat-a.jpg">
+				</a>	
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<span>全球购</span>
+					<i>吸睛小美物</i>
+					<img src="./image/liat-c.jpg">
+				</a>	
+			</li>
+			<li class="right-no">
+				<span>免费试用</span>
+				<i>30年经典款</i>
+				<img src="./image/liat-d.jpg">
+			</li>
+		</ul>
+		<ul class="sup-text clear">
+			<li class="fist">
+				<a href="./image/手机淘宝网.html">天猫国际<span></span></a>
+			</li>
+			<li><a href="./image/手机淘宝网.html">俪人购<span></span></a></li>
+			<li><a href="./image/手机淘宝网.html">喵鲜生<span></span></a></li>
+			<li><a href="./image/手机淘宝网.html">品牌街</a></li>
+		</ul>
+		<ul class="sup-text sup-bottom clear">
+			<li class="fist">
+				<a href="./image/手机淘宝网.html">清仓<span></span></a>
+			</li>
+			<li><a href="./image/手机淘宝网.html">周末淘宝<span></span></a></li>
+			<li><a href="./image/手机淘宝网.html">淘宝众筹<span></span></a></li>
+			<li><a href="./image/手机淘宝网.html">淘宝电影</a></li>
+		</ul>
+		<a href="./image/手机淘宝网.html"><img src="./image/day.jpg" class="day"></a>
+	</div>
+	<div class="hot">
+		<header class="feature-top hot-general">
+			<h3>热门市场</h3>
+			<a href="./image/手机淘宝网.html">更多</a>
+		</header>
+		<ul class="hot-top hot-general clear">
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>女装</h4>
+					<span>衣橱必备</span>
+					<img src="./image/hot-ta.jpg">
+				</a>
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>鞋包</h4>
+					<span>新款驾到</span>
+					<img src="./image/hot-tb.jpg">
+				</a>	
+			</li>
+		</ul>
+		<ul class="hot-mian hot-general clear">
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>母婴</h4>
+					<span>萌萌春装</span>
+					<img src="./image/hot-ma.jpg">
+				</a>	
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>运动</h4>
+					<span>初夏新品</span>
+					<img src="./image/hot-mb.jpg">
+				</a>	
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>美妆</h4>
+					<span>大牌云集</span>
+					<img src="./image/hot-mc.jpg">
+				</a>	
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>数码</h4>
+					<span>天生急性子</span>
+					<img src="./image/hot-md.jpg">
+				</a>	
+			</li>
+		</ul>
+		<ul class="hot-mian hot-general hot-bottom clear">
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>男装</h4>
+					<span>潮流一夏</span>
+					<img src="./image/hot-me.jpg">
+				</a>	
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>家具</h4>
+					<span>健康生活</span>
+					<img src="./image/hot-mf.jpg">
+				</a>	
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>美食</h4>
+					<span>进口零食9.9</span>
+					<img src="./image/hot-mg.jpg">
+				</a>	
+			</li>
+			<li>
+				<a href="./image/手机淘宝网.html">
+					<h4>家电</h4>
+					<span>智能家电</span>
+					<img src="./image/hot-mh.jpg">
+				</a>	
+			</li>
+		</ul>
+		<a href="./image/手机淘宝网.html"><img src="./image/hot-bg.jpg" class="day"></a>
+		<div class="border-bottom"></div>
+	</div>
+	<div class="shop">
+		<header class="feature-top shop-header">
+			<h3>每日好店</h3>
+			<a href="./image/手机淘宝网.html">更多</a>
+		</header>
+		<div class="shop-pic clear">
+			<div class="shop-main clear">
+				<div><a href="./image/手机淘宝网.html" class="shop-l shop-bigl"></a></div>
+				<div><a href="./image/手机淘宝网.html" class="shop-t shop-smalll"></a></div>
+				<div><a href="./image/手机淘宝网.html" class="shop-b shop-bottoml"></a></div>
+				<p><a href="./image/手机淘宝网.html">今日推荐-1天3波</a></p>
+			</div>
+			<div class="shop-main clear">
+				<div><a href="./image/手机淘宝网.html" class="shop-l shop-bigr"></a></div>
+				<div><a href="./image/手机淘宝网.html" class="shop-t shop-smallr"></a></div>
+				<div><a href="./image/手机淘宝网.html" class="shop-b shop-bottomr"></a></div>
+				<p><a href="./image/手机淘宝网.html">女神の店—美人装</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="bottom" class="clear">
+	<header class="love">
+		<span>猜你喜欢</span>
+		<div class="one-px"></div>
+	</header>
+	<div class="bottom-list clear">
+		<a href="./image/手机淘宝网.html" class="left-bott bottom-same">
+				<div class="bottom-a bottom-img"></div>
+				<p>[买手推荐]韩式DIY烤薯片器套装 微波炉烤薯片烤盘...</p>
+				<span>¥12.8</span>
+		</a>
+		<a href="./image/手机淘宝网.html" class="right-bott bottom-same">
+				<div class="bottom-b bottom-img"></div>
+				<p>[买手推荐]Denny系列天然竹木玻璃调味料|调味罐|...</p>
+				<span>¥79.9</span>
+		</a>
+	</div>
+	<div class="bottom-list clear">
+		<a href="./image/手机淘宝网.html" class="left-bott bottom-same">
+				<div class="bottom-a bottom-img"></div>
+				<p>[买手推荐]韩式DIY烤薯片器套装 微波炉烤薯片烤盘...</p>
+				<span>¥12.8</span>
+		</a>
+		<a href="./image/手机淘宝网.html" class="right-bott bottom-same">
+				<div class="bottom-b bottom-img"></div>
+				<p>[买手推荐]Denny系列天然竹木玻璃调味料|调味罐|...</p>
+				<span>¥79.9</span>
+		</a>
+	</div>
+	<div class="bottom-list clear">
+		<a href="./image/手机淘宝网.html" class="left-bott bottom-same">
+				<div class="bottom-a bottom-img"></div>
+				<p>[买手推荐]韩式DIY烤薯片器套装 微波炉烤薯片烤盘...</p>
+				<span>¥12.8</span>
+		</a>
+		<a href="./image/手机淘宝网.html" class="right-bott bottom-same">
+				<div class="bottom-b bottom-img"></div>
+				<p>[买手推荐]Denny系列天然竹木玻璃调味料|调味罐|...</p>
+				<span>¥79.9</span>
+		</a>
+	</div>
+</section>
+<footer id="foot">
+	<a href="./image/手机淘宝网.html" class="foot-left">
+		<span></span>
+	</a>
+	<a href="./image/手机淘宝网.html" class="foot-right">
+		<span>顶部</span>
+	
+	</a><div class="foot-pic"><a href="./image/手机淘宝网.html" class="foot-right">
+		</a><a href="./image/手机淘宝网.html"><img src="./image/foot.png"></a>
+	</div>
+	<p class="foot-p"><a href="./image/手机淘宝网.html">上客户端，领专属礼包！</a></p>
+	<a href="./image/手机淘宝网.html" class="foot-span">立即领取</a>
+</footer>
+
+
+</body></html>

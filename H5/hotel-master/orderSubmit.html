@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>提交订单</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" name="viewport" />
+	<link rel="stylesheet" type="text/css" href="style/public.css">
+	<link rel="stylesheet" type="text/css" href="style/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="style/personal.css">
+</head>
+<body>
+
+
+	<!-- 终极容器 -->
+	<section class="publicLimitContainer">
+		
+		<!-- page header -->
+		<header class="publicHeaderCon">
+			<div class="publicLogoCon">
+				<a href="#"><img src="images/index/logo.png"></a>
+			</div>
+			<div class="publicMenuCon">
+				<img src="images/news/nwes_03.png">
+			</div>
+		</header>
+		<!-- page header end-->
+
+
+		<!-- 主容器 -->
+		<section class="publicMainContainer">
+			<header class="pageTitleCon">
+				<div class="CanBack">
+					<img src="images/news/nwes_07.png">
+				</div>
+				<h1>提交订单</h1>
+			</header>
+
+			<ul class="orderHeaderUl">
+				<li>
+					<span>地址：</span>
+					北京北京北京北京北京
+				</li>
+				<li>
+					<span>房型：</span>
+					北京北京北京北京北京
+				</li>
+				<li>
+					<span>预定时间：</span>
+					北京北京北京北京北京
+				</li>
+			</ul>
+			
+			<!-- 预定信息 -->
+			<section class="reserveInformationCon">
+				<h1>预定信息</h1>
+
+				<ul class="reserveInformationConUl">
+					<li>
+						订单间数
+
+						<div class="changeNumber" id="changeNumber">
+							<span class="add">+</span>
+							<input type="text" value="1">
+							<span class="minus">-</span>
+						</div>
+					</li>
+					
+					<li id="comeTime">
+						入住时间
+						<span></span>
+					</li>
+					<li id="outTime">
+						离店时间
+						<span></span>
+					</li>
+					<li>
+						保留时间
+						<span>2015-7-14</span>
+					</li>
+
+				</ul>
+			</section>
+
+			<!-- 价格信息 -->
+			<section class="reserveInformationCon">
+				<h1>价格信息</h1>
+
+				<ul class="reserveInformationConUl">
+					
+					<li>
+						保留时间
+						<span>404元</span>
+					</li>
+					<li>
+						电子券(限定一间房)
+						<span>敬请期待</span>
+					</li>
+					<li>
+						还需支付
+						<span>0元</span>
+					</li>
+
+				</ul>
+			</section>
+			
+			<!-- 联系人信息 -->
+			<section class="linkManINformation"  id="linkManINformation">
+				<header class="linkManInforHeader">
+					联系人信息
+					<span id="linkManInforOften">常用联系人</span>
+				</header>
+				<ul class="linkManINforUl" id="linkManINforUl">
+					<li>
+						<span>姓名</span>
+						<input type="text" placeholder="请输入你的真是姓名" id="OftenLinkName" FunctionName="noValue">
+						<p></p>
+					</li>
+					<li>
+						<span>手机号</span>
+						<input type="text" placeholder="请输入有效手机号" id="OftenLinkPhone" FunctionName="phoneNumber">
+						<p></p>
+					</li>
+				</ul>
+
+
+				<div class="linkManSubmit ThisFormSubmit">
+					确认提交
+				</div>
+			</section>
+
+
+		</section>
+		<!-- 主容器 end-->
+
+		<!-- 选择年份 -->
+		<section class="changeDatePup" id="getYear">
+			<header>选择年份</header>
+			<ul>
+			</ul>
+		</section>
+
+		<!-- 选择月份 -->
+		<section class="changeDatePup" id="getMonth">
+			<header>选择月份</header>
+			<ul>
+				<li>1月</li>
+				<li>2016</li>
+				<li>2017</li>
+				<li>2018</li>
+			</ul>
+		</section>
+
+		<!-- 选择日期 -->
+		<section class="changeDatePup" id="getDay">
+			<header>选择日期</header>
+			<ul>
+			</ul>
+		</section>
+
+		<!-- 选择常用联系人 -->
+		<section class="changeDatePup" id="getLinkMan">
+			<header>选择常用联系人</header>
+			<ul>
+				<li>
+					<span class="name">杨遇</span>
+					<span class="phone">15711222233</span>
+				</li>
+				<li>
+					<span class="name">杨遇</span>
+					<span class="phone">15711222233</span>
+				</li>
+				<li>
+					<span class="name">杨遇</span>
+					<span class="phone">15711222233</span>
+				</li>
+				<li>
+					<span class="name">杨遇</span>
+					<span class="phone">15711222233</span>
+				</li>
+				<li>
+					<span class="name">杨遇</span>
+					<span class="phone">15711222233</span>
+				</li>
+				<li>
+					<span class="name">杨遇</span>
+					<span class="phone">15711222233</span>
+				</li>
+				<li>
+					<span class="name">杨遇</span>
+					<span class="phone">15711222233</span>
+				</li>
+			</ul>
+		</section>
+
+
+		<!-- 头部菜单 -->
+		<section class="popMenuCon" id="popMenuCon">
+			<header></header>
+			
+			<section class="menuCon">
+				<div class="closeThis"></div>
+				<ul class="popMenuUl">
+					<li>
+						<a href="login.html">登陆</a>
+					</li>
+					<li>
+						<a href="signin.html">注册</a>
+					</li>
+					<li>
+						<a href="personCenter.html">会员中西</a>
+					</li>
+				</ul>
+
+			</section>
+
+			
+		</section>
+
+
+	</section>
+	<!-- 终极容器 end-->
+
+
+
+	
+	
+
+	
+
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/formeCheck.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

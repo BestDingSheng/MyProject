@@ -1,0 +1,1371 @@
+
+
+// datail
+.datailBannerCon{
+	width: 100%;
+	position: relative;
+}
+.detailBanner{
+	line-height: 0;
+	img{
+		width: 100%;
+	}
+}
+
+.detailNowPage{
+	width: 100%;
+	height: 2rem;
+	text-align: center;
+	line-height: 2rem;
+
+	span{
+		width: 0.5rem;
+		height: 0.5rem;
+		margin: 0 0.2rem;
+		display: inline-block;
+		background-color: #bbbbbb;
+		border-radius: 50%;
+	}
+	.active{
+		background-color: #323232;
+	}
+}
+
+.commodityInformationCon{
+	padding: 0.5rem;
+	position: relative;
+
+	h1{
+		font-size: 0.8rem;
+		color: #000000;
+		padding-right: 5rem;
+	}
+	p{
+		font-size: 0.7rem;
+		color: #646464;
+		padding-right: 5rem;
+	}
+	span{
+		position: absolute;
+		right: 1rem;
+		top: 0.2rem;
+		font-size: 0.6rem;
+		font-weight: bold;
+
+		strong{
+			font-size: 1rem;
+		}
+	}
+}
+
+.detailSizeCon{
+	padding: 1rem 0.5rem;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+
+	h2{
+		font-size: 1rem;
+
+		span{
+			float: right;
+			font-size: 0.8rem;
+			color: #b6a064;
+		}
+		a{
+			color: #b6a064;
+		}
+	}
+
+	.sizeListCon{
+		list-style: none;
+		margin-top: 0.5rem;
+
+		li{
+			width: 3.5rem;
+			height: 2rem;
+			float: left;
+			margin-right: 0.5rem;
+			text-align: center;
+			line-height: 2rem;
+			font-size: 0.8rem;
+			border:1px solid #bbbbbb;
+			border-radius: 0.4rem;
+		}
+		input{
+			display: none;
+		}
+		label{
+			width: 100%;
+			height: 100%;
+			display: block;
+			border-radius: 0.4rem;
+		}
+
+		input:checked + label{
+			background-color: #000;
+			color: #fff;
+		}
+	}
+}
+
+.detailChageCon{
+	padding: 0 0.5rem;
+	margin-top: 1rem;
+
+	.detailChangeView{
+		list-style: none;
+		width: 100%;
+		height: 2rem;
+		border:1px solid #000;
+		border-radius: 0.3rem;
+		overflow: hidden;
+		
+		li{
+			width: 50%;
+			height: 100%;
+			float: left;
+			line-height: 2rem;
+			font-size: 0.8rem;
+			text-align: center;
+		}
+
+		.active{
+			background-color: #323232;
+			color: #fff;
+		}
+	}
+
+	.detailView{
+		width: 100%;
+		margin-top: 1rem;
+		overflow: hidden;
+		font-size: 0.8rem;
+
+
+		table{
+			width: 100%;
+			border:1px solid #bbbbbb;
+			border-collapse: collapse;
+
+			tr{
+				border-bottom: 1px solid #bbbbbb;
+			}
+			td{
+				padding: 0.5rem;
+			}
+			tr > td:first-child{
+				width: 5rem;
+				color: #a0a0a0;
+			}
+		}
+	}
+	
+
+}
+
+.SHserveCon{
+	padding: 0 1rem;
+
+	h4{
+		font-size: 1rem;
+	}
+	p{
+		font-size: 0.8rem;
+	}
+}
+
+.detailImgCon{
+	width: 100%;
+	margin-top: 1rem;
+
+	img{
+		width: 100%;
+		vertical-align: bottom;
+	}
+}
+
+.addShoopingCar{
+	width: 100%;
+	height: 100%;
+	padding-right: 10rem;
+	float: left;
+	color: #fff;
+	text-align: center;
+	line-height: 3rem;
+	background-color: #b6a064;
+	position: relative;
+}
+.ShoopingCar{
+	width: 10rem;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #fff;
+	text-align: center;
+	line-height: 3rem;
+	background-color: #000;
+	background-image: url(../images/icon/detail_09.png);
+	background-position: 2rem center;
+	background-repeat: no-repeat;
+	background-size: 1.3rem 1.3rem;
+
+	strong{
+		position: absolute;
+		left: 50%;
+		margin-left: 1.5rem;
+		top: 0.5rem;
+		padding: 0.1rem 0.4rem;
+		line-height: normal;
+		background-color: red;
+		color: #fff;
+		font-weight: normal;
+		border-radius: 0.5rem;
+		z-index: 3;
+	}
+}
+
+.detailShareConntainer{
+	width: 100%;
+	height: 100%;
+	bottom: 3rem;
+	position: absolute;
+	left: 0;
+	top: 3rem;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 15;
+
+	transform:translate3D(0,100%,0);
+	-webkit-transform:translate3D(0,100%,0);
+	transition: all 1s;
+	-webkit-transition: all 1s;
+
+	.closeThisCon{
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.detailShareCon{
+	width: 100%;
+	height: 15rem;
+	position: absolute;
+	left: 0;
+	bottom: 3rem;
+	background-color:#fff;
+}
+
+
+
+.detailShareUl{
+	width: 100%;
+	padding: 1rem 0.5rem;
+	text-align: center;
+	list-style: none;
+
+	li{
+		width: 25%;
+		float: left;
+		padding: 0.5rem;
+		img{
+			width: 100%;
+			border-radius: 25%;
+		}
+		p{
+			margin-top: 0.2rem;
+			font-size: 0.8rem;
+		}
+
+		a{
+			color: #000;
+		}
+	}
+}
+
+.cancleShare{
+	width: 100%;
+	height: 2.5rem;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	line-height: 2.5rem;
+	text-align: center;
+	border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+
+// home
+
+.home_showListUl{
+	width: 100%;
+	list-style: none;
+	
+	img{
+		width: 100%;
+	}
+
+	.thisInformation{
+		width: 100%;
+		height: 3rem;
+		padding: 0 2rem;
+		position: relative;
+		background-color: #646464;
+	}
+
+	.thisInformationCon{
+		width: 100%;
+		height: 4.5rem;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		padding: 0 1rem;
+
+		> div{
+			width: 100%;
+			height: 100%;
+			position: relative;
+			padding: 0.5rem;
+			color: #000000;
+			background-color: #fff;
+		}
+
+		h4{
+			font-size: 0.8rem;
+			font-weight: normal;
+		}
+		h5{
+			margin-top: 0.2rem;
+			font-size: 0.5rem;
+			font-weight: normal;
+		}
+		p{
+			margin-top: 0.2rem;
+			font-size: 0.5rem;
+
+			strong{
+				font-size: 0.8rem;
+			}
+		}
+
+		span{
+			padding: 0 1rem;
+			display: block;
+			position: absolute;
+			right: 0.5rem;
+			top: 0.5rem;
+			color: #fff;
+			font-size: 0.5rem;
+			background-color: #000;
+
+			strong{
+				padding: 0 0.2rem;
+				font-size: 1rem;
+				font-size: italic;
+			}
+		}
+	}
+}
+
+
+// homeMenuCon
+.homeMenuCon{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 3rem;
+	padding-bottom: 3rem;
+	z-index: 11;
+
+	transform:translate3D(-100%,0,0);
+	-webkit-transform:translate3D(-100%,0,0);
+
+	transition: all 1s;
+	-webkit-transition: all 1s;
+
+}
+
+.homeMenuNav{
+	width: 70%;
+	height: 100%;
+	float: left;
+	position: relative;
+	background-color: rgba(0,0,0,0.6);
+
+	.myAccount{
+		width: 100%;
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		padding: 0.8rem 0 0.8rem;
+		text-align: center;
+		color: rgba(255,255,255,0.8);
+		border-top: 1px solid rgba(255,255,255,0.5);
+	}
+}
+
+.homeMenuPadding{
+	width: 30%;
+	height: 100%;
+	float: left;
+}
+
+.homeMenuUl{
+	list-style: none;
+	
+	li{
+		a{
+			width: 100%;
+			display: block;
+			padding: 0.8rem 0 0.8rem 2rem;
+			color: rgba(255,255,255,0.8);
+			border-bottom: 1px solid rgba(255,255,255,0.5);
+		}
+	}
+
+}
+
+
+/*address*/
+.addressUl{
+	width: 100%;
+	list-style: none;
+	
+	li{
+		padding: 1rem;
+		border-bottom: 1px solid #8c8c8c;
+	}
+	li:last-child{
+		border-bottom: none;
+	}
+
+	h3{
+		font-size: 1.2rem;
+		font-weight: normal;
+	}
+	h4{
+		font-size: 1rem;
+		font-weight: normal;
+	}
+	h5{
+		margin-top: 0.5rem;
+		font-size: 0.8rem;
+		font-weight: normal;
+	}
+	p{
+		margin-top: 0.2rem;
+		font-size: 0.8rem;
+	}
+	.DoSomething{
+		margin-top: 1rem;
+
+		a{
+			display: inline-block;
+			padding: 0.2rem 0.8rem;
+			margin-right: 0.3rem;
+			font-size: 0.8rem;
+			border:1px solid #323232;
+			border-radius: 0.3rem;
+			color: #323232;
+		}
+		a:last-child{
+			color: #fff;
+			background-color: #b6a064;
+			border-color:#b6a064;
+		}
+	}
+}
+
+.addAddressCon{
+	width: 100%;
+	height: 10rem;
+	overflow: hidden;
+	background-color: #646464;
+
+	a{
+		width: 60%;
+		height: 2.5rem;
+		display: block;
+		margin: 3rem auto;
+		text-align: center;
+		line-height: 2.5rem;
+		color: #fff;
+		border:1px solid #fff;
+		border-radius: 0.3rem;
+	}
+}
+
+
+
+/*cart*/
+
+.cartUl{
+	width: 100%;
+	list-style: none;
+	
+	li{
+		padding: 0.3rem;
+		border-bottom: 1px solid #bbbbbb;
+
+		> img{
+			width: 6rem;
+			height: 7.6rem;
+			float: left;
+		}
+	}
+
+	li:last-child{
+		border-bottom: none;
+	}
+
+	.DoSomething{
+		margin-top: 1rem;
+		height: 1.5rem;
+	}
+
+	.deleteThisObj{
+		padding: 0.4rem 1rem;
+		margin-top: 0.2rem;
+		float: right;
+		color: #fff;
+		font-size: 0.8rem;
+		background-color: #b6a064;
+		border-radius:0.3rem;
+	}
+	
+}
+
+.cartWord{
+	width: 100%;
+	padding-left: 7rem;
+	
+	h4{
+		margin-top: 0.5rem;
+		font-size: 1rem;
+	}
+	h5{
+		margin-top: 0.5rem;
+		font-size: 0.8rem;
+		color: #646464;
+		font-weight: normal;
+		
+		strong{
+			padding-left: 0.5rem;
+			font-weight: normal;
+		}
+	}
+
+	h6{
+		font-size: 0.8rem;
+
+		strong{
+			font-size: 1rem;
+			font-weight: normal; 
+		}
+	}
+}
+
+
+.doNumberCon{
+	float: left;
+
+	span{
+		width: 2.2rem;
+		height: 1.8rem;
+		display: block;
+		float: left;
+		background-color: #bbbbbb;
+		background-size: 1.8rem 1.8rem;
+		background-position: center;
+	}
+
+	input{
+		width: 2rem;
+		height: 1.8rem;
+		float: left;
+		text-align: center;
+		border:1px solid #bbbbbb;
+		background-color: transparent;
+	}
+
+	.reduce{
+		background-image: url(../images/icon/cart_06.png);
+	}
+	.add{
+		background-image: url(../images/icon/cart_08.png);
+	}
+}
+
+
+.cart_AllpriceCon{
+	width: 100%;
+	padding: 1rem;
+
+	> div{
+		float: right;
+		text-align: right;
+		border-top: 1px solid #000;
+	}
+	h4{
+		font-size: 0.9rem;
+	}
+	p{
+		font-size: 0.8rem;
+	}
+}
+
+
+// 支付状态
+.payState{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top:0;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 13;
+	transition: all 1s;
+	-webkit-transition: all 1s;
+	a{
+		width: 10rem;
+		height: 3rem;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		text-align: center;
+		line-height: 3rem;
+		margin-left: -5rem;
+		margin-top: -1.5rem;
+		border-radius: 0.3rem;
+	}
+	.paySuccess{
+		color: #b6a064;
+		background-color: #fff;
+	}
+
+	.payFail{
+		background-color: #000;
+		color: #fff;
+	}
+}
+
+
+// sizeTable
+
+.sizeTableCon{
+	padding: 0.5em;
+}
+
+.sizeTable{
+	width: 100%;
+	padding: 0.5rem;
+	text-align: center;
+	border-collapse: collapse;
+
+	thead span{
+		width: 2rem;
+		height: 2rem;
+		display: inline-block;
+		color: #fff;
+		line-height: 2rem;
+		background-color: #000;
+	}
+
+	thead .spanM{
+		background-color: #646464;
+	}
+	thead .spanL{
+		background-color: #bbbbbb;
+	}
+
+	td{
+		padding: 0.5rem 0;
+		border-bottom: 1px solid #bbbbbb;
+	}
+	tbody tr td:first-child{
+		font-weight: bold;
+	}
+}
+
+.sizeUnit{
+	width: 100%;
+	text-align: right;
+	font-size: 0.8rem;
+
+	strong{
+		font-size: 0.5rem;
+		font-weight: normal;
+	}
+}
+
+
+// myorder
+
+.myOrder{
+	width: 100%;
+	list-style: none;
+
+	li{
+		padding: 0.3rem;
+		border-bottom: 1px solid #bbbbbb;
+		background-image: url(../images/icon/myOrder_03.png);
+		background-repeat: no-repeat;
+		background-position: 95% center;
+		background-size: 1rem auto;
+
+		img{
+			width: 6rem;
+			height: 7.6rem;
+			float: left;
+		}
+	}
+	li:last-child{
+		border-bottom: none;
+	}
+
+	h4{
+		font-size: 0.9rem;
+		padding-left: 7rem;
+		margin-top: 0.5rem;
+
+		strong{
+			font-weight: normal;
+		}
+	}
+	a{
+		color: #333;
+	}
+
+	.marginTop{
+		margin-top: 1rem;
+	}
+}
+
+/*submitOrder*/
+
+.submitOrderConList{
+	width: 100%;
+	position: relative;
+	padding: 1rem 5rem 1rem 1rem;
+
+	.namePhone{
+		width: 100%;
+		height: 1.5rem;
+		position: relative;
+		font-size: 0.9rem;
+
+		strong{
+			float: right;
+			font-weight: normal;
+		}
+	}
+
+	p{
+		font-size: 0.8rem;
+		padding-bottom: 0.2rem;
+	}
+
+	.marginTop{
+		margin-top: 0.5rem;
+	}
+
+	a{
+		position: absolute;
+		right: 1rem;
+		bottom: 1rem;
+		color: #b6a064;
+		font-size: 0.8rem;
+	}
+}
+
+
+.submitOrderUl{
+	width: 100%;
+	padding: 0.5rem 1rem;
+	border-top: 5px solid #d1d1d1;
+	list-style: none;
+
+	li{
+		border-bottom: 1px solid #bbbbbb; 
+		padding: 0.5rem 0;
+		font-weight: bold;
+		font-size: 0.8rem;
+
+		span{
+			float: right;
+		}
+	}
+
+	li:last-child{
+		border-bottom: none;
+	}
+
+
+	label{
+		display: inline-block;
+		width: 100%;
+	}
+
+	input{
+		display: none;
+	}
+
+	.nowChange{
+		width: 1rem;
+		height: 1rem;
+		float: right;
+		border-radius: 50%;
+		border:1px solid #646464;
+	}
+
+	input:checked + label .nowChange{
+		border-color: #000;
+		background-image: url(../images/icon/submitOrder_03.png);
+		background-size: 100%;
+		background-position: center;
+	}
+}
+
+.submitOrderSubmit{
+	width: 70%;
+	height: 2rem;
+	display: block;
+	margin: 0.2rem auto;
+	text-align: center;
+	line-height: 2rem;
+	font-size: 1rem;
+	background-color: #b6a064;
+	color: #fff;
+	border-radius: 0.3rem;
+}
+// 2015年6月4日20:50:59
+
+.ortherAddressSub{
+	width: 100%;
+
+	li{
+		padding: 1rem 0.5rem;
+		height: 8rem;
+		border-bottom: 1px solid #c9c9c9;
+	}
+
+	li:last-child{
+		border-bottom: none;
+	}
+
+	label{
+		width: 100%;
+		height: 100%;
+		display: block;
+		position: relative;
+	}
+
+	input{
+		display: none;
+	}
+
+	input:checked + label .checkedThis > span{
+		background-color: #696060;
+	}
+
+	.checkedThis{
+		width: 3rem;
+		height: 100%;
+		text-align: center;
+		line-height: 6rem;
+
+		> span{
+			width: 1rem;
+			height: 1rem;
+			display: inline-block;
+			border:1px solid #bdbdbd;
+			border-radius: 50%;
+		} 
+	}
+
+	.InformationWordCon{
+		width: 100%;
+		height: 100%;
+		position:absolute;
+		left: 0;
+		top: 0;
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+
+	.namePhone{
+		width: 100%;
+		font-size: 0.9rem;
+
+		>span{
+			float: right;
+		}
+	}
+
+	.InforAddress{
+		font-size: 0.9rem;
+		margin-top: 0.5rem;
+	}
+
+	.Infortime{
+		font-size: 0.9rem;
+		margin-top: 0.5rem;
+	}
+
+	.complie{
+		position: absolute;
+		right: 0.5rem;
+		bottom: 2rem;
+		color: #b6a064;
+		font-size: 0.9rem;
+	}
+
+}
+
+.addNewAddress{
+	text-align: center;
+	padding: 1rem;
+	a {
+		padding: 0.1rem 1rem;
+		line-height: 2rem;
+		display: inline-block;
+		border:1px solid #000;
+		border-radius: 0.3rem;
+		font-size: 0.9rem;
+		color: #000;
+	}
+}
+// 2015年6月5日20:35:37
+.AddressShow{
+	width: 100%;
+	height: 8rem;
+	overflow: hidden;
+
+	transition: all 1s;
+	-webkit-transition: all 1s;
+}
+
+
+
+
+// orderDetail
+
+.orderDetailList{
+	width: 100%;
+	padding: 0.5rem 1rem;
+	border-top: 10px solid #646464;
+
+	ul{
+		list-style: none;
+	}
+
+	li{
+		font-size: 0.9rem;
+		font-weight: bold;
+		padding-top: 0.3rem;
+
+		span{
+			font-weight: normal;
+		}
+	}
+}
+
+.orderDetailTitle{
+	font-size: 0.8rem;
+	color: #b6a064;
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid #bbbbbb;
+}
+
+
+.thisborder{
+	width: 100%;
+	padding: 0.5rem 1rem;
+	border-top: 10px solid #646464;
+}
+
+.orderDetailcommodity{
+	width: 100%;
+	padding: 0.5rem;
+	border-top: 10px solid #646464;
+	
+	ul{
+		list-style: none;
+	}
+	li{
+		overflow: hidden;
+		margin-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid #bbbbbb;
+	}
+	li:last-child{
+		border-bottom: none;
+	}
+	img{
+		width: 6rem;
+		height: 7.6rem;
+		float: left;
+	}
+
+	h4{
+		margin-top: 0.8rem;
+		padding-left: 6.5rem;
+		font-size: 0.7rem;
+	}
+
+	p{
+		font-size: 0.7rem;
+		padding-left: 6.5rem;
+		font-weight: bold;
+	}
+	.marginTop{
+		margin-top: 1rem;
+	}
+}
+
+.orderDetailAddress{
+	width: 100%;
+	padding: 0.5rem 1rem;
+	border-top: 10px solid #646464;
+
+	ul{
+		list-style: none;
+	}
+
+	li{
+		padding: 0.3rem 0;
+		font-weight: bold;
+		font-size: 0.8rem;
+
+		span{
+			float: left;
+		}
+		p{
+			padding-left: 4rem;
+		}
+	}
+
+	strong{
+		font-weight: normal;
+	}
+}
+
+
+.orderDetailPrice{
+	width: 100%;
+	padding: 0.5rem 1rem;
+	border-top: 10px solid #646464;
+
+	ul{
+		list-style: none;
+	}
+
+	li{
+		padding: 0.3rem 0;
+		font-size: 0.8rem;
+		font-weight: bold;
+
+		span{
+			float: right;
+		}
+	}
+}
+
+
+.orderDetailPayCon{
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0  0.5rem rgba(0,0,0,0.5);
+	text-align: right;
+
+	a{
+		width: 6rem;
+		padding: 0.5rem 0;
+		margin-right:0.3rem;
+		margin-top: 0.3rem;
+		display: inline-block;
+		text-align: center;
+		border-radius: 0.3rem;
+		color: #fff;
+		background-color: #b6a064;
+	}
+
+	a:first-child{
+		color: #000;
+		border:1px solid #000;
+		background-color: #fff;
+	}
+}
+
+// login
+
+.loginLogoCon{
+	width: 100%;
+	height: 10rem;
+	position: relative;
+	background-color: #646464;
+
+	.loginLogo{
+		width: 7rem;
+		height: 7rem;
+		position: absolute;
+		left: 50%;
+		margin-left: -3.5rem;
+		bottom: -3.5rem;
+		background-image: url(../images/icon/login_03.png);
+		background-size: 100%;
+	}
+
+	.close{
+		width: 1.5rem;
+		height: 1.5rem;
+		position: absolute;
+		left: 1rem;
+		top: 1rem;
+		background-image: url(../images/icon/loginClose_03.png);
+		background-size: 100% 100%;
+	}
+}
+
+.loginForm{
+	margin-top: 5rem;
+}
+
+.loginFormUl{
+	padding: 0 1rem;
+	list-style: none;
+
+	li{
+		margin-top: 1rem;
+	}
+
+	li:last-child{
+		margin-top: 2rem;
+	}
+
+	input[type=text],input[type=password]{
+		width: 100%;
+		height: 2rem;
+		padding: 0 0.5rem;
+		border: 1px solid #bbbbbb;
+	}
+	input[type=submit]{
+		width: 100%;
+		height: 2rem;
+		color: #fff;
+		border: none;
+		background-color: #b6a064;
+		border-radius: 0.3rem;
+		font-size: 1rem;
+		font-weight: bold;
+	}
+	p{
+		margin-top: 0.2rem;
+		font-size: 0.8rem;
+		color: red;
+	}
+}
+
+.loginLink{
+	width: 100%;
+	margin-top: 2rem;
+	text-align: center;
+	font-size: 0.8rem;
+
+	a{
+		padding: 0.1rem 1rem;
+		display: inline-block;
+		border: 1px solid #000;
+		border-radius: 0.3rem;
+		color: #000;
+	}
+}
+
+
+// register
+
+.registerForm{
+	margin-top: 3rem;
+}
+
+.registerFormUl{
+	.loginFormUl;
+
+	input[type=submit]{
+		background-color: #646464;
+	}
+}
+
+.registerLink{
+	.loginLink;
+	a{
+		background-color: #323232;
+		color: #fff;
+	}
+}
+
+// addressEdit
+
+.addressEditForm{
+	margin-top: 2rem;
+}
+
+.addressEditUl{
+	width: 100%;
+	padding: 0 1rem;
+	list-style: none;
+
+	li{
+		margin-top: 1rem;
+	}
+
+	li:last-child{
+		margin-top: 2rem;
+	}
+
+	span{
+		width: 4rem;
+		height: 2rem;
+		text-align: right;
+		display: block;
+		float: left;
+		line-height: 2rem;
+	}
+
+	.inputCon{
+		width: 100%;
+		height: 2rem;
+		padding-left: 4.5rem;
+	}
+
+	input[type=text],input[type=password]{
+		width: 100%;
+		height: 2rem;
+		padding: 0 0.5rem;
+		border: 1px solid #bbbbbb;
+	}
+
+	input[type=submit]{
+		width: 100%;
+		height: 2rem;
+		color: #fff;
+		border: none;
+		background-color: #b6a064;
+		border-radius: 0.3rem;
+		font-size: 1rem;
+		font-weight: bold;
+	}
+
+	p{
+		padding-left: 4.5rem;
+		font-size: 0.8rem;
+		color: red;
+		margin-top: 0.2rem;
+	}
+
+}
+
+// 地址选择省份
+
+.changeProvince{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #fff;
+	z-index: 15;
+	
+	transform:translate3D(100%,0,0);
+	-webkit-transform:translate3D(100%,0,0);
+
+	transition:all 1s;
+	-webkit-transition:all 1s;
+}
+
+.addressNameHeader{
+	width: 100%;
+	height: 3rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: center;
+	line-height: 3rem;
+	color: #fff;
+	background-color: #000;
+}
+
+
+.AddressNameList{
+	width: 100%;
+	height: 100%;
+	padding:3rem 0.5rem 0 0.5rem;
+	overflow-y:auto; 
+	-webkit-overflow-scrolling:touch;
+
+	li{
+		padding: 0.8rem 0;
+		border-bottom: 1px solid #bbbbbb;
+		font-size: 1rem;
+	}
+}
+
+
+// userCenter
+.userNumber{
+	padding: 0.5rem 0 0.5rem 2rem;
+}
+
+.userConDoUl{
+	width: 100%;
+	list-style: none;
+	padding: 0.5rem;
+	font-size: 0.9rem;
+	border-top: 1px solid #bbbbbb;
+	border-bottom: 1px solid #bbbbbb;
+	li{
+		width: 33.3%;
+		float: left;
+		text-align: center;
+		border-right: 1px solid #bbbbbb;
+	}
+	li:nth-child(3){
+		border-right: none;
+	}
+	a {
+		display: block;
+		color: #000;
+	}
+}
+
+.addressManage{
+
+	padding: 0.5rem 0 0.5rem 2rem;
+	font-size: 0.9rem;
+	background-image: url(../images/icon/myOrder_03.png);
+	background-repeat: no-repeat;
+	background-position: 85% center;
+	background-size: auto 1rem;
+
+	a {
+		display: block;
+		padding: 0.5rem;
+		color: #000;
+	}
+}
+
+
+.exitCon{
+	margin-top: 5rem;
+	text-align: center;
+	
+	a{
+		display: inline-block;
+		padding: 0.3rem 1rem;
+		font-size: 0.9rem;
+		color: #fff;
+		background-color: #646464;
+		border-radius: 0.3rem;
+	}
+}

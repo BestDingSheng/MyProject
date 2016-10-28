@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>简易时钟</title>
+<style>
+*{margin:0;padding:0;}
+.clock{width:250px;height:250px;border:4px solid #000;border-radius:50%;position:relative;top:0;left:0;}
+.hou{width:6px;height:80px;background:#000;border-radius:50% 50% 0 0;position:absolute;left:50%;top:45px;margin-left:-3px;-webkit-transform-origin:bottom center;}
+.min{width:4px;height:100px;background:#399;border-radius:50% 50% 0 0;position:absolute;left:50%;margin-left:-2px;top:25px;-webkit-transform-origin:bottom center;}
+.sec{width:2px;height:110px;background:#f33;border-radius:50% 50% 0 0;position:absolute;left:50%;margin-left:-1px;top:15px;-webkit-transform-origin:bottom center;}
+.clock span{width:2px;height:7px;background:#000;position:absolute;top:0;left:50%;margin-left:-1px;-webkit-transform-origin:center 125px;}
+.clock .big{width:4px;height:12px;margin-left:-2px;}
+.big strong{position:absolute;top:12px;left:-4px;}
+.clock .cap{width:16px; height:16px; background:#000; position:absolute; left:50%; top:50%; margin-left:-8px; margin-top:-8px; border-radius:50%; z-index:2;}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oClock=document.querySelector('.clock');
+	var oHou=document.querySelector('.hou');
+	var oMin=document.querySelector('.min');
+	var oSec=document.querySelector('.sec');
+	
+	//画刻度
+	for(var i=0;i<60;i++){
+		var oS=document.createElement('span');
+		if(i%5==0){
+			oS.className='big';
+			if(i/5==0){
+				oS.innerHTML='<strong>'+12+'<\/strong>';
+			}else{
+				oS.innerHTML='<strong>'+i/5+'<\/strong>';
+			}
+			var oEle=oS.children[0];
+			oEle.style.WebkitTransform='rotate('+(-6*i)+'deg)'
+		};
+		oS.style.WebkitTransform='rotate('+i*6+'deg)';
+		oClock.appendChild(oS);
+	};
+	function clock(){
+		var oDate=new Date();
+		var h=oDate.getHours();
+		var m=oDate.getMinutes();
+		var s=oDate.getSeconds();
+		oHou.style.WebkitTransform='rotate('+(h*30+m/60*6)+'deg)';
+		oMin.style.WebkitTransform='rotate('+(m*6+s/60*6)+'deg)';
+		oSec.style.WebkitTransform='rotate('+s*6+'deg)';
+	}
+	clock();
+	setInterval(clock,1000);
+	var l = 0;
+	var t = 0;
+	oClock.addEventListener('mousedown',function(ev){
+		var disX = ev.clientX-l;
+		var disY = ev.clientY-t;
+		function fnMove(ev){
+			l = ev.clientX-disX;
+			t = ev.clientY-disY;
+			l<0&&(l=0);
+			l>document.documentElement.clientWidth-oClock.offsetWidth&&(l=document.documentElement.clientWidth-oClock.offsetWidth);
+			t<0&&(t=0);
+			t>document.documentElement.clientHeight-oClock.offsetHeight&&(t=document.documentElement.clientHeight-oClock.offsetHeight);
+			oClock.style.WebkitTransform='translate('+l+'px,'+t+'px)';
+		}
+		function fnUp(){
+			document.removeEventListener('mousemove',fnMove,false);
+			document.removeEventListener('mouseup',fnUp,false);
+		}
+		document.addEventListener('mousemove',fnMove,false);
+		document.addEventListener('mouseup',fnUp,false);
+		ev.preventDefault();
+	},false);
+},false)
+</script>
+</head>
+
+<body>
+<div class="clock">
+	<div class="hou"></div>
+    <div class="min"></div>
+    <div class="sec"></div>
+    <div class="cap"></div>
+</div>
+</body>
+</html>

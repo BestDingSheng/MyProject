@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* CSS Document */
+body{ background:url(../../images/pc/bg_all.png) repeat-x left top #b2e3ff;}
+.cantontes{ background:url(../../images/pc/bg.png) no-repeat 50% top; position:relative;}
+.page_cont{ background:url(../../images/pc/bg_big.png) no-repeat right 50px; width:100%; height:100%; position:absolute;}
+.page_left{ background:url(../../images/pc/bg_left.png) no-repeat right top; width:460px; height:876px; position:absolute; left:50%; top:0; margin-left:-850px;}
+.page_right{ background:url(../../images/pc/bg_right.png) no-repeat right top; width:433px; height:876px; position:absolute; right:50%; top:0;  margin-right:-815px;}
+
+.lucky-foot{ width:100%; margin:0 auto; background:#1a4ea1; clear:both;}
+.lucky-foot dl{ width:1024px; margin:0 auto;font-size:12px; line-height:20px; color:#79a2d6; padding:14px 0}
+.lucky-foot dl a{color:#79a2d6;}
+.lucky-foot dl dt{ background:url(../../images/pc/lucky-phone.png) no-repeat right top; width:123px; height:34px; float:right;margin-left:50px;}
+.pages_box{ margin-left:26px; overflow:hidden;}
+.pages{ width:1188px; margin:auto; position:relative; z-index:5;}
+.lm-middle-pg{ background:url(../../images/pc/lucky_pg2.png) no-repeat left top; width:778px; height:420px; float:right; margin:-10px -10px 0 0;}
+.lm-middle-pg ul{ float:right; margin:262px 170px 0 0;}
+.lm-middle-pg ul li{ overflow:hidden;}
+.lm-middle-pg ul li.firstli{ margin-left:30px;}
+.lm-middle-pg ul li.cur{ background-image:url(../../images/pc/login-pg_on.png);}
+.lm-middle-pg ul li{ width:119px; display:block; height:29px; line-height:28px; text-align:center; color:#d9e8ff; background:url(../../images/pc/login-pg.png) no-repeat left top;}
+.lm-middle-pg ul li a{ color:#fff; vertical-align:middle;}
+.lm-middle-pg ul li a.name{ max-width:52px;  display:inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.lm-middle-pg ul li.btn_tc{ background-image:url(../../images/pc/btn_tc.png);}
+
+
+.logo a{ display:block; background:url(../../images/pc/logo.png) no-repeat left top; width:316px; height:157px;}
+
+.nav{ margin-left:40px; position:absolute; top:0; right:45px; }
+.zhu_nav li{ float:left; width:166px; margin-left:-38px;}
+.zhu_nav li .a_link{ display:block; width:86px; height:40px; background:#1a4ea1; color:#d9e8ff; margin-left:40px; text-align:center; line-height:40px; font-size:14px; position:relative; z-index:11;}
+.zhu_nav li:hover .a_link,
+.zhu_nav li.cur .a_link{background:#df0615;}
+.zhu_nav li:hover em.btn_lt,
+.zhu_nav li.cur em.btn_lt{background-position:0 -40px;}
+.zhu_nav li:hover em.btn_rt,
+.zhu_nav li.cur em.btn_rt{background-position:-40px -40px;}
+.zhu_nav{ background:url(../../images/pc/bg_nav.png) no-repeat -40px top; position:relative; z-index:10;}
+.sun_nav{ position:absolute; display:none; z-index:8;}
+.sun_nav .btn_lt,
+.sun_nav .btn_rt{ width:30px; height:30px; background-image:url(../../images/pc/bg_sunnav.png); margin-top:2px;}
+.sun_nav .btn_rt{ background-position:-30px 0; float:left; }
+.sun_nav ul{ float:left; margin-top:2px;}
+.sun_nav li{ float:left; background:#fff; background:hsla(0,0%,100%,.4); height:30px; line-height:30px; overflow:hidden; width:108px; margin-left:0;}
+.sun_nav li a{ display:block; color:#1a4ea1; margin:0 8px; text-align:center; background:none; height:30px; line-height:30px}
+.sun_nav li.cur a,
+.sun_nav li:hover a{ color:#df0615;}
+.sun_nav li .sep{ display:block; float:right; background:url(../../images/pc/sep_sunnav.png) no-repeat left top; width:24px; height:26px; margin-top:2px;}
+.jf_nav{ margin-left:-346px;}
+.pp_nav{ margin-left:-455px;}
+.vip_nav{ margin-left:-29px;}
+.show_nav{ margin-left:40px; }
+
+.lm-left{ width:546px; height:303px; overflow:hidden; position:absolute; margin:-60px 0 0 50px; background:url(../../images/pc/lucky-left-pg.png) no-repeat left top; padding:105px 0 0 0;}
+.lm-middle{ text-align:center;float: right;margin-right:41px; font-size:20px; color:#fff;}
+.lm-middle h3{ font-size:12px; color:#f87c84; font-family:Arial; margin-top:5px; text-transform:uppercase;}
+.lm-main-left{ float:left; margin:57px 0 0 92px; text-align:center; color:#8dc6f2;}
+.lm-main-left h2{ font-size:25px; }
+.lm-main-left h3{ font-size:16px; }
+.menu{ padding-top:59px; height:349px;}
+.menu .lm-middle{ margin-top:45px; margin-right:27px;}
+.lm-menu-left{ float: left; margin-left:117px;}
+.lm-menu-left .ll-title{ font-size:19px; line-height:20px; text-align:center; color:#fff;}
+.lm-menu-left .ll-remark{ font-size:12px; line-height:20px; padding-bottom:10px; text-align:center; color:#a9caff; border-bottom:1px solid #4176cb;margin-bottom: 5px; text-transform:uppercase;}
+.lm-menu-left li,
+.btn_wanshan{ display:block; width:168px; height:32px; line-height:32px;padding-top: 12px;}
+.lm-menu-left li.cur a,
+.btn_wanshan{ background:url(../../images/pc/menu-left-pg.png) no-repeat;}
+.lm-menu-left li a{ display:block; color:#aacbff; font-size:16px; text-align:center;}
+
+.lm-main-left .user_img{ background:url(../../images/pc/user_img.png) no-repeat left top; width:113px; height:113px; padding:1px; margin:0 auto 10px; position:relative;}
+.lm-main-left .user_img img{ width:100%;}
+.lm-main-left .user_img .ico_upimg{ position:absolute; bottom:5px; right:5px; z-index:10px;}
+.menu_user .lm-main-left{ margin:-16px 0 0 122px;}
+.menu_user .lm-main-left h3{ color:#aacbff; margin-bottom:10px;}
+.menu_user .lm-main-left h3 .name{ display:inline-block; max-width:50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align:middle}
+.btn_wanshan{ padding:0; color:#aacbff; font-size:17px;}
+
+.content{ width:900px; float:right; position:relative; z-index:1;}
+.box_conty{ margin:30px 0 40px 200px;}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>submitOrder</title>
+	<!-- 默认宽度，静止双击缩放 -->
+	<meta name="format-detection" content="telephone=no" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<link rel="stylesheet" type="text/css" href="css/swiper3.06.min.css">
+	<link rel="stylesheet" type="text/css" href="css/publicStyle.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<!-- header -->
+	<header class="pub_header">
+		<div class="pub_back iconRetuen">
+			<a href="cart.html"></a>
+		</div>
+		<div class="pub_title">
+			结算
+		</div>
+	</header>
+	<!-- header end!-->
+
+	<!-- mainCon -->
+	<section class="pub_mianCon">
+		<!-- 第二层，显示滚动条容器 -->
+		<section class="pub_Con">
+			
+			<div class="AddressShow">
+				<div class="submitOrderConList">
+					<div class="namePhone">
+						杨大叔
+						<strong>1326654654</strong>
+					</div>
+
+					<p class="marginTop">北京市海淀区中关村街道xxx小区xxx楼xxx单元xxx号</p>
+					<p>收货时间不限</p>
+
+					<a href="javascript:void(0)" id="ortherAddress">其他地址</a>
+				</div>
+			</div>
+
+
+			
+			
+			<div class="orderAddressCon hide" id="orderAddressCon">
+				<ul class="ortherAddressSub">
+					<li>
+						<input type="radio" name="changeAddress" id="addressA" checked="checked">
+						<label for="addressA">
+							<div class="checkedThis">
+								<span></span>
+							</div>
+							<div class="InformationWordCon">
+								<div class="namePhone">
+									杨大钱
+									<span>
+										1456456456
+									</span>
+								</div>
+								<p class="InforAddress">
+									北京市海淀区中关村街道xxx小区xxx楼xxx单元xxx号
+								</p>
+								<p class="Infortime">
+									收货时间不限
+								</p>
+							</div>
+							<a href="addressEdit.html" class="complie">编辑</a>
+						</label>
+					</li>
+					<li>
+						<input type="radio" name="changeAddress" id="addressB">
+						<label for="addressB">
+							<div class="checkedThis">
+								<span></span>
+							</div>
+							<div class="InformationWordCon">
+								<div class="namePhone">
+									杨大钱
+									<span>
+										1456456456
+									</span>
+								</div>
+								<p class="InforAddress">
+									北京市海淀区中关村街道xxx小区xxx楼xxx单元xxx号
+								</p>
+								<p class="Infortime">
+									收货时间不限
+								</p>
+							</div>
+							<a href="addressEdit.html" class="complie">编辑</a>
+						</label>
+					</li>
+				</ul>
+
+				<div class="addNewAddress">
+					<a href="addressEdit.html">添加新地址</a>
+				</div>
+			</div>
+			
+			
+
+
+			<ul class="submitOrderUl">
+				<li>费用详情</li>
+				<li>
+					商品金额
+					<span>￥313.00</span>
+				</li>
+			</ul>
+
+			<ul class="submitOrderUl">
+				<li>
+					<input type="radio" name="payWay" id="ZFB" checked="checked">
+					<label for="ZFB">
+						支付宝
+						<div class="nowChange"></div>
+					</label>
+				</li>
+				<li>
+					<input type="radio" name="payWay" id="WX">
+					<label for="WX">
+						微信支付
+						<div class="nowChange"></div>
+					</label>
+				</li>
+			</ul>
+			
+		</section>
+	</section>
+	<!-- mainCon end-->
+
+	<footer class="pub_footer">
+		<a href="myOrder.html" class="submitOrderSubmit">提交订单</a>
+	</footer>
+
+
+
+
+	
+
+
+
+
+
+	<script type="text/javascript" src="js/zepto.js"></script>
+	<script type="text/javascript" src="js/zeptoTouch.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/formeCheck.js"></script>
+	<script type="text/javascript" src="js/personal.js"></script>
+
+
+</body>
+</html>

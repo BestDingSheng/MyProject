@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3D图片轮换</title>
+<link href="images/style.css" rel="stylesheet" /></link>
+<script src="images/move.js"></script>
+<script>
+function getStyle(obj,sName){
+	return (obj.currentStyle||getComputedStyle(obj,false))[sName];
+}
+window.onload=function(){
+	var oLeft=document.getElementById('btn1');
+	var oRight=document.getElementById('btn2');
+	var oUl=document.getElementById('RotatePic');
+	var aLi=oUl.children;
+	var aA=oUl.getElementsByTagName('a');
+	var aImg=oUl.getElementsByTagName('img');
+
+	aA[0].onclick=function(){
+		goLeft();
+		return false;
+	};
+	aA[aA.length-1].onclick=function(){
+		goRight();
+		return false;
+	};
+	var oldMsg=[];
+	for(var i=0;i<aLi.length;i++){
+		oldMsg.push({
+			left:aLi[i].offsetLeft,
+			top:aLi[i].offsetTop,
+			oImgW:aImg[i].offsetWidth,
+			oImgT:aImg[i].offsetTop,
+			oImgO:getStyle(aImg[i],'opacity'),
+			aClick:aA[i].onclick})
+	}
+	oRight.onclick=goRight;
+	oLeft.onclick=goLeft;
+
+	function goLeft(){
+		oldMsg.unshift(oldMsg.pop());
+		changePos()	
+	};
+	function goRight(){
+		oldMsg.push(oldMsg.shift());
+		changePos()
+	};
+	function changePos(){
+		for(var i=0;i<aLi.length;i++){
+			startMove(aLi[i],{top:oldMsg[i].top,left:oldMsg[i].left});
+			startMove(aImg[i],{width:oldMsg[i].oImgW,top:oldMsg[i].oImgT,opacity:oldMsg[i].oImgO});
+			aA[i].onclick=oldMsg[i].aClick;
+		};	
+	};
+};
+</script>
+</head>
+
+<body>
+<div class="btn">
+<input type="button" value="往左边走" id="btn1" />
+<input type="button" value="往右边走" id="btn2" />
+</div>
+<ul id="RotatePic">
+	<li class="pic1">
+    	<a href="https://www.baidu.com"><img src="images/pic1.gif" alt="pic1" class="unactive" width="187" /></a>
+        <span></span>
+    </li>
+	<li class="pic2">
+    	<a href="https://www.sina.com"><img src="images/pic2.gif" alt="pic2" width="208" /></a>
+        <span></span>
+    </li>
+   	<li class="pic3">
+    	<a href="https://www.google.com"><img src="images/pic3.gif" alt="pic3" class="unactive" width="187" /></a>
+        <span></span>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,48 @@
+@charset "utf-8";
+body{margin:0;padding:0;font-size:12px;background:url(../img/bg.gif) repeat-x;font-family:"微软雅黑";}
+p,span,ol,li,ul,dl,dt,dd,form{margin:0;padding:0;}
+ul,ol{list-style:none;}
+img{border:0;}
+.clear{clear:both;}
+a:link{text-decoration:none;color:#000;font-size:12px;}
+a:visited{text-decoration:none;color:#000;font-size:12px;}
+a:hover{color:#e71c17;text-decoration:underline;}
+
+#head{width:1000px;height:127px;margin:0 auto;}
+#logo{width:260px;height:124px;float:left;}
+.menu{width:632px;height:124px;float:right;background:url(../img/gray.jpg) no-repeat;}
+.tel{width:582px;height:40px;display:block;background:url(../img/tel.jpg) no-repeat;margin:40px 0 10px 0;padding:0 0 0 50px;font-size:16px;}
+.tel span{font-size:24px;color:#c80404;font-style:italic;}
+.tel_a{width:582px;height:40px;display:block;background:url(../img/tel1.jpg) 290px 0px no-repeat;margin:5px 0 5px 0;padding:0 0 0 50px;font-size:16px;text-align:right;}
+.tel_a span{font-size:24px;color:#c80404;font-style:italic;}
+.title{display:block;width:632px;height:36px;margin-bottom:8px;}
+.title span{font-size:28px;float:left}
+.title a{float:right;padding-top:15px;font-size:14px;}
+
+.menu ul{width:632px;height:31px;background:url(../img/center_dot.jpg) repeat-x;}
+.menu ul li{float:left;padding-top:4px;height:28px;background:url(../img/line.jpg) top right no-repeat;position:relative;}
+#menu_left{width:10px;height:31px;background:url(../img/left_dot.jpg) no-repeat;}
+.menu_center{width:102px;height:31px;color:#FFF;font-size:18px;text-align:center;position:relative;}
+.menu_center a:link{display:block;text-decoration:none;color:#fff;font-size:16px;width:102px;height:30px;margin:0;padding:0;}
+.menu_center a:visited{display:block;text-decoration:none;color:#fff;font-size:16px;width:102px;height:30px;}
+.menu_center a:hover{display:block;color:#fff;text-decoration:none;background:url(../img/red.jpg) top left no-repeat;width:102px;height:30px;}
+#menu_right{width:10px;height:32px;background:url(../img/right_dot.jpg) no-repeat;}
+#banner{clear:both;width:998px;height:290px;margin:25px auto 15px auto;border:1px solid #d9d9d9;}
+#banner img{width:998px;height:290px;}
+.sub_menu{width:70px;height:auto;position:absolute;top:30px;left:-1px;border:solid 1px #666666;border-top:none;padding:10px;list-style:none;display:none;z-index:99;overflow:hidden;background:#303030;}
+
+.menu ul li ol li{background:none;padding-top:6px;height:24px;}
+.menu_center ol li{width:70px;height:20px;font-weight:normal;border-bottom: 1px dashed #ccc; float: left; color:#000;background:none;}
+.menu_center ol li a:link{text-decoration:none;color:#fff;font-size:14px;background:none;text-align:left;}
+.menu_center ol li a:visited{text-decoration:none;color:#fff;font-size:14px;background:none;text-align:left;}
+.menu_center ol li a:hover{color:#dc0f15;text-decoration:none;background:none;text-align:left;}
+
+.bottom{width:100%;height:210px;background:url(../img/bottom.gif) repeat-x;color:#fff;font-size:13px;overflow:hidden;}
+.bot_in{width:1000px;height:210px;margin:0 auto;}
+.bt_logo{width:230px;height:87px;margin-top:50px;display:inline;float:left;}
+.about a:link{color:#fff; text-decoration:none;font-size:13px;}
+.about a:visited{color:#fff; text-decoration:none;font-size:13px;}
+.about a:hover{color:#F00; text-decoration:underline;font-size:13px;}
+.bottom p{height:auto;line-height:25px;}
+.bt_info{width:600px;height:auto;margin-top:50px;float:left;display:inline;margin-left:100px;}
+.hotline img{margin-right:10px;}

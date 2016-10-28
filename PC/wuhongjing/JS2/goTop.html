@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>返回顶部</title>
+<style>
+body{height:4000px;}
+#btn{position:fixed;right:20px;bottom:20px;display:none;}
+</style>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById('btn');
+	window.onscroll=function(){
+		var sT=document.documentElement.scrollTop||document.body.scrollTop;
+		oBtn.style.display='block';
+		if(sT==0){
+			oBtn.style.display='none';
+		}
+		oBtn.onclick=function(){
+			//不是所有的运动都适用于运动框架，比如这个要自己写一个独有的运动框架
+			//document.documentElement.scrollTop=document.body.scrollTop=0;	
+			var start=document.documentElement.scrollTop=document.body.scrollTop;
+			var dis=0-start;
+			var count=Math.floor(1000/30);
+			var timer=null;
+			
+			n=0
+			clearInterval(timer);
+			timer=setInterval(function(){
+				n++;
+				var a=1-n/count
+				var cur=start+dis*(1-Math.pow(a,3));
+				document.documentElement.scrollTop=document.body.scrollTop=cur;
+				if(n==count){
+					clearInterval(timer);
+				}
+			},30)
+		};
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="button" id="btn" value="返回顶部" />
+</body>
+</html>

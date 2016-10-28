@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=320,user-scalable=no,target-densitydpi=medium-dpi" />
+<title>移动端相册</title>
+<style>
+body,ul{margin:0;padding:0;font-size:0.15rem;font-family:Arial, Helvetica, sans-serif,'宋体';background:#000000}
+li{list-style:none;}
+a{text-decoration:none;color:#fff;}
+.page{width:100%;height:100%;position:absolute;top:0;left:0;overflow:hidden;}
+header{height:0.45rem;width:100%;background:#000;color:#FFF;border-top:2px solid #353535;border-bottom:2px solid #353535;box-sizing:border-box;background:-webkit-linear-gradient(top,#282828,#1e1e1e);background:-moz-linear-gradient(top,#282828,#1e1e1e);background:linear-gradient(top,#282828,#1e1e1e);line-height:0.45rem;text-align:center;}
+.wrap{width:100%;position:absolute;top:0.45rem;left:0;bottom:0.55rem;overflow:auto;}
+.picList{position:relative;}
+.picList li{position:absolute;top:0;left:0;width:1rem;height:1rem;background:url(img/1.jpg) no-repeat;background-size:cover;border:1px solid #000;box-sizing:border-box;transition:.5s left,.5s top}
+.btn{width:0.5rem;height:0.25rem;line-height:0.25rem;position:absolute;top:0.1rem;border:2px solid #0d0d0d;right:10px;border-radius:5px;box-shadow:0 0 3px #0d0d0d}
+.btn:nth-of-type(1){left:10px;right:auto;display:none;}
+footer{width:100%;height:0.55rem;line-height:0.55rem;background:#000;position:absolute;bottom:0;left:0;background:-webkit-linear-gradient(top,#1d1e20,#121212);background:-moz-linear-gradient(top,#1d1e20,#121212);background:linear-gradient(top,#1d1e20,#121212);}
+footer a{float:left;width:50%;text-align:center;box-sizing:border-box}
+footer a:nth-of-type(1){border-right:1px solid #222222}
+footer a:nth-of-type(2){border-left:1px solid #222222}
+footer a.active{background:-webkit-linear-gradient(top,#101010,#070707);background:-moz-linear-gradient(top,#101010,#070707);background:linear-gradient(top,#101010,#070707);border-color:#0e0e0e;}
+.recycle{width:1.2rem;height:1.2rem;background:url(img/recycle.png) no-repeat;background-size:cover;position:absolute;top:100%;left:calc(50% - 0.6rem);transition:0.5s;}
+.recycle:nth-of-type(1){background:url(img/recycle2.png) no-repeat;background-size:cover;}
+
+/*3D效果*/
+.box{width:1rem;height:1rem;-webkit-perspective:800px;-moz-perspective:800px;perspective:800px;position:absolute;background:no-repeat -1000px 0;overflow:hidden;}
+.box div{width:0.1rem;height:1rem;position:absolute;left:0.1rem;top:0;background:no-repeat;background-image:inherit;background-size:cover;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-transform-origin:left bottom;-moz-transform-origin:left bottom;transform-origin:left bottom;}
+.box>div{left:0;}
+.box div.show{-webkit-transform:rotateY(-50deg) rotateX(5deg);}
+.box>div.show{-webkit-transform:rotateY(-50deg) rotateX(5deg) translateX(0.8rem);}
+</style>
+<script>
+document.getElementsByTagName('html')[0].style.fontSize=document.documentElement.clientWidth/3+'px'
+var aDate=[];
+for(var i=1;i<=15;i++){
+	aDate[i-1]='img/'+i+'.jpg';
+}
+
+function open3D(obj){
+
+	var aDiv=obj.getElementsByTagName('div');
+	for(var i=0;i<aDiv.length;i++){
+		aDiv[i].className='show';
+		aDiv[i].style.transition='0.5s';
+	};
+};
+function close3D(obj,oLi){
+	var aDiv=obj.getElementsByTagName('div');
+	aDiv[aDiv.length-1].addEventListener('webkitTransitionEnd',fn,false);
+	aDiv[aDiv.length-1].addEventListener('transitionend',fn,false);
+	for(var i=0;i<aDiv.length;i++){
+		aDiv[i].className='';
+		aDiv[i].style.transition='0.5s';
+	};
+	function fn(){
+		var oPage=document.getElementById('page');
+		aDiv[aDiv.length-1].removeEventListener('webkitTransitionEnd',fn,false);
+		aDiv[aDiv.length-1].removeEventListener('transitionend',fn,false);
+		oLi.style.opacity='1';
+		oPage.removeChild(obj);
+	}
+};
+
+window.onload=function(){
+	create(aDate)
+	function create(aDate){
+		var oPage=document.getElementById('page');
+		var oUl=document.getElementById('ul1');
+		var aLi=oUl.getElementsByTagName('li');
+		var aBtn=oPage.getElementsByClassName('btn');
+		var aBox=oPage.getElementsByClassName('box');
+		var aRecycle=oPage.getElementsByClassName('recycle');
+		var aRemove=[];
+		var bOk=true;
+		
+		var sHtml='';
+		for(var i=0;i<aDate.length;i++){
+			var oLi=document.createElement('li');
+			sHtml+='<li style="background:url('+aDate[i]+');background-size:cover;background-sizing:border-box"></li>'
+		}
+		oUl.innerHTML=sHtml;
+		setTimeout(function(){
+			toPost();
+		},60)
+		aBtn[1].addEventListener('touchend',fnEnd,false);
+		aBtn[0].addEventListener('touchend',fnRemove,false);
+		
+		
+		function fnEnd(){
+			if(bOk){
+				aBtn[1].innerHTML='取消';
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].index=i;
+					aLi[i].addEventListener('touchend',fnSele,false);
+				}
+			}else{
+				/*
+				aBtn[1].innerHTML='选择';
+				aBtn[0].style.display='none';
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].style.borderColor='#000';
+					aLi[i].removeEventListener('touchend',fnSele,false)
+				}
+				*/
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].removeEventListener('touchend',fnSele,false);
+				};
+				for(var i=0;i<aRemove.length;i++){
+					close3D(aBox[i],aLi[aRemove[i]]);
+				}
+			};
+			bOk=!bOk;
+		}
+		function fnSele(){
+			aRemove.push(this.index)
+			//this.style.borderColor='#fff';
+			this.style.opacity='0.2';
+			aBtn[0].style.display='block';
+			aRecycle[0].style.top=aRecycle[1].style.top='calc(100% - 0.8rem)';
+			create3D(this)
+		}
+		
+		//3D效果
+		function create3D(oLi){
+			var oDiv=document.createElement('div');
+			var oXy=getOffset(oLi);
+			oDiv.className='box';
+			oDiv.style.backgroundImage=oLi.style.backgroundImage;
+			oDiv.style.left=oXy.l+'px';
+			oDiv.style.top=oXy.t+'px';
+			oDiv.innerHTML=''+
+			'<div>'
+				+'<div style="background-position:-0.1rem 0">'
+					+'<div style="background-position:-0.2rem 0">'
+						+'<div style="background-position:-0.3rem 0">'
+							+'<div style="background-position:-0.4rem 0">'
+								 +'<div style="background-position:-0.5rem 0">'
+									+'<div style="background-position:-0.6rem 0">'
+										+'<div style="background-position:-0.7rem 0">'
+											+'<div style="background-position:-0.8rem 0">'
+												+'<div style="background-position:-0.9rem 0">'
+												+'</div>'
+											+'</div>'
+										+'</div>'
+									+'</div>'    
+								 +'</div>'
+							+'</div>'
+						+'</div>'
+					+'</div>'
+				+'</div>'
+			+'</div>';
+			oPage.appendChild(oDiv);
+			setTimeout(function(){
+				open3D(oDiv);				
+			},30)
+		}
+		
+		function getOffset(obj){
+			var l=0;
+			var t=0;
+			while(obj){
+				t+=obj.offsetTop;
+				l+=obj.offsetLeft;
+				obj=obj.offsetParent;
+			}
+			return {l:l,t:t}
+		};
+		
+		function fnRemove(){
+			aRemove=aRemove.sort(function(a,b){
+				return a-b;
+			})
+			while(aRemove.length){
+				var iNow=aRemove.pop();
+				//oUl.removeChild(aLi[iNow]);
+			}
+			//bOk=false;
+			//toPost()
+			//fnEnd();
+		}
+		
+		function fnDel(iNow){
+			
+		};
+		
+		function toPost(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].style.left=i%3+'rem';
+				aLi[i].style.top=Math.floor(i/3)+'rem';
+			};
+		};
+	};	
+}
+</script>
+</head>
+
+<body>
+<article class="page" id="page">
+	<header>
+    	<a href="javascript:;" class="btn">删除</a>
+        相机相册
+        <a href="javascript:;" class="btn">选择</a>
+    </header>
+    <section class="wrap">
+    	<ul class="picList" id="ul1">
+    
+        </ul>
+    </section>
+	<footer>
+    	<a href="javascript:;" class="active">相机相册</a>
+        <a href="javascript:;">所有相册</a>
+    </footer>
+    <span class="recycle"></span>
+ 	<span class="recycle"></span>
+</article>
+
+</body>
+</html>

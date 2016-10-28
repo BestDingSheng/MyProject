@@ -1,0 +1,259 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微博ajax接口</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="ajax.js"></script>
+<script>
+function toDou(iNum){
+	return iNum<10?'0'+iNum:''+iNum;
+};
+function getCnTime(time){
+	var oDate=new Date(time*1000);
+	return oDate.getFullYear()+'年'+toDou(oDate.getMonth()+1)+'月'+toDou(oDate.getDay())+'日'+toDou(oDate.getHours())+':'+toDou(oDate.getMinutes())+':'+toDou(oDate.getSeconds())
+};
+window.onload=function(){
+	var oConText=document.getElementById('tijiaoText');
+	var oSendBtn=document.getElementById('send_btn');
+	var oMsgBox=document.getElementById('msg_box');
+	var oPage=document.getElementById('page_box');
+	var oNcon=document.getElementById('noCon');
+	var iNow=0;
+	var URL='weibo.php';
+	
+	oSendBtn.onclick=function(){
+		if(oConText.value==''){
+			return false;
+		}else{
+		ajax({
+			url:URL,
+			data:{
+				act:'add',
+				content:oConText.value
+			},
+			success:function(str){
+			var json=eval('('+str+')');
+			if(!json.error){
+				//清空页码再加上当前
+				oPage.innerHTML='';
+				getPageNum();
+				
+				var oDiv=creatReply(json.id,oConText.value,json.time,0,0);
+				if(oMsgBox.children.length){
+					oMsgBox.insertBefore(oDiv,oMsgBox.children[0]);
+				}else{
+					oMsgBox.appendChild(oDiv);	
+				}
+				if(oMsgBox.children.length>6){
+					oMsgBox.removeChild(oMsgBox.children[oMsgBox.children.length-1])
+					getPageNum();
+				}
+				oConText.value='';
+			}else{
+				alert('留言失败！')	
+			}	
+		},
+		    error:function(){
+			alert('失败了！')
+		  }
+		}
+		)}  //一个ajax请求
+	};
+	
+	//新建一条留言
+	function creatReply(id,oCon,time,acc,ref){
+		var oDiv=document.createElement('div');
+		oDiv.className='reply';
+		oDiv.innerHTML='<p class="replyContent">'+oCon+'</p>'
+		+'<p class="operation">'
+		   +'<span class="replyTime">'+getCnTime(time)+'</span>'
+		   +'<span class="handle">'
+				+'<a href="javascript:;" class="top">'+acc+'</a>'
+			   +'<a href="javascript:;" class="down_icon">'+ref+'</a>'
+			   +'<a href="javascript:;" class="cut">删除</a>'
+			+'</span>'
+		+'</p>';
+		var acc=oDiv.getElementsByTagName('a')[0];
+		var ref=oDiv.getElementsByTagName('a')[1];
+		var oDel=oDiv.getElementsByTagName('a')[2];
+		
+		//weibo.php?act=acc&id=12			顶某一条数据
+		//返回：{error:0}
+		acc.onclick=function(){
+			ajax({
+				url:URL,
+				data:{
+					act:'acc',
+					id:id,
+				},
+				success:function(str){
+					var json=eval('('+str+')');
+					if(!json.error){
+							alert('赞成功了');
+							acc.innerHTML++;	
+						}else{
+							alert('亲,赞失败了！');
+					};
+				},
+				error:function(){
+					alert('失败了！')
+				}
+			})
+		};
+		
+		//weibo.php?act=ref&id=12			踩某一条数据
+		//返回：{error:0}
+		ref.onclick=function(){
+			ajax({
+				url:URL,
+				data:{
+					act:'ref',
+					id:id
+				},
+				success:function(str){
+					var json=eval('('+str+')');
+					if(!json.error){
+						alert('踩成功！')
+						ref.innerHTML++;
+					}else{
+						alert('踩失败了！呵呵！')
+					}
+				},
+				error:function(){}	
+			})
+		};
+		
+		//weibo.php?act=del&id=12			删除一条数据
+		//返回：{error:0}
+		oDel.onclick=function(){
+			var result=confirm('你确定要删除吗?');
+			if(result){
+				ajax({
+				url:URL,
+				data:{
+					act:'del',
+					id:id	
+				},
+				success:function(str){
+					var json=eval('('+str+')');
+					if(!json.error){
+						alert('删除成功！');
+						var parent=oDel.parentNode.parentNode.parentNode;
+						oMsgBox.removeChild(parent);
+						oMsgBox.innerHTML='';
+						getPageNum(iNow);
+						oPage.innerHTML='';
+						getPage();
+					}else{
+						alert('删除失败！')	
+					}
+				},
+				error:function(){
+					alert('失败了！')
+				}	
+			   })
+			}
+		}
+		return oDiv
+	};
+	
+	//获取页数  weibo.php?act=get_page_count
+	function getPageNum(){
+		ajax({
+			url:URL,
+			data:{
+				act:'get_page_count'
+			},
+			success:function(str){
+				var json=eval('('+str+')');
+				for(var i=0;i<json.count;i++){
+					var oA=document.createElement('a');
+					oA.href='javascript:;';
+					oA.innerHTML=i+1;
+					if(i==0){
+						oA.className='active';
+					};
+					oPage.appendChild(oA);
+					oA.onclick=function(){
+						var aPage=oPage.children;
+						for(var i=0;i<aPage.length;i++){
+							aPage[i].className='';
+						}
+						this.className='active';
+						iNow=parseInt(this.innerHTML);
+						oMsgBox.innerHTML='';
+						getPage(iNow);
+					}
+				};
+			},
+			error:function(){
+				alert('失败了！')
+			}
+		  }
+		)
+	};
+	getPageNum(iNow);
+	//weibo.php?act=get&page=1		获取一页数据
+	//[{id: ID, content: "内容", time: 时间戳, acc: 顶次数, ref: 踩次数}, {...}, ...]
+	function getPage(iNow){
+		ajax({
+			url:URL,
+			data:{
+				act:'get',
+				page:iNow
+			},
+			success:function(str){
+				var arr=eval('('+str+')');
+				if(arr.length>=0){
+					for(var i=0;i<arr.length;i++){
+						var oDiv=creatReply(arr[i].id,arr[i].content,arr[i].time,arr[i].acc,arr[i].ref);
+						oMsgBox.appendChild(oDiv);
+					}
+				}else{
+					oNcon.style.display='block';
+				}
+			},
+			error:function(){
+				alert('失败了！')
+			}
+		  }
+		)	
+	}
+	getPage()
+};
+</script>
+</head>
+
+<body>
+<div class="area">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" id="send_btn" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div id="noCon" class="noContent" style="display:none;">暂无留言</div>
+        <div id="msg_box" class="messList">
+        	<!--<div class="reply">
+                <p class="replyContent">卫士，新款卫士将推出总共14种车身式样。其中， XS旅行款车型售价为32295英镑(约33.6万元)。</p>
+                <p class="operation">
+                    <span class="replyTime">2011-09-08 16:37:60</span>
+                    <span class="handle">
+                    	<a href="javascript:;" class="top">0</a>
+                        <a href="javascript:;" class="down_icon">0</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>-->
+        </div>
+        <div id="page_box" class="page">
+        </div>
+    </div>
+</div>
+</body>
+</html>

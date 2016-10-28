@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网易幻灯片</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#box{width:450px;height:300px;margin:100px auto;position:relative;overflow:hidden;}
+#box ul{width:450px;height:300px;position:absolute;top:0;left:0;}
+#box ul li{width:450px;height:300px;float:left;font-size:150px;line-height:300px;text-align:center;color:#fff;}
+#box ol{width:320px;height:10px;position:absolute;bottom:20px;left:50%;margin-left:-160px;z-index:2;}
+#box ol li{width:70px;height:10px;float:left;margin-right:10px;background:#FFF;position:relative;}
+#box ol span{width:0px;background:#FF0000;height:10px;display:block;position:absolute;left:0;top:0;}
+</style>
+<script src="move.js"></script>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	var oOl=oBox.getElementsByTagName('ol')[0];
+	var aBtn=oOl.children;
+	var aSpan=oOl.getElementsByTagName('span');
+	
+	//计算ul的长度
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+	
+	var iNow=0;
+	function next(){
+		for(var i=0;i<aSpan.length;i++){
+			aSpan[i].style.width=0;
+		}
+		startMove(aSpan[iNow],{width:70},{duration:2000,complete:function(){
+			iNow++;	
+			if(iNow==aSpan.length){
+				iNow=0;
+			}
+			startMove(oUl,{left:-aLi[0].offsetWidth*iNow},{complete:function(){
+				next();
+			}})
+		}})
+	}
+	next();
+};
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<ul>
+			<li style="background:#0FE;">0</li>
+            <li style="background:#FC0;">1</li>
+			<li style="background:#0AC">2</li>
+			<li style="background:#CF0;">3</li>
+        </ul>
+        <ol>
+        	<li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>        
+        </ol>
+    </div>
+</body>
+</html>

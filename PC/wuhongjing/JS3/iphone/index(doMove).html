@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>iPhone手机图片查看器</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script src="doMove.js"></script>
+<script>
+window.onload=function(){
+	var oWrap=document.getElementById('wrap');
+	var oUl=oWrap.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	var iNow=0;
+	oUl.onmousedown=function(ev){
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oUl.offsetLeft;
+		var oldX=oEvent.clientX;
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;
+			oUl.style.left=oEvent.clientX-disX+'px';
+		};
+		document.onmouseup=function(ev){
+			var oEvent=ev||event;
+			document.onmousemove=null;
+			document.onmouseup=null;
+			var dis=Math.abs(oEvent.clientX-oldX);
+			if(dis>20){  //判断翻不翻页
+				if(oEvent.clientX>oldX){
+					//如果新的鼠标位置大于旧的鼠标位置就往上翻
+					iNow--;
+					if(iNow<0){
+						iNow=0;
+					}
+					startMove(oUl,{left:-iNow*aLi[0].offsetWidth});
+					//oUl.style.left=-iNow*aLi[0].offsetWidth+'px';
+				}else{
+					//否则往下翻
+					iNow++;
+					if(iNow==aLi.length){
+						iNow=aLi.length-1;
+					}
+					startMove(oUl,{left:-iNow*aLi[0].offsetWidth});
+					//oUl.style.left=-iNow*aLi[0].offsetWidth+'px';
+				}
+			}else{
+				startMove(oUl,{left:-iNow*aLi[0].offsetWidth})
+				//oUl.style.left=-iNow*aLi[0].offsetWidth+'px';
+			};
+			oUl.releaseCapture&&oUl.releaseCapture();
+		};
+		oUl.setCapture&&oUl.setCapture();
+		return false;
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="iphone">
+	<div id="wrap">
+		<ul>
+			<li style="background:url(images/pic1.png);"></li>
+			<li style="background:url(images/pic2.png);"></li>
+			<li style="background:url(images/pic3.png);"></li>
+			<li style="background:url(images/pic4.png);"></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

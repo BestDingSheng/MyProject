@@ -1,0 +1,21 @@
+#content{width:1000px;height:auto;margin:0 auto 20px auto;overflow:hidden;}
+.column{width:1000px;height:35px;}
+.column li{height:35px;float:left;}
+.col_l{width:8px;background:url(../img/col_l.jpg) no-repeat;}
+.col_c{width:980px;background:url(../img/col_c.jpg) repeat-x;}
+.col_c p{margin:8px 0 0 10px;}
+.not_con{float:left;width:800px;height:22px;margin-top:8px;color:#525252;}
+.col_r{width:12px;background:url(../img/col_r.jpg) no-repeat;}
+
+.example{width:1000px;height:660px;margin:20px auto;border-top:1px solid #ccc;overflow:hidden;}
+.example dl{width:320px;height:144px;border-right:1px solid #ccc;border-bottom:1px solid #ccc;float:left;padding-left:12px;}
+.jl{margin-top:20px;}
+.example dt{float:left;margin-right:15px;display:inline;}
+.example dt img{width:130px;height:120px;}
+.example dd{width:170px;height:134px;float:left;}
+.exam_tit{width:165px;height:32px;font-size:18px;border-bottom:1px dashed #ccc;overflow:hidden;white-space:nowrap;}
+.exam_wen{width:165px;height:60px;color:#747474;line-height:20px;margin-top:5px;overflow:hidden;}
+.but{width:104px;height:22px;margin-top:6px;}
+.page{width:970px;margin:20px auto;clear:both;padding:0px 20px;}
+.page li{float:right;margin-top:5px;padding-left:15px;}
+

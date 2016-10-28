@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+img{ width:100%;}
+input{ background: none; border:none 0; color:#205ec2;}
+.btn{ display:inline-block;  text-align:center;
+	-webkit-transform: skew(-40deg); 
+	-moz-transform: skew(-40deg);
+	-o-transform: skew(-40deg);
+	transform: skew(-40deg);
+	background-color:#df0615;
+}
+.nav .btn.cur{background-color:#df0615;}
+.btn .txt,
+.btn_sub,
+.layer .btn .txt{ display:inline-block; width:100%; text-align:center; color:#fff; 
+	-webkit-transform: skew(40deg); 
+	-moz-transform: skew(40deg);
+	-o-transform: skew(40deg);
+	transform: skew(40deg);
+}
+.btn_fg{ width:93px; height:93px; background:#df0615; color:#c6eaff; transform: rotate(45deg); display:inline-block; -webkit-transform: rotate(45deg); margin:20px 27px;}
+.btn_blue,
+.nav .btn{ background-color:#1a4ea1;}
+.btn_blue1{ background-color:hsla(212, 74%, 54%,.6);}
+.btn_double,
+p.bottom{ text-align:center;}
+.content table .error{ display:none}
+
+.ico{ display: inline-block; vertical-align: middle; overflow: hidden; background:none no-repeat left top; background-size:100%;}
+.ico_close{ -webkit-transform: rotate(45deg); transform: rotate(45deg); color:#1a4ea1; font-size:30px; position:absolute; right:0; margin-top:-45px; }
+.ico_reg{ width:8px; height:8px; background-image:url(../../images/wap/ico_reg.png); margin-left:1px;}
+.ico_jf{ width:34px; height:23px; background-image:url(../../images/wap/ico_user_01.png); }
+.ico_cj{ width:34px; height:23px; background-image:url(../../images/wap/ico_user_04.png); }
+.ico_sp{ width:34px; height:23px; background-image:url(../../images/wap/ico_user_03.png); }
+.ico_dh{ width:34px; height:23px; background-image:url(../../images/wap/ico_user_02.png); }
+.ico_rulb{width:7px; height:7px; background-image:url(../../images/wap/ico_club.png); margin-right:5px;}
+.ico_club{background-image: url(../../images/wap/ico_cubl_01.png); width: 7px; height: 7px; margin-right: 5px;}
+.ico_rulb_on{width:7px; height:7px; background-image:url(../../images/wap/ico_club_on.png); margin-right:5px;}
+.ico_pure{ width:82px; height:22px; background-image:url(../../images/wap/ico_brand_01.png);}
+.ico_mol{ width:22px; height:31px; background-image:url(../../images/wap/ico_brand_02.png);}
+.ico_alk{ width:47px; height:40px; background-image:url(../../images/wap/ico_brand_03.png);}
+.ico_ph{ width:33px; height:40px; background-image:url(../../images/wap/ico_brand_04.png);}
+.ico_pgae{ width:33px; height:40px; background-image:url(../../images/wap/btn_page.png);}
+.page_pule{   transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);}
+
+.show{ display:block!important;}
+.inp_txt{ background:hsla(0,0%,100%,.25); border:1px solid #1475cf; margin:14px 5px 5px; line-height:34px; height:34px; padding-left:5px; width:97%; box-sizing:border-box; -webkit-box-sizing:border-box; }
+.inp_txt1{ width:40%;}
+
+.trapezoid{
+  height: 0;
+  width: 100%;
+  border-bottom: 17px solid hsla(212, 74%, 54%,.6);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+ }
+.trapezoid_fan{
+  height: 0;
+  width: 100%;
+  border-top: 17px solid hsla(212, 74%, 54%,.6);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+.parallelogram-lt{
+  width: 100%;
+  height: 17px;
+  background: hsla(212, 74%, 54%,.6);
+  -webkit-transform: skew(40deg);
+  -moz-transform: skew(40deg);
+  -o-transform: skew(40deg);
+  -ms-transform: skew(40deg);
+  transform: skew(40deg);
+}
+.parallelogram-lb{
+  width: 100%;
+  height: 17px;
+  background: hsla(212, 74%, 54%,.6);
+  -webkit-transform: skew(-40deg);
+  -moz-transform: skew(-40deg);
+  -o-transform: skew(-40deg);
+  -ms-transform: skew(-40deg);
+  transform: skew(-40deg);
+ }

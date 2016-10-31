@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>益虫APPdownload</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" charset="UTF-8">
+		</script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			img {
+				display: block;
+				width: 100%;
+			}
+			
+			.download {
+				position: fixed;
+				bottom: 0;
+				height: 50px;
+				width: 100%;
+				font-size: 0;
+			}
+			
+			.download a {
+				width: 100%;
+				display: block;
+				margin: 0 auto;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				background: #6ab795;
+				text-decoration: none;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<img src="images/mobile_banner.png" alt="" />
+		<img src="images/mobile_bg.png" alt="" />
+		<div class="download">
+			<a href="#" id="load">APP下载</a>
+		</div>
+		<script src="JS/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">
+			var u = navigator.userAgent;
+			var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+//			alert('是否是Android：' + isAndroid);
+//			alert('是否是iOS：' + isiOS);
+			//
+			$('.download').on('click', function() {
+				if (isAndroid) {
+					location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.evcorp.evchong';
+
+				} else {
+
+					if (isWeiXin()) {
+						alert('请点击右上角，用默认浏览器打开点击下载');
+					} else {
+						location.href = 'https://itunes.apple.com/us/app/yi-chong-chong-dian/id1114685202?l=zh&ls=1&mt=8';
+					}
+				}
+			})
+
+			//判断是否是微信浏览器；
+			function isWeiXin() {
+				var ua = window.navigator.userAgent.toLowerCase();
+				if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		</script>
+	</body>
+
+</html>

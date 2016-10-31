@@ -1,0 +1,214 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>高瞻新能源-预约试驾</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+
+	<body>
+		<div class="content">
+			<header>
+				<img src="images/logo.png" alt="" />
+				<!--<div class="_img">
+					<img src="images/img_dz.png" alt="" />
+					<img src="images/img65.png" id="posi" alt="" />
+				</div>-->
+			</header>
+			<div class="main">
+				<div class="content">
+					<div class="hd">
+						<img src="images/img_hed.png" alt="" />
+					</div>
+					<form action="http://crm.evbuy.cn/Evcorp_CRM_Plus/leads/saveLeads" method="post" name="leadform" id="leadform" class="">
+
+						<div class="from">
+							<div class="tit">
+								<span>*</span> 意向车型：
+							</div>
+							<input type="hidden" name="carType" id="car" value="广汽传祺 GA5 PHEV" />
+							<div class="option">
+								<ul>
+									<li class="act">广汽传祺 GA5 PHEV</li>
+									<li>艾瑞泽7e</li>
+									<li>荣威e550</li>
+									<li>荣威e950</li>
+									<li>北汽EX200</li>
+									<li>奇瑞 eQ</li>
+									<li>东风启辰-晨风</li>
+									<li>其他</li>
+								</ul>
+							</div>
+							<div class="info">
+								<lable><span>*</span>姓&nbsp;&nbsp;名</lable>
+								<input type="text" autocomplete="off" name="username" id="name" placeholder="请输入您的姓名" onblur="validation()" />
+							</div>
+							<p class="tips"></p>
+							<div class="info">
+								<lable><span>*</span>电&nbsp;&nbsp;话</lable>
+								<input type="tel" name="phone" id="phone" autocomplete="off" placeholder="请输入您的手机号码" onblur="validation()" />
+							</div>
+							<div class="left">提交的资料完全保密</div>
+							<p class="tips"></p>
+							<img src="images/form_img.jpg" class="form_img" alt="" />
+							<span id="submit"></span>
+							<p style="background:#cecec5;height: 20px;"></p>
+						</div>
+						<input type="hidden" id="inputidname" name="source" value="21" />
+					</form>
+
+				</div>
+				<div class="showCar">
+					<img src="images/buycar.jpg" alt="" />
+				</div>
+				<div class="carType">
+					<ul class="controller">
+						<li>
+
+						</li>
+						<li>
+
+						</li>
+						<li>
+
+						</li>
+						<li>
+
+						</li>
+						<li>
+
+						</li>
+						<li>
+
+						</li>
+						<li>
+
+						</li>
+					</ul>
+					<div class="img">
+						<img src="images/car_gq.png" alt="" style="display: block;" />
+						<img src="images/car_550.png" alt=""/>
+						<img src="images/car_950.png" alt=""/>
+						<img src="images/car_eq.png" alt=""/>
+						<img src="images/car_bq.png" alt=""/>
+						<img src="images/car_qc.png" alt=""/>
+						<img src="images/car_arz.png" alt=""/>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<footer style="background:#475951;text-align: center;color: #fff;line-height: 20px;padding:10px 0;font-size: 14px;">
+			上海今韬新能源技术服务有限公司 如有需要 <a href="http://www.evbuy.cn/c/default/pageId/560362e677eb06f4698b460c" style="text-underline: none;color: #fff;">请点击</a> Copyright ©2016 EVBUY All Rights Reserved.
+		</footer>
+		<script src="js/jquery-1.8.2.min.js"></script>
+		<script>
+			var sr = document.location.href;
+
+			function getQueryStringArgs(q) {
+				var qs = q.split('?')[1] || (location.search.length > 0 ? location.search.substring(1) : ''),
+					args = {},
+					items = qs.length ? qs.split('&') : [],
+					item = null,
+					name = null,
+					value = null,
+					i = 0,
+					len = items.length;
+				for (i = 0; i < len; i++) {
+					item = items[i].split('=');
+					name = decodeURIComponent(item[0]);
+					value = decodeURIComponent(item[1]);
+					if (name.length) {
+						args[name] = value;
+					}
+				}
+				return args;
+			}
+			var st = getQueryStringArgs(sr);
+			if (st.ConfigId) {
+				$('#inputidname').val(st.ConfigId);
+			}
+			//
+			$('.controller').find('li').on('click', function() {
+				var num = $(this).index();
+				$('.img img').hide()
+				$('.img img').eq(num).show()
+			})
+			$('.option li').on('click', function() {
+					$(this).siblings().removeClass('act');
+					$(this).addClass('act');
+					var val = $(this).html();
+					$('#car').val(val);
+				})
+				//
+			function submitForm() {
+				var name = $('#name').val().trim();
+				var phone = $('#phone').val();
+				if (name.length < 2) {
+					$('.tips').eq(0).html('请输入请正确的姓名');
+					return;
+				} else {
+					$('.tips').eq(0).empty();
+				}
+				var ptest = /^((?:13\d|14\d|15[\d]|17[\d]|18[\d])-?\d{5}(\d{3}|\*{3}))$/; //手机正则
+				if (!ptest.test(phone)) {
+					$('.tips').eq(1).html('请输入正确的手机号码');
+					return;
+				} else {
+					$('.tips').eq(1).empty();
+				}
+				$('#leadform').submit();
+			}
+
+			function validation() {
+				var name = $('#name').val().trim();
+				var phone = $('#phone').val();
+				if (name.length < 2) {
+					$('.tips').eq(0).html('请输入请正确的姓名');
+					return;
+				} else {
+					$('.tips').eq(0).empty();
+				}
+				var ptest = /^((?:13\d|14\d|15[\d]|17[\d]|18[\d])-?\d{5}(\d{3}|\*{3}))$/; //手机正则
+				if (!ptest.test(phone)) {
+					$('.tips').eq(1).html('请输入正确的手机号码');
+					return;
+				} else {
+					$('.tips').eq(1).empty();
+				}
+			}
+			$('#submit').on('click', function() {
+					submitForm()
+				})
+				// javascript闪动效果
+			var imgId = document.getElementById("posi");
+			showImg()
+
+			function showImg() {
+				if (imgId.style.visibility == "visible")
+				//如果可见，则隐藏
+					imgId.style.visibility = "hidden";
+				else
+					imgId.style.visibility = "visible";
+				//设置图像可见
+				setTimeout('showImg()', 400);
+				//间隔的毫秒
+			}
+		</script>
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "//hm.baidu.com/hm.js?876dd58c7f5bd373a7900921e7994f35";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+
+	</body>
+
+</html>

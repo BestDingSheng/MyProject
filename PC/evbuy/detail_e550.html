@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>买电车</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/details.css" />
+	</head>
+	<style type="text/css">
+		.swper-box {
+			position: relative;
+			top: 40px;
+		}
+		
+		.swiper-button-next,
+		.swiper-button-prev {
+			height: 20px;
+			margin-top: -10px;
+		}
+		
+		.swiper-button-next {
+			right: 0;
+			left: auto;
+		}
+		
+		.swiper-button-prev {
+			right: auto;
+			left: 0;
+		}
+		
+		.swiper-slide {
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+			border: 1px solid #e5e5e5;
+			box-sizing: border-box;
+			cursor: pointer;
+			padding: 10px 20px;
+		}
+		
+		.swiper-slide.active {
+			border: 1px solid #3294cd;
+		}
+		
+		.swiper-slide img {
+			width: 100%;
+			display: block;
+			vertical-align: middle;
+		}
+		
+		.swiper-container {
+			width: 90%;
+		}
+	</style>
+
+	<body>
+		<header>
+			<div class="container">
+				<div class="logo">
+					<a href="index.html">
+						<img src="images/logo.png" alt="" />
+					</a>
+				</div>
+				<ul class="fr">
+					<li>
+						<a href="">
+							<img src="images/icon_search.png" alt="" />
+						</a>
+					</li>
+					<li>
+						<a href="">登入</a>
+					</li>
+					<li>|</li>
+					<li>
+						<a href="">注册</a>
+					</li>
+				</ul>
+				<!---->
+				<div class="fr" style="line-height: 70px;font-size: 20px;">
+					在线客服：400-820-2298
+				</div>
+			</div>
+		</header>
+		<!--暂位div-->
+		<div style="height: 70px;"></div>
+		<!--汽车详情-->
+		<div class="container car">
+			<div class="car_detail">
+				<div class="fl">
+					<div class="img_box">
+						<img src="images/car_e550_02.jpg" alt="" id="show_car" />
+					</div>
+					<!--<div class="option">
+						<ul>
+							<li>
+								<img src="images/car_e950.png" alt="" />
+							</li>
+							<li class="center">
+								<img src="images/car_e950.png" alt="" />
+							</li>
+							<li>
+								<img src="images/car_e950.png" alt="" />
+							</li>
+						</ul>
+						<span class="leftBtn"></span>
+						<span class="rightBtn"></span>
+					</div>-->
+					<div class="swper-box">
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide active">
+									<img src="images/car_e550_02.jpg" alt="" />
+								</div>
+								<div class="swiper-slide">
+									<img src="images/car_e550_03.jpg" alt="" />
+								</div>
+								<div class="swiper-slide">
+									<img src="images/car_e550_04.jpg" alt="" />
+								</div>
+								<!--<div class="swiper-slide">
+									<img src="images/car_e950.png" alt="" />
+								</div>-->
+							</div>
+							<!-- Add Pagination -->
+						</div>
+						<!---->
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+					</div>
+
+					<!--swper-->
+				</div>
+				<div class="fr">
+					<div class="car_title">
+						2016款 &nbsp;&nbsp;荣威e550 &nbsp;&nbsp;畅享租标准版
+					</div>
+					<div class="category">
+						<span class="text">
+							车辆款型
+						</span>
+						<ul class="parameter">
+							<li class="act" id="standard">精英版</li>
+							<li id="luxury">豪华版</li>
+						</ul>
+					</div>
+					<div class="category">
+						<span class="text">
+							外观颜色
+						</span>
+						<ul class="parameter">
+							<li class="act">天际蓝</li>
+							<li>温莎白</li>
+							<li>骑士银</li>
+							<li>伯爵黑</li>
+							<li>约克红</li>
+						</ul>
+					</div>
+					<div class="category">
+						<span class="text">
+							内饰
+						</span>
+						<ul class="parameter luxury" style="display: none;">
+							<li class="act">米色真皮</li>
+							<li>黑色真皮</li>
+						</ul>
+						<ul class="parameter ordinary">
+							<li class="act">米色布</li>
+							<li>全黑布</li>
+						</ul>
+					</div>
+
+					<!--<div class="category">
+						<span class="text">
+							畅享租
+						</span>
+						<ul class="parameter">
+							<li class="act">标准版</li>
+						</ul>
+					</div>-->
+					<!--价格信息-->
+					<div class="price active">
+						<div class="inline">
+							月付&nbsp;&nbsp;&nbsp;&nbsp;
+						</div>
+						<div class="inline">
+
+							<span class="size">2799元</span>
+						</div>
+						<div class="inline">
+							<p>
+								<span>首付0元</span>
+								<span>3年租期</span>
+								<span>保证金33360元</span>
+							</p>
+							<p>保险及充电管理费700元</p>
+						</div>
+					</div>
+					<!--高配-->
+					<div class="price">
+						<div class="inline">
+							月付&nbsp;&nbsp;&nbsp;&nbsp;
+						</div>
+						<div class="inline">
+
+							<span class="size">2999元</span>
+						</div>
+						<div class="inline">
+							<p>
+								<span>首付0元</span>
+								<span>3年租期</span>
+								<span>保证金35360元</span>
+							</p>
+							<p>保险及充电管理费700元</p>
+						</div>
+					</div>
+					<!--签约按钮-->
+					<button class="btn signing">
+						试驾
+					</button>
+				</div>
+			</div>
+		</div>
+		<!--图文开始-->
+		<div class="graphic container">
+			<ul class="control">
+				<li class="active">车型介绍</li>
+				<li>参数配置</li>
+				<li>购买须知</li>
+			</ul>
+			<div class="show">
+				<div class="active">
+					<img src="images/car_550_details.jpg" alt="" />
+				</div>
+				<div>
+					<table class="detail-carconfig" style="display: table;">
+						<thead>
+							<tr>
+								<th width="160" class="detail-table-title"></th>
+								<th>2016款 精英版</th>
+								<th>2016款 豪华版</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>厂商</td>
+								<td>荣威</td>
+								<td>荣威</td>
+
+							</tr>
+							<tr>
+								<td>级别</td>
+								<td>紧凑型</td>
+								<td>紧凑型</td>
+
+							</tr>
+							<tr>
+								<td>车型分类</td>
+								<td>插电式</td>
+								<td>插电式</td>
+
+							</tr>
+							<tr>
+								<td>长*宽*高(mm)</td>
+								<td>4648*1827*1479</td>
+								<td>4648*1827*1479</td>
+
+							</tr>
+							<tr>
+								<td>系统总功率(kW)</td>
+								<td>147.00</td>
+								<td>147.00</td>
+
+							</tr>
+							<tr>
+								<td>系统总扭矩(N·m)</td>
+								<td>587</td>
+								<td>587</td>
+
+							</tr>
+							<tr>
+								<td>纯电续航(km)</td>
+								<td>60</td>
+								<td>60</td>
+
+							</tr>
+							<tr>
+								<td>慢充时间(h)</td>
+								<td>8.0</td>
+								<td>8.0</td>
+
+							</tr>
+							<tr>
+								<td>快充时间(h)</td>
+								<td>-</td>
+								<td>-</td>
+
+							</tr>
+							<tr>
+								<td>工信部综合油耗(L/100km)</td>
+								<td>1.6</td>
+								<td>1.6</td>
+
+							</tr>
+							<tr>
+								<td>最高车速(km/h)</td>
+								<td>200</td>
+								<td>200</td>
+
+							</tr>
+							<tr>
+								<td>官方0-100Km加速时间(s)</td>
+								<td>9.5</td>
+								<td>9.5</td>
+
+							</tr>
+							<tr>
+								<td>实测续航里程(km)</td>
+								<td>-</td>
+								<td>-</td>
+
+							</tr>
+							<tr>
+								<td>实测满电时间(h)</td>
+								<td>-</td>
+								<td>-</td>
+
+							</tr>
+							<tr>
+								<td>实测0-100Km/h加速时间(s)</td>
+								<td>-</td>
+								<td>-</td>
+
+							</tr>
+							<tr>
+								<td>实测100Km/h-0制动距离(m)</td>
+								<td>-</td>
+								<td>-</td>
+
+							</tr>
+							<tr>
+								<td>整车质保</td>
+								<td>5年 / 10万公里</td>
+								<td>5年 / 10万公里</td>
+
+							</tr>
+							<tr>
+								<td>电池质保</td>
+								<td>-年 / -万公里</td>
+								<td>-年 / -万公里</td>
+
+							</tr>
+							<tr>
+								<td>保养周期(月/公里)</td>
+								<td>-</td>
+								<td>-</td>
+
+							</tr>
+							<tr>
+								<td>首保里程(km)</td>
+								<td>5000</td>
+								<td>5000</td>
+
+							</tr>
+							<tr>
+								<td>免费保养政策</td>
+								<td>-年 / -万公里</td>
+								<td>-年 / -万公里</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					<p> 1、您须确认自身具备相应的民事权利能力、民事行为能力及车辆购买资格，此类购车资格包含但不限于具有购买相应车辆所需要的机动车驾驶资格及符合车辆上牌地的相应限购政策或其他政策。
+					</p>
+					<p> 2、用户在报名下单并成功在线支付购车订金后，系统将向您发送提车码以确认下单成功，此验证码将作为您提车的唯一凭证，在您到店提车时，车辆出售方将依据短信购车验证码确认您的身份，请您妥善保存。
+					</p>
+					<p> 3、下单成功仅代表您具备享有优惠购车的初步资格，并不作为最终购得车辆的凭证
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--底部-->
+		<!--页脚-->
+		<footer>
+			<div class="container">
+				<!--<div class="fl">
+					<img src="images/logo.png" alt="" />
+					<div class="size-lg color-white tel">在线客服：400-820-2298</div>
+					<p class="size-sm color-white">©2015 EVBUY.CN 沪ICP备14018851号</p>
+				</div>-->
+				<!--<div class="searchBar fr">
+					<input type="text" placeholder="车型搜索..." />
+					<img src="images/search_btn.png" alt="" />
+				</div>-->
+				<div class="copyright">
+					<img src="images/logo1.png" alt="" class="" />
+					<div class="tell fr">
+						<div class="color-white tel">在线客服：400-820-2298</div>
+						<p class="size-sm color-white">©2015 EVBUY.CN 沪ICP备14018851号</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!--表单-->
+		<div class="mask from">
+			<div class="userInfo">
+				<div class="inputBox">
+					<input type="text" class="input" id="name" placeholder="姓名" />
+					<input type="text" class="input" id="phone" placeholder="手机号码" />
+					<button class="input" id="form_btn">提交</button>
+				</div>
+				<span class="close"></span>
+			</div>
+
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script type="text/javascript">
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				slidesPerView: 3,
+				paginationClickable: true,
+				spaceBetween: 10,
+				prevButton: '.swiper-button-prev',
+				nextButton: '.swiper-button-next',
+				loop: false
+			});
+
+			//tab切换
+			$('.control li').on('click', function() {
+					//				$('.control li').removeClass('active');
+					$(this).addClass('active').siblings().removeClass('active');
+					var index = $(this).index();
+					$('.show div').eq(index).addClass('active').siblings().removeClass('active');
+				})
+				// 选择类型
+			$('.parameter li').on('click', function() {
+					$(this).addClass('act').siblings().removeClass('act');
+				})
+				//车型选择
+			$('.swiper-slide').on('click', function() {
+				$(this).addClass('active').siblings().removeClass('active');
+				var src = $(this).find('img').attr('src');
+				//把大图的照片替换成所选择小图的照片;
+				$('#show_car').attr("src", src);
+
+			});
+
+			//表单显示与隐藏
+			$('.signing').on('click', function() {
+				$('.from').show();
+			})
+			$('.close').on('click', function() {
+					$('.from').hide();
+
+				})
+				//标准和豪华切换
+			$('#standard').on('click', function() {
+				$('.price').hide()
+				$('.price').eq(0).show()
+					//普通切换
+				$('.luxury').hide();
+				$('.ordinary').show();
+				
+			})
+			$('#luxury').on('click', function() {
+				$('.price').hide()
+				$('.price').eq(1).show()
+					//
+				$('.luxury').show();
+				$('.ordinary').hide();
+				//car标题
+			});
+			//
+			$('#form_btn').on('click', function() {
+				var phoneR = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+				var phoneVal = $('#phone').val();
+				var nameVal = $('#name').val();
+				if(!nameVal.trim()) {
+					alert('请输入姓名');
+					return;
+				};
+				if(!phoneR.test(phoneVal)) {
+					alert('请输入正确的手机号码');
+					return;
+				}
+				//
+				$.ajax({
+					//url: 'http://192.168.0.10:8080/Evcorp_CRM_Plus/leads/saveLeadsJsonp', //跨域到http://www.wp.com，另，http://test.com也算跨域
+					url: 'http://crm.evbuy.cn/Evcorp_CRM_Plus/leads/saveLeadsJsonp', //跨域到http://www.wp.com，另，http://test.com也算跨域
+					type: 'GET', //jsonp 类型下只能使用GET,不能用POST,这里不写默认为GET
+					dataType: 'jsonp', //指定为jsonp类型
+					data: {
+						"phone": phoneVal,
+						"username": nameVal,
+						"source": 73,
+						"carType":"荣威550 PLUG"
+					}, //数据参数
+					jsonp: 'callback', //服务器端获取回调函数名的key，对应后台有$_GET['callback']='getName';callback是默认值
+					jsonpCallback: "success_jsonpCallback", //callback的function名称,服务端会把名称和data一起传递回来  
+					success: function(data) { //成功执行处理，对应后台返回的getName(data)方法。
+						//								al
+						if(data.respCode == 1) {
+							alert('预约成功');
+						} else {
+							alert('预约失败');
+						}
+					},
+					error: function(msg) {
+						alert('网络出现小差请稍后在试'); //执行错误
+
+					}
+
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

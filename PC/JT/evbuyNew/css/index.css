@@ -1,0 +1,242 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ul,
+li {
+  font-style: none;
+  list-style-type: none;
+}
+body {
+  font-family: "微软雅黑";
+}
+html,
+body,
+.content {
+  width: 100%;
+}
+html .from,
+body .from,
+.content .from {
+  background: #0a727c !important;
+}
+html .page2,
+body .page2,
+.content .page2 {
+  height: 3690px;
+  width: 100%;
+  background: #ccc5b5 url(../images/page2.jpg) no-repeat 50% 4px !important;
+}
+html .page2 .car_d,
+body .page2 .car_d,
+.content .page2 .car_d {
+  width: 1000px;
+  height: 545px;
+  background: url(../images/car_bg.png);
+  position: relative;
+  top: 3057px;
+}
+html .page2 .car_d .btn,
+body .page2 .car_d .btn,
+.content .page2 .car_d .btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  right: 70px;
+  top: 50px;
+}
+html .page2 .car_d .fr,
+body .page2 .car_d .fr,
+.content .page2 .car_d .fr {
+  right: 17px;
+}
+html .page2 .car_d .list_img,
+body .page2 .car_d .list_img,
+.content .page2 .car_d .list_img {
+  padding-top: 63px;
+  padding-left: 100px;
+}
+html .page2 .car_d .list_img .act,
+body .page2 .car_d .list_img .act,
+.content .page2 .car_d .list_img .act {
+  display: block;
+}
+html .page2 .car_d .list_img img,
+body .page2 .car_d .list_img img,
+.content .page2 .car_d .list_img img {
+  display: none;
+}
+html .page2 .car_d ul,
+body .page2 .car_d ul,
+.content .page2 .car_d ul {
+  text-align: center;
+  width: 103%;
+  position: absolute;
+  bottom: 90px;
+}
+html .page2 .car_d ul li,
+body .page2 .car_d ul li,
+.content .page2 .car_d ul li {
+  display: inline-block;
+}
+.content .contian {
+  width: 100%;
+  background: #ede4d2 url("../images/banner_bg.jpg") no-repeat top center;
+}
+.content .contian .banner {
+  width: 1000px;
+  margin: 0 auto;
+  background: ;
+  height: 358px;
+}
+.content .contian .banner img {
+  margin-top: 110px;
+}
+.content .contian .carType {
+  width: 1000px;
+  margin: 0 auto;
+}
+.content .contian .carType img {
+  margin-top: -2px;
+}
+.content .contian .carType .cur {
+  border-radius: 10px;
+  border: 2px #b2b6bd solid;
+  box-shadow: 1px 1px 2px #b9b9bb;
+}
+.content .contian .page {
+  width: 1000px;
+  margin: 0 auto;
+  height: 485px;
+}
+.content .contian .page .header {
+  padding-top: 25px;
+}
+.content .contian .page .from_box {
+  margin-left: 6px;
+  margin-top: 20px;
+  width: 975px;
+  font-size: 0;
+  border-radius: 5px;
+  height: 362px;
+  background: url("../images/from_bg.png") no-repeat center center;
+  background-size: 100% auto;
+}
+.content .contian .page .from_box .title {
+  font-size: 18px;
+  font-family: '微软雅黑';
+  color: #747474;
+  padding: 8px 0 8px 15px;
+  font-weight: bold;
+  height: 30px;
+}
+.content .contian .page .from_box .title span {
+  color: #3fad03;
+}
+.content .contian .page .from_box .fr,
+.content .contian .page .from_box .fl {
+  float: left;
+  width: 50%;
+  height: 300px;
+  font-size: 14px;
+}
+.content .contian .page .from_box .fr {
+  position: relative;
+}
+.content .contian .page .from_box .fr img {
+  margin-top: -40px;
+}
+.content .contian .page .from_box .fr .ercode {
+  position: absolute;
+  right: 30px;
+  bottom: 6px;
+}
+.content .contian .page .from_box .fr span {
+  position: absolute;
+  bottom: 20px;
+  left: -50px;
+  width: 135px;
+  height: 90px;
+  border: none;
+  background: transparent;
+}
+.content .contian .page .from_box .fl .option {
+  padding-left: 27px;
+  padding-top: 5px;
+}
+.content .contian .page .from_box .fl .option div {
+  display: inline-block;
+  color: #5e5d5c;
+  font-family: "微软雅黑";
+  line-height: 40px;
+  background: url("../images/icon_option.png") no-repeat left 6px;
+  padding-left: 35px;
+  background-size: 32px 32px;
+}
+.content .contian .page .from_box .fl .option .act {
+  background: url("../images/icon_option_act.png") no-repeat left 6px;
+  background-size: 32px 32px;
+}
+.content .contian .page .from_box .fl .info {
+  line-height: 35px;
+  width: 100%;
+  background: url("../images/info_bg.png") no-repeat 1px center;
+  background-size: 100% auto;
+}
+.content .contian .page .from_box .fl .user .secret {
+  padding-left: 227px;
+  padding-top: 5px;
+  color: #5e5d5c;
+}
+.content .contian .page .from_box .fl .user lable {
+  font-size: 18px;
+  font-family: '微软雅黑';
+  color: #747474;
+  padding: 8px 0 8px 27px;
+  font-weight: bold;
+}
+.content .contian .page .from_box .fl .user lable span {
+  color: #3fad03;
+}
+.content .contian .page .from_box .fl .user input {
+  height: 35px;
+  width: 270px;
+  border: none;
+  background: url(../images/name.png) no-repeat center center;
+  background-size: 100% 100%;
+  text-indent: 40px;
+  outline: none;
+}
+#phone {
+  background: url(../images/phone.png) no-repeat center center;
+  background-size: 100% 100%;
+}
+.foot {
+  height: 135px;
+  background: url(../images/foot_bg.jpg) repeat-x center center;
+  background-size: 100% 100%;
+}
+.foot p {
+  text-align: center;
+  color: #fff;
+  line-height: 20px;
+  padding-top: 10px;
+}
+.foot p a {
+  color: #fff;
+}
+.foot ul {
+  text-align: center;
+  margin-top: 10px;
+}
+.foot li {
+  display: inline-block;
+}
+.alert {
+  color: red;
+  text-indent: 120px;
+  line-height: 22px;
+  height: 22px;
+}
+/*# sourceMappingURL=index.css.map */

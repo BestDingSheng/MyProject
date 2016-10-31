@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.content .page {
+  width: 100%;
+  height: 900px;
+  background: red;
+}
+.content .page .box {
+  width: 1200px;
+  height: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.content .page .box .mr {
+  margin-top: 300px;
+}
+.content .page .box .mr .fr {
+  float: right;
+}
+.content .page .box .mr .fl {
+  float: left;
+}
+.content .page .box .mr .fl .btn {
+  margin-top: 85px;
+}
+.content .page .box .mr .fl .btn a {
+  width: 270px;
+  height: 80px;
+  border: none;
+  margin-right: 30px;
+  border-radius: 400px;
+  display: inline-block;
+}
+.content .page .box .mr .fl .btn .ios {
+  background: url(../images/ios.png) no-repeat center center;
+}
+.content .page .box .mr .fl .btn .android {
+  background: url(../images/android.png) no-repeat center center;
+}
+.content .page1 {
+  background: url(../images/banner_bg.png) no-repeat center center;
+  background-size: 100% auto;
+}
+.content .page2 {
+  background: #fff;
+}
+.content .page2 .box .mr {
+  margin-top: 200px;
+}
+.content .page3 {
+  background: #6ab795;
+}
+.content .page3 .box .mr {
+  margin-top: 260px;
+}
+.content .page4 {
+  background: #fff;
+}
+.content .page4 .box .mr {
+  margin-top: 140px;
+}
+.content .page5 {
+  background: #7f79b1;
+}
+.content .page5 .box .mr {
+  margin-top: 230px;
+}
+.content .page6 {
+  background: #fff;
+}
+.content .page6 .box .mr {
+  margin-top: 300px;
+}
+/*# sourceMappingURL=index.css.map */

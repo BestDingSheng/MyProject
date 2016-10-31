@@ -1,0 +1,411 @@
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    
+}
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+header {
+    height: 70px;
+    background: #f0f4f8;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 0 20px #9c9c9c;
+    .logo {
+        width: 320px;
+       // background: #1b6896;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        display: inline-block;
+        img {
+            vertical-align: middle;
+        }
+    }
+    ul {
+        height: 70px;
+        line-height: 70px;
+        display: none;
+        li {
+            display: inline-block;
+            font-size: 18px;
+            margin-right: 10px;
+            color: #abb6c4;
+            a {
+                color: #abb6c4;
+                img {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
+.fr {
+    float: right;
+}
+.fl {
+    float: left;
+}
+//
+.swiper-container {
+    width: 100%;
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+.swiper-pagination-bullet {
+    border: 2px #fff solid;
+    opacity: 1;
+    background: transparent;
+}
+.swiper-pagination-bullet-active {
+    background: #fff;
+}
+//主体部分
+.main {
+    margin-top: 30px;
+}
+.title {
+    color: #2d3450;
+    font-size: 20px;
+    font-family: '黑体';
+    margin-bottom: 30px;
+    img {
+        vertical-align: middle;
+    }
+}
+.main_body {
+    ul {
+        font-size: 0;
+        .interval{
+            margin-bottom: 60px;
+        }
+        li {
+            display: inline-block;
+            width: 32%;
+            font-size: 20px;
+            position: relative;
+            border: 1px #e5e5e5 solid;
+            box-sizing: border-box;
+            box-shadow: 0 1px 2px #e5e5e5;
+            padding: 0 10px 20px;
+            transition: all 0.5s;
+            .progress {
+                width: 104%;
+                height: 20px;
+                border-radius: 10px;
+                background: #3294cd;
+                position: absolute;
+                left: -2%;
+                bottom: -15px;
+            }
+            .car {
+                height: 430px;
+                box-sizing: border-box;
+                line-height: 430px;
+                position: relative;
+                span {
+                    position: absolute;
+                    width: 50px;
+                    height: 16px;
+                    left: 50%;
+                    top: 30px;
+                    transform: translateX(-50%);
+                    background: url("../images/icon_img.png") no-repeat center center;
+                }
+                img {
+                    vertical-align: middle;
+                    width: 100%;
+                    transition: all 0.5s;
+                }
+            }
+            .car_type {
+                height: 283px;
+                line-height: 283px;
+                padding: 0 20px;
+                position: relative;
+                transition: all 0.5s;
+                img {
+                    width: 100%;
+                    vertical-align: middle;
+                    transition: all 0.5s;
+                }
+                .tag {
+                    //                  display: inline-block;
+                    background: url("../images/icon_tag_bg.png") no-repeat center center;
+                    background-size: 100% 100%;
+                    padding: 10px 25px;
+                    color: #fff; //                  margin-bottom: 20px;
+                    position: absolute;
+                    line-height: 20px;
+                }
+            }
+            .text {
+                .hide {
+                    //  display: none;
+                    transition: all 0.5s;
+                    height: 0;
+                    overflow: hidden;
+                }
+                font-family: "Microsoft YaHei";
+                .h4 {
+                    font-size: 18px;
+                    color: #6a7884;
+                    font-family: "Microsoft YaHei";
+                    margin-bottom: 30px;
+                    span {
+                        border: 1px solid #3294cd;
+                        padding: 5px 15px;
+                        font-size: 14px;
+                        float: right;
+                        color: #3294cd;
+                        cursor: pointer;
+                    }
+                }
+                p {
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+                .describe {
+                    color: #6a7884;
+                    font-size: 18px;
+                    .price {
+                        color: #187ffe;
+                        font-size: 24px;
+                        font-family: "Microsoft YaHei";
+                        margin-top: -5px;
+                    }
+                }
+            }
+        }
+        .center {
+            margin: 0 2%;
+        }
+    }
+}
+//推荐车薪
+.through {
+    text-decoration: line-through;
+}
+.color-blue {
+    color: #187ffe;
+}
+.color-white {
+    color: #fff;
+    font-family:"Microsoft YaHei";
+}
+.color-text {
+    color: #6a7884;
+}
+.size-lg {
+    font-size: 22px !important;
+}
+.size-sm {
+    font-size: 16px !important;
+}
+//
+.recommended {
+    margin-top: 30px;
+    ul {
+        margin-bottom: 20px;
+    }
+}
+//
+.bg {
+    background: #e8f5fb;
+    width: 100%;
+    height: 510px;
+    padding-top: 50px;
+}
+//
+#will_push {
+    background: #fff;
+    box-shadow: 0 0 25px #e5e5e5;
+    position: relative;
+    li {
+        border: none;
+        box-shadow: none;
+        padding-top: 20px;
+    }
+}
+//
+.bg_car {
+    height: 430px;
+    width: 100%;
+    background: url("../images/tesal-m-x.png") no-repeat 90% -50px;
+}
+// 页脚
+footer {
+    height: 160px;
+    width: 100%;
+    background: #2c3e50 url("../images/footer_bg.jpg") no-repeat right top;
+    box-sizing: border-box;
+    padding: 55px 0;
+    font-family: "黑体";
+    .tel {
+       // margin: 30px 0 20px;
+       font-size: 22px;
+       margin-bottom: 10px;
+    }
+    .searchBar {
+        width: 730px;
+        height: 60px;
+        border: none;
+        background: #fff;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        top: 35px;
+        img {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+        input {
+            width: 100%;
+            border: none;
+            height: 60px;
+            box-sizing: border-box;
+            padding-left: 20px;
+            font-size: 18px;
+        }
+        input::-webkit-input-placeholder {
+            color: #8c9dac !important;
+            font-family: "黑体";
+        }
+        input:-moz-placeholder {
+            font-family: "黑体";
+            color: #8c9dac !important; // Mozilla Firefox 4 to 18 /
+        }
+        input::-moz-placeholder {
+            font-family: "黑体";
+            color: #8c9dac !important; // Mozilla Firefox 19+ /
+        }
+        input:-ms-input-placeholder {
+            font-family: "黑体";
+            color: #8c9dac !important; // Internet Explorer 10+ */
+        }
+    }
+}
+//mask
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+//填写用户信息
+.from {
+    display: none;
+    .close{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        //background: red;
+        right:31px;
+        top: 18px;
+        
+    }
+    .userInfo {
+        position: fixed;
+        width: 934px;
+        height: 353px;
+        left: 50%;
+        top: 50%;
+        margin-top: -176.5px;
+        transform: translateX(-50%);
+        background: url("../images/form.png") no-repeat center center;
+        .inputBox {
+            margin-left: 50px;
+            margin-top: 95px;
+            .input {
+                width: 358px;
+                background: transparent;
+                height: 55px;
+                border: none;
+                outline: none;
+                display: block;                
+            }
+            input.input{
+                text-indent: 20px;
+                font-size: 18px;
+            }
+            button.input{
+                background: url(../images/btn_defluat.png) no-repeat center center;
+                background-size:100% auto;
+                font-size: 18px;
+                color: #fff;
+                font-family: "Microsoft YaHei";
+                margin-top: 20px;
+                cursor: pointer;
+            }
+             button.input:active{
+                background: url(../images/btn_active.png) no-repeat center center;
+                background-size:100% auto;
+             }
+        }
+    }
+}
+
+.copyright{
+    width: 600px;
+    height:50px;
+    margin: 0 auto;
+}
+//按钮
+        .link--blue,.link--red {
+            -webkit-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+            position: relative;
+            background: transparent;
+            overflow: hidden;
+            display: inline-block;
+            width: 160px;
+            height: 50px;
+            cursor: pointer;
+            outline: none;
+             color: #004aff;
+             border:1px solid #004aff;
+             z-index: 2;
+            
+        }
+        
+        .link--blue:before,  .link--red:before{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            -webkit-transition: all .6s ease-in-out;
+            transition: all .6s ease-in-out;
+            content: '';
+            background: #004aff;
+            background: -webkit-linear-gradient(-45deg, #004aff, #004aff 89%, #fff 0, #fff);
+            background: linear-gradient(135deg, #004aff, #004aff 89%, #fff 0, #fff);
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#004aff', endColorstr='#ffffff', GradientType=1);
+            width: 150%;
+            height: 100%;
+            margin-left: -150%;
+            
+        }
+        
+        .link--blue:hover, .link--red:hover  {
+            color: #fff
+        }
+        
+        .link--blue:hover:before,.link--red:hover:before {
+            margin-left: 0
+        }

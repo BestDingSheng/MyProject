@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>今韬新能源-预约试驾</title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="../baidutongji.js"></script>
+	</head>
+
+	<body>
+		<div class="content">
+			<div class="banner">
+
+			</div>
+			<div class="form">
+				<form action="http://crm.evbuy.cn/Evcorp_CRM_Plus/leads/saveLeads" method="post" name="leadform" id="leadform" class="">
+					<input type="hidden" name="carType" value="荣威E950" />
+					<input type="text" name="username" id="name" autocomplete="off" placeholder="请输入姓名" />
+					<input type="text" name="phone" id="phone" placeholder="请输入手机号码" autocomplete="off" />
+					<span id="submit"></span>
+					<input type="hidden" name="source" id="inputidname" value="" autocomplete="off" />
+					<p></p>
+					<p class="alert"></p>
+				</form>
+
+			</div>
+		<!--	<div class="up"></div>-->
+			<div class="form1"></div>
+			<div class="show">
+
+			</div>
+			<div class="carType">
+				<div class="car_d"> <span class="btn fl"></span>
+					<span class="btn fr"></span>
+											<div class="list_img">
+							<img src="images/car_gq.png" data="1" alt="" class="act" />
+							<img src="images/car_550.png" data="2" alt="" />
+							<img src="images/car_950.png" data="3" alt="" />
+							<img src="images/car_eq.png" data="4" alt="" />
+							<img src="images/car_bq.png" data="5" alt="" />
+							<img src="images/car_qc.png" data="6" alt="" />
+							<img src="images/car_irz.png" data="7" alt="" />
+						</div>
+						<ul class="tab">
+							<li><img src="images/img_gq.png" data="1" alt="" class="cur" /></li>
+							<li><img src="images/img_550.png" data="2" alt="" /></li>
+							<li><img src="images/img_950.png" data="3" alt="" /></li>
+							<li><img src="images/img_eq.png" data="4" alt="" /></li>
+							<li><img src="images/img_bq.png" data="5" alt="" /></li>
+							<li><img src="images/img_qc.png" data="6" alt="" /></li>
+							<li><img src="images/img_irz.png" data="7" alt="" /></li>
+						</ul>
+				</div>
+			</div>
+			<div class="footer">
+				上海今韬新能源技术服务有限公司 如有需要 <a href="http://www.evbuy.cn/c/default/pageId/560362e677eb06f4698b460c">请点击</a><br />Copyright ©2016 EVBUY All Rights Reserved.
+				<p><img src="images/footer.png" alt="" /></p>
+			</div>
+		</div>
+		<script src="js/jquery-1.8.2.min.js"></script>
+		<script>
+			var sr = document.location.href;
+
+			function getQueryStringArgs(q) {
+				var qs = q.split('?')[1] || (location.search.length > 0 ? location.search.substring(1) : ''),
+					args = {},
+					items = qs.length ? qs.split('&') : [],
+					item = null,
+					name = null,
+					value = null,
+					i = 0,
+					len = items.length;
+				for (i = 0; i < len; i++) {
+					item = items[i].split('=');
+					name = decodeURIComponent(item[0]);
+					value = decodeURIComponent(item[1]);
+					if (name.length) {
+						args[name] = value;
+					}
+				}
+				return args;
+			}
+			var st = getQueryStringArgs(sr);
+			if (st.ConfigId) {
+				$('#inputidname').val(st.ConfigId);
+			}
+			//禁止图片被选中
+			document.onselectstart = new Function("return false");
+			//
+			$('.tab img').on('click', function() {
+				var data = $(this).attr('data');
+				var num = data - 1;
+				$('.tab img').removeClass('cur');
+				$(this).addClass('cur');
+				$('.list_img').find('img').removeClass('act');
+				$('.list_img').find('img').eq(num).addClass('act');
+			})
+			$('.btn.fl').on('click', function() {
+				var num = $('.list_img .act').index() - 1;
+				$('.list_img').find('img').removeClass('act');
+				$('.list_img').find('img').eq(num).addClass('act');
+			})
+			$('.btn.fr').on('click', function() {
+				var num = $('.list_img .act').index() + 1;
+				if (num == 6) {
+					num = 0
+				}
+				$('.list_img').find('img').removeClass('act');
+				$('.list_img').find('img').eq(num).addClass('act');
+			});
+			//提交表单
+			$('#submit').on('click', function() {
+				submitForm()
+			})
+
+			function submitForm() {
+				var name = $('#name').val().trim();
+				var phone = $('#phone').val();
+				if (name.length < 2) {
+					$('form p').eq(0).html('请输入请正确的姓名');
+					return;
+				} else {
+					$('.form p').eq(0).empty();
+				}
+				var ptest = /^((?:13\d|14\d|15[\d]|17[\d]|18[\d])-?\d{5}(\d{3}|\*{3}))$/; //手机正则
+				if (!ptest.test(phone)) {
+					$('form p').eq(1).html('请输入正确的手机号码');
+					return;
+				} else {
+					$('form p').eq(1).empty();
+				}
+				$('#leadform').submit();
+			}
+
+			function validation() {
+				var name = $('#name').val().trim();
+				var phone = $('#phone').val();
+				if (name.length < 2) {
+					$('form p').eq(0).html('请输入请正确的姓名');
+					return;
+				} else {
+					$('form p').eq(0).empty();
+				}
+				var ptest = /^((?:13\d|14\d|15[\d]|17[\d]|18[\d])-?\d{5}(\d{3}|\*{3}))$/; //手机正则
+				if (!ptest.test(phone)) {
+					$('form p').eq(1).html('请输入正确的手机号码');
+					return;
+				} else {
+					$('form p').eq(1).empty();
+				}
+			}
+			$('#name').blur(function() {
+				validation();
+			});
+			$('#phone').blur(function() {
+				validation();
+			});
+		</script>
+
+	</body>
+
+</html>

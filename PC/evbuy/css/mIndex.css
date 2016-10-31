@@ -1,0 +1,123 @@
+html,
+body {
+  font-size: 10px;
+}
+header {
+  background: #fff;
+  width: 100%;
+  height: 5rem;
+  webkit-text-size-adjust: none;
+}
+header .logo {
+  width: 40%;
+  height: 100%;
+  background: #1b6896;
+  padding-top: 20px;
+}
+header .logo img {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+.swiper-container .swiper-slide img {
+  width: 100%;
+}
+h4 img {
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+.mui-content {
+  padding: 0 10px;
+}
+.mui-content .img_box {
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px #b5b5b5;
+  padding: 10px 20px;
+}
+.mui-content .img_box .content {
+  width: 100%;
+  padding-top: 10px;
+}
+.mui-content .img_box .content img {
+  width: 100%;
+}
+.mui-content .img_box .tit {
+  font-size: 2.0rem;
+  color: #1b6896;
+  margin-bottom: 1rem;
+}
+.mui-content .img_box .deatil span {
+  font-size: 1.4rem;
+}
+.mui-content .img_box .deatil em {
+  font-style: normal;
+  font-size: 2.0rem;
+  color: #187ffe;
+}
+.mui-btn-block {
+  padding: 10px 0;
+}
+.fage {
+  text-align: center;
+}
+.img_box {
+  position: relative;
+}
+.img_box .line {
+  width: 102%;
+  height: 20px;
+  background: #3294cd;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -10px;
+  margin-left: -1%;
+  left: 0;
+}
+.img_box .typeName {
+  color: #6a7884;
+  font-size: 1.8rem;
+}
+.img_box .marketPirce,
+.img_box .subsidy {
+  color: #6a7884;
+  font-size: 1.4rem;
+}
+.img_box .marketPirce span,
+.img_box .subsidy span {
+  text-decoration: line-through;
+}
+.img_box .couponPirce {
+  color: #187ffe;
+  font-size: 2.2rem;
+}
+.recommend .img_box {
+  margin-bottom: 20px;
+}
+.mui-grid-view.mui-grid-9 .mui-media {
+  padding: 0;
+  text-align: left;
+  border: none;
+}
+.mui-grid-view.mui-grid-9 .mui-media span {
+  padding: 5px 15px;
+  text-align: left;
+  background: url(../images/icon_tag_bg.png) no-repeat center center;
+  color: #fff;
+  background-size: 100% 100%;
+}
+.mui-grid-view.mui-grid-9 .mui-media img {
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+}
+.mui-grid-view.mui-grid-9 .mui-media a:not(.mui-btn) {
+  box-shadow: 0 0 5px #b5b5b5;
+  margin-bottom: 10px;
+}
+.mui-grid-view.mui-grid-9 .mui-media:nth-child(odd) {
+  padding-right: 5px;
+}
+.mui-grid-view.mui-grid-9 .mui-media:nth-child(even) {
+  padding-left: 5px;
+}
+/*# sourceMappingURL=mIndex.css.map */

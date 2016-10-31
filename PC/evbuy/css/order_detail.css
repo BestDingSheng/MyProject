@@ -1,0 +1,335 @@
+@charset "utf-8";
+body {
+  font-family: "microsoft yahei";
+}
+.detail {
+  margin-bottom: 30px;
+}
+.detail .productTitle {
+  margin-top: 20px;
+  line-height: 50px;
+  font-size: 18px;
+  font-family: "微软雅黑";
+  border-bottom: 2px solid #187ffe;
+  margin-bottom: 20px;
+}
+.detail .flow ul {
+  font-size: 0;
+}
+.detail .flow ul li {
+  display: inline-block;
+  text-align: center;
+  width: 20%;
+  line-height: 60px;
+  font-size: 18px;
+  background: url("../images/order_detail_default.png") no-repeat center center;
+}
+.detail .flow ul .active {
+  background: url("../images/order_detail_status.png") no-repeat center center;
+  color: #fff;
+}
+.detail .orderInfo {
+  font-size: 18px;
+  margin-top: 40px;
+}
+.detail .orderInfo .userinfo {
+  width: 440px;
+  margin: 20px auto;
+}
+.detail .orderInfo .userinfo .paragraph {
+  margin-bottom: 20px;
+  position: relative;
+}
+.detail .orderInfo .userinfo .paragraph button {
+  position: absolute;
+  top: 2px;
+  border: none;
+  height: 40px;
+  left: 298px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  outline: none;
+}
+.detail .orderInfo .userinfo .paragraph p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.detail .orderInfo .userinfo .paragraph span {
+  display: inline-block;
+  width: 100px;
+}
+.detail .orderInfo .userinfo .paragraph input {
+  width: 300px;
+  line-height: 40px;
+}
+.detail .goods {
+  overflow: hidden;
+}
+.detail .goods .goodsDetails {
+  margin-top: 20px;
+}
+.detail .goods .goodsDetails ul {
+  display: table;
+  width: 100%;
+  background: #eeeeee;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #eaeaea;
+}
+.detail .goods .goodsDetails ul li {
+  display: table-cell;
+  text-align: center;
+}
+.detail .goods .goodsDetails ul li .carImg {
+  width: 140px;
+  height: 100px;
+  line-height: 100px;
+  background: #EEEEEE;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.detail .goods .goodsDetails ul li .carImg img {
+  width: 100%;
+  vertical-align: middle;
+}
+.detail .goods .submit {
+  overflow: hidden;
+}
+.detail .goods .submit .orderPirce {
+  font-size: 35px;
+  color: #187ffe;
+  vertical-align: middle;
+}
+.detail .goods .submit button {
+  width: 150px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: none;
+  background: #187ffe;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+.vertical {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.container .subtitle {
+  font-size: 18px;
+  line-height: 38px;
+  margin-bottom: 20px;
+}
+.container .startPay {
+  overflow: hidden;
+  font-size: 0;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+.container .startPay li:nth-child(1) {
+  border-right: 1px #DDDDDD solid;
+  box-sizing: border-box;
+  padding-left: 200px;
+}
+.container .startPay li {
+  float: left;
+  width: 50%;
+  font-size: 20px;
+}
+.container .startPay li .payIcon {
+  margin-top: 30px;
+}
+.container .startPay li .payIcon span {
+  width: 150px;
+  height: 45px;
+  margin-right: 20px;
+  line-height: 45px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  background: url("../images/no_choose.png") no-repeat center center;
+}
+.container .startPay li .payIcon span img {
+  vertical-align: middle;
+}
+.container .startPay li .payIcon .active {
+  background: url("../images/choose.png") no-repeat center center;
+}
+.container .startPay li .payBtn {
+  width: 150px;
+  line-height: 60px;
+  background: #187FFE;
+  color: #fff;
+  font-size: 18px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 50px;
+  margin-top: 35px;
+  border: none;
+}
+.container table {
+  width: 100%;
+  border: 1px solid #eee;
+  margin-bottom: 30px;
+}
+.container table th {
+  background: #eeeeee;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 50px;
+}
+.container table td {
+  text-align: center;
+  font-size: 14px;
+  line-height: 80px;
+}
+.container .personInfo {
+  font-size: 0;
+  width: 900px;
+  margin: 0 auto;
+}
+.container .personInfo li {
+  display: inline-block;
+  width: 50%;
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+.container .personInfo li label {
+  display: inline-block;
+  width: 100px;
+}
+.container .personInfo li input {
+  width: 300px;
+  line-height: 40px;
+  text-indent: 20px;
+}
+.container .personInfo div {
+  font-size: 14px;
+}
+.container .personInfo div label {
+  display: inline-block;
+  width: 100px;
+}
+.container .personInfo div input {
+  width: 750px;
+  line-height: 40px;
+  text-indent: 20px;
+}
+.container .generateBtn {
+  width: 370px;
+  height: 60px;
+  background: #007AFF;
+  display: block;
+  margin: 40px auto;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+.container .textBox {
+  width: 800px;
+  height: 400px;
+  background: #eee;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: 50px;
+}
+.container .textBox pre {
+  width: 800px;
+  height: 300px;
+  border: 1px solid #000000;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+  line-height: 25px;
+}
+.container .downloadBtn {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  height: 100px;
+}
+.container .downloadBtn span {
+  padding: 15px 30px;
+  background: #187ffe;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 18px;
+}
+.container .downloadBtn .next {
+  background: #fff;
+  color: #187FFE;
+  border: 1px solid #187FFE;
+}
+.container .material {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.container .material ul {
+  width: 700px;
+  margin: 0 auto;
+}
+.container .material ul li {
+  display: inline-block;
+}
+.container .material ul li div {
+  width: 320px;
+  height: 200px;
+}
+.container .material ul li div img {
+  width: 100%;
+  height: 100%;
+}
+.container .material ul li div p {
+  margin-top: 40px;
+}
+.container .material ul .first {
+  margin-right: 50px;
+}
+.container .material ul .remark {
+  margin-top: 20px;
+}
+.container .material ul .remark label {
+  display: inline-block;
+  width: 50px;
+  font-size: 16px;
+}
+.container .material ul .remark input {
+  width: 640px;
+  line-height: 40px;
+}
+.container .material ul .picBtn {
+  padding: 15px 30px;
+  background: #187FFE;
+  color: #fff;
+  border: none;
+  margin-top: 30px;
+  outline: none;
+}
+.container .material .tip {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.colorMain {
+  color: #187FFE;
+}
+.warp {
+  min-height: 700px;
+}
+.orderOne {
+  display: block;
+}
+.orderTow {
+  display: block;
+}
+.orderFour {
+  display: block;
+}
+.orderThree {
+  display: block;
+}
+.orderFive {
+  display: block;
+}
+/*# sourceMappingURL=order_detail.css.map */

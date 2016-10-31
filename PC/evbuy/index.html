@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>买电车</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<script src="js/baiduStatistical.js"></script>
+	</head>
+
+	<style>
+		.main_body ul li:hover {
+			box-shadow: 0 0 20px #b5b5b5;
+		}
+		
+		.main_body ul li:hover img {
+			transform: scale(1.1);
+		}
+		
+		.main_body ul li:hover .hide {
+			height: 30px;
+		}
+		
+		.car_type:hover {
+			box-shadow: 0 0 20px #b5b5b5;
+		}
+		/**/
+	</style>
+
+	<body>
+		<header>
+			<div class="container">
+				<div class="logo">
+					<a href="index.html">
+						<img src="images/logo.png" alt="" />
+					</a>
+				</div>
+				<ul class="fr">
+					<li>
+						<a href="">
+							<img src="images/icon_search.png" alt="" />
+						</a>
+					</li>
+					<li>
+						<a href="">登入</a>
+					</li>
+					<li>|</li>
+					<li>
+						<a href="">注册</a>
+					</li>
+				</ul>
+				<!---->
+				<div class="fr" style="line-height: 70px;font-size: 20px;">
+					在线客服：400-820-2298
+				</div>
+			</div>
+		</header>
+		<!--暂位div-->
+		<div style="width: 100%;height: 70px;"></div>
+		<!--banner-->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src="images/banner01.jpg" alt="" />
+				</div>
+				<div class="swiper-slide">
+					<img src="images/banner02.jpg" alt="" />
+				</div>
+				<div class="swiper-slide">
+					<img src="images/banner03.jpg" alt="" />
+				</div>
+				<div class="swiper-slide">
+					<img src="images/banner04.jpg" alt="" />
+				</div>
+			</div>
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
+			<!-- 如果需要滚动条 -->
+		</div>
+		<!--banner_end-->
+
+		<!--合约车-->
+		<div class="container main">
+			<div class="title">
+				<img src="images/icon_flag_v.png" alt="" /> 畅享租
+			</div>
+			<div class="main_body">
+				<ul>
+					<li>
+						<a href="detail_e550.html">
+							<div class="car">
+								<img src="images/car_e550_01.png" alt="" />
+							</div>
+							<div class="text">
+								<div class="h4">荣威e550   畅享租标准版</div>
+								<div class="describe">
+									3年期 首付0元
+									<span class="price fr">
+									月付2799元
+								</span>
+								</div>
+							</div>
+						</a>
+
+					</li>
+					<li class="center">
+						<a href="details_e950.html">
+							<div class="car">
+								<img src="images/car_e950.png" alt="" />
+							</div>
+							<div class="text">
+								<div class="h4">荣威e950   畅享租标准版</div>
+								<div class="describe">
+									3年期 首付0元
+									<span class="price fr">
+									月付3799元
+								</span>
+								</div>
+							</div>
+						</a>
+
+					</li>
+					<li>
+						<a href="detail_gq.html">
+							<div class="car">
+								<img src="images/car_gq.png" alt="" />
+							</div>
+							<div class="text">
+								<div class="h4"> 广汽传祺GA5   畅享租标准版</div>
+								<div class="describe">
+									3年期 首付0元
+									<span class="price fr">
+									月付2599元
+								</span>
+								</div>
+							</div>
+						</a>
+
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--合约车结束-->
+		<div class="container recommended">
+			<div class="title">
+				<img src="images/icon_flag_v.png" alt="" /> 推荐车型
+				<!--<button class="fr link--blue testDrive">更多</button>-->
+			</div>
+			<div class="main_body">
+				<ul>
+					<li class="interval">
+						<div class="car">
+							<span></span>
+							<img src="images/car_e550_01.png" alt="" />
+						</div>
+						<div class="text">
+							<div class="h4">荣威e550 PLUG-IN <span class="testDrive" data="1">试驾</span></div>
+							<p class="color-text">市场指导价：<span class="through">￥23.98万</span></p>
+							<!--<p class="color-blue size-lg">优惠后价格：￥17.68万</p>
+							<p class="color-text hide">
+								国补＋地补：5.4万 &nbsp;&nbsp; 厂方补贴：0.9万
+							</p>-->
+						</div>
+						<!--进度条-->
+						<div class="progress"></div>
+					</li>
+					<li class="center interval">
+						<div class="car">
+							<span></span>
+							<img src="images/car_gq.png" alt="" />
+						</div>
+						<div class="text">
+							<div class="h4">广汽传祺GA5 <span class="testDrive" data="2">试驾</span></div>
+							<p class="color-text">市场指导价：<span class="through">￥19.93万</span></p>
+							<!--<p class="color-blue size-lg">优惠后价格：￥15.93万</p>
+							<p class="color-text hide">
+								国补＋地补：4万 &nbsp;&nbsp; 厂方补贴：\
+							</p>-->
+						</div>
+						<!--进度条-->
+						<div class="progress"></div>
+					</li>
+					<li class="interval">
+						<div class="car">
+							<span></span>
+							<img src="images/car_qichen.png" alt="" />
+						</div>
+						<div class="text">
+							<div class="h4">启辰晨风 <span class="testDrive" data="3">试驾</span></div>
+							<p class="color-text">市场指导价：<span class="through">￥24.78万</span></p>
+							<!--<p class="color-blue size-lg">优惠后价格：￥16.28万</p>
+							<p class="color-text hide">
+								国补＋地补：7.5万 &nbsp;&nbsp; 厂方补贴：1万
+							</p>-->
+						</div>
+						<!--进度条-->
+						<div class="progress"></div>
+					</li>
+					<li class="interval">
+						<div class="car">
+							<span></span>
+							<img src="images/car_jh.png" alt="" />
+						</div>
+						<div class="text">
+							<div class="h4">江淮iEV5 <span class="testDrive" data="4">试驾</span></div>
+							<p class="color-text">市场指导价：<span class="through">￥17.98万</span></p>
+							<!--<p class="color-blue size-lg">优惠后价格：￥8.98万</p>
+							<p class="color-text hide">
+								国补＋地补：8万 &nbsp;&nbsp; 厂方补贴：1万
+							</p>-->
+						</div>
+						<!--进度条-->
+						<div class="progress"></div>
+					</li>
+					<li class="center interval">
+						<div class="car">
+							<span></span>
+							<img src="images/car_byd.png" alt="" />
+						</div>
+						<div class="text">
+							<div class="h4">比亚迪 秦 <span class="testDrive" data="5">试驾</span></div>
+							<p class="color-text">市场指导价：<span class="through">￥20.98万</span></p>
+							<!--<p class="color-blue size-lg">优惠后价格：￥14.83万</p>
+							<p class="color-text hide">
+								国补＋地补：6.15万 &nbsp;&nbsp; 厂方补贴 ：/
+							</p>-->
+						</div>
+						<!--进度条-->
+						<div class="progress"></div>
+					</li>
+					<li class="interval">
+						<div class="car">
+							<span></span>
+							<img src="images/car_bqev200.png" alt="" />
+						</div>
+						<div class="text">
+							<div class="h4">北汽EV200 <span class="testDrive" data="6">试驾</span></div>
+							<p class="color-text">市场指导价：<span class="through">￥20.69万</span></p>
+							<!--<p class="color-blue size-lg">优惠后价格：￥11.69万</p>
+							<p class="color-text hide">
+								国补＋地补：8.5万 &nbsp;&nbsp; 厂方补贴 ：0.5万
+							</p>-->
+						</div>
+						<!--进度条-->
+						<div class="progress"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--蓝色背景-->
+		<div class="bg">
+			<div class="container main">
+				<div class="title">
+					<img src="images/icon_flag_v.png" alt="" /> 即将推出
+					<!--<button class="fr link--red testDrive">更多</button>-->
+				</div>
+				<div class="main_body" id="will_push">
+					<ul>
+						<li>
+							<div class="car_type">
+								<div class="tag">
+									比亚迪 唐
+								</div>
+								<img src="images/car_byd_t.png" alt="" />
+							</div>
+						</li>
+						<li class="center">
+							<div class="car_type">
+								<div class="tag">
+									宝马 i3
+								</div>
+								<img src="images/car_i3.png" alt="" />
+							</div>
+						</li>
+						<li>
+							<div class="car_type">
+								<div class="tag">
+									沃尔沃S60 E驱混动
+								</div>
+								<img src="images/car_s60.png" alt="" />
+							</div>
+						</li>
+						<li>
+							<div class="car_type">
+								<div class="tag">
+									日产启辰晨风
+								</div>
+								<img src="images/car_qichen.png" alt="" />
+							</div>
+						</li>
+						<li class="center">
+							<div class="car_type">
+								<div class="tag">
+									tesla model S
+								</div>
+								<img src="images/car_tesla_s.png" alt="" />
+							</div>
+						</li>
+						<li>
+							<div class="car_type">
+								<div class="tag">
+									tesla model X
+								</div>
+								<img src="images/car_tesal.png" alt="" />
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--底部背景车-->
+		<div class="bg_car"></div>
+		<!--页脚-->
+		<footer>
+			<div class="container">
+				<!--<div class="fl">
+					<img src="images/logo.png" alt="" />
+					<div class="size-lg color-white tel">在线客服：400-820-2298</div>
+					<p class="size-sm color-white">©2015 EVBUY.CN 沪ICP备14018851号</p>
+				</div>-->
+				<!--<div class="searchBar fr">
+					<input type="text" placeholder="车型搜索..." />
+					<img src="images/search_btn.png" alt="" />
+				</div>-->
+				<div class="copyright">
+					<img src="images/logo1.png" alt="" class="" />
+					<div class="tell fr">
+						<div class="color-white tel">在线客服：400-820-2298</div>
+						<p class="size-sm color-white">©2015 EVBUY.CN 沪ICP备14018851号</p>
+					</div>
+					<div>
+						<p style="margin-top: 10px;color: #fff;text-align: center;">地址:上海市浦东新区国展路65号</p>					
+						<p style="margin-top: 10px;color: #fff;text-align: center;">上海今韬新能源技术有限公司</p>
+					</div>
+					
+
+				</div>
+			</div>
+		</footer>
+		<!--mask-->
+		<div class="mask from">
+			<div class="userInfo">
+				<div class="inputBox">
+					<input type="text" class="input" id="name" placeholder="姓名" />
+					<input type="text" class="input" id="phone" placeholder="手机号码" />
+					<button class="input" id="form_btn">提交</button>
+				</div>
+				<span class="close"></span>
+			</div>
+
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script type="text/javascript">
+			var mySwiper = new Swiper('.swiper-container', {
+					direction: 'horizontal',
+					loop: true,
+					autoplay: 5000,
+					autoplayDisableOnInteraction: false,
+					// 如果需要分页器
+					pagination: '.swiper-pagination'
+						// 如果需要前进后退按钮
+						//				nextButton: '.swiper-button-next',
+						//				prevButton: '.swiper-button-prev',
+
+				})
+				//点击试驾出现输入用户信息
+			$('.testDrive').on('click', function() {
+				$('.from').show()
+				$('#form_btn').attr('data', $(this).attr('data'));
+			});
+			$('.close').on('click', function() {
+				$('.from').hide();
+
+			});
+			//
+			$('#form_btn').on('click', function() {
+				var phoneR = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+				var phoneVal = $('#phone').val();
+				var nameVal = $('#name').val();
+				var carType;
+				var carNum = $(this).attr("data");
+				switch(carNum) {
+					case "1":
+					carType = "荣威550 PLUG";
+						break;
+					case "2":
+					carType = "广汽传祺 GA5 PHEV";
+						break;
+					case "3":
+					carType = "东风启辰-晨风";
+						break;
+					case "4":
+					carType = "江淮新iEV5";
+						break;
+					case "5":
+					carType = "比亚迪 秦";
+						break;
+					case "6":
+					carType = "北汽E150";
+						break;
+					default:
+
+				};
+				if(!nameVal.trim()) {
+					alert('请输入姓名');
+					return;
+				};
+				if(!phoneR.test(phoneVal)) {
+					alert('请输入正确的手机号码');
+					return;
+				};
+
+				$.ajax({
+					url: 'http://crm.evbuy.cn/Evcorp_CRM_Plus/leads/saveLeadsJsonp', //跨域到http://www.wp.com，另，http://test.com也算跨域
+					//url: 'http://192.168.0.10:8080/Evcorp_CRM_Plus/leads/saveLeadsJsonp', //跨域到http://www.wp.com，另，http://test.com也算跨域
+					type: 'GET', //jsonp 类型下只能使用GET,不能用POST,这里不写默认为GET
+					contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+					dataType: 'jsonp', //指定为jsonp类型
+					data: {
+						"phone": phoneVal,
+						"username": nameVal,
+						"source": 74,
+						"carType": carType
+					}, //数据参数
+					jsonp: 'callback', //服务器端获取回调函数名的key，对应后台有$_GET['callback']='getName';callback是默认值
+					jsonpCallback: "success_jsonpCallback", //callback的function名称,服务端会把名称和data一起传递回来  
+					success: function(data) { //成功执行处理，对应后台返回的getName(data)方法。
+						//								al
+						if(data.respCode == 1) {
+							alert('预约成功');
+						} else {
+							alert('预约失败');
+						}
+					},
+					error: function(msg) {
+						alert('网络出现小差请稍后在试'); //执行错误
+
+					}
+
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

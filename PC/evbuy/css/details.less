@@ -1,0 +1,259 @@
+.car {
+    margin-top: 100px;
+}
+.car_detail {
+    height: 500px;
+    width: 100%;
+    .fl {
+        width: 500px;
+        .img_box {
+            width: 100%;
+            height: 340px;
+            line-height: 325px;
+            text-align: center;
+            box-shadow: 0 2px 10px #c7c7c7;
+            box-sizing: border-box;
+            padding: 0 20px;
+            img {
+                vertical-align: middle;
+                width: 100%;
+            }
+        }
+        .option {
+            position: relative;
+            top: 40px;
+            width: 100%;
+            span {
+                position: absolute;
+                width: 13px;
+                height: 21px;
+                top: 25px;
+                cursor: pointer;
+            }
+            .leftBtn {
+                background: url("../images/icon_leftbtn.png") no-repeat center center;
+                left: 10px;
+            }
+            .rightBtn {
+                background: url("../images/icon_rightbtn.png") no-repeat center center;
+                right: 10px;
+            }
+            ul {
+                font-size: 0;
+                width: 400px;
+                margin: 0 auto;
+                li {
+                    display: inline-block;
+                    height: 60px;
+                    line-height: 60px;
+                    width: 120px;
+                    background: #fff;
+                    border: 1px solid #e5e5e5;
+                    box-sizing: border-box;
+                    font-size: 20px;
+                    img {
+                        width: 100%;
+                        vertical-align: middle;
+                    }
+                }
+                .center {
+                    margin: 0 20px;
+                }
+            }
+        }
+    }
+    //右边部分
+    .fr {
+        width: 610px;
+        height: 400px;
+        background: #fff;
+        .car_title {
+            font-size: 30px;
+            color: #2d3450;
+            font-family: "Microsoft YaHei";
+            margin-bottom: 35px;
+        }
+        .category {
+            margin-bottom: 40px;
+            overflow: hidden;
+            .text {
+                float: left;
+                line-height: 30px;
+                width: 100px;
+                font-size: 14px;
+                color: #6a7884;
+            }
+            ul {
+                font-size: 0;
+                float: left;
+                li {
+                    display: inline-block;
+                    width: 90px;
+                    height: 30px;
+                    border: 1px solid #6a7884;
+                    text-align: center;
+                    line-height: 30px;
+                    color: #6a7884;
+                    font-size: 14px;
+                    margin-right: 10px;
+                    position: relative;
+                    cursor: pointer;
+                }
+                li.act {
+                    border: 1px solid #3294cd;
+                    color: #3294cd;
+                }
+                li.act:before {
+                    content: '';
+                    width: 10px;
+                    height: 10px;
+                    background: url("../images/icon_before.png") no-repeat right top;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
+        .price {
+            width: 100%;
+            height: 80px;
+            background: #f0f4f8;
+            margin-top: 25px;
+            color: #6a7884;
+            display: none;
+             box-sizing:border-box;
+            padding-left: 20px;
+            .inline {
+                display: table-cell;
+                vertical-align: middle;
+                height: 80px;
+                .size {
+                    color: #3294cd;
+                    font-size: 30px;
+                }
+                p {
+                    line-height: 20px;
+                }
+                span {
+                    font-size: 14px;
+                    margin-right: 30px;
+                }
+            }
+        }
+        .price.active {
+            display: block;
+           
+        }
+        //签约按钮
+        .signing {
+            border: none;
+            background: url("../images/btn_defluat.png") no-repeat center center;
+            background-size: 100% 100%;
+            width: 160px;
+            height: 50px;
+            outline: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: "Microsoft YaHei";
+            color: #fff;
+            margin-top: 25px;
+        }
+        .signing:active {
+            background: url("../images/btn_active.png") no-repeat center center;
+            background-size: 100% 100%;
+        }
+    }
+}
+// 参数配置 图文详情
+.graphic {
+    .control {
+        font-size: 0;
+        li {
+            display: inline-block;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 16px;
+        }
+        li.active {
+            color: #3294cd;
+        }
+    }
+    .show {
+        margin-bottom: 30px;
+        padding-top: 20px;
+        div {
+            display: none;
+            img {
+                width: 100%;
+            }
+            p {
+                line-height: 40px;
+                color: #6d6d6d;
+                font-size: 18px;
+            }
+            // box-shadow:0 0 20px red;
+            ul {
+                width: 100%;
+                font-size: 0;
+                overflow: hidden;
+                li {
+                    //                  margin: 0 30px;
+                    font-size: 16px;
+                    h3 {
+                        line-height: 40px;
+                        text-align: center;
+                        border: 1px solid #ccc;
+                    }
+                    display: inline-block;
+                    width: 500px;
+                    span {
+                        display: block;
+                        line-height: 40px;
+                        box-shadow: border-box;
+                        //padding-left: 30px;
+                        em {
+                            padding-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+        div.active {
+            display: block;
+        }
+    }
+}
+.detail-carconfig {
+    width: 100%;
+    table-layout: fixed;
+}
+.detail-carconfig th {
+    height: 60px;
+    text-align: center;
+    color: #fff;
+    background-color: #82919e;
+    font-size: 16px;
+    border: 1px #fff solid;
+}
+.detail-carconfig .detail-table-title {
+    width: 160px;
+    height: 60px;
+    background-image: url("http://assets.diandong.com/web/images/app/mall/detail/table_title.png");
+    background-repeat: no-repeat;
+}
+.detail-carconfig td {
+    height: 46px;
+    font-size: 14px;
+    padding: 0 15px;
+    color: #878889;
+    text-align: center;
+    word-break: break-all;
+    border: 1px #fff solid;
+}
+.detail-carconfig tr:nth-child(odd) td {
+    background-color: #f6f8fa;
+}

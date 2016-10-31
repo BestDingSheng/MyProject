@@ -1,0 +1,182 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+header img {
+  width: 100%;
+  display: block;
+}
+.main {
+  background: #f1f1f1;
+}
+.main .content {
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.main .content .hd {
+  padding: 10px 0;
+}
+.main .content .hd img {
+  width: 100%;
+  display: block;
+}
+.main .content .from {
+  width: 100%;
+  background: #eae8dd;
+  border-radius: 5px;
+  overflow: hidden;
+  background-size: 100%;
+  position: relative;
+}
+.main .content .from .tit {
+  color: #747474;
+  font-size: 14px;
+  font-family: "微软雅黑";
+  font-weight: bold;
+  line-height: 37px;
+  padding-left: 10px;
+  background: #d9d9ce;
+  border-bottom: 1px solid #c1beb6;
+}
+.main .content .from .tit span {
+  color: #3fad03;
+}
+.main .content .from .option ul li {
+  display: inline-block;
+  color: #5e5d5c;
+  font-family: "微软雅黑";
+  padding-left: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  background: url(../images/icon_option.png) no-repeat 5px center;
+  background-size: 20px auto;
+}
+.main .content .from .option ul .act {
+  background: url(../images/icon_option_act.png) no-repeat 5px center;
+  background-size: 20px auto;
+}
+.main .content .from .info {
+  padding-left: 15px;
+  font-weight: bold;
+  font-family: "微软雅黑";
+  font-size: 14px;
+  color: #747474;
+}
+.main .content .from .info span {
+  color: #3FAD03;
+}
+.main .content .from .info input {
+  width: 75%;
+  height: 35px;
+  background: url(../images/input_bgname.png) no-repeat center center;
+  background-size: 100% 100%;
+  border: none;
+  text-indent: 45px;
+  outline: none;
+}
+.main .content .from .info #phone {
+  background: url(../images/input_bgphone.png) no-repeat center center;
+  background-size: 100% 100%;
+}
+.main .content .from .tips {
+  text-indent: 65px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  width: 100%;
+  color: red;
+}
+.main .content .from .left {
+  text-align: right;
+  font-size: 12px;
+  padding-right: 30px;
+  color: #333333;
+  margin-top: 5px;
+}
+.form_img {
+  width: 100%;
+}
+.showCar {
+  margin-top: 20px;
+}
+.showCar img {
+  width: 100%;
+}
+.carType {
+  background: url(../images/bg.jpg) repeat-x top center;
+  position: relative;
+  padding: 0 10px 40px;
+}
+.carType p {
+  position: absolute;
+  bottom: 10px;
+  border-top: 2px solid #fff;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  padding-top: 10px;
+  font-size: 14px;
+}
+.carType ul {
+  height: 40px;
+  display: table;
+  box-sizing: border-box;
+  width: 100%;
+  vertical-align: middle;
+  position: absolute;
+  left: 0;
+  padding: 0 10px;
+}
+.carType ul li {
+  display: table-cell;
+  vertical-align: middle;
+  width: 14.28%;
+  text-align: center;
+  height: 40px;
+  font-size: 12px;
+  background: transparent;
+  color: #0d8793;
+}
+.carType ul li:nth-last-child(1) {
+  border: none;
+}
+.img img {
+  display: none;
+  width: 100%;
+}
+#submit {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  width: 70%;
+  height: 35px;
+  background: transparent;
+  /* margin: 0 auto; */
+  margin-left: -35%;
+}
+@media screen and (min-width: 1024px) {
+  .content {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+header {
+  position: relative;
+}
+._img {
+  position: absolute;
+  top: 23%;
+  left: 7%;
+}
+._img img {
+  width: 80%;
+}
+#posi {
+  position: absolute;
+  top: 0;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,348 @@
+@charset "utf-8"; //设置编码格式
+//定义变量
+@titSize: 18px;
+@pSize: 14px;
+body {
+    font-family: "microsoft yahei";
+}
+.detail {
+    margin-bottom: 30px;
+    .productTitle {
+        margin-top: 20px;
+        line-height: 50px;
+        font-size: @titSize;
+        font-family: "微软雅黑";
+        border-bottom: 2px solid #187ffe;
+        margin-bottom: 20px;
+    }
+    .flow {
+        ul {
+            font-size: 0;
+            li {
+                display: inline-block;
+                text-align: center;
+                width: 20%;
+                line-height: 60px;
+                font-size: @titSize;
+                background: url("../images/order_detail_default.png") no-repeat center center;
+            }
+            .active {
+                background: url("../images/order_detail_status.png") no-repeat center center;
+                color: #fff;
+            }
+        }
+    }
+    .orderInfo {
+        font-size: @titSize;
+        margin-top: 40px;
+        .userinfo {
+            width: 440px;
+            margin: 20px auto;
+            .paragraph {
+                margin-bottom: 20px;
+                position: relative;
+                button {
+                    position: absolute;
+                    top: 2px;
+                    border: none;
+                    height: 40px;
+                    left: 298px;
+                    box-sizing: border-box;
+                    padding: 0 10px;
+                    outline: none;
+                }
+                p {
+                    margin-top: 10px;
+                    font-size: @pSize;
+                }
+                span {
+                    display: inline-block;
+                    width: 100px;
+                }
+                input {
+                    width: 300px;
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+    .goods {
+        overflow: hidden;
+        .goodsDetails {
+            margin-top: 20px;
+            ul {
+                display: table;
+                width: 100%;
+                background: #eeeeee;
+                box-sizing: border-box;
+                padding: 20px;
+                border: 1px solid #eaeaea;
+                li {
+                    display: table-cell;
+                    text-align: center;
+                    .carImg {
+                        width: 140px;
+                        height: 100px;
+                        line-height: 100px;
+                        background: #EEEEEE;
+                        padding: 0 10px;
+                        box-sizing: border-box;
+                        img {
+                            width: 100%;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+        }
+        .submit {
+            overflow: hidden;
+            .orderPirce {
+                font-size: 35px;
+                color: #187ffe;
+                vertical-align: middle;
+            }
+            button {
+                width: 150px;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                border: none;
+                background: #187ffe;
+                color: #fff;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.vertical {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.container {
+    .subtitle {
+        font-size: @titSize;
+        line-height: 38px;
+        margin-bottom: 20px;
+    }
+    .startPay {
+        overflow: hidden;
+        font-size: 0;
+        margin-bottom: 40px;
+        margin-top: 20px;
+        li:nth-child(1) {
+            border-right: 1px #DDDDDD solid;
+            box-sizing: border-box;
+            padding-left: 200px;
+        }
+        li {
+            float: left;
+            width: 50%;
+            font-size: 20px;
+            .payIcon {
+                margin-top: 30px;
+                span {
+                    width: 150px;
+                    height: 45px;
+                    margin-right: 20px;
+                    line-height: 45px;
+                    display: inline-block;
+                    text-align: center;
+                    cursor: pointer;
+                    background: url("../images/no_choose.png") no-repeat center center;
+                    img {
+                        vertical-align: middle;
+                    }
+                }
+                .active {
+                    background: url("../images/choose.png") no-repeat center center;
+                }
+            }
+            .payBtn {
+                width: 150px;
+                line-height: 60px;
+                background: #187FFE;
+                color: #fff;
+                font-size: @titSize;
+                display: inline-block;
+                text-align: center;
+                cursor: pointer;
+                margin-left: 50px;
+                margin-top: 35px;
+                border: none;
+            }
+        }
+    }
+    table {
+        width: 100%;
+        border: 1px solid #eee;
+        margin-bottom: 30px;
+        th {
+            background: #eeeeee;
+            font-size: @pSize;
+            font-weight: 400;
+            line-height: 50px;
+        }
+        td {
+            text-align: center;
+            font-size: @pSize;
+            line-height: 80px;
+        }
+    }
+    //order三开始
+    .personInfo {
+        font-size: 0;
+        width: 900px;
+        margin: 0 auto;
+        li {
+            display: inline-block;
+            width: 50%;
+            font-size: 14px;
+            margin-bottom: 40px;
+            label {
+                display: inline-block;
+                width: 100px;
+            }
+            input {
+                width: 300px;
+                line-height: 40px;
+                text-indent: 20px;
+            }
+        }
+        div {
+            font-size: 14px;
+            label {
+                display: inline-block;
+                width: 100px;
+            }
+            input {
+                width: 750px;
+                line-height: 40px;
+                text-indent: 20px;
+            }
+        }
+    }
+    .generateBtn {
+        width: 370px;
+        height: 60px;
+        background: #007AFF;
+        display: block;
+        margin: 40px auto;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .textBox {
+        width: 800px;
+        height: 400px;
+        background: #eee;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding-top: 50px;
+        pre {
+            width: 800px;
+            height: 300px;
+            border: 1px solid #000000;
+            overflow-y: scroll;
+            white-space: pre-wrap;
+            line-height: 25px;
+        }
+    }
+    .downloadBtn {
+        text-align: center;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        height: 100px;
+        span {
+            padding: 15px 30px;
+            background: #187ffe;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 20px;
+            font-size: @titSize;
+        }
+        .next {
+            background: #fff;
+            color: #187FFE;
+            border: 1px solid #187FFE;
+        }
+    }
+    //order5
+    .material {
+        text-align: center;
+        margin-bottom: 30px;
+        ul {
+            width: 700px;
+            margin: 0 auto;
+            li {
+                display: inline-block;
+                div {
+                    width: 320px;
+                    height: 200px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    p {
+                        margin-top: 40px;
+                    }
+                }
+            }
+            .first {
+                margin-right: 50px;
+            }
+            .remark {
+                margin-top: 20px;
+                label {
+                    display: inline-block;
+                    width: 50px;
+                    font-size: 16px;
+                }
+                input {
+                    width: 640px;
+                    line-height: 40px;
+                }
+            }
+            .picBtn {
+                padding: 15px 30px;
+                background: #187FFE;
+                color: #fff;
+                border: none;
+                margin-top: 30px;
+                outline: none;
+            }
+        }
+        .tip {
+            margin-bottom: 20px;
+            font-size: @titSize;
+        }
+    }
+}
+
+.colorMain{
+    color: #187FFE;
+}
+
+.warp {
+    min-height: 700px;
+}
+//
+.orderOne {
+    display: block;
+}
+//orderTow
+.orderTow {
+    display: block;
+}
+.orderFour {
+    display: block;
+}
+//
+.orderThree {
+    display: block;
+}
+.orderFive {
+    display: block;
+}

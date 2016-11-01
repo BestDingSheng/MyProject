@@ -1,0 +1,73 @@
+ul,
+li {
+  list-style: none;
+}
+header {
+  height: 180px;
+  background: url("../images/avatarBg.png") no-repeat center center;
+  background-size: 100% 100%;
+  position: relative;
+}
+header .avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  right: 15px;
+  top: 40px;
+  overflow: hidden;
+}
+header .avatar img {
+  width: 100%;
+}
+header .balance {
+  position: absolute;
+  right: 15px;
+  top: 120px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+.commodity {
+  padding: 0 15px;
+  margin-top: 15px;
+  width: 100%;
+}
+.commodity .sp-title {
+  line-height: 30px;
+  padding-left: 15px;
+  padding-top: 5px;
+  background: url("../images/ev_barBg.png") no-repeat center center;
+  background-size: 100% auto;
+}
+.commodity ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.commodity ul li {
+  flex: 40%;
+  margin-top: 5px;
+  position: relative;
+}
+.commodity ul li img {
+  width: 100%;
+}
+.commodity ul li p {
+  position: absolute;
+  bottom: 4px;
+  margin: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+}
+.commodity ul li:nth-of-type(odd) {
+  margin-right: 10px;
+}
+/*# sourceMappingURL=index.css.map */

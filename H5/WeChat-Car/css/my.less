@@ -1,0 +1,139 @@
+header {
+    height: 180px;
+    background: url("../images/avatarBg.png") no-repeat center center;
+    background-size: 100% 100%;
+    position: relative;
+    .avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        position: absolute;
+        right: 15px;
+        top: 40px;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+    .accountInfo {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        overflow: hidden;
+        div {
+            width: 50%;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+        }
+        div:nth-child(2) {
+            //   width: 70%;
+            border-left: 1px solid red;
+            padding-left: 5px;
+        }
+    }
+}
+@media screen and (max-width: 320px) {
+    /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+    .accountInfo {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        overflow: hidden;
+        div {
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+        }
+        div:nth-child(1) {
+            width: 40% !important;
+        }
+        div:nth-child(2) {
+            width: 60%;
+            border-left: 1px solid red;
+            padding-left: 5px;
+        }
+    }
+}
+.main {
+    padding: 0 15px;
+    margin-top: 10px;
+    .mui-segmented-control {
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 2px 5px #a9a2a2;
+    }
+    .mui-segmented-control .mui-control-item {
+        color: #333;
+        background: #fff;
+        border: none;
+    }
+    .mui-segmented-control .mui-control-item.mui-active {
+        background: url("../images/tapbg.png") no-repeat center center;
+        background-size: 100%;
+        color: #fff;
+    }
+    //
+    .details {
+        margin-top: 30px;
+        .left {
+            position: relative;
+            p{
+                line-height: 40px;
+                vertical-align: middle;
+                img{
+                    vertical-align: middle;
+                    width: 90%;
+                }
+            }
+            .online {
+                padding-left: 30px;
+                margin: 0;
+                position: absolute;
+                top:-3px;
+            }
+            .bt{
+                top: 25px;
+            }
+        }
+        .right{
+            position: relative;
+            padding-top: 13px;
+            .txtTit{
+                color: #83bbff;
+                font-size: 12px;
+            }
+            .txtSub{
+                color:#cccccc;
+                font-size: 12px;
+            }
+            .data{
+                font-size: 12px;
+            }
+            .phone{
+                position: absolute;
+                top: -15px;
+                font-size: 16px;
+            }
+            .progress{
+                width: 2px;
+                height: 25px;
+                background:#3c404b;
+                margin-left: 17px;
+            }
+            .over{
+                overflow: hidden;
+            }
+            .flex{
+                display:flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
+div{
+    font-size: 14px;
+}

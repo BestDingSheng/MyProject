@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/my.css" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<header>
+				<div class="avatar">
+					<img src="images/avatar.png" alt="" />
+				</div>
+				<div class="accountInfo">
+					<div class="mui-pull-left">
+						累计线索：<span>21</span>
+					</div>
+					<div class="mui-pull-right">
+						账户余额：<span>210元</span>
+						<a href="#">［兑换］</a>
+					</div>
+				</div>
+			</header>
+			<!---->
+			<div class="main">
+				<div id="segmentedControl" class="mui-segmented-control">
+					<a class="mui-control-item mui-active" href="#item1">
+						有效推荐
+					</a>
+					<a class="mui-control-item" href="#item2">
+						历史推荐
+					</a>
+				</div>
+				<!--tab mian-->
+				<div style="margin-top: 20px;">
+					<div id="item1" class="mui-control-content mui-active">
+						<div class="details mui-row">
+							<div class="mui-col-xs-4 left">
+								<div class="online">孙先生</div>
+								<p><img src="images/line.png" alt="" /></p>
+								<div class="online bt">2016.9.1</div>
+							</div>
+							<div class="mui-col-xs-8 right">
+								<div class="phone">13122022388</div>
+								<div class="flex">
+									<span>电话跟进</span> 
+									<span class="txtTit">有效预约</span>
+									<span class="data">2016.09.01</span> 
+									<span class=" progress"></div>
+									<span class="txtSub">感谢金20.00已入账</span>	
+									<span class="data">2016.9.1</span>	
+								</div>
+								<!--<div class="over flex">
+									<div class=" progress"></div>
+									<span class="txtSub">感谢金20.00已入账</span>	
+									<span class="data">2016.9.1</span>	
+								</div>-->
+								<div class="flex">
+									<span>到店</span> 
+									<span class="txtTit">试乘试驾</span> 
+									<span class="data">2016.9.7</span> 
+								</div>
+								<div class="over flex">
+									<div class="progress"></div>
+									<span class="txtSub">感谢金入账</span>
+									<span class="data">2016.9.7</span>
+									 
+								</div>
+								<div class="flex">
+									<span class="mui-ellipsis">尚未成交</span> 
+									<span class="txtSub mui-ellipsis">成交后您将获得200元分红</span>  
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div id="item2" class="mui-control-content">
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

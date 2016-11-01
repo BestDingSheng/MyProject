@@ -1,0 +1,77 @@
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+input[type=text]:focus,
+input[type=password]:focus {
+    border: 1px solid #7eb0ff;
+}
+.mui-content {
+    padding: 0 15px;
+}
+.mainList {
+    margin-top: 10px;
+    input {
+        font-size: 14px;
+        height: 35px;
+        margin-bottom: 10px;
+    }
+    .carType {
+        background: url("../images/ev_barBg.png") no-repeat center center;
+        background-size: 100% 100%;
+        padding-left: 15px;
+        line-height: 40px;
+    }
+}
+.option {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0 10px 15px;
+    div {
+        //border: 1px solid #333;
+        width: 30%;
+        line-height: 35px;
+        text-align: center;
+        border-radius: 20px;
+        margin-top: 15px;
+        font-size: 14px;
+        background: url("../images/btnBg.png") no-repeat center center;
+        background-size: 100% 100%;
+    }
+    div:nth-last-child(1) {
+        visibility: hidden;
+    }
+}
+.textContent {
+    background: #fff url("../images/renbar.png") no-repeat left top;
+    background-size: 100% auto;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    .title{
+        margin-bottom: 10px;
+    }
+    div{
+        line-height: 20px;
+        span{
+            color:red;
+        }
+    }
+}
+.submit {
+    margin-top: 10px;
+    .ev_btn {
+        width: 100%;
+        border:none;
+        background: url(../images/submitBg.png) no-repeat center center;
+        background-size:100% 100%;
+    }
+}
+button:enabled:active{
+    background-color: transparent;
+    color: #333;
+}

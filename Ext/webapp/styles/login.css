@@ -1,0 +1,46 @@
+@charset "utf-8";/* CSS Document */
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,label,dl,dt,dd,fieldset,img{margin:0;padding:0;border:0;list-style:none;font-weight:normal; }
+/*img{width:100%;border:none;padding:0;margin:0;vertical-align:top;}*/
+html,body{width:100%;height:100%;font-size:14px;color: #333; position:relative;margin:0;padding:0;}
+body{background:url(../images/bg.png) 0 0 repeat;}
+a{text-decoration:underline;display: block;}
+a:link { text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {text-decoration:none;}
+.clear{clear:both; height:0px;overflow:hidden; display:block;}
+
+.header{width:auto;margin:0 30px; overflow: hidden;}
+.header_logo{width:500px;float:left;}
+.header_right{float: right; margin-top:20px;}
+.header_right a{cursor:pointer;background:none;border: none;}
+
+.slide{width:100%;margin:0 auto;overflow:hidden;position:relative; clear: both;}
+.slide img{width:100%;}
+.slidesjs-container{width:100%;z-index:0;position:relative;}
+.slidesjs-control img{width:100%;display:block;z-index:0;}
+
+.slidesjs-navigation{margin-top:3px;}
+.slidesjs-previous{margin-right:5px;float:left;}
+.slidesjs-next{margin-right:5px;float:left;}
+.slidesjs-pagination{position:absolute;bottom:6%;left:48%;z-index:9999;margin:0;float:right;list-style:none;}
+.slidesjs-pagination li{float:left;margin:0 3px;}
+.slidesjs-pagination li a{text-indent:9999%;display:block;width:10px;height:10px;border-radius:100px;background:#3892d3;float:left;overflow:hidden;}
+.slidesjs-pagination li a.active,.slidesjs-pagination li a:hover.active{background:#fff;}
+.slidesjs-pagination li a:hover{background:#fff;}
+#slides{display:none;}
+
+.mask{margin:0;padding:0;border:none;width:100%;height:100%;background:#000;opacity:0.3;filter:alpha(opacity=30);z-index:9999;position:fixed;top:0;left:0;display:none;}
+#LoginBox{width:350px;position:absolute;left:34%;top:100px; padding-bottom: 15px; z-index:1000;background:rgba(0,0,0,0.7);z-index:10000;display:none;}
+.row1{margin:0px 20px 30px; padding-bottom:15px;line-height:40px;color:#fff;border-bottom: 1px solid #fff;}
+.row1 img{margin-top:20px;}
+.row{width:300px;margin:20px auto;padding:0px 30px;color:#fff; overflow:hidden;}
+.row img{float: left;}
+.row input{width:235px;float: left;}
+.close_btn{font-family:arial;font-size:30px;font-weight:700;color:#999;text-decoration:none;float:right;}
+.inputBox{height:40px;background:#fff;}
+#j_username,#j_password{padding:5px; height:34px; font-size:14px; border:none; background:#fff;}
+.loginbtn{height: 44px; margin:0px auto; text-align:center;border:none; background: none; cursor: pointer; display: block;}
+#submit{color:White;background:#FF8000;text-decoration:none;padding:8px 35px;margin:10px auto 0;border-radius:5px;}
+.activity_roles{color:White;background:#FF8000;text-decoration:none;padding:8px 10px;margin:15px auto 0;border-radius:5px;}
+.warning{float:right;color:Red;text-decoration:none;font-size:20px;font-weight:bold;margin-right:15px;display:none;}
+.footer{width:100%; margin-top: 1px; text-align: center; padding:20px 0;    background: #333; }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function Cat(option){
+				this._init(option);
+			};
+			Cat.prototype={
+				_init:function(option){
+					this.age=option.age || '';									
+				},
+				show:function(){
+					alert(this.age);
+				}
+			}
+			var cat = new Cat({
+				age:15,
+			});
+			cat.show();
+			
+		</script>
+	</body>
+</html>

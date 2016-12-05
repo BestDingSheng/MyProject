@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-family: "微软雅黑";
+}
+li,
+ul {
+  list-style: none;
+}
+header {
+  position: relative;
+  z-index: 99;
+}
+header .logo {
+  position: absolute;
+  left: 40px;
+  top: 30px;
+}
+header .nav_bar {
+  position: absolute;
+  right: 40px;
+  top: 30px;
+}
+header .nav_bar li {
+  float: left;
+  width: 100px;
+  text-align: center;
+}
+header .nav_bar li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+#banner1 {
+  background: url(../images/bg-01.png) no-repeat top left;
+  background-size: 100% 100%;
+}
+#banner1 .car {
+  width: 23.22%;
+  position: absolute;
+  bottom: 200px;
+  right: 200px;
+}
+#banner1 .car .model {
+  width: 100%;
+}
+#banner1 .car .gulu {
+  position: absolute;
+  bottom: 20%;
+  left: 7%;
+  width: 17.48%;
+}
+#banner1 .car .right {
+  left: 70%;
+}
+#banner2 {
+  background: url(../images/bg-02.png) no-repeat top left;
+  background-size: 100% 100%;
+}
+#banner3 {
+  background: url(../images/bg-03.png) no-repeat top left;
+  background-size: 100% 100%;
+}
+footer {
+  height: 45px;
+  background: #1e2832;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+footer .der {
+  margin-left: 40px;
+}
+footer .der span {
+  line-height: 45px;
+  font-size: 16px;
+  color: #fff;
+  margin-right: 20px;
+}
+footer .der .phone {
+  color: #39acf0;
+}
+footer .er_code {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+footer .er_code li {
+  float: left;
+  color: #fff;
+  margin-right: 60px;
+  line-height: 45px;
+  position: relative;
+  cursor: pointer;
+}
+footer .er_code li img {
+  position: absolute;
+  top: -175px;
+  right: -20px;
+  display: none;
+}
+footer .er_code li:hover > img {
+  display: block;
+}
+#banner3 .leftImg {
+  position: relative;
+}
+#banner3 .leftImg .img01,
+#banner3 .leftImg .img02,
+#banner3 .leftImg .img03,
+#banner3 .leftImg .img04,
+#banner3 .leftImg .img05,
+#banner3 .leftImg .img06,
+#banner3 .leftImg .img07,
+#banner3 .leftImg .img08,
+#banner3 .leftImg .img09 {
+  position: absolute;
+}
+#banner3 .leftImg .img01 {
+  left: 11.45%;
+  top: 13.88%;
+  width: 30.11%;
+}
+#banner3 .leftImg .img02,
+#banner3 .leftImg .img03 {
+  left: 54.68%;
+}
+#banner3 .leftImg .img02 {
+  top: 38.42%;
+  width: 30.72%;
+}
+#banner3 .leftImg .img03 {
+  top: 52.85%;
+  width: 32.81%;
+}
+#banner2 .leftImg {
+  position: relative;
+}
+#banner2 .leftImg .img01,
+#banner2 .leftImg .img02,
+#banner2 .leftImg .img03,
+#banner2 .leftImg .img04,
+#banner2 .leftImg .img05,
+#banner2 .leftImg .img06,
+#banner2 .leftImg .img07,
+#banner2 .leftImg .img08,
+#banner2 .leftImg .img09 {
+  position: absolute;
+}
+#banner2 .leftImg .img01 {
+  top: 37.03%;
+  width: 28.22%;
+  left: 11.71%;
+}
+#banner2 .leftImg .img02 {
+  top: 44.16%;
+  width: 37.39%;
+  left: 11.71%;
+}
+#banner2 .leftImg .img03,
+#banner2 .leftImg .img04,
+#banner2 .leftImg .img05,
+#banner2 .leftImg .img06,
+#banner2 .leftImg .img07 {
+  width: 9.84%;
+}
+#banner2 .leftImg .img03 {
+  top: 28.22%;
+}
+#banner2 .leftImg .img03,
+#banner2 .leftImg .img08 {
+  left: 59%;
+}
+#banner2 .leftImg .img04,
+#banner2 .leftImg .img05,
+#banner2 .leftImg .img06 {
+  left: 68.85%;
+}
+#banner2 .leftImg .img04 {
+  top: 18.24%;
+}
+#banner2 .leftImg .img05 {
+  top: 28.22%;
+  z-index: 99;
+}
+#banner2 .leftImg .img06 {
+  top: 39.11%;
+  z-index: 100;
+}
+#banner2 .leftImg .img07 {
+  left: 78.75%;
+  top: 28.22%;
+}
+#banner2 .leftImg .img08 {
+  top: 25.77%;
+  width: 29.47%;
+  z-index: 99;
+}
+#banner2 .leftImg .img09 {
+  left: 64.21%;
+  top: 72.85%;
+  width: 18.75%;
+}
+#banner1 .leftImg {
+  position: relative;
+}
+#banner1 .leftImg .w_equal {
+  width: 6.82%;
+}
+#banner1 .leftImg .w_equal2 {
+  width: 8%;
+}
+#banner1 .leftImg .w_equal3 {
+  width: 14.84%;
+}
+#banner1 .leftImg .w_equal4 {
+  width: 34.37%;
+}
+#banner1 .leftImg .img01,
+#banner1 .leftImg .img02,
+#banner1 .leftImg .img03,
+#banner1 .leftImg .img04,
+#banner1 .leftImg .img05,
+#banner1 .leftImg .img06,
+#banner1 .leftImg .img07 {
+  position: absolute;
+}
+#banner1 .leftImg .img01,
+#banner1 .leftImg .img05 {
+  top: 34.72%;
+}
+#banner1 .leftImg .img02,
+#banner1 .leftImg .img04 {
+  top: 43.59%;
+}
+#banner1 .leftImg .img01 {
+  left: 11.45%;
+}
+#banner1 .leftImg .img05 {
+  left: 42.96%;
+}
+#banner1 .leftImg .img02 {
+  left: 18.75%;
+}
+#banner1 .leftImg .img04 {
+  left: 35.72%;
+}
+#banner1 .leftImg .img03 {
+  top: 14.81%;
+  left: 26.56%;
+}
+#banner1 .leftImg .img06,
+#banner1 .leftImg .img07 {
+  top: 37.03%;
+  left: 55.20%;
+}
+#banner1 .leftImg .img07 {
+  top: 39.55%;
+}
+.warp {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+#newCover {
+  width: 1920px;
+  height: 364px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+}
+/*# sourceMappingURL=index.css.map */

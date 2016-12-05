@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+  <definition name="extTemplate" template="/WEB-INF/manual_layouts/extTemplate.jsp">
+  </definition>
+
+  <definition name="public" template="/WEB-INF/manual_layouts/default.jspx">
+  </definition>
+
+  <definition name="login_view" template="/WEB-INF/manual_views/login.jsp">
+  </definition>
+
+</tiles-definitions>

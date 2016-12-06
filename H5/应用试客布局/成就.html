@@ -1,0 +1,310 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/sk_base3.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="http://static.appshike.com/css/footer.css" media="all">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/store.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/before_submit.js"></script>
+
+<script>
+	function isBlank (value){
+	  return (value == null || value == undefined ) || ($.trim(value) === '');
+	}
+	function isNotBlank(value){
+	  return !this.isBlank(value);
+	}
+	function count(o){
+	  var t = typeof o;
+	  if(t == 'string'){
+	    return o.length;
+	  }else if(t == 'object'){
+	    var n = 0;
+	    for(var i in o){
+	      n++;
+	    }
+	    return n;
+	  }
+	  return false;
+	};
+
+		var agent_str = navigator.userAgent;
+	if(agent_str.indexOf("iPhone") > -1 ){
+		document.write('<meta content="width=device-width,initial-scale=1.0,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no" name="viewport">');
+	}else if(agent_str.indexOf("iPad") >-1){
+		document.write('<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=0.5,user-scalable=no" name="viewport">');
+	}else if(agent_str.indexOf("iPod") >-1){
+		document.write('<meta content="width=device-width,initial-scale=1.0,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no" name="viewport">');
+	}else if(agent_str.indexOf("Android") >-1){
+		document.write('<meta content="width=device-width,initial-scale=1.0,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no" name="viewport">');
+	}
+$(function(){
+	$('.Click_bj').on('touchstart',function(){
+		$(this).addClass('btn02');
+		this.blur();
+	});
+	$('.Click_bj').on('touchend',function(){
+		$(this).removeClass('btn02');
+	});
+	$('.return_link').on('touchstart',function(){
+		$(this).addClass('return_link2');
+		this.blur();
+	});
+	$('.return_link').on('touchend',function(){
+		$(this).removeClass('return_link2');
+	});
+
+ })
+
+</script><meta content="width=device-width,initial-scale=1.0,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no" name="viewport"> 
+   
+  <script>
+  var nav4 =(function(){
+		bindClick = function(els, mask){
+			if(!els || !els.length){return;}
+			var isMobile = "ontouchstart" in window;
+			for(var i=0,ci; ci = els[i]; i++){
+				ci.addEventListener("click", evtFn, false);
+			}
+
+			function evtFn(evt, ci){
+				ci = this;
+				for(var j=0,cj; cj = els[j]; j++){
+					if(cj != ci){
+						cj.classList.remove("on");
+					}
+				}
+				if(ci == mask){mask.classList.remove("on");return;}
+				switch(evt.type){
+					case "click":
+						var on = ci.classList.toggle("on");
+						mask.classList[on?"add":"remove"]("on");
+					break;
+				}
+			}
+			mask.addEventListener(isMobile?"touchstart":"click", evtFn, false);
+		}
+		return {"bindClick":bindClick};
+	})();
+
+function setMenu(){
+	  $(".wrap:not(.noNav)").before("<div class='return_index'><a href='javascript:history.go(-1);' class='return_link'></a><h1></h1></div>");
+	  if(history.length==1){
+		  $('.return_index a').attr('href','http://i.appshike.com/html/menu.html');
+	  }
+	  if(document.title=='排行榜'){
+	      $(".ranking_content .time").attr({"top":"199px"});
+	  }
+
+	  $(".return_index h1").html(document.title);
+	  
+	  $('.wrap:not(.noMenu)').append('<div class="nav4">\
+		        <nav>\
+	            <div id="nav4_ul" class="nav_4">\
+	                <ul class="box">\
+	                	<li style="width:15%">\
+                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>\
+                		</li>\
+	                    <li>\
+	                        <a href="/shike/appList" class="Click_bj j_date"><span>开始赚钱</span></a>\
+	                    </li>\
+	                    <li>\
+	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>\
+	                        <dl>\
+	                            <dd><a href="/itry/personalcenter/toPersonalCenter" class="Click_bj j_date"><span>个人中心</span></a></dd>\
+	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=2" class="Click_bj"><span>邀请好友</span></a></dd>\
+	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>\
+	                            <dd><a href="/itry/income/toIncomeInfo" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>\
+	                            <span class="sk_foot_b"></span>\
+	                        </dl>\
+	                    </li>\
+	                    <li>\
+	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>\
+	                        <dl>\
+	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>\
+	                            <dd><a href="/itry/download_xb" class="Click_bj"><span>下载小兵</span></a></dd>\
+	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>\
+	                            <span class="sk_foot_b"></span>\
+	                        </dl>\
+	                    </li>\
+	                </ul>\
+	            </div>\
+	        </nav>\
+	        <div id="nav4_masklayer" class="masklayer_div on">&nbsp;</div>\
+	    </div>');
+	  if(document.getElementById("nav4_ul") && document.getElementById("nav4_masklayer")){
+		  nav4.bindClick(document.getElementById("nav4_ul").querySelectorAll("li>a"), document.getElementById("nav4_masklayer"));
+	  }
+	  
+	$("#nav4_ul dl>dd a").click(function(){
+		$('.on').removeClass('on');
+	});
+}
+$(function(){
+	if(!/micromessenger/i.test(navigator.userAgent)){
+		setMenu();
+		$('.j_date').each(function(){var tmphref=$(this).attr('href');$(this).attr('href',tmphref+'?t='+new Date().getTime());});
+		if(document.title=='排行榜'){
+		  $(" .ranking_content .time").attr({"top":"199px"});
+		}
+	}
+})
+</script>
+
+
+
+
+	
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="Cache-Control" name="no-store">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<title>成就</title>
+		<link href="http://static.appshike.com/css/morecss.css" rel="stylesheet" type="text/css">
+		<script src="http://static.appshike.com/js/similar.msgbox.js" type="text/javascript"></script>
+	</head>
+	<body>
+	<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>成就</h1></div><div class="wrap cf">
+		<ul class="medal_list cf">
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="binding_medal light"></span>
+					<p>完成绑定</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="freecharge_medal"></span>
+					<p>试玩免费应用</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="paycharge_medal"></span>
+					<p>试玩付费应用</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="withdrawals_medal"></span>
+					<p>完成一次提现</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="flow_medal"></span>
+					<p>充值一次流量</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="invitefriends_medal light"></span>
+					<p>邀请一位好友</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="inviteincome_medal"></span>
+					<p>获得邀请收入</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="incomehundred_medal"></span>
+					<p>邀请收入过百</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;">
+				<div class="con">
+					<span class="ranking_medal"></span>
+					<p>排行榜成就</p>
+				</div>
+			</li>
+			<li style="height: 200.5px;"></li>
+			<li style="height: 200.5px;"></li>
+		</ul>
+		<div class="mag_medal">
+			<div class="n_tinymask hide show" style="display: block;"></div>
+			<div class="sk_box_con hide bounceInDown" style="display: block;">
+				<div class="sk_box_center">
+					<div class="sk_box_scroll">
+						<div class="n_tinybox" style="left: 72px;">
+							<span class="ns-close"></span>
+							<div class="gainmedal_info">
+								<span class="medalicon withdrawals_medal"></span>
+								<h6 class="medal_name">提取现金</h6>
+								<p class="gain_rule">“成功提现一次获得该成就”</p>
+							</div>
+							<a href="/itry/income/toWithdraw" class="gainmedal_link">立即获得</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="nav4">		        <nav>	            <div id="nav4_ul" class="nav_4">	                <ul class="box">	                	<li style="width:15%">                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>                		</li>	                    <li>	                        <a href="/shike/appList?t=1479462764164" class="Click_bj j_date"><span>开始赚钱</span></a>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>	                        <dl>	                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479462764164" class="Click_bj j_date"><span>个人中心</span></a></dd>	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=2" class="Click_bj"><span>邀请好友</span></a></dd>	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>	                            <dd><a href="/itry/income/toIncomeInfo?t=1479462764164" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>	                            <span class="sk_foot_b"></span>	                        </dl>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>	                        <dl>	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>	                            <dd><a href="/itry/download_xb" class="Click_bj"><span>下载小兵</span></a></dd>	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>	                            <span class="sk_foot_b"></span>	                        </dl>	                    </li>	                </ul>	            </div>	        </nav>	        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>	    </div></div>
+	 <script type="text/javascript">
+			$(function(){
+				var map={binding_medal_1:'完成绑定',binding_medal_2:'“成功绑定应用试客获得该成就”',binding_medal_3:'/itry/personalcenter/gotobind',
+						 freecharge_medal_1:'试玩免费应用',freecharge_medal_2:'“试玩成功任意免费应用获得该成就”',freecharge_medal_3:'/shike/appList',
+						 paycharge_medal_1:'试玩付费应用',paycharge_medal_2:'“试玩成功任意付费应用获得该成就”',paycharge_medal_3:'/shike/appList',
+						 withdrawals_medal_1:'提取现金',withdrawals_medal_2:'“成功提现一次获得该成就”',withdrawals_medal_3:'/itry/income/toWithdraw',
+						 flow_medal_1:'充值流量',flow_medal_2:'“成功充值流量一次获得该成就”',flow_medal_3:'/itry/income/toWithdraw',
+						 invitefriends_medal_1:'邀请一位好友',invitefriends_medal_2:'“首次邀请好友成功获得该成就”',invitefriends_medal_3:'/itry/invite/toInviteFriendsOfXB?type=2',
+						 share_medal_1:'朋友圈分享',share_medal_2:'“发送邀请函给好友获得该成就”',share_medal_3:'/itry/invite/toInviteFriendsOfXB?type=1',
+						 inviteincome_medal_1:'获得邀请收入',inviteincome_medal_2:'“成功获得邀请收入获得该成就”',inviteincome_medal_3:'/itry/invite/toInviteFriendsOfXB?type=2',
+						 incomehundred_medal_1:'邀请收入过百',incomehundred_medal_2:'“获得邀请收入过百获得该成就”',incomehundred_medal_3:'/itry/invite/toInviteFriendsOfXB?type=2',
+						 ranking_medal_1:'荣登排行榜',ranking_medal_2:'“首次进入排行榜获得该成就”',ranking_medal_3:'/itry/weixin/toRankingList'};
+				$(".medal_list li").height(($(".wrap").height()-2)/4);
+				getAchievements();
+				$(".con").bind("touchend click", function () {
+					var nc = $(this).find('span').first().attr('class');
+					if(nc.indexOf(' ')>-1){
+						nc = nc.split(' ')[0];
+					}
+					var n_class = 'medalicon '+nc;
+					$(".medalicon").attr("class",n_class);
+					$(".medal_name").html(map[nc+'_1']);
+					$(".gain_rule").html(map[nc+'_2']);
+					if(($("."+nc).attr('class')).indexOf('light')>0){
+						$('.gainmedal_link').attr('href',''); 
+						$('.gainmedal_link').hide();
+					}else{
+						$('.gainmedal_link').attr('href',map[nc+'_3']); 
+						$('.gainmedal_link').show();
+					}
+					magshow(".mag_medal");	
+				});
+				$(".ns-close").bind("touchend click", function () {
+					maghide(".mag_medal");
+				});
+			});
+			function getAchievements(){
+				$.ajax({
+		    		 type:"post",
+		    		 url:"/itry/personalcenter/getAchievements",
+		    		 data:{r:+new Date()},
+		    		 async:false,
+		    		 success:function (map,status) {
+		 				if(map.status=='success'){
+							if(map.bind=='1') $(".binding_medal").addClass('light');
+							if(map.playFree=='1') $(".freecharge_medal").addClass('light');
+							if(map.playPay=='1') $(".paycharge_medal").addClass('light');
+							if(map.applyMoney=='1') $(".withdrawals_medal").addClass('light');
+							if(map.applyLL=='1') $(".flow_medal").addClass('light');
+							if(map.invited=='1') $(".invitefriends_medal").addClass('light');
+							if(map.shared=='1') $(".share_medal").addClass('light');
+							if(map.inviteMoney=='1') $(".inviteincome_medal").addClass('light');
+							if(map.inviteMoneyO=='1') $(".incomehundred_medal").addClass('light');
+							if(map.ranking=='1') $(".ranking_medal").addClass('light');
+						}
+		    		 }
+		         });
+			}
+		</script> 
+	
+
+
+</body></html>

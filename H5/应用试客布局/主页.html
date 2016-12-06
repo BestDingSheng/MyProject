@@ -1,0 +1,151 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>应用试客</title>
+<link href="http://static.appshike.com/css/basecss.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+<style>
+.wrap{ background:#ebebeb}
+</style>
+<script type="text/javascript">
+function load(){
+	var url = window.location.href;
+	if(url.indexOf('itry.com')>-1){
+		url = url.replace('itry.com','i.appshike.com');
+		window.location.href = url;
+	}
+}
+</script>
+</head>
+
+ <body onload="load()">
+ <div class="wrap" style="padding-top: 0px;">
+ 	<div class="dialogue cf">
+		<div class="customer-w fl cf">
+	            <div class="cf customer_info_list" style=" margin:0 auto; width:90%">
+	            	<a href="/itry/appList" class="Click_bj">
+	               		<div class="customer-content push">
+	                        <div class="Draw-bt-info">
+	                            <h4>欢迎加入应用试客，验证成功就送1元红包！小兵手把手教你秒变赚钱高手！赶快阅读全文吧！</h4>
+	                            <div class="img">
+	                            	<img src="http://static.appshike.com/images/today_shiwan_banner_11.jpg">
+	                            </div>
+	                            <span class="">阅读全文</span>
+	                        </div>
+	                    </div>
+	                </a>
+	            </div>
+	    </div>
+	</div>
+	<div id="shike"></div>
+	<div class="nav4">
+        <nav>
+            <div id="nav4_ul" class="nav_4">
+                <ul class="box">
+                	<li style="width:15%" class="keyboard">
+                        <a href="#shike" class="Click_bj"><span class="Small_keyboard"></span></a>
+                    </li>
+                    <li>
+                        <a href="/shike/appList?t=1479462539428" class="Click_bj j_date"><span>开始赚钱</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="Click_bj" id="my_info"><em class="connav2"></em><span>我的信息</span></a>
+                        <dl>
+                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479462539429" class="Click_bj j_date"><span>个人中心</span></a></dd>
+                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=1" class="Click_bj"><span>邀请好友</span></a></dd>
+                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>
+                            <dd><a href="/itry/income/toIncomeInfo?t=1479462539429" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>
+                        <dl>
+                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>
+                            <dd><a href="/itry/download_xb" class="Click_bj"><span>下载小兵</span></a></dd>
+                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>
+                        </dl>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function getTime(timestamp){
+		var now = timestamp?new Date(timestamp):new Date();
+		var timePre = now.getHours()>11?'下午':'上午';
+		return now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日 '+timePre+now.getHours()+':'+('0'+now.getMinutes()).slice(-2)+':'+('0'+now.getSeconds()).slice(-2);
+	}
+	function clearStyle(){
+		window.setTimeout(function(){
+			$('.brc').removeClass('brc');
+			$('.on').removeClass('on');
+			if(window.location.href.indexOf('from=weixin')>-1){
+				if(history.length==1){
+					$("#my_info").addClass('on');
+					$("#nav4_masklayer").addClass('on');
+					document.getElementById("nav4_masklayer").last = document.getElementById("nav4_ul").querySelectorAll("li>a")[2];
+				}
+			}
+		},100);
+	}
+	$(function(){
+		nav4.bindClick(document.getElementById("nav4_ul").querySelectorAll("li>a"), document.getElementById("nav4_masklayer"));
+	    $("#nav4_ul dl>dd").on('touchend',function(){
+	    	$("#nav4_ul ul>li>a").removeClass("on")
+	    })
+		$('.Back-time span').text(getTime());
+		$(".keyboard a").click();
+		$(".keyboard").on('touchstart',function(){
+			$(".dialogue").append("<div class='customer-w fl cf'><div class='fl app-customer-tx'><img src='/images/shike_logo.jpg' alt=''></div><div class='fl customer_info_list'><div class='customer-content'><span class='customer-left-ico'></span><div class='Draw-bt-info'><p>当前版本暂时无法咨询<br>请回到微信内“应用试客”与客服MM联系：）</p></div></div></div></div>");
+		});
+		$(".wrap").on('touchstart',function(){
+			$(".msg_addscreen").hide();
+		});
+		
+		$.getJSON('/itry/getMsg',{t:+new Date()},function(data){
+			var msgTimeHtml,preTime = 0;
+			for(var i=data.length-1;data[i];i--){
+				msgTimeHtml = data[i].c_time-preTime>600000 || i%5==0?'<p class="Back-time"><span>'+getTime(preTime=data[i].c_time)+'</span></p>':'';
+				$(".dialogue").append('<div class="customer-w fl cf">'+msgTimeHtml+'\
+			          <div class="fl app-customer-tx"><img src="/images/shike_logo.jpg" alt=""></div>\
+			          <div class="fl customer_info_list">\
+			              <div class="customer-content">\
+			              	<span class="customer-left-ico"></span>\
+			                  <div class="Draw-bt-info">\
+			                      <p>'+data[i].context+'</p>\
+			                  </div>\
+			              </div>\
+			          </div>\
+			      </div>');
+      
+				$(".dialogue a").each(function(){
+		      		var wx_href = $(this).attr('href');
+		      		if(wx_href.indexOf('open.weixin.qq.com')>0){
+		      			var tmp = /redirect_uri=(.*?)&/.exec(decodeURIComponent(wx_href));
+		      			tmp && $(this).attr('href',tmp[1].replace(/itry.com/i,'i.appshike.com'));
+		      		}
+		      	});
+			}
+			document.getElementById('shike').scrollIntoView();
+		});
+		$('.j_date').each(function(){var tmphref=$(this).attr('href');$(this).attr('href',tmphref+'?t='+new Date().getTime());});
+		$('#nav4_ul dd a').on('touchstart',function(){
+			document.getElementById("nav4_masklayer").last = null;
+			var target_href = $(this).attr('href');
+			window.setTimeout(function(){
+				document.location = target_href;
+			},300);
+			return false;
+	    });
+		$(window).bind("pageshow",window.onpagehide = clearStyle);
+	});
+</script>
+
+</body></html>

@@ -1,0 +1,136 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" name="no-store">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta charset="utf-8">
+<title>试玩记录</title>
+<link href="http://static.appshike.com/css/listcss.css?v=1.0" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8">
+        var is_stop = false;
+        var flag = true;
+        $(function(){
+            show_click_record();
+        });
+        $(window).scroll(function(){
+            totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+            if(flag && $(document).height()-100 <= totalheight){
+                $("#loading").css({"display":"block"});
+                $("#loading").focus();
+                show_click_record();
+            }
+        });
+        function show_click_record(){
+            if (!is_stop) {
+                flag = false;
+                var start = $("#played_record li").length;
+                var length = 20;
+                var data = {
+                    start:start,
+                    length:length,
+                    is_stop:is_stop,
+                    wechatMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40' ,
+                    cur_time:new Date().getTime()
+                };
+                $.post("/itry/personalcenter/getDailyClickRecordList",data,function(dataObj){
+                    is_stop = dataObj.is_stop;
+                    if(dataObj.list != null){
+                        $.each(dataObj.list,function(i,n){
+                            for(var key in n){
+                                if(n.hasOwnProperty(key)){
+                                    var $ul;
+                                    if($("#played_record p:last").text() != key){
+                                        $("#loading").before("<p class='time' style=''>"+key+"</p>");
+                                        $ul = $("<ul class='app_list cf'></ul>");
+                                        $("#loading").before($ul);
+                                    }else{
+                                        $ul = $("#played_record ul:last");
+                                    }
+                                    $.each(n[key],function(i,n1){
+                                        if (n1.itry_type > 0) {
+                                            //试玩
+                                            $ul.append(
+                                            		"<li>"+
+                                                	"<span class='appicon'><img src='"+n1.icon_url+"' alt=''></span>"+
+                                                    "<div class='app_info'>"+
+                                                    	"<div class='tit'>"+
+                                                            "<h3 class='name'>"+n1.app_name+"</h3>"+
+                                                            "<span class='price'>"+n1.review_money+" 元</span>"+
+                                                        "</div>"+
+                                                    "</div>"+
+                                                	"</li>"
+                                            );
+                                        } else {
+                                            //play
+                                        	$ul.append(
+                                            		"<li>"+
+                                                	"<span class='appicon'><img src='"+n1.icon_url+"' alt=''></span>"+
+                                                    "<div class='app_info'>"+
+                                                    	"<div class='tit'>"+
+                                                            "<h3 class='name'>"+n1.app_name+"</h3>"+
+                                                            "<p class='mode'><span>Play</span></p>"+
+                                                            "<span class='price'>"+n1.review_money+" 元</span>"+
+                                                        "</div>"+
+                                                    "</div>"+
+                                                	"</li>"
+                                            );
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                        if(is_stop){
+                            $("#loading").css({"display":"none"});
+                        }
+                    }else{
+                        $("#loading").css({"display":"none"});
+                        if (start == 0) {
+                            $('#played_record').hide();
+                            $('.no_info').show();
+                        }
+                    }
+                    flag = true;
+                },"json");
+            }else{
+                $("#loading").css({"display":"none"});
+            }
+        }
+</script>
+</head>
+<body>
+<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>试玩记录</h1></div><div class="wrap">
+	<div id="played_record" class="trial_record cf">
+		<p class="time" style="">2016年09月30日</p><ul class="app_list cf"><li><span class="appicon"><img src="/images/xiaobing_Appicon.jpg" alt=""></span><div class="app_info"><div class="tit"><h3 class="name">试客小兵</h3><span class="price">1.00 元</span></div></div></li></ul><div id="loading" style="width: 100%; font-size: 28px; color: rgb(0, 102, 255); text-align: center; padding: 20px 0px; display: none; float: left;">加载中...</div>
+    </div>
+    <p id="noInfo" class="no_info" style="display: none">要验证小兵后，解锁全部试玩，试玩记录才会激活哦~</p>
+<div class="nav4">		        <nav>	            <div id="nav4_ul" class="nav_4">	                <ul class="box">	                	<li style="width:15%">                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>                		</li>	                    <li>	                        <a href="/shike/appList?t=1479462801300" class="Click_bj j_date"><span>开始赚钱</span></a>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>	                        <dl>	                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479462801300" class="Click_bj j_date"><span>个人中心</span></a></dd>	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=1" class="Click_bj"><span>邀请好友</span></a></dd>	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>	                            <dd><a href="/itry/income/toIncomeInfo?t=1479462801300" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>	                        </dl>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>	                        <dl>	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>	                            <dd><a href="javascript:download_xb();" class="Click_bj"><span>下载小兵</span></a></dd>	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>	                        </dl>	                    </li>	                </ul>	            </div>	        </nav>	        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>	    </div></div>
+
+
+</body></html>

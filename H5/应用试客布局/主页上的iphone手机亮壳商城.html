@@ -1,0 +1,52 @@
+<html><head>
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" name="no-store">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta charset="utf-8">
+<title>凯夫拉手机壳</title>
+<link href="http://static.appshike.com/css/basecss.css?v=1.0" rel="stylesheet" type="text/css">
+<link href="http://static.appshike.com/css/listcss.css?v=1.0" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" src="http://static.appshike.com/js/shared.js"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+</head>
+<body>
+<div class="wrap">	
+    <div class="phoneshell_deta">
+    	<img src="http://static.appshike.com/images/phoneshell1.jpg" alt="">
+    	<img src="http://static.appshike.com/images/phoneshell2.jpg" alt="">
+    	<img src="http://static.appshike.com/images/phoneshell3.jpg" alt="">
+    	<img src="http://static.appshike.com/images/phoneshell4.jpg" alt="">
+    </div>
+    <div class="bottom-arrow"></div>
+   <a onclick="write_log(2)" class="BuyNow">立即购买</a>
+     <div class="return_index">
+    	<a href="http://i.appshike.com" class="return_link"></a>
+        <h1>凯夫拉手机壳</h1>
+    </div>
+</div>
+<script type="text/javascript">
+var uid;
+	$(function () {
+		if($(document).scrollTop()=='0'){
+			$('.bottom-arrow').fadeIn();			
+		}
+		$('body').on('touchstart touchmove click',function(){
+			$('.bottom-arrow').remove();
+		})
+		uid = window.location.href.split("?")[1];
+	})	
+	function write_log(val){
+	    $.post("/api/write_click_log",{user_id:uid+(val=='2'?'_kfl':'')},function(s){
+	    },"html");
+	    if(val=='1'){
+	    	window.open("http://kdt.im/WxSGCr")
+	    }else{
+	    	window.open("https://wap.koudaitong.com/v2/showcase/homepage?kdt_id=17051836")
+	    }
+	}
+</script>
+
+
+</body></html>

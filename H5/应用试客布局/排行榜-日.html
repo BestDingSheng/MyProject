@@ -1,0 +1,248 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+
+	<title>排行榜</title>
+	<link href="http://static.appshike.com/css/morecss.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" charset="utf-8">
+		$(function(){
+			do_info("day");
+		});
+		function do_info(rankType){
+			$('.more').hide();
+			$('.loading').show();
+			var isme="";
+			$.post("/itry/weixin/getRankingList",{rankType:rankType},function(dataObj){
+				$('.more').show();
+				$('.loading').hide();
+
+				$('#showDate').html(dataObj.showDate); //显示日期
+				if (rankType == 'day' || rankType == 'week' || rankType == 'month' || rankType == 'total') {
+					$("#5line"+rankType+"").on('touchstart',function(){
+						$(this).addClass('btn02');
+						this.blur();
+					});
+					$('#'+rankType).empty();
+
+					$.each(dataObj.list,function(i,n){
+						if(n.user_id=='27771614'){
+							isme="class='my dispIsHide"+rankType+"'";
+						}else{
+							isme="class='dispIsHide"+rankType+"'";
+						}
+
+						var w_name = n.w_name;
+						var w_headimg = n.w_headimg;
+						if(i<4){
+							$('#'+rankType).append(
+									"<li "+isme+">"+
+									"<div class='rankinguser-info'>"+
+									"<label class='order'>"+(i+1)+"</label>"+
+									"<div class='rankinguser-portrait'>"+
+									"<img src='"+w_headimg+"' alt=''>"+
+									"</div>"+
+									"<div class='ranking-name mt35'>"+
+									"<p>"+w_name+"</p>"+
+									"</div>"+
+									"<div class='ranking-income'>"+n.total_income_str+'元'+"</div>"+
+									"</div>"+
+									"</li>"
+							);
+						}else if(i==4){
+							$('#'+rankType).append(
+									"<li "+isme+">"+
+									"<div class='rankinguser-info'>"+
+									"<label class='order'>"+(i+1)+"</label>"+
+									"<div class='rankinguser-portrait'>"+
+									"<img src='"+w_headimg+"' alt=''>"+
+									"</div>"+
+									"<div class='ranking-name mt35'>"+
+									"<p>"+w_name+"</p>"+
+									"</div>"+
+									"<div class='ranking-income'>"+n.total_income_str+'元'+"</div>"+
+									"</div>"+
+									"</li>"
+							);
+						}else if(i>=5 && i<20){
+							$('#'+rankType).append(
+									"<li "+isme+" style='display: none;'>"+
+									"<div class='rankinguser-info'>"+
+									"<label class='order'>"+(i+1)+"</label>"+
+									"<div class='rankinguser-portrait'>"+
+									"<img src='"+w_headimg+"' alt=''>"+
+									"</div>"+
+									"<div class='ranking-name mt35'>"+
+									"<p>"+w_name+"</p>"+
+									"</div>"+
+									"<div class='ranking-income'>"+n.total_income_str+'元'+"</div>"+
+									"</div>"+
+									"</li>"
+							);
+						}
+
+					});
+					//showPersonalP(rankType);
+				}
+			},"json");
+		}
+		function showPersonalP(rankType){
+			var c;
+			var isme="";
+			var data = {
+				rankType:rankType,
+				oid_md5:'3E6C63CEFDDC9CBD2F443F6975DC2C40'
+			};
+			$.ajax({
+				type : "post",
+				url : "/itry/weixin/getPersonalList",
+				data : data,
+				dataType: 'json',
+				async : true,
+				success : function(dataObj){
+					$('#5'+rankType).empty();
+					$.each(dataObj,function(i,n){
+						if(!isNull(n.oid_md5) && n.oid_md5 == "3E6C63CEFDDC9CBD2F443F6975DC2C40"){
+							isme="class='my'";
+						}else{
+							isme="";
+						}
+						var w_name = n.w_name;
+						var w_headimg = n.w_headimg;
+						if(!isNull(n.user_id) && n.user_id == '56954'){   // 哈喽，迪迪
+							w_name = '哈喽，迪迪';
+							w_headimg = 'http://static.appshike.com/images/hellodd.jpg';
+						}
+						$('#5'+rankType).append(
+								"<li "+isme+">"+
+								"<div class='rankinguser-info'>"+
+								"<div class='rankinguser-portrait'>"+
+								"<img src='"+w_headimg+"' alt=''>"+
+								"</div>"+
+								"<div class='ranking-name'>"+
+								"<label>"+n.rank+"</label>"+
+								"<p>"+w_name+"</p>"+
+								"</div>"+
+								"<div class='ranking-income'>"+n.total_income_str+'元'+"</div>"+
+								"</div>"+
+								"</li>"
+						)
+					});
+					$(".more").each(function(i,n){
+						n.style.display="block";
+					});
+				},
+				error:function (){
+					showLeaveRanking(rankType);
+					$(".more").each(function(i,n){
+						n.style.display="none";
+					});
+				}
+			});
+		}
+		function showLeaveRanking(showType){
+			$('#'+showType+' li:eq(4) div').removeAttr('style');
+//			$('#'+showType+' li:eq(4) div').attr('style','border-bottom-width: 1px;');
+			$(".dispIsHide"+showType+"").each(function(i,n){
+				n.style.display="block";
+			});
+			//$("#5line"+showType+"").removeClass("Click_bj");
+			$("#5line"+showType+"").off("touchstart");
+		}
+	</script>
+</head>
+<body>
+<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>排行榜</h1></div><div class="wrap">
+	<div class="rankings_list">
+		<div class="work_area">
+			<ul class="ranking_nav cf">
+				<li class="Click_bj click_no"><a href="javascript:do_info('day');">日榜</a></li>
+				<li class="Click_bj"><a href="javascript:do_info('week');">周榜</a></li>
+				<li class="Click_bj"><a href="javascript:do_info('month');">月榜</a></li>
+				<li class="Click_bj"><a href="javascript:do_info('total');">总榜</a></li>
+			</ul>
+			<p class="time"><span id="showDate">2016.11.17（00:00 - 24:00）</span></p>
+		</div>
+
+		<div class="ranking_content cf">
+			<div class="loading cf" style="display: none;">
+                <p>试客土豪排行榜<br><span>正在生成中......</span></p>
+            </div>
+			<div class="ranking cf ranking_day" style="display:block;">
+				<ul id="day" class="top_three cf"><li class="dispIsHideday"><div class="rankinguser-info"><label class="order">1</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/Q3auHgzwzM7Hq8uL30nLVj1DwiaiaJgtfSmzy7hELIBkQMwZmuXYallX4mGosxoQz6NCIJnYiaTT8dPAoDBIYl8meVgkgzcbpHZmbe99GDo37Y/0" alt=""></div><div class="ranking-name mt35"><p>独狼回头</p></div><div class="ranking-income">1890.00元</div></div></li><li class="dispIsHideday"><div class="rankinguser-info"><label class="order">2</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/sx2aBaHR6SQVhlclQPHSWHd2ibrzfHIPo3XicWicuaC0iceq3x6NXHwPRbWbGGMWw3icflbx6Ke3na0Db0m2ZA90XLHj83ScdAZqB/0" alt=""></div><div class="ranking-name mt35"><p>林豪杰</p></div><div class="ranking-income">1272.00元</div></div></li><li class="dispIsHideday"><div class="rankinguser-info"><label class="order">3</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/KtLeyFG8WByVwFxkGhVc2J2Xic60rTBEk9EwuJp7JU3MeQNPiaichNDG1KC7TjI5oqZfLKIuOJTMRIZNDNjqXEsLgeicX5GwKsPia/0" alt=""></div><div class="ranking-name mt35"><p>可乐yoyo</p></div><div class="ranking-income">935.00元</div></div></li><li class="dispIsHideday"><div class="rankinguser-info"><label class="order">4</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLAgmJUiaU5zicE6THTH3L9m5IvRhQeuh1tTQ3ugGHlpLDStib2tibpcyBEUibZ1aZichBAdQPVwolC5J1xQ/0" alt=""></div><div class="ranking-name mt35"><p>Chioe</p></div><div class="ranking-income">816.00元</div></div></li><li class="dispIsHideday"><div class="rankinguser-info"><label class="order">5</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/TUlfBPNaOZ2DHcxsRyuVpMjLGlbCuIaRXGpAr8DyWmI6HG6CD7OIRA9CzvUibRXaGOibS7TlYcz3CKQaSfSlUIEQiagZYwTm4UC/0" alt=""></div><div class="ranking-name mt35"><p>神乐</p></div><div class="ranking-income">759.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">6</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/HAkhZD07LxldXER1L5ereq5Tpuialwt6aibzEetNnS61u0sicLQUz0XkyNxAYftQG68VTGsu8d8pFb5hsmBFVkbNNEYmicSXk8lE/0" alt=""></div><div class="ranking-name mt35"><p>厉害了，我的妹</p></div><div class="ranking-income">727.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">7</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/Q3auHgzwzM6mKv2POgZwCye3lYiasBIicFE4MyKGMkgZWSmMr5icTnN3niaayoPpdGicfUfwpTp4Ufamuy4Tzed6UNLrzicxyeHWzic0vOks37jh04/0" alt=""></div><div class="ranking-name mt35"><p>奇异果</p></div><div class="ranking-income">656.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">8</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/PiajxSqBRaELgVvoZBIA4bAuibf0aKrddWuFoF4jgfEskfwNNWzicdtc9QAqdsCy6spY3xsZ0pR1KHUoVDqMZzngibpZn7Ut0O40iaibGkD20JrmE/0" alt=""></div><div class="ranking-name mt35"><p>HUA</p></div><div class="ranking-income">607.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">9</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/PiajxSqBRaELlz75p9ibL4auTKqCia5BYqNQtcEqDLOetTNeLZ20siaicX5UCItV03HBuW79pHFV2vIR2hcTWh9gHIg/0" alt=""></div><div class="ranking-name mt35"><p>试</p></div><div class="ranking-income">533.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">10</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/X6Ucic5kYIBO9dCOgAxvvMia2HdSvxkChX5riamm30FzsF4JZhEVCdA2uxyYJ3ZV9MVwh2jZp2vAFe7S1gr1ZVnSQ/0" alt=""></div><div class="ranking-name mt35"><p>大妹砸</p></div><div class="ranking-income">510.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">11</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/KtLeyFG8WBzeUYibtsCvBNLQTDHZ782BDWkTRiaMEMTrichzwzhuvQuoKFWQQicjRN0D8Fdb1YAECqvyK3yc7eibXpg/0" alt=""></div><div class="ranking-name mt35"><p>时光飞逝</p></div><div class="ranking-income">501.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">12</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLCQsE8NoVznicQYjtwLzGWQL61D6ExsKic6j0AWSsvSVgZiaORzsRticCxq9RUia4MOuhTTHfzh6StVLaqbCCNjBbJC9LMstzwnRfhg/0" alt=""></div><div class="ranking-name mt35"><p>西楼</p></div><div class="ranking-income">435.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">13</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/rF8z3boQw9HFmRgbLdImSBM01dPHpcP1ibVTRQoLkPa9lE06p3rrL0KumRIUVDZ8t3nlPialKsVv7mIjTP1HmVht23NM1sNaIM/0" alt=""></div><div class="ranking-name mt35"><p>iTry</p></div><div class="ranking-income">384.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">14</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/PiajxSqBRaEKKIdrV6XBFoibeg8MfJhe27OaCuayibpdWZHpcjbceSIWL7R9W21E7Vag5AvXgPibfEmQ9MrfxHMwQw/0" alt=""></div><div class="ranking-name mt35"><p>神不在的星期天</p></div><div class="ranking-income">356.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">15</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/KtLeyFG8WByVwFxkGhVc2FIWL7cKDkI0ibic02zHvnMKk69IDibagpOPiarZWA9Zia1QRcLP5XVteflVRiaLGGUibNfJiaUVCxEq2R6w/0" alt=""></div><div class="ranking-name mt35"><p>Silence郅爱</p></div><div class="ranking-income">342.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">16</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/X6Ucic5kYIBOyqSjHpBPNL0z9qft3cT0mhwgldqCicEHCCYSAEyLcetcatkmXTwhMfia4gkyLniapsHVU4BmD4yKjq17E6fhI69j/0" alt=""></div><div class="ranking-name mt35"><p>奔腾小溪</p></div><div class="ranking-income">333.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">17</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/PiajxSqBRaELaerwtpt5oiaM0BAPibO3hPRXMfUr0V4qQWw4eonBJW1KGicqyQRxO0xQuo6CYymRqibhbzmemGBvNHbTr2VktYFaQ7kfUfga5N0E/0" alt=""></div><div class="ranking-name mt35"><p>因你而精彩</p></div><div class="ranking-income">312.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">18</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/sx2aBaHR6SQQAOewiaOsNTaWKZuOcTXYLaUoKDcV9A8koVib505dhARu8iaapVWib9KTSicLOSzE3fymMNgsaBCSy28N9OHpEicoxk/0" alt=""></div><div class="ranking-name mt35"><p>海东青</p></div><div class="ranking-income">303.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">19</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/sx2aBaHR6SQQAOewiaOsNTSDeFhVyQe81okFLVbPmk9G2zaCYFc9prfpEJolAL0hgFNlyPnWbxvIEzxqTSoCHL2Dj7LlOHtlU/0" alt=""></div><div class="ranking-name mt35"><p>全村希望</p></div><div class="ranking-income">266.00元</div></div></li><li class="dispIsHideday" style="display: none;"><div class="rankinguser-info"><label class="order">20</label><div class="rankinguser-portrait"><img src="http://wx.qlogo.cn/mmopen/sx2aBaHR6SSVXzRibK6uUDapeyHnpDKH5F5DK0M7VWHWJtsGQemZJchae67ATQCnYkIibOwopE9Gicibxd43dggubO2b9QxvIwRn/0" alt=""></div><div class="ranking-name mt35"><p>林观钦</p></div><div class="ranking-income">258.00元</div></div></li></ul>
+				<div id="5lineday" class="more Click_bj" onclick="showLeaveRanking('day')" style="display: block;">●●●</div>
+				<ul id="5day" class="top_three cf">
+
+				</ul>
+			</div>
+			<div class="ranking cf ranking_weeks">
+				<ul id="week" class="top_three cf">
+
+				</ul>
+				<div id="5lineweek" class="more Click_bj" onclick="showLeaveRanking('week')" style="display: block;">●●●</div>
+				<ul id="5week" class="top_three cf">
+
+				</ul>
+			</div>
+			<div class="ranking cf ranking_month">
+				<ul id="month" class="top_three cf">
+
+				</ul>
+				<div id="5linemonth" class="more Click_bj" onclick="showLeaveRanking('month')" style="display: block;">●●●</div>
+				<ul id="5month" class="top_three cf">
+
+				</ul>
+			</div>
+			<div class="ranking cf ranking_total">
+				<ul id="total" class="top_three cf">
+
+				</ul>
+				<div id="5linetotal" class="more Click_bj" onclick="showLeaveRanking('total')" style="display: block;">●●●</div>
+				<ul id="5total" class="top_three cf">
+
+				</ul>
+			</div>
+		</div>
+	</div>
+<div class="nav4">		        <nav>	            <div id="nav4_ul" class="nav_4">	                <ul class="box">	                	<li style="width:15%">                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>                		</li>	                    <li>	                        <a href="/shike/appList?t=1479463039964" class="Click_bj j_date"><span>开始赚钱</span></a>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>	                        <dl>	                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479463039964" class="Click_bj j_date"><span>个人中心</span></a></dd>	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=1" class="Click_bj"><span>邀请好友</span></a></dd>	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>	                            <dd><a href="/itry/income/toIncomeInfo?t=1479463039964" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>	                        </dl>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>	                        <dl>	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>	                            <dd><a href="javascript:download_xb();" class="Click_bj"><span>下载小兵</span></a></dd>	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>	                        </dl>	                    </li>	                </ul>	            </div>	        </nav>	        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>	    </div></div>
+<script type="text/javascript">
+	$(function () {
+		$(".ranking_nav li").click(function () {
+			var nowindex = $(this).index();
+			$(".ranking_nav li").attr("class", "");
+			$(".ranking_content .ranking").hide();
+			$(".ranking_nav li").eq(nowindex).attr("class","click_no");
+			$(".ranking_content .ranking").eq(nowindex).show();
+		});
+	})
+    var ua = navigator.userAgent.toLowerCase();  
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {  
+    	$(".work_area").css("top","0px");
+    }  
+</script>
+
+
+
+</body></html>

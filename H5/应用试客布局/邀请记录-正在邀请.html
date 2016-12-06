@@ -1,0 +1,182 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" name="no-store">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta charset="utf-8">
+<title>邀请记录</title>
+<link href="http://static.appshike.com/css/invitecss.css?v=1.0" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8">
+var succ_is_stop = false;
+var now_is_stop = false;
+var flag = true;
+$(function(){
+    show_invite();
+    if('0'>0){
+        $('#now_invite').hide();
+        $('#invite_successful').show();
+        $('#sss').addClass("now_invite").siblings("span").removeClass("now_invite")
+    }
+});
+$(window).scroll(function(){
+    totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+    if(flag && $(document).height()-100 <= totalheight){
+        $("#Loading_succ").css({"display":"block"});
+        $("#Loading_now").css({"display":"block"});
+        $("#Loading_succ").focus();
+        $("#Loading_now").focus();
+        show_invite();
+    }
+});
+function show_invite(){
+
+    if (!succ_is_stop || !now_is_stop) {
+        flag = false;
+        var nowStart = $("#now_invite li").length;
+        var succStart = $("#invite_successful li").length;
+        var length = 20;
+        var data = {
+            nowStart:nowStart,
+            succStart:succStart,
+            length:length,
+            succ_is_stop:succ_is_stop,
+            now_is_stop:now_is_stop,
+            whichone:$('#options').find('.now_invite').text(),
+            weChat_md5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',
+            weChat_md5_:getStore(shokey_param_key) ,
+            cur_time:new Date().getTime()
+        };
+        $.post("/itry/invite/getInviteRecordNew",data,function(dataObj){
+            succ_is_stop = dataObj.succ_is_stop;
+            now_is_stop = dataObj.now_is_stop;
+
+            //邀请成功
+            if(dataObj.invite_successful.s != null && dataObj.invite_successful.s.length>0){
+                $.each(dataObj.invite_successful.s,function(i,n){
+                    for(var key in n){
+                        if(n.hasOwnProperty(key)){
+                            var $ul;
+                            if($("#invite_successful h4:last span").text() != key){
+                                $("#Loading_succ").before("<h4 class='invite_time cf'><span>"+key+"</span><font>"+ n[key].length+"人</font></h4>");
+                                $ul = $("<ul class='Invited_record cf'></ul>");
+                                $("#Loading_succ").before($ul);
+                            }else{
+                                $ul = $("#invite_successful ul:last");
+                            }
+                            $.each(n[key],function(i,n1){
+                                if (n1.invite_status == 2) {
+                                    $ul.append("<li><a href='"+ n1.invite_url+"'><div class='list_info cf'><label class='yq_name fl'>" + n1.wx_nn+"</label><span class='yq_state R_import'>+5元</span></div></a></li>");
+                                } else {
+                                    $ul.append("<li><a href='"+ n1.invite_url+"' class='Click_bj'><div class='list_info cf'><label class='yq_name fl'>" + n1.wx_nn+"</label><span class='yq_state R_import'>+"+ n1.income+"元</span></div></a></li>");
+                                }
+                            });
+                        }
+                    }
+                });
+                $("#invite_successful h4:last font").html(dataObj.succ_last_size+"人");
+                if(succ_is_stop){
+                    $("#Loading_succ").css({"display":"none"});
+                }
+            }else{
+                $("#Loading_succ").css({"display":"none"});
+                if (succStart == 0) {
+                    $('#invite_successful').html('<p class="No_record" style="color: #adadad;">您没有邀请成功的朋友</p>');
+                }
+            }
+            //正在邀请
+            if(dataObj.now_invite.n != null && dataObj.now_invite.n.length > 0){
+                $.each(dataObj.now_invite.n,function(i,n){
+                    for(var key in n){
+                        if(n.hasOwnProperty(key)){
+                            var $ul;
+                            if ($("#now_invite h4:last span").text() != key) {
+                                $("#Loading_now").before("<h4 class='invite_time cf'><span>"+key+"</span><font>"+ n[key].length+"人</font></h4>");
+                                $ul = $("<ul class='now_invite_list cf'></ul>");
+                                $("#Loading_now").before($ul);
+                            }else{
+                                $ul = $("#now_invite ul:last");
+                            }
+
+                            $.each(n[key],function(i,n1){
+                                $ul.append("<li><label class='name'>"+ n1.wx_nn+"</label></li>");
+                            });
+                        }
+                    }
+                });
+                $("#now_invite h4:last font").html(dataObj.now_last_size+"人");
+                if(now_is_stop){
+                    $("#Loading_now").css({"display":"none"});
+                }
+            }else{
+                $("#Loading_now").css({"display":"none"});
+                if (nowStart == 0) {
+                    $('#now_invite').html('<p class="No_record" style="color: #adadad;">您没有正在邀请的朋友</p>');
+                }
+            }
+
+            flag = true;
+        },"json");
+    } else {
+        $("#Loading_succ").css({"display":"none"});
+        $("#Loading_now").css({"display":"none"});
+    }
+}
+</script>
+</head>
+<body>
+<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>邀请记录</h1></div><div class="wrap">
+	<div id="options" class="Invite_options cf">
+    	<span class="now_invite Click_bj">正在邀请</span>
+        <span id="sss" class="Click_bj">邀请成功</span>
+    </div>
+    <div class="Invite_options_info">
+    	<div id="now_invite" class="display_none cf" style="display:block">
+    		<h4 class="invite_time cf"><span>2016年10月01日</span><font>1人</font></h4><ul class="now_invite_list cf"><li><label class="name">Cary</label></li></ul><div id="Loading_now" style="width: 100%; font-size: 28px; color: rgb(0, 102, 255); text-align: center; padding: 20px 0px; display: none; float: left;">加载中...</div>
+        </div>
+    	
+        <div id="invite_successful" class="display_none"><p class="No_record" style="color: #adadad;">您没有邀请成功的朋友</p></div>
+    </div>
+    
+<div class="nav4">		        <nav>	            <div id="nav4_ul" class="nav_4">	                <ul class="box">	                	<li style="width:15%">                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>                		</li>	                    <li>	                        <a href="/shike/appList?t=1479462839315" class="Click_bj j_date"><span>开始赚钱</span></a>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>	                        <dl>	                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479462839316" class="Click_bj j_date"><span>个人中心</span></a></dd>	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=1" class="Click_bj"><span>邀请好友</span></a></dd>	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>	                            <dd><a href="/itry/income/toIncomeInfo?t=1479462839316" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>	                        </dl>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>	                        <dl>	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>	                            <dd><a href="javascript:download_xb();" class="Click_bj"><span>下载小兵</span></a></dd>	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>	                        </dl>	                    </li>	                </ul>	            </div>	        </nav>	        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>	    </div></div>
+<script type="text/javascript">
+$(function () {
+	$(".Invite_options span").each(function () {
+		$(this).click(function () {
+			var nowindex = $(this).index();  
+			$(".Invite_options_info .display_none").hide();
+			$(this).addClass("now_invite").siblings("span").removeClass("now_invite")
+			$(".Invite_options_info .display_none").eq(nowindex).show();
+		});
+	});
+});
+</script>
+
+
+</body></html>

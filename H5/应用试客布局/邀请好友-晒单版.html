@@ -1,0 +1,92 @@
+<html><head>
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" name="no-store">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta charset="utf-8">
+<title>晒单邀请</title>
+<link href="http://static.appshike.com/css/basecss.css?v=1.0" rel="stylesheet" type="text/css">
+<link href="http://static.appshike.com/css/invitecss.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://static.appshike.com/js/zepto.min.js"></script>
+<script type="text/javascript" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" src="http://static.appshike.com/js/shared.js"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+<script type="text/javascript" src="http://static.appshike.com/js/shike.js"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+<style> .wrap{ background:url(http://static.appshike.com/images/yq_Bask_single.jpg) no-repeat center 0px #30b4fa;}</style>
+</head>
+<body>
+<div class="wrap cf nomenu" style="background:#3a90f4;padding-top:0px;">
+	<span class="return" onclick="javascript:window.location.href='/html/menu.html'"></span>
+    <div class="yq_report_card">
+		<div class="header">
+			<h3>应用试客成绩单</h3>
+			<p>REPORT CARD</p>
+		</div>
+		<ul class="infolist cf">
+			<li>
+				<label>试玩应用</label>
+				<span>1个</span>
+			</li>
+			<li>
+				<label>试玩收入</label>
+				<span>1.00元</span>
+			</li>
+			<li>
+				<label>邀请好友</label>
+				<span>1个</span>
+			</li>
+			<li>
+				<label>邀请收入</label>
+				<span>0.00元</span>
+			</li>
+		</ul>
+		<div class="sd_revenue">
+			<p class="bt">所有收入</p>
+			<p class="sr">1.00  <font>元</font></p>
+		</div>
+		<input class="sd_btn Click_bj" type="button" value="晒一晒">
+	</div>
+    <div class="msg_share" style="display:none">
+    	<div class="tinymask"></div>
+        <div class="cf share_box">
+        	<ul class="share_l">
+            	<li class="Click_bj" style=" width: 100%;">
+                	<span class="Send_friend" onclick="share(0)">发送微信好友</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="invitation_menu">
+    	<span class="Click_bj"><a href="/itry/invite/toInviteFriendsOfXB?type=1">普通版</a></span>
+    	<span class="Click_bj"><a href="/itry/invite/toInviteFriendsOfXB?type=2">图片版</a></span>
+        <span class="Click_bj open"><a href="/itry/invite/toInviteFriendsOfXB?type=4">晒单版</a></span>
+    </div>
+</div>
+<script language="javascript">
+var user_ver = '1.20';
+$(function(){
+	  $(".sd_btn").click(function(){
+		  $.post("/itry/checkVersion",{t:new Date().getTime()},function(data){
+			  if(data == '1'){
+				  alert_Iknow('需要通过试客小兵转发邀请函<br />小兵有新版本，请重新下载并打开<br />记得在下载后删除历史版本哦~','下载小兵',function(){show_download_xb();});
+			  }else{
+				$(".msg_share").show();
+				$(".tinymask").css("display","block");
+				$(".msg_share .tinymask").click(function(){
+					$(".msg_share").hide();
+					$(".tinymask").css("display","none");
+				});	
+			  }
+		  });
+		});	
+})
+
+
+function share(type){
+		  var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6fbe0a100f94ef8c&redirect_uri=http%3A%2F%2Fi.appshike.com%2Fitry%2Finvite%2FtoInviteFriendsNew2&response_type=code&scope=snsapi_base&state=27771614_4_1_1.00_1_0.00_1.00#wechat_redirect';
+		  window.location.href = "itry://share?type=1&url="+encodeURIComponent(url)+"&stype="+type;
+}
+</script>
+
+
+</body></html>

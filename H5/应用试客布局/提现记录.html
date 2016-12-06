@@ -1,0 +1,197 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+    <title>提现记录</title>
+    <link href="http://static.appshike.com/css/myinfocss.css?v=1.1" rel="stylesheet" type="text/css">
+    <script type="text/javascript" charset="utf-8">
+        $(function(){
+            show_withdraw();
+        });
+        function show_withdraw(){
+            var data = {
+                openidMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',
+                cur_time:new Date().getTime()
+            }
+
+            $.post("/itry/personalcenter/getWithdrawRecordList",data,function(s){
+                if(s.length > 0){
+                    $.each(s,function(i,n){
+                        var create_date = n[0].create_time;
+                        create_date = create_date.split('-')[0]+'年'+create_date.split('-')[1]+'月'+create_date.split('-')[2]+'日';
+                        var append_str = "<div class='record_info cf'><p class='time'>"+ create_date+"</p><ul class='record_list cf'>";
+                        $.each(n,function(j,m){
+                        	var extr = "extract_ok";
+                        	var statusColor = "bag3a90f4";
+                            var bank = m.bank_name;
+                            var p_class = 'state_end';
+                            var statusName = '已到账';
+                            if(m.status == -1){
+                                extr = "extract_fail";
+                                statusColor = "bageb6464";
+                                p_class = 'state_failure';
+                                if(bank=='流量充值'){
+                                    statusName = '充值失败';
+                                }else{
+                                    statusName = '提现失败';
+                                }
+                            }else if(m.status == 0){
+                                extr = "extract_ing";
+                                statusColor = "bagef8d3e";
+                                p_class = 'state_ongoing';
+                                statusName = '提现中';
+                            }else if(m.status == 5){
+                                extr = "extract_ing";
+                                statusColor = "bagef8d3e";
+                                p_class = 'state_ongoing';
+                                statusName = '充值中';
+                            }else if(m.status == 6){
+                                extr = "extract_ok";
+                                statusColor = "bag3a90f4";
+                                p_class = 'state_end';
+                                statusName = '已充值';
+                            }
+                            if(bank=='WXHB'){
+                                bank='微信红包';
+                            }
+
+                            append_str +="<li class='Click_bj "+extr+"'><div class='lit'><input type='hidden' value='"+ m.id+"'><label>"+ bank +"</label><p class='record_state'>"+ m.money+" 元 <span class='"+statusColor+"'>"+statusName+"</span></p></div></li>";
+                        });
+                        $('#diw_id').append(append_str+"</ul></div>");
+                    });
+                    $(".Click_bj").click(function(){
+                        getDetail($.trim($(this).find('input').val()));
+                    });
+                }else{
+                    $('#diw_id').css('display','none');
+                    $('.no_info').show();
+                }
+
+            },"json");
+        }
+    </script>
+</head>
+<body>
+<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>提现记录</h1></div><div class="wrap">
+    <p class="no_info" style="display: none;">您还没有提现记录哦!</p>
+    <div class="tx_record cf" id="diw_id">
+
+    <div class="record_info cf"><p class="time">2016年09月30日</p><ul class="record_list cf"><li class="Click_bj extract_ok"><div class="lit"><input type="hidden" value="36642549"><label>微信钱包</label><p class="record_state">1.00 元 <span class="bag3a90f4">已到账</span></p></div></li></ul></div></div>
+    <div id="msg_div" class="msg_extract_ing" style="display:none;">
+        <div class="tinymask"></div>
+        <div class="tinybox cf" style="background:#fff">
+            <div class="extract_record"><img src="http://static.appshike.com/images/extract_ing.jpg" width="100%" alt=""></div>
+            <span class="ns-close binding_close"></span>
+            <h5 class="extract_title">提现中</h5>
+            <div class="ns-box-inner cf">
+                <div class="extract_record_info cf">
+                    <span class="money"></span>
+                    <p class="time">提现时间：<br><span></span></p>
+                </div>
+                <div class="trace fl">
+                    <p class="alipay"></p>
+                    <p class="WeChat"></p>
+                    <p class="Phone"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="nav4">		        <nav>	            <div id="nav4_ul" class="nav_4">	                <ul class="box">	                	<li style="width:15%">                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>                		</li>	                    <li>	                        <a href="/shike/appList?t=1479462892820" class="Click_bj j_date"><span>开始赚钱</span></a>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>	                        <dl>	                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479462892820" class="Click_bj j_date"><span>个人中心</span></a></dd>	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=1" class="Click_bj"><span>邀请好友</span></a></dd>	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>	                            <dd><a href="/itry/income/toIncomeInfo?t=1479462892820" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>	                        </dl>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>	                        <dl>	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>	                            <dd><a href="javascript:download_xb();" class="Click_bj"><span>下载小兵</span></a></dd>	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>	                        </dl>	                    </li>	                </ul>	            </div>	        </nav>	        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>	    </div></div>
+<script type="text/javascript">
+    $(function(){
+        $(".ns-close,.tinymask").click(function(){
+            $("#msg_div").hide();
+        });
+    });
+    function getDetail(apply_id){
+
+        var data = {
+            openidMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',
+            apply_id:apply_id,
+            cur_time:new Date().getTime()
+        };
+
+        $.post("/itry/personalcenter/getWithdrawDetail",data,function(s){
+            if(s.apply_money != null && s.apply_money != ''){
+                $('#msg_div').find('.money').html(s.apply_money+'<font>元</font>');
+                $('#msg_div').find('.time').html("提现时间：<br><span>"+s.create_time+"</span>");
+                if(s.status == '0'){
+                    $('#msg_div').find('.extract_title').html('提现中');
+                    $('#msg_div').find('img').attr('src','http://static.appshike.com/images/extract_ing.jpg');
+                }else if(s.status == '5'){
+                    $('#msg_div').find('.extract_title').html('充值中');
+                    $('#msg_div').find('img').attr('src','http://static.appshike.com/images/extract_ing.jpg');
+                }else if(s.status == '1'){
+                    $('#msg_div').find('.extract_title').html('提现成功');
+                    $('#msg_div').find('img').attr('src','http://static.appshike.com/images/extract_ok.jpg');
+                }else if(s.status == '6'){
+                    $('#msg_div').find('.extract_title').html('充值成功');
+                    $('#msg_div').find('img').attr('src','http://static.appshike.com/images/extract_ok.jpg');
+                }else if (s.status == '-1'){
+                    $('#msg_div').find('img').attr('src','http://static.appshike.com/images/extract_fail.jpg');
+                    if(s.bank == '微信钱包'){
+                        $('#msg_div').find('.extract_title').html('提现失败');
+                        if(s.rtn_msg.indexOf('真实姓名不一致')>-1){
+                            $('#error_msg').html("您在"+ s.create_time+"提现到微信钱包【"+s.bank_username+"】的【"+ s.apply_money+"元】试客奖励由于真实姓名与微信绑定的银行卡姓名不一致【提现失败】，" +
+                                    "请到<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3A%2F%2F"+itrycom+"%2Fitry%2Fpersonalcenter%2FtoPersonalCenter&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'><font style='color:#0066cc'>个人中心</font></a>修改后再试");
+                        }else{
+                            //$('.info_list').append("<p>您在"+ s.create_time+"提现到微信钱包的【"+ s.apply_money+"元】试客奖励【提现失败】，微信支付提示：无法接收企业付款。请使用支付宝提现，给您带来的不便深表歉意。</p>");
+                            $('#error_msg').html("您在"+ s.create_time+"提现到微信钱包的【"+ s.apply_money+"元】试客奖励【提现失败】。请重新提现，给您带来的不便深表歉意。");
+                        }
+                    }else if(s.bank == '流量充值'){
+                        $('#msg_div').find('.extract_title').html('充值失败');
+                        if(s.rtn_msg!="" || s.rtn_msg!=null){
+                            $('#error_msg').html("您充值的流量由于"+s.rtn_msg+"充值失败");
+                        }
+                    }else{
+                        $('#msg_div').find('.extract_title').html('提现失败');
+                        $('#error_msg').html("由于您的提现信息有误导致提现失败，请核对后修改并重新提现。");
+                    }
+                }
+                var bank = s.bank;
+                $('#msg_div').find('.trace').find('p').hide();
+                if(bank == '流量充值'){
+                    $('#msg_div').find('.money').html(s.liuliangInfo+'<font>M</font>');
+                    $('#msg_div').find('.time').html("充值时间：<br><span>"+s.create_time+"</span>");
+                   $('#msg_div').find('.trace').find('.Phone').html(s.mbphone);
+                   $('#msg_div').find('.trace').find('.Phone').show();
+                }else if(bank.indexOf('支付宝')>=0){
+                   $('#msg_div').find('.trace').find('.alipay').html(bank);
+                   $('#msg_div').find('.trace').find('.alipay').show();
+                }else if(bank.indexOf('微信钱包')>=0){
+                   $('#msg_div').find('.trace').find('.WeChat').html(bank);
+                   $('#msg_div').find('.trace').find('.WeChat').show();
+                }else{
+                   $('#msg_div').find('.trace').find('.WeChat').html("微信红包");
+                   $('#msg_div').find('.trace').find('.WeChat').show();
+                }
+               $('#msg_div').show();
+            }
+        })
+
+    }
+</script>
+
+</body></html>

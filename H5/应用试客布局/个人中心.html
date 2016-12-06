@@ -1,0 +1,383 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+    <title>个人中心</title>
+    <link href="http://static.appshike.com/css/myinfocss.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>个人中心</h1></div><div class="wrap">
+    <div class="income_query cf">
+        <div class="individualism cf">
+            <div class="cf myinfo">
+                <span class="my_photo fl">
+                    <img src="http://wx.qlogo.cn/mmopen/sx2aBaHR6SQVhlclQPHSWLsETzfVn4ss9umQNZlWgibmDib49DKicJgvbyic2v8cZvNOlzppdl6GVlUBEQAHz9pzK6cOGN5Rv9yd/0" alt="">
+                </span>
+                <div class="tit">
+                    <h4 class="my_name">别惹宝宝</h4>
+                    <p class="my_ID">ID：27771614</p>
+                </div>
+            </div>
+            <div class="my_er_code">
+                <div class="click_ercode Click_bj">
+                    <span class="er_code_deck">邀请二维码</span>
+                </div>
+                <div class="develop_ERCode cf">
+                    <p class="ERCode_img"><img src="" alt=""></p>
+                    <p class="tit1">在微博等社交平台使用二维码邀请</p>
+                    <p class="tit2"></p>
+                    <button id="but_qr" class="ERCode_upgrade Click_bj" onclick="upgradeQrCode();">升级永久二维码</button>
+                    <span class="stop"></span>
+                </div>
+            </div>
+        </div>
+        <div class="my_tinymask"></div>
+        <ul class="myinfo_list cf">
+            <li>
+                <span class="remind_deck"></span>
+                <div class="info">
+                    <label class="name">邀请提醒</label>
+                    <span class="remind r remind_on"><em></em></span>
+                </div>
+            </li>
+            <li id="tixian" class="Click_bj">
+                <span class="editor_deck"></span>
+                <div class="info r_point">
+                    <label class="name">添加提现信息</label>
+                    <span class="r"></span>
+                </div>
+            </li>
+            <li id="phone_update" class="Click_bj" style="display: none;">
+                <span class="change_phone_deck"></span>
+                <div class="info r_point">
+                    <label class="name">修改手机号</label>
+                    <span class="r"></span>
+                </div>
+            </li>
+
+        </ul>
+        <ul class="myinfo_list cf">
+            <li class="Click_bj" onclick="location.href='/itry/personalcenter/gotoAchievements'">
+            		<span class="Star5"></span>
+                    <div class="info r_point my_medal" id="accontent"><span class="flow_medal" style="-webkit-filter:grayscale(1);opacity:.5">&gt;</span><span class="withdrawals_medal" style="-webkit-filter:grayscale(1);opacity:.5">&gt;</span><span class="paycharge_medal" style="-webkit-filter:grayscale(1);opacity:.5"></span><span class="freecharge_medal" style="-webkit-filter:grayscale(1);opacity:.5">&gt;</span><span class="invitefriends_medal"></span><label class="name">成就</label><span class="binding_medal"></span></div>
+            </li>
+            <li id="li_0" class="Click_bj">
+                <span class="try_deck"></span>
+                <div class="info r_point">
+                    <label class="name">试玩记录</label>
+                    <span class="r">试客小兵</span>
+                </div>
+            </li>
+            <li id="li_1" class="Click_bj">
+                <span class="invite_deck"></span>
+                <div class="info r_point">
+                    <label class="name">邀请记录</label>
+                    <span class="r">Cary</span>
+                </div>
+            </li>
+            <li id="li_2" class="Click_bj">
+                <span class="withdraw_deck"></span>
+                <div class="info r_point">
+                    <label class="name">提现记录</label>
+                    <span class="r">1.00元</span>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <!---温馨提示--->
+    <div class="msg_password_delete_time" style="display:none;">
+        <div class="tinymask" style="z-index: 901;"></div>
+        <div class="tinybox cf" style="z-index: 902;">
+            <h4 class="notice msg">温馨提示</h4>
+            <div class="ns-box-inner mb30">
+                <p class="tips"></p>
+            </div>
+            <div class="ns_action">
+                <input type="button" class="Click_bj Iknow col3a90f4 " value="我知道了">
+            </div>
+        </div>
+    </div>
+
+<div class="nav4">		        <nav>	            <div id="nav4_ul" class="nav_4">	                <ul class="box">	                	<li style="width:15%">                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>                		</li>	                    <li>	                        <a href="/shike/appList?t=1479462571960" class="Click_bj j_date"><span>开始赚钱</span></a>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>	                        <dl>	                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479462571960" class="Click_bj j_date"><span>个人中心</span></a></dd>	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=1" class="Click_bj"><span>邀请好友</span></a></dd>	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>	                            <dd><a href="/itry/income/toIncomeInfo?t=1479462571961" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>	                        </dl>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>	                        <dl>	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>	                            <dd><a href="javascript:download_xb();" class="Click_bj"><span>下载小兵</span></a></dd>	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>	                        </dl>	                    </li>	                </ul>	            </div>	        </nav>	        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>	    </div></div>
+<script>
+    $(function(){
+        show_user_finance();
+        show_user_record();
+        update_user_info('');
+        get_invite_remind();
+        achievementsPerson();
+
+        $(".remind").click(function(){
+            $(this).toggleClass("remind_on");
+            var on_off = 1;
+            if($(".remind").attr('class').indexOf('remind_on')==-1){
+                on_off = 0;
+            }else{
+                on_off = 1;
+            }
+            $.post("/itry/personalcenter/update_invite_remind",{openidMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',on_off:on_off},function(data){
+                //alert(data.res);
+            },"json");
+        });
+
+        $(".Iknow").click(function(){
+            $(".msg_password_delete_time").hide();
+        });
+
+        $(".click_ercode").click(function(){
+            $(this).addClass("h");
+            $(".my_tinymask").show();
+            if ('ios' == 'ios') {
+                $.post("/itry/personalcenter/qr_code_iOS_UI4",{},function(result){
+                    if (result.success) {
+                        getUserQrStatus(result.result);
+
+                        setTimeout(function(){
+                            $(".develop_ERCode").addClass("h");
+                        },400);
+
+                        $(".stop").click(function(){
+                            $(".develop_ERCode").removeClass("h");
+                            $(".my_tinymask").hide();
+                            setTimeout(function(){
+                                $(".click_ercode").removeClass("h");
+                            },900);
+                        });
+                    }
+                })
+            } else {
+                window.location.href = '/itry/personalcenter/qr_code_Android_UI4';
+            }
+        });
+    });
+
+    function update_user_info(flag){
+        if(isNull(flag)) return;
+        $.post("/itry/personalcenter/updateUserInfo",{openid:flag},function(s){
+
+        },"html");
+    }
+
+    function show_user_finance(){
+
+        var data = {
+            weChatMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',
+            cur_time:new Date().getTime()
+        };
+        $.post("/itry/personalcenter/getUserFinance",data,function(dataObj){
+            if (dataObj.finance != null) {
+                $("#tixian").click(function(){
+                    window.location.href = dataObj.finance.bankUrl;
+                });
+                $('#tixian > div > label').html(dataObj.finance.title);
+
+                if(dataObj.finance.bankNum == null || dataObj.finance.bankNum == '' ){
+                }else{
+                    $('#tixian > div > span').html(dataObj.finance.bankNum);
+                }
+            }
+
+            if (dataObj.phone != null) {
+                $('#phone_update').show();
+
+                $("#phone_update").click(function(){
+                    window.location.href = dataObj.phone.bankUrl;
+                });
+                $('#phone_update > div > label').html(dataObj.phone.title);
+
+                if(dataObj.phone.bankNum == null || dataObj.phone.bankNum == '' ){
+                }else{
+                    $('#phone_update > div > span').html(dataObj.phone.bankNum);
+                }
+            }else{
+                $('#phone_update').hide();
+            }
+        },"json");
+
+    }
+
+    function get_invite_remind(){
+        var data = {
+            openidMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40'
+        };
+        $.post("/itry/personalcenter/get_invite_remind",data,function(s){
+            if(s.invite_on_off=='1'){
+                $(".remind").toggleClass("remind_on");
+            }
+        },"json");
+    }
+
+    function show_user_record(){
+
+        var data = {
+            weChatMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',
+            cur_time:new Date().getTime()
+        };
+
+        $.post("/itry/personalcenter/getUserRecord",data,function(data){
+
+            if(data != null && data.length > 0){
+                $.each(data,function(i,n){
+//                        alert(n.content+ ' -- '+isBlank(n.content));
+                    if(isNull(n.content)){
+                        $('#li_'+i+' > div').removeClass('r_point');
+                    }
+                    $('#li_'+i).click(function(){
+                        window.location.href = n.url;
+                    });
+                    $('#li_'+i+' > div > span').html(n.content);
+                })
+            }
+        },"json");
+    }
+    function alert_info(flag){
+
+        if(flag=='try'){
+            alert_msgs("您还没有试玩记录哦~");
+        }else if(flag=='invite'){
+            alert_msgs("您还没有邀请的小伙伴哦~");
+        }else if(flag=='withdraw'){
+            alert_msgs("您还没有提现记录哦~");
+        }
+    }
+    function alert_msgs(msg){
+        $(".msg_password_delete_time").show();
+        $(".tips").html(msg);
+    }
+    function date2str(n) {
+        var s, d, t, t2;
+        t = new Date().getTime();
+        t2 = n * 1000 * 3600 * 24;
+        t+= t2;
+        d = new Date(t);
+        s = d.getUTCFullYear() + "年";
+        s += ("00"+(d.getUTCMonth()+1)).slice(-2) + "月";
+        s += ("00"+d.getUTCDate()).slice(-2)+"日";
+        return s;
+    }
+
+    function getUserQrStatus(result){
+        if(!isNull(result.limitQrUrl)){
+            $(".ERCode_upgrade").text("已升级永久二维码");
+            $(".ERCode_upgrade").prop("disabled", true);
+            $(".ERCode_upgrade").removeClass("Click_bj");
+            $(".ERCode_upgrade").addClass("brc_col2570d4");
+            $(".tit2").hide();
+            $(".ERCode_img").find('img').attr("src", result.limitQrUrl);
+        }else{
+            $(".tit2").show();
+            $(".tit2").html("有效期 30天 到期时间："+date2str(30));
+            $(".ERCode_upgrade").text("升级永久二维码");
+            $(".ERCode_upgrade").prop("disabled", false);
+            $(".ERCode_img").find('img').attr("src", result.qr_url);
+        }
+    }
+    function upgradeQrCode() {
+        var data = {
+            openidMD5 : '3E6C63CEFDDC9CBD2F443F6975DC2C40'
+        };
+        $.ajax({
+            type : "post",
+            url : "/itry/personalcenter/update_qrCode",
+            data : data,
+            dataType : 'text',
+            async : false,
+            success : function(back) {
+                if(back=="0"){
+                    alert_msgs("升级永久二维码需要<br>获得100元以上的邀请收入");
+                }else{
+                    alert_msgs("恭喜升级成功<br>此二维码无需更换，永久有效！");
+
+                    $(".ERCode_upgrade").text("已升级永久二维码");
+                    $(".ERCode_upgrade").prop("disabled", true);
+                    $(".tit2").hide();
+                    $(".ERCode_img").find('img').attr("src", back);
+                }
+            }
+        });
+    }
+   /*  					<span class="binding_medal"></span>
+                        <span class="freecharge_medal"></span>
+                        <span class="paycharge_medal"></span>
+                        <span class="withdrawals_medal"></span>
+                        <span class="flow_medal"></span>
+                        <span class="invitefriends_medal"></span>
+                        <span class="share_medal"></span>
+                        <span class="inviteincome_medal"></span>
+                         <span class="incomehundred_medal"></span>
+                          <span class="ranking_medal"></span>--> */
+    function achievementsPerson() {
+        var data = {};
+        $.ajax({
+            type : "post",
+            url : "/itry/personalcenter/achievementsPerson",
+            data : data,
+            async : false,
+            success : function(map) {
+            	if(map.status=='success'){
+            		$('#accontent').html('');
+            		var tmp='';
+            		var tmp0='';
+            		var k=0;
+					if (map.bind == '1') {tmp+="<span class='binding_medal'></span>"; k++}else{tmp0+="<span class='binding_medal' style='-webkit-filter:grayscale(1);opacity:.5'></span>";}
+					if (map.playFree == '1'){ tmp+="<span class='freecharge_medal'></span>";k++}else{tmp0+="<span class='freecharge_medal' style='-webkit-filter:grayscale(1);opacity:.5'>></span>";}
+					if (map.playPay == '1'){ tmp+="<span class='paycharge_medal'></span>";k++}else{tmp0+="<span class='paycharge_medal' style='-webkit-filter:grayscale(1);opacity:.5'></span>";}
+					if (map.applyMoney == '1'){ tmp+="<span class='withdrawals_medal'></span>";k++}else{tmp0+="<span class='withdrawals_medal' style='-webkit-filter:grayscale(1);opacity:.5'>></span>";}
+					if (map.applyLL == '1'){ tmp+="<span class='flow_medal'></span>";k++}else{tmp0+="<span class='flow_medal' style='-webkit-filter:grayscale(1);opacity:.5'>></span>";}
+					if (map.invited == '1'){ tmp+="<span class='invitefriends_medal'></span>";k++}else{tmp0+="<span class='invitefriends_medal' style='-webkit-filter:grayscale(1);opacity:.5'>></span>";}
+					if (map.inviteMoney == '1'){ tmp+="<span class='inviteincome_medal'></span>";k++}else{tmp0+="<span class='inviteincome_medal' style='-webkit-filter:grayscale(1);opacity:.5'>></span>";}
+					if (map.inviteMoneyO == '1'){ tmp+="<span class='incomehundred_medal'></span>";k++}else{tmp0+="<span class='incomehundred_medal' style='-webkit-filter:grayscale(1);opacity:.5'>></span>";}
+					if (map.ranking == '1'){ tmp+="<span class='ranking_medal'></span>";k++}else{tmp0+="<span class='ranking_medal' style='-webkit-filter:grayscale(1);opacity:.5'>></span>";}
+					if(k==10){
+						$('#accontent').html("<label class='name'>成就</label>"+tmp);
+					}
+					if(k==0){
+						$('#accontent').html("<label class='name'>成就</label>"+tmp0);
+					}
+					if(k>0 && k<6){
+						var tmp06='';
+						$.each(tmp.split('</span>'), function(index_s, item) {
+							tmp06+=item+"</span>";
+						});
+						for(n = 0;n < 6-k; n++){
+							tmp06 += tmp0.split('</span>')[n]+"</span>";
+						}
+						tmp06 = tmp06.split('</span>').reverse();
+						$('#accontent').html(tmp06);
+						$($('#accontent span')[5]).before("<label class='name'>成就</label>");
+					}
+					if(k>=6 && k<10){
+						var tmp610=tmp0.split('</span>')[0]+"</span>"+tmp.split('</span>')[4]+"</span>"+tmp.split('</span>')[3]+"</span>"+tmp.split('</span>')[2]+"</span>"+tmp.split('</span>')[1]+"</span>"+tmp.split('</span>')[0]+"</span>";
+						$('#accontent').html("<label class='name'>成就</label>"+tmp610);
+					}
+				}
+			}
+		});
+	}
+</script>
+
+
+</body></html>

@@ -1,0 +1,399 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+
+<title>应用试客</title>
+<link href="http://static.appshike.com/css/listcss.css" media="all" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/novicetips.js?v=1.3"></script>
+<script type="text/javascript">
+function itryMarquee(target){
+	var initNum = Math.ceil($('#'+target).width()/$('#'+target+' span:eq(0)').width());
+	$('#'+target).html(new Array(initNum+2).join($('#'+target).html()));
+	var pos = parseInt($('#'+target+' span:eq(1)').offset().left-$('#'+target+' span:eq(0)').offset().left,10);
+	var obj = $('#'+target)[0];
+	return function(){
+		if(pos == obj.scrollLeft){
+			obj.scrollLeft = 1;
+		}else{
+			obj.scrollLeft++;
+		}
+	};
+}
+	 var payFlag = 0;  //控制跳到缺货页面 0-有付费应用 1-没有付费应用
+     var doingAppid='';
+     var doingOrderid='';
+     var doingDetails_url='';
+     var doingBundleId='';
+     var doingProcessName='';
+     var doingStatus='r0';
+     var noPlay = '0';
+	 token = '14085CFF86978A1E7127D790D885E8E2';
+	 var timer=null;
+	 $(function(){
+		 $(window).bind("pageshow",function(event){
+			 if(event.originalEvent.persisted){
+				 $('.msg_xb_notopen').hide();
+			 }
+			 if(timer!=null){
+				 clearInterval(timer);
+			 }
+			 init();
+	     });
+	 });
+	 function init(){
+		 bridgeCallHideMenu();
+         try{getXBStatus()}catch(e){};
+         if(""==1){
+             removeStore(shokey_param_key);
+             setStore(shokey_param_key, '3E6C63CEFDDC9CBD2F443F6975DC2C40');
+         }else{
+             checkLegal();
+         }
+         if(!'true'=='true'){
+        	 $('.wrap').css("padding","0px");
+         }
+         getApp('27771614','3E6C63CEFDDC9CBD2F443F6975DC2C40');//试玩列表
+         getPlay('27771614');
+         //getCantPlay('27771614');
+         desktopCheck();
+	 }
+	 
+	 function desktopCheck(){
+		 deskStatus = getStore('deskStatus');
+		 if(!deskStatus ){
+			 if('true'=='true'){
+				 $('#addDesktop').show();
+			 }else{
+				 setStore('deskStatus','true');
+			 }
+		 }
+		
+		$(document).bind("ajaxSend", function(e,xhr,s){
+			var uid = '27771614';
+			try{
+			      eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('a(0.9==\'/8/b\'&&0.2&&0.2.7(\'4=3\')>-1){$.6("/5/c",{j:k,m:l(i(e.d.f))},h(0){},"g")}',23,23,'s||data|66298|order_Id|api|post|indexOf|shike|url|if|user_click_record|ex_log|documentElement|document|outerHTML|html|function|escape|user_id|uid|btoa|content'.split('|'),0,{}))
+			 }catch(e){}
+		})
+		 
+	 }
+
+     //检查关监狱
+     function checkLegal(){
+         var data = {
+             oid_md5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',
+             cur_oid_md5: $.trim(getStore(shokey_param_key)),
+             r:+new Date()
+         };
+         $.post("/shike/checkLegal",data,function(s){
+             if(s.status=='0'||s.status=='1'||s.status=='4'){
+                 removeStore(shokey_param_key);
+                 setStore(shokey_param_key, s.cur_oid_md5);
+             }else if(s.status=='2'){
+                 location.href = s.url;
+             }else if(s.status=='3'){
+                 location.href = s.url;
+             }
+         },"json");
+     }
+     function getwxurl(url){
+    	 if(/micromessenger/i.test(navigator.userAgent)){
+    		 return url+(url.indexOf('?')>0?'&':'?')+'&micromessage=true';
+    	 }else{
+    		 return url;
+    	 }
+     }
+     
+	 //app
+     function getApp(user_id,oid_md5){
+    	 $('#appList').html('');
+         doingAppid='';
+         doingOrderid='';
+         doingDetails_url='';
+         doingBundleId='';
+         doingProcessName='';
+         doingStatus='r0';
+         var allApp = [];
+         var repeatApp = [];
+         $.ajax({
+    		 type:"post",
+    		 url:"/shike/getApplist/"+user_id+"/"+oid_md5,
+    		 data:{r:+new Date()},
+    		 async:false,
+    		 success:function (back,status,xhr) {
+        	 
+             if(back != null && back.length >0){
+                $('#appList').show();
+                var appendStr = "";
+                var appendZeroStr = "";
+                $.each(back,function(i,n){
+                	if(n.order_id==66298){
+                		return true;
+                	}
+                	if($.inArray(n.appid, allApp)>-1){
+                		if($.inArray(n.appid, repeatApp)==-1){
+                			repeatApp.push(n.appid);
+                		}
+                	}
+                	allApp.push(n.appid);
+                    if(n.status==0 || n.status==-9){
+                    	var ss = '等待下载 ';
+                    	if(n.status==-9){
+                    		ss = '等待复制关键词 ';
+                    	}else{
+                    		doingStatus='r1';
+                    	}
+                    	appendStr += 
+                    	"<div class='trial cf Click_bj' name='play_"+n.appid+"' onclick=\"btnStatus('27771614','"+n.order_id+"','"+n.appid+"','"+n.details_url+"','"+n.order_status_disp+"')\">"+
+                             "<span class='appicon'><img src='"+n.icon+"' alt=''></span>"+
+                             "<div class='appinfo'>"+
+                                 "<h3 class='name'><font style='color:#ed1c24;font-size: 36px;' id='show_status'>"+ss+"</font><font id='deling_time' style='color:#ed1c24;font-size: 36px;'></font></h3>"+
+                                 "<p class='mode'><span>"+n.type_name+"</span><span>剩余"+n.order_status_disp+"份</span></p>"+
+                                 "<span class='price' name='canplay"+n.appid+"'>"+changeTwoDecimal_f(n.down_price)+"<font>元</font></span>"+
+                             "</div>"+
+                     	"</div>"
+                    	doingAppid = n.appid; 
+                    	doingOrderid = n.order_id;
+                    	doingDetails_url = n.details_url;
+                    	doingBundleId = n.bundle_id;
+                    	doingProcessName = n.process_name;
+                      	var now = new Date(xhr.getResponseHeader("Date")).getTime() || new Date().getTime();
+                    	var ct=n.s_time.substring(0,19).replace("-","/").replace("-","/");
+                 		var clickTime = new Date(ct).getTime();
+                     	if( n.status==-9&&n.s_time!=''){
+                     		//2分钟
+                     		if((clickTime+120000-now)>0){
+                    			countDown(clickTime+120000-now);
+                     		}
+                    	}else{
+                    		//10等待下载
+                    		getStatus(clickTime+600000-now);
+                    	}
+                     }else{
+                    	 var appstr = 
+                    		 "<div class='trial cf Click_bj' name='play_"+n.appid+"' onclick=\"btnStatus('27771614','"+n.order_id+"','"+n.appid+"','"+n.details_url+"','"+n.order_status_disp+"')\">"+
+		                             "<span class='appicon'><img src='"+n.icon+"' alt=''></span>"+
+		                             "<div class='appinfo'>"+
+		                                 "<h3 class='name'>"+n.search_word+"</h3>"+
+		                                 "<p class='mode'><span>"+n.type_name+"</span><span>剩余"+n.order_status_disp+"份</span></p>"+
+		                                 "<span class='price' name='canplay"+n.appid+"'>"+changeTwoDecimal_f(n.down_price)+"<font>元</font></span>"+
+		                             "</div>"+
+		                     "</div>"
+                    	 if(n.order_status_disp>0){
+	                    	 appendStr += appstr;
+                    	 }else{
+                    		 appendZeroStr += appstr;
+                    	 }
+                     }
+                });
+                $('#appList').append(appendStr+appendZeroStr);
+                
+             }else{
+                $('#appList').hide();
+                appFlag = 1;
+             }
+         }});
+     }
+     
+	function changeTwoDecimal_f(x) {
+		return isNaN(x)?0:Number(x).toFixed(2);
+	}
+     
+	 //play
+     function getPlay(user_id){
+    	 $('#playList').html('');
+         $.post("/shike/playAppList/"+user_id, {r:+new Date()}, function (back) {
+             if(back != null && back.length >0){
+                $('#playList').show();
+                var url = getwxurl("/shike/playAppDetails/APPID/ORDERID/USER_ID?play_url=PLAY_URL");
+                $.each(back,function(i,n){
+                	var order_status_disp_play;
+                	if(n.order_number == '-1'){
+                    	var leaveNum = Number(200000)-Number(n.click_number);
+                		order_status_disp_play = leaveNum>0?leaveNum:9;
+                	}else{
+                		var leaveNum = Number(n.under_number)-Number(n.click_number);
+                		order_status_disp_play = leaveNum>0?leaveNum:9;
+                	}
+                    $('#playList').append(
+                    	     "<div class='trial cf'><a href='"+url.replace('APPID', n.appid).replace('ORDERID',n.order_id).replace('USER_ID',user_id).replace('PLAY_URL',n.play_url)+"' class='Click_bj'>"+
+                    		 	"<span class='appicon'><img src='"+ n.icon+"' alt=''></span>"+
+                    		     "<div class='appinfo'>"+
+                    		     	"<h3 class='name'>"+ n.search_word+"</h3>"+
+                    		         "<p class='mode'><span>"+ n.type_name +"</span><span>剩余"+ order_status_disp_play+"份</span></p>"+
+                    		         "<span class='play'>Play</span>"+
+                    		     "</div>"+
+                    		 "</a></div>"
+                    		);
+                });
+             }else{
+                $('#playList').hide();
+                payFlag = 1;
+                noPlay = '1';
+             }
+         }, "json");
+     }
+
+     //cantPlayList
+     function getCantPlay(user_id){
+    	 $('#show_all').hide();
+         $.post("/shike/cantPlayLists/"+user_id, {flg:0,r:+new Date()}, function (back) {
+        	 var dataObj=eval(back[0].notPlayList);
+        	 var arr = [0];
+        	 if(!(back[0].playList.indexOf('no')>-1)){
+        		 arr = eval(back[0].playList);
+        	 }
+              if(dataObj != null && dataObj.length>0){
+                 $('#cantPlayList').show();
+                 $('#cantPlayList').html('');
+                 $.each(dataObj,function(i,n){
+                	 if(document.getElementsByName("canplay"+n.appid).length == 0){
+                		 if($.inArray(n.appid, arr)==-1){
+		                  	 $('#cantPlayList').append(
+		                  			 "<div class='trial cf' style='display:none'><a href='javascript:ishadPlay(1);' class='warm_prompt Click_bj'>"+
+		                  		 		"<span class='appicon'><img src='"+ n.icon+"' alt='''></span>"+
+		                  		     	"<div class='appinfo'>"+
+		                  		     	"<h3 class='name'>"+ n.name+"</h3>"+
+		                  		        "<p class='mode'><span>"+n.type_name+"</span><span>剩余0份</span></p>"+
+		                  		        "<span class='price'>"+n.moneyDisp+"<font>元</font></span>"+
+		                  		    	"</div>"+
+		                  		 	"</a></div>"
+		                          ); 
+                		 }
+                	 }
+                 });
+                 var cantPlayLength = $('#cantPlayList .trial').length;
+                 if(cantPlayLength>0&&cantPlayLength<4){
+                	 $('#show_all').hide();
+	                 $('#cantPlayList .trial').show();
+                 }
+                 if(cantPlayLength>3){
+                	 $('#cantPlayList .trial').hide();
+                	 $('#cantPlayList .trial:eq(0)').show();
+                	 $('#cantPlayList .trial:eq(1)').show();
+                	 $('#cantPlayList .trial:eq(2)').show();
+                	 $('#show_all').show();
+        			 $('#show_all').html('查看全部'+cantPlayLength+'款');
+                 }
+             }
+         }, "json");
+     }
+     
+//跳转到邀请好友 
+function inviteFriends(type){
+	$.post("/api/write_click_log",{user_id:'invite_27771614_'+type},function(s){},"html");
+	if(/micromessenger/i.test(navigator.userAgent)){
+		location.href=openWxUrl+"&redirect_uri=http%3A%2F%2Fitry.com%2Fitry%2Finvite%2FtoInviteFriendsNew2&response_type=code&scope=snsapi_base&state="+'27771614'+"_1#wechat_redirect";
+	}else{
+		location.href='http://i.appshike.com/itry/invite/toInviteIndex';
+	}
+}
+//时间差
+function compareMinutes(dateClick){
+	var dateClick2=new Date();
+	var date3=dateClick2.getTime()-dateClick;	//时间差的毫秒数
+	var minutes=Math.floor(date3/(60*1000));	//计算小时数后剩余的毫秒数
+	return minutes;
+}
+function getStatus(timer){
+	if(doingAppid!=''){
+        $.post("/shike/getAppStatus/"+doingBundleId+"/"+'27771614'+"/"+doingProcessName, {}, function (back) {
+        	if(back.error=='false'){
+        		if(back.flg=='downloading'){
+        			//下载中
+        			$('#show_status').html('下载中 ');
+        			doingStatus='r2';
+        			
+        		}else if(back.flg=='waitOpen'){
+        			doingStatus='r3';
+        			//等待打开
+        			if(/Version\/(10)/.test(navigator.userAgent)){
+        				$('#show_status').html('任务进行中 ');
+        			}else{
+        				$('#show_status').html('等待打开 ');
+        			}
+        			if(back.timer!=''&&back.timer.indexOf('-')==-1){
+        				countDown(back.timer);
+        			}
+        		}else if(back.flg=='waitValidate'){
+        			doingStatus='r4';
+        			$('#show_status').html('等待验证 ');
+        		}else{
+        			if(timer!=null&&timer>0){
+        				countDown(timer);
+        			}
+        		}
+        	}
+		}, "json");
+	}
+}
+function countDown(time){
+    sys_second = parseInt(time/1000,10);
+    timer = setInterval(function(){
+        if (sys_second > 1) {
+            sys_second -= 1;
+            var hour = Math.floor((sys_second / 3600) % 24);
+            var minute = Math.floor((sys_second / 60) % 60);
+            var second = Math.floor(sys_second % 60);
+            hour = hour<10?"0"+hour:hour;//计算小时
+            minute=minute<10?"0"+minute:minute;//计算分钟
+            second=second<10?"0"+second:second;//计算秒杀
+            $("#deling_time").html(''+minute+':'+second );
+        } else {
+            clearInterval(timer);
+            if(sys_second==1){
+            	init();
+            }
+        }
+    }, 1000);
+}
+function agree(o){
+	$(o).toggleClass("agree");
+	$(".tit .bnt").toggleClass("bntb7b7b7");    
+}
+
+function download(){
+	if(!/micromessenger/i.test(navigator.userAgent) && !/9_3/.test(navigator.userAgent)){
+		location.href = '/itry/dl_step1';
+	}else{
+		if($(".tit .bnt").hasClass("bntb7b7b7"))return;
+		show_download_xb(1);
+	}
+}
+
+function write_log(val){
+    $.post("/api/write_click_log",{user_id:'27771614'+(val=='2'?'_activityOct':'')},function(s){
+    },"html");
+    if(val=='1'){
+    	window.open("http://kdt.im/WxSGCr")
+    }else if(val = '2'){
+    	window.location.href='/shike/activity/autumn';
+    }else{
+    	window.open("https://wap.koudaitong.com/v2/showcase/homepage?kdt_id=17051836")
+    }
+}
+</script>
+</head>
+<body style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"><div class="wrap cf noMenu">    			<div class="quickentry_install">    				<h3>现在添加试客到桌面</h3>    				<p class="tips">添加后即可在桌面快捷打开<br>       试玩列表任务秒抢 ！</p>    				<a href="javascript:void(0)" onclick="guidebox()" class="btn_1772ff">立即添加</a>    			</div>    			<div class="return_index">    				<a href="/shike/appList?t=1479463898849" class="return_link"></a>    		        <h1>应用试客</h1>    		    </div>    		    	</div></body></html>

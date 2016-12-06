@@ -1,0 +1,852 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Cache-Control" name="no-store">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta charset="utf-8">
+    <title>收入查询</title>
+    <link href="http://static.appshike.com/css/myinfocss.css?v=1.1" rel="stylesheet" type="text/css">
+   	<style>
+        @-webkit-keyframes center_touch {
+            0%,100%,60%,75%,90% {
+                -webkit-animation-timing-function:cubic-bezier(0.215,.61,.355,1);
+                animation-timing-function:cubic-bezier(0.215,.61,.355,1)
+            }
+            0% {
+                opacity:0;
+                -webkit-transform:translate3d(0,-3000px,0);
+                transform:translate3d(0,-3000px,0)
+            }
+            60% {
+                opacity:1;
+                -webkit-transform:translate3d(0,25px,0);
+                transform:translate3d(0,25px,0)
+            }
+            75% {
+                -webkit-transform:translate3d(0,-10px,0);
+                transform:translate3d(0,-10px,0)
+            }
+            90% {
+                -webkit-transform:translate3d(0,5px,0);
+                transform:translate3d(0,5px,0)
+            }
+            100% {
+                -webkit-transform:none;
+                transform:none
+            }
+        }
+        @keyframes center_touch {
+            0%,100%,60%,75%,90% {
+                -webkit-animation-timing-function:cubic-bezier(0.215,.61,.355,1);
+                animation-timing-function:cubic-bezier(0.215,.61,.355,1)
+            }
+            0% {
+                opacity:0;
+                -webkit-transform:translate3d(0,-3000px,0);
+                transform:translate3d(0,-3000px,0)
+            }
+            60% {
+                opacity:1;
+                -webkit-transform:translate3d(0,25px,0);
+                transform:translate3d(0,25px,0)
+            }
+            75% {
+                -webkit-transform:translate3d(0,-10px,0);
+                transform:translate3d(0,-10px,0)
+            }
+            90% {
+                -webkit-transform:translate3d(0,5px,0);
+                transform:translate3d(0,5px,0)
+            }
+            100% {
+                -webkit-transform:none;
+                transform:none
+            }
+        }
+        .center_touch{width: 100%; overflow-y: auto;max-height:88%;-webkit-overflow-scrolling: touch;-webkit-animation-name:center_touch;animation-name:center_touch;-webkit-animation-duration:1s;animation-duration:1s;}
+        .tinymask{z-index: 99; margin: 0px; padding: 0px; width: 100%; height:100%; top: 0px; left: 0px;position:fixed;background-color:rgba(0,0,0,0.5);display: -webkit-flex;display: flex;flex-flow: column;-webkit-tap-highlight-color:transparent;
+            -webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;}
+        .tinybox{z-index:100;border-radius:10px;width:570px;background:#fff;position:relative;left:50%;top: inherit; margin:30px auto 50px -285px; overflow: hidden;}
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        var go2binding = "go2binding";
+        $(function(){
+            show_user_finance();
+            if(!isNull('')){
+                $('#wx_phone').css("display","none");
+//                $('#zfb_phone').css("display","none");
+            }
+        });
+
+        var can_withdrawal_flag = '';
+        var user_status = '';
+        function show_user_finance(){
+            var data = {
+                openidMD5:'3E6C63CEFDDC9CBD2F443F6975DC2C40',
+                cur_time:new Date().getTime()
+            };
+            $.post("/itry/income/getUserFinance",data,function(s){
+                if(s.today_income != null && s.today_income != ''){//今日收入
+                    $("#showtoday").removeClass().addClass("income_condition income3 cf");
+                    $('#showtodaymoney').show();
+                    document.getElementById("zj").innerHTML= s.today_income;
+                }else{
+                    $("#showtoday").removeClass().addClass("income_condition cf");
+                    $('#showtodaymoney').hide();
+                }
+                if(s.frozen != null && s.frozen != ''){
+                    $('#withdrawaling').show();
+                    document.getElementById("z4").innerHTML= s.frozen;
+                }
+                if(s.frozen_liuliangchognzhi != null && s.frozen_liuliangchognzhi != ''){
+                    $('#llczing').show();
+                    document.getElementById("z41").innerHTML= s.frozen_liuliangchognzhi;
+                }
+                $('#z1').html(s.history_income);
+                $('#z2').html(s.can_withdrawal);
+                $('#z3').html(s.withdrawal);
+
+                $('#a1').attr("href", s.try_income_url);
+                $('#a2').attr("href", s.ext_amount_url);
+                $('#a3').attr("href", s.mt_income_url);
+                document.getElementById("z5").innerHTML= s.try_income;
+                document.getElementById("z6").innerHTML= s.ext_amount;
+                document.getElementById("z7").innerHTML= s.mt_income;
+
+                if(s.is_new != null && s.is_new != ''){
+                    $('#img_new').show();
+                }
+                can_withdrawal_flag = s.can_withdrawal_flag;
+                user_status = s.user_status;
+            },"json");
+        }
+
+        function do_withdraw(flag){
+            if(flag == "withdraw" || flag == "not_enough10"){
+                window.location.href = "/itry/income/toWithdraw";
+            }else if(flag == "bs_evil"){
+                window.location.href = "/itry/error/toWarningEvil/bs_evil";
+            }else if(flag == "exception"){
+                window.location.href = "/itry/error/toWarningEvil/"+user_status;
+            }else if(flag == "go2binding"){
+                if(go2binding == "go2binding"){
+                    $(".msg_bangding").show();
+                }else{
+                    window.location.href = "/itry/income/toWithdraw";
+                }
+            }
+        }
+
+        function add_user_info(flg){
+            if(flg=='支付宝'){
+                var bank_num = $("#bank_num").val();
+                var bank_username = $("#bank_username").val();
+                var zfb_tel = $("#zfb_tel").val();
+                var zfb_vCode = $("#zfb_vCode").val();
+
+                if(isNull(bank_username)){
+                    $("#bank_username").addClass('error');
+                    $("#bank_username").attr('placeholder','请输入收款人');
+                    return;
+                }else{
+                    if(!isChinese(bank_username.replace(new RegExp('·','gm'),''))||bank_username.length<2){
+                        $("#bank_username").addClass('error');
+                        $("#bank_username").val('');
+                        $("#bank_username").attr('placeholder','请正确输入收款人');
+                        return;
+                    }
+                }
+
+                if(isNull(bank_num)){
+                    $("#bank_num").addClass('error');
+                    $("#bank_num").attr('placeholder','请输入您的支付宝账号');
+                    return;
+                }else{
+                    if(isEmail(bank_num)){
+                    }else if(isNumber(bank_num)&&bank_num.length==11){
+                    }else{
+                        $("#bank_num").addClass('error');
+                        $("#bank_num").val('');
+                        $("#bank_num").attr('placeholder','请您输入正确的支付宝账号');
+                        return;
+                    }
+                }
+
+                if (isNull('')) {
+                    if(isNull(zfb_tel)){
+                        $("#zfb_tel").addClass('error');
+                        $("#zfb_tel").attr('placeholder','请输入您的支付宝账号');
+                        return;
+                    }else{
+                        if(!isNumber(zfb_tel)||zfb_tel.length != 11){
+                            $("#zfb_tel").addClass('error');
+                            $("#zfb_tel").val('');
+                            $("#zfb_tel").attr('placeholder','请输入正确手机号');
+                            return;
+                        }
+                    }
+                }
+                if (isNull('') || (!isNull('') && '1' == '0')) {
+                    if(isNull(zfb_vCode)|| !isNumber(zfb_vCode)){
+                        $("#zfb_vCode").addClass('error');
+                        $("#zfb_vCode").val('');
+                        $("#zfb_vCode").attr('placeholder','验证码错误');
+                        return;
+                    }
+                    if(zfb_vCode.length != 6 ){
+                        if (isNull('')) {
+                            $("#zfb_tel").addClass('error');
+                            $("#zfb_tel").val('');
+                            $("#zfb_tel").attr('placeholder','验证码为6位数字');
+                            return;
+                        } else {
+                            $("#bank_username").addClass('error');
+                            $("#bank_username").val('');
+                            $("#bank_username").attr('placeholder','验证码为6位数字');
+                            return;
+                        }
+                    }
+                }
+                var data = {
+                    bank_username:bank_username,
+                    vCode:zfb_vCode,
+                    tel:zfb_tel,
+                    bank_num:bank_num,
+                    bank_flag:0,
+                    flag:'支付宝',
+                    openidMD5: '3E6C63CEFDDC9CBD2F443F6975DC2C40'
+                };
+
+                $.post("/itry/personalcenter/bindingBankNum",data,function(s){
+                    if(s.res){
+                        go2binding = "bindinged";
+                        $(".msg_binding_alipayDone").css("display","block");
+                        $(".msg_binding_alipay").css("display","none");
+                        $(".msg_binding_wechat").css("display","none");
+//                        $('#zfb_phone').css("display","none");
+                        $('#wx_phone').css("display","none");
+                        $("#wx_vCode").removeClass('error');
+                        $("#wx_tel").removeClass('error');
+                        $("#wx_tel").attr('placeholder','请输入手机号');
+                        $("#zfb_vCode").removeClass('error');
+                        $("#zfb_tel").removeClass('error');
+                        $("#zfb_tel").attr('placeholder','请输入手机号');
+                    }else{
+                        if(s.msg == 'frequent'){  //操作过于频繁
+                            $("#bank_num").addClass('error');
+                            $("#bank_num").val('');
+                            $("#bank_num").attr('placeholder','操作频繁,请30分钟后再试');
+                            setTimeout(function() {
+                                        $(".msg_binding_alipay").css("display","none");
+                                        $(".msg_binding_wechat").css("display","none");
+                                    },
+                                    5000)
+                        }else if(s.msg == 'vCodeError'){  //验证码错误或失效
+                            $("#zfb_vCode").addClass('error');
+                            $("#zfb_vCode").val('');
+                            $("#zfb_vCode").attr('placeholder','验证码错误');
+                        }else if(s.msg == 'phoneNotEqual'){
+                            $("#zfb_vCode").addClass('error');
+                            $("#zfb_vCode").val('');
+                            $("#zfb_vCode").attr('placeholder','手机号不符');
+                        }else{
+                            $("#bank_username").addClass('error');
+                            $("#bank_username").val('');
+                            $("#bank_username").attr('placeholder',s.msg);
+                        }
+                    }
+                },"json");
+
+            }else{
+
+                var wei_name = $("#wei_name").val();
+                var wx_tel = $("#wx_tel").val();
+                var wx_vCode = $("#wx_vCode").val();
+
+                if(isNull(wei_name)){
+                    $("#wei_name").addClass('error');
+                    $("#wei_name").attr('placeholder','请输入收款人');
+                    return;
+                }else{
+                    if(!isChinese(wei_name.replace(new RegExp('·','gm'),''))||wei_name.length<2){
+                        $("#wei_name").addClass('error');
+                        $("#wei_name").val('');
+                        $("#wei_name").attr('placeholder','收款人为银行卡户主,请正确输入');
+                        return;
+                    }
+                }
+
+                if (isNull('')) {
+                    if(isNull(wx_tel)){
+                        $("#wx_tel").addClass('error');
+                        $("#wx_tel").attr('placeholder','请输入手机号');
+                        return;
+                    }else{
+                        if(!isNumber(wx_tel)||wx_tel.length != 11){
+                            $("#wx_tel").addClass('error');
+                            $("#wx_tel").val('');
+                            $("#wx_tel").attr('placeholder','请输入正确手机号');
+                            return;
+                        }
+                    }
+                    if(isNull(wx_vCode)|| !isNumber(wx_vCode)){
+                        $("#wx_vCode").addClass('error');
+                        $("#wx_vCode").val('');
+                        $("#wx_vCode").attr('placeholder','验证码错误');
+                        return;
+                    }
+
+                    if( wx_vCode.length != 6 ){
+                        $("#wx_tel").addClass('error');
+                        $("#wx_tel").val('');
+                        $("#wx_tel").attr('placeholder','请输入6位验证码');
+                        return;
+                    }
+                }
+
+                var data = {
+                    bank_username:wei_name,
+                    bank_num:0,
+                    vCode:wx_vCode,
+                    tel:wx_tel,
+                    bank_flag:0,
+                    flag:'微信钱包',
+                    openidMD5: '3E6C63CEFDDC9CBD2F443F6975DC2C40'
+                };
+
+                $.post("/itry/personalcenter/bindingBankNum",data,function(s){
+                    if(s.res){
+                        go2binding = "bindinged";
+                        $(".msg_binding_alipay").css("display","none");
+                        $(".msg_binding_wechat").css("display","none");
+                        $(".msg_binding_wechatDone").show("");
+//                        $('#zfb_phone').css("display","none");
+                        $('#wx_phone').css("display","none");
+                        $("#wx_vCode").removeClass('error');
+                        $("#wx_tel").removeClass('error');
+                        $("#wx_tel").attr('placeholder','请输入手机号');
+                        $("#zfb_vCode").removeClass('error');
+                        $("#zfb_tel").removeClass('error');
+                        $("#zfb_tel").attr('placeholder','请输入手机号');
+                    }else{
+                        if(s.msg == 'frequent'){  //操作过于频繁
+                            $("#wei_name").addClass('error');
+                            $("#wei_name").val('');
+                            $("#wei_name").attr('placeholder','操作频繁,请30分钟后再试');
+                            setTimeout(function() {
+                                        $(".msg_binding_alipay").css("display","none");
+                                        $(".msg_binding_wechat").css("display","none");
+                                    },
+                                    5000)
+                        }else if(s.msg == 'vCodeError'){  //验证码错误或失效
+                            $("#wx_vCode").addClass('error');
+                            $("#wx_vCode").val('');
+                            $("#wx_vCode").attr('placeholder','验证码错误');
+                        }else{
+                            $("#wei_name").addClass('error');
+                            $("#wei_name").val('');
+                            $("#wei_name").attr('placeholder',s.msg);
+                        }
+                    }
+                },"json");
+            }
+        }
+        var wait = 60;
+        function sendMsg(type,typeSend){
+            $("#wx_tel").removeClass('error');
+            $("#zfb_tel").removeClass('error');
+            var tel = '';
+            if(type == 'wx'){
+                tel = $("#wx_tel").val();
+                if(isNull(tel)){
+                    $("#wx_tel").addClass('error');
+                    $("#wx_tel").attr('placeholder','请输入手机号');
+                    return;
+                }else{
+                    if(!isNumber(tel)||tel.length != 11){
+                        $("#wx_tel").addClass('error');
+                        $("#wx_tel").val('');
+                        $("#wx_tel").attr('placeholder','请输入正确手机号');
+                        return;
+                    }
+                }
+            }else{
+                tel = $("#zfb_tel").val();
+                if (isNull('')) {
+                    if(isNull(tel)){
+                        $("#zfb_tel").addClass('error');
+                        $("#zfb_tel").attr('placeholder','请输入手机号');
+                        return;
+                    }else{
+                        if(!isNumber(tel)||tel.length != 11){
+                            $("#zfb_tel").addClass('error');
+                            $("#zfb_tel").val('');
+                            $("#zfb_tel").attr('placeholder','请输入正确手机号');
+                            return;
+                        }
+                    }
+                } else {
+                    var tel_ = tel.substring(0,tel.length-(tel.substring(3)).length)+"****"+tel.substring(7);
+                    if(tel_ != ''){
+                        $("#bank_username").addClass('error');
+                        $("#bank_username").val('');
+                        $("#bank_username").attr('placeholder','手机号不符');
+                        return;
+                    }
+                    tel = '';
+                }
+            }
+            var data = {
+                tel:tel,
+                openidMD5: '3E6C63CEFDDC9CBD2F443F6975DC2C40',
+                typeSend:typeSend,
+                cur_time:new Date().getTime()
+            };
+            $.post("/itry/personalcenter/bindingTelSendMsg",data,function(s){
+                var $but;
+                if (type == 'wx') {
+                    $but = $('#wx_send');
+                    $("#wx_vCode").removeClass('error');
+                    $('#wx_vCode').val('');
+                } else {
+                    $but = $('#zfb_send');
+                    $("#zfb_vCode").removeClass('error');
+                    $('#zfb_vCode').val('');
+                }
+                if(s.success){
+                    time($but,data,type,typeSend,type=='wx'?'2':'1');
+                }else{
+                    if (s.msg != 'alreadyBinding' && s.msg != 'noSend'  && s.msg != 'mbblack' && s.msg != 'phoneNotEqual') {
+                        $but.removeAttr("disabled");
+                        $but.html("失败 重发");
+                    }else if(s.msg == 'mbblack'){
+                    }else if(s.msg == 'alreadyBinding'){
+                        if (type == 'wx') {
+                            $("#wx_tel").addClass('error');
+                            $("#wx_tel").val('');
+                            $("#wx_tel").attr('placeholder','该手机号已绑定');
+                        } else {
+                            $("#zfb_tel").addClass('error');
+                            $("#zfb_tel").val('');
+                            $("#zfb_tel").attr('placeholder','该手机号已绑定');
+                        }
+                    }else if(s.msg == 'phoneNotEqual'){
+                        if (type == 'wx') {
+                            $("#wx_tel").addClass('error');
+                            $("#wx_tel").val('');
+                            $("#wx_tel").attr('placeholder','与原手机号不符');
+                            $('#wx_send').attr("disabled", false);
+                            $('#wx_send').removeClass('ARQ');
+                        } else {
+                            $("#zfb_tel").addClass('error');
+                            $("#zfb_tel").val('');
+                            $("#zfb_tel").attr('placeholder','与原手机号不符');
+                            $('#zfb_send').attr("disabled", false);
+                            $('#zfb_send').removeClass('ARQ');
+                        }
+                    }else{
+                        if (type == 'wx') {
+                            $("#wx_tel").addClass('error');
+                            $("#wx_tel").val('');
+                            $("#wx_tel").attr('placeholder','频数超限请稍后再试');
+                        } else {
+                            $("#zfb_tel").addClass('error');
+                            $("#zfb_tel").val('');
+                            $("#zfb_tel").attr('placeholder','频数超限请稍后再试');
+                        }
+                    }
+                }
+            },"json");
+        }
+        function time(o,data,type,typeSend,typeCss) {
+            if (wait == 0) {
+                o.removeAttr("disabled");
+                o.removeClass("ARQ");
+                o.html("发送验证码");
+                wait = 60;
+                if(typeSend=='2'){
+                	$('.voicecode'+typeCss).removeClass('Sendout');
+                	$('.voicecode'+typeCss).html("收听语音验证码");
+                }
+            }else {
+                o.attr("disabled", true);
+                o.addClass('ARQ');
+                o.html("重新发送 " + wait);
+                if(typeSend=='2'){
+                	$('.voicecode'+typeCss).addClass('Sendout');
+                	$('.voicecode'+typeCss).html("收听语音验证码 " + wait+'s');
+                }
+                wait--;
+                setTimeout(function() {
+                	 time(o,data,type,typeSend,typeCss)
+                        },
+                        1000)
+            }
+        }
+        function alert_info(msgtype){
+            if(msgtype=='try'){
+                $('#msgtips').html('您还没有试玩收入哦~');
+                $('#allmsgtips').css("display","block");
+            }else if(msgtype=='invite'){
+                $('#msgtips').html('您还没有邀请收入哦~');
+                $('#allmsgtips').css("display","block");
+            }else if(msgtype=='activity'){
+                $('#msgtips').html('您还没有其他收入哦~');
+                $('#allmsgtips').css("display","block");
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>收入查询</h1></div><div class="wrap">
+    <div class="income_query cf">
+        <div class="my_income cf">
+            <div class="income_collect cf">
+                <p class="tit">所有收入</p>
+                <h2 id="z1" class="collect_money">1.00元</h2>
+            </div>
+            <div id="showtoday" class="income_condition cf">
+                <div id="showtodaymoney" class="moneyinfo" style="display:none">
+                    <h4 id="zj">元</h4>
+                    <p>今日收入</p>
+                </div>
+                <div class="moneyinfo">
+                    <h4 id="z2">0.00元</h4>
+                    <p>可提收入</p>
+                </div>
+                <div class="moneyinfo">
+                    <h4 id="z3">1.00元</h4>
+                    <p>已提收入</p>
+                </div>
+            </div>
+        </div>
+        <ul id="withdrawaling" class="myinfo_list cf" style="display: none">
+            <li class="Click_bj">
+                <a href="javascript:void(0);">
+                    <span class="drawing_deck"></span>
+                    <div class="info" style="padding-right:30px;width: -webkit-calc(100% - 106px);">
+                        <label class="name">正在提现</label>
+                        <span id="z4" class="r col3a90f4">元</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul id="llczing" class="myinfo_list cf" style="display: none">
+            <li class="Click_bj">
+                <a href="javascript:void(0);">
+                    <span class="drawing_deck"></span>
+                    <div class="info" style="padding-right:30px;width: -webkit-calc(100% - 106px);">
+                        <label class="name">正在充值</label>
+                        <span id="z41" class="r col3a90f4">元</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="myinfo_list cf">
+            <li class="Click_bj">
+                <a id="a1" href="/itry/personalcenter/toClickRecordList">
+                    <span class="try_deck"></span>
+                    <div class="info r_point">
+                        <label class="name">试玩收入</label>
+                        <span id="z5" class="r">1.00元</span>
+                    </div>
+                </a>
+            </li>
+            <li class="Click_bj">
+                <a id="a2" href="javascript:alert_info('invite')">
+                    <span class="invite_deck"></span>
+                    <div class="info r_point">
+                        <label class="name">邀请收入</label>
+                        <span id="z6" class="r">0.00元</span>
+                    </div>
+                </a>
+            </li>
+            <li class="Click_bj">
+                <a id="a3" href="/itry/income/toActivityRecord">
+                    <span class="withdraw_deck"></span>
+                    <div class="info r_point">
+                        <label class="name">其他收入</label>
+                        <span id="z7" class="r">0.00元</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="btn_submit cf">
+            <button class="Click_bj" onclick="do_withdraw(can_withdrawal_flag)">申请提现</button>
+        </div>
+    </div>
+
+    <div class="msg_bangding" style="display:none;">
+        <div class="tinymask"></div>
+        <div class="binding_box cf">
+            <div class="pt60_pb10">
+                
+                    <p class="Click_bj bd_wechat_btn cf"><span class="bd_wechat">提现到微信钱包</span></p>
+                
+                
+                    <p class="Click_bj bd_alipay_btn cf"><span class="bd_alipay">提现到支付宝</span></p>
+                
+                <p class="Click_bj bd_cancel">取消</p>
+            </div>
+        </div>
+    </div>
+
+     <!------绑定微信------->
+    <div class="msg_binding_wechat" style="display:none">
+        <div class="tinymask">
+            <div class="center_touch">
+                <div id="wx_bindPhone_div" class="tinybox cf">
+                    <h4 class="notice binding-head wechatbj">微信钱包</h4>
+                    <span class="ns-close binding_close"></span>
+                    <div class="ns-box-inner mb30">
+                        <div class="binding_card">
+                            <h4 class="bt">请填写<br><span class="wechat_tutorial">绑定微信钱包</span> 的银行卡姓名</h4>
+                            <p class="card_info"><input id="wei_name" type="text" placeholder="微信收款人姓名"></p>
+                            <div id="wx_phone" class="binding_phone">
+                                <p class="card_info"><input id="wx_tel" type="tel" placeholder="请输入手机号"></p>
+                                <p class="card_info">
+                                    <input id="wx_vCode" type="number" style=" width:42%; margin-right:2%" placeholder="填写验证码">
+                                    <button id="wx_send" class="send col48b960" onclick="sendMsg('wx',1)">发送验证码</button><!----点击发送后加class  ARQ---->
+                                </p>
+                                 <p class="speech_verification" style="margin-top:30px">
+            							<span class="voicecode2" onclick="sendMsg('wx',2)">收听语音验证码</span>
+            					</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ns_action">
+                        <input type="button" class="Click_bj cancel" value="取消" id="wx_cal">
+                      	<input type="button" class="brc48b960 Click_bj colfff w_bt" value="确定" onclick="add_user_info('微信钱包')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!---微信钱包绑定成功--->
+    <div class="msg_binding_wechatDone" style="display:none">
+        <div class="tinymask">
+            <div class="center_touch">
+                <div class="tinybox cf">
+                    <h4 class="notice binding-head wechatbj">添加成功</h4>
+                    <span class="ns-close binding_close"></span>
+                    <div class="ns-box-inner mb30">
+                    	<p class="tips">您可以到 <a href="/itry/income/toIncomeInfo" class="col48b960">收入查询</a> 申请提现</p>
+                    </div>
+                    <div class="ns_action">
+                         <input type="button" class="Click_bj Iknow off" value="我知道了">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------绑定微信步骤------->
+    <div class="msg_bd_wechat_step" style="display:none;">
+        <div class="tinymask">
+        <div class="center_touch">
+	        <div class="tinybox cf" style="top:15%">
+	            <h4 class="notice binding-head wechatbj">绑定微信钱包</h4>
+	            <span class="ns-close binding_close"></span>
+	            <div class="ns-box-inner mb30 step_ts">
+	                <div class="w_lit">
+	                    <img src="http://static.appshike.com/images/weixin_qbimg1.jpg" alt="">
+                            <img src="http://static.appshike.com/images/weixin_qbimg2.jpg" alt="">
+                            <img src="http://static.appshike.com/images/weixin_qbimg3.jpg" alt="">
+	                </div>
+	            </div>
+	            <div class="ns_action">
+	                <input type="button" class="Click_bj Iknow step_w" value="我知道了">
+	            </div>
+	           </div>
+        </div>
+        </div>
+    </div>
+    
+    <!---绑定支付宝--->
+    <div class="msg_binding_alipay" style="display:none">
+        <div class="tinymask">
+            <div class="center_touch">
+                <div id="zfb_bindPhone_div" class="tinybox cf">
+                    <h4 class="notice alipaybj binding-head">支付宝</h4>
+                    <span class="ns-close binding_close"></span>
+                    <div class="ns-box-inner mb30">
+                        <div class="binding_card">
+                            <h4 class="bt">绑定 <span class="alipay_tutorial">实名认证</span><br>过的支付宝账号才能收款</h4>
+                            <p class="card_info"><input id="bank_username" type="text" placeholder="支付宝收款人姓名" class=""></p>
+                            <p class="card_info"><input id="bank_num" type="text" placeholder="支付宝收款人帐号" class=""></p>
+                            <div id="zfb_phone" class="binding_phone">
+                                <p class="card_info"><input id="zfb_tel" type="tel" placeholder="请输入手机号" value=""></p>
+                                <p class="card_info">
+                                    <input id="zfb_vCode" type="number" style=" width:42%; margin-right:2%" placeholder="填写验证码">
+                                    <button id="zfb_send" class="send col169bf8" onclick="sendMsg('zfb',1)">发送验证码</button><!----点击发送后加class  ARQ---->
+                                </p>
+                                 <p class="speech_verification" style="margin-top:30px">
+            							<span class="voicecode1" onclick="sendMsg('zfb',2)">收听语音验证码</span>
+            					</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ns_action">
+                        <input id="pay_cal" type="button" class="Click_bj cancel" value="取消">
+                        <input type="button" class="brc169bf8 Click_bj colfff ali_bt" value="确定" onclick="add_user_info('支付宝')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!---支付宝绑定成功--->
+    <div class="msg_binding_alipayDone" style="display:none">
+        <div class="tinymask">
+            <div class="center_touch">
+                <div class="tinybox cf">
+                    <h4 class="notice binding-head alipaybj">添加成功</h4>
+                    <span class="ns-close binding_close"></span>
+                    <div class="ns-box-inner mb30">
+                         <p class="tips">您可以到 <a href="/itry/income/toIncomeInfo" class="col3a90f4">收入查询</a> 申请提现</p>
+                    </div>
+                    <div class="ns_action">
+                        <input type="button" class="Click_bj Iknow off" value="我知道了">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------绑定支付宝步骤------->
+    <div class="msg_bd_alpay_step" style="display:none;">
+        <div class="tinymask">
+         <div class="center_touch">
+        <div class="tinybox cf">
+            <h4 class="notice alipaybj binding-head">绑定支付宝</h4>
+            <span class="ns-close binding_close"></span>
+            <div class="ns-box-inner mb30 step_ts">
+                <div class="ali_lit">
+                      <img src="http://static.appshike.com/images/alipay_qbimg1.jpg" alt="">
+                </div>
+            </div>
+            <div class="ns_action">
+                <input type="button" class="Click_bj Iknow step_ali" value="我知道了">
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!---温馨提示--->
+    <div id="allmsgtips" class="msg_password_delete_time" style="display:none">
+        <div class="tinymask">
+         <div class="center_touch">
+        <div class="tinybox cf">
+            <h4 class="notice msg">温馨提示</h4>
+            <div class="ns-box-inner mb30">
+                <p id="msgtips" class="tips">您的试客帐号异常<br>请联系客服</p>
+                <!--<p class="tips">提现需大于10元<br>你还需努力哦</p>-->
+            </div>
+            <div class="ns_action">
+                <input id="iknowpw" type="button" class="Click_bj Iknow msgtype" value="我知道了">
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+<div class="nav4">		        <nav>	            <div id="nav4_ul" class="nav_4">	                <ul class="box">	                	<li style="width:15%">                			<a href="http://i.appshike.com/html/menu.html" class="Click_bj"><span class="Home_page"></span></a>                		</li>	                    <li>	                        <a href="/shike/appList?t=1479463132813" class="Click_bj j_date"><span>开始赚钱</span></a>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>我的信息</span></a>	                        <dl>	                            <dd><a href="/itry/personalcenter/toPersonalCenter?t=1479463132813" class="Click_bj j_date"><span>个人中心</span></a></dd>	                            <dd><a href="/itry/invite/toInviteFriendsOfXB?type=1" class="Click_bj"><span>邀请好友</span></a></dd>	                            <dd><a href="/itry/weixin/toRankingList" class="Click_bj"><span>排行榜</span></a></dd>	                            <dd><a href="/itry/income/toIncomeInfo?t=1479463132813" class="Click_bj j_date"><span style="border-bottom:0px;">收入查询</span></a></dd>	                        </dl>	                    </li>	                    <li>	                        <a href="javascript:void(0);" class="Click_bj"><em class="connav2"></em><span>更多</span></a>	                        <dl>	                            <dd><a href="/html/aboutus.jsp" class="Click_bj"><span>关于我们</span></a></dd>	                            <dd><a href="javascript:download_xb();" class="Click_bj"><span>下载小兵</span></a></dd>	                            <dd><a href="/html/notescontact.jsp" class="Click_bj"><span style="border-bottom:0px;">常见问题</span></a></dd>	                        </dl>	                    </li>	                </ul>	            </div>	        </nav>	        <div id="nav4_masklayer" class="masklayer_div">&nbsp;</div>	    </div></div>
+<script>
+    $(function(){
+        $("#iknowpw").click(function(){
+            $("#allmsgtips").hide();
+        });
+        $(".remind").click(function(){
+            $(this).toggleClass("on");
+        });
+        $(".btn_submit .Click_bj").click(function(){
+            $(".binding_box").addClass("h");
+            $(".bd_cancel").click(function(){
+                $(".binding_box").removeClass("h");
+                setTimeout(function(){
+                    $(".msg_bangding").hide();
+                },300);
+            });
+            $(".bd_wechat_btn").click(function(){
+                $(".msg_bangding").hide();
+                $(".msg_binding_wechat").show();
+                $(".binding_box").removeClass("h");
+            });
+            $(".bd_alipay_btn").click(function(){
+                $(".msg_bangding").hide();
+                $(".msg_binding_alipay").show();
+                $(".binding_box").removeClass("h");
+                if(isNull('')){
+                    $('#zfb_tel').removeAttr("readonly");
+                }else {
+                    $('#zfb_tel').attr("readonly","readonly");
+                }
+            });
+            $(".cancel,.binding_close").click(function(){
+                $(".msg_binding_wechat,.msg_binding_alipay,.msg_bd_alpay_step,.msg_bd_wechat_step").hide();
+            });
+            $(".cancel,.ns-close,.w_bt,.ali_bt").click(function(){
+                //$(".msg_password,.msg_binding_wechat,.msg_binding_alipay,.msg_bd_alpay_step,.msg_bd_wechat_step").css("display","none");
+            });
+            $(".wechat_tutorial").click(function(){
+                $(".msg_bd_wechat_step").show("");
+                $(".msg_binding_wechat").hide("");
+                $(".step_w").click(function(){
+                    $(".msg_bd_wechat_step").hide("");
+                    $(".msg_binding_wechat").show("");
+                });
+            });
+            $(".alipay_tutorial").click(function(){
+                $(".msg_bd_alpay_step").show("");
+                $(".msg_binding_alipay").hide("");
+                $(".step_ali").click(function(){
+                    $(".msg_bd_alpay_step").hide("");
+                    $(".msg_binding_alipay").show("");
+                    if(isNull('')){
+                        $('#zfb_tel').removeAttr("readonly");
+                    }else {
+                        $('#zfb_tel').attr("readonly","readonly");
+                    }
+                });
+            });
+            $(".off").click(function(){
+                $(".msg_password_Done,.msg_binding_wechatDone,.msg_binding_alipayDone").hide("");
+            });
+            /* $(".w_bt").click(function(){
+             $(".msg_binding_wechatDone").show("");
+             }); */
+//            $(".ali_bt").click(function(){
+//                $(".msg_binding_alipayDone").show("");
+//            });
+        });
+    });
+</script>
+
+
+</body></html>

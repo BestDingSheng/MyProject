@@ -1,0 +1,253 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-title" content="应用试客">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" href="http://static.appshike.com/images/deskicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://static.appshike.com/images/icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://static.appshike.com/images/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://static.appshike.com/images/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://static.appshike.com/images/icon-144.png">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="http://static.appshike.com/css/basecss.css?v=20160202" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.appshike.com/js/shike.js?v=2"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+
+<script type="text/javascript">
+    $(function(){
+        if(!/micromessenger/i.test(navigator.userAgent)){
+            setMenu();
+        }
+    })
+</script>
+
+
+
+
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" name="no-store">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta charset="utf-8">
+<title>验证步骤</title>
+<script type="text/javascript" src="http://static.appshike.com/js/shared.js"></script><meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+<link href="http://static.appshike.com/css/basecss.css" rel="stylesheet" type="text/css">
+<link href="http://static.appshike.com/css/swiper.min.css" rel="stylesheet" type="text/css">
+<style>
+body{background: #fff;}
+	.download_step{width: 100%;}
+	.download_step .step_box{width:610px;margin:0 auto;overflow: hidden;position: relative;}
+	.download_step .step{width:1830px;}
+	.download_step .step .step1,.download_step .step .step2{width: 610px;float: left; text-align: center;margin-top:80px;}
+	.download_step .step .step3{width: 610px;float: left; text-align: center;}
+	.download_step .step .btn{width: 312px;height:88px;margin: 42px auto 20px auto;background:#3a90f4;color: #fff;font-size:34px;z-index: 2;border-radius: 8px;border: 0px;display: inline-block;line-height: 88px;}
+	.download_step .step .btn.brc{opacity: 0.8;}
+	.download_step .step .swiper-slide{height:540px;background: #fff;}
+	.step_breadcrumb{width: 610px;overflow: hidden;margin: 0px auto;position: relative;height: 80px;}
+	.step_breadcrumb span{width:220px;height:80px;float:left;display:block;background: url(http://static.appshike.com/images/download_step1.png)no-repeat; -webkit-filter: grayscale(100%);}
+	.step_breadcrumb span.step_no1{background-position:65px 20px;}
+	.step_breadcrumb span.step_no2{background-position:65px -115px;}
+	.step_breadcrumb span.step_no3{background-position:65px -260px;}
+	.step_breadcrumb span.swiper-slide-active{width:180px;background-position-x:-122px;-webkit-filter: grayscale(0%);}
+	.download_step .wp{width: 100%;position: absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
+	.wp .swiper-button-prev,.wp .swiper-button-next{background:transparent;-webkit-tap-highlight-color:transparent;margin-top:-150px;width: 80px;padding: 50px 0px;}
+	.wp .swiper-button-prev span,.wp .swiper-button-next span{background:transparent;-webkit-tap-highlight-color:transparent;width:46px;height:46px;display:block;font-size: 60px;position: absolute;top:35%;border-left: 4px solid #d9d9d9;border-bottom: 4px solid #d9d9d9;}
+	.wp .swiper-button-prev span{left:42px;-webkit-transform:rotate(45deg);transform:rotate(45deg);}
+	.wp .swiper-button-next span{right:42px;-webkit-transform:rotate(-135deg);transform:rotate(-135deg);}
+	.breadcrumb_shift{width:675px;position:absolute;height:80px;top:0px;left:0px}
+	body{outline:none;-webkit-tap-highlight-color:transparent;-webkit-appearance: none;}
+	.deckok{width:28px;height:12px;vertical-align:middle;margin:-10px 5px 0px auto;display:inline-block;border-left:4px solid #fff;border-bottom:4px solid #fff;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);}
+.swiper-pagination-bullet {
+	width:12px;
+	height:12px;
+	display: inline-block;
+	border-radius: 100%;
+	background: #d4e8ff;
+	opacity:1; margin:0px 10px;
+}
+.swiper-pagination-bullet-active {
+	opacity: 1;
+	background: #3a90f4
+}
+
+.swiper-pagination{position:static}
+.swiper-slide{ text-align:center}
+#swiper-container2 .swiper-slide{ height: auto;}
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    opacity: .2;
+    cursor: auto;
+}
+.step_ios8{text-align: center; margin-top:80px;}
+.step_ios8 h3{color: #3a90f4;font-size: 36px;margin-bottom: 15px;}
+.step_ios8 p{color:#9b9b9b;}
+.step_ios8 p a{border-bottom: 1px solid #9b9b9b;color: #717171;}
+.download_step .step .btn_con{width: 312px;height:88px;margin: 42px auto 20px auto; position: relative;}
+.download_step .step .btn_con .btn{position:absolute;top:0px;left: 0;margin: 0px;}
+.download_step .step .btn.bag_color{background-color: #34c66b;z-index: 3;display: none;}
+
+</style>
+</head>
+<body>
+<div class="return_index"><a href="javascript:history.go(-1);" class="return_link"></a><h1>验证步骤</h1></div><div class="wrap nomenu">
+	<div class="download_step">
+		<div class="wp cf">
+			<div class="step_breadcrumb swiper-container swiper-container-horizontal" id="swiper-container1">
+				<div class="breadcrumb_shift swiper-wrapper" style="transition-duration: 0ms; -webkit-transition-duration: 0ms; transform: translate3d(203.33333333333331px, 0px, 0px);">
+					<span class="swiper-slide step_no1 swiper-slide-active" style="width: 203.33333333333334px;"></span>
+					<span class="swiper-slide step_no2 swiper-slide-next" style="width: 203.33333333333334px;"></span>
+					<span class="swiper-slide step_no3" style="width: 203.33333333333334px;"></span>
+				</div>
+			</div>
+			<div class="step_box swiper-container swiper-container-h cf swiper-container-horizontal swiper-container-fade" id="swiper-container2">
+				<div class="step swiper-wrapper cf" style="transition-duration: 0ms; -webkit-transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+					<div class="swiper-slide step1 swiper-slide-active" style="width: 610px; opacity: 0.9983606557377049; transform: translate3d(-1px, 0px, 0px); transition-duration: 0ms; -webkit-transition-duration: 0ms;">
+						<img src="http://static.appshike.com/images/no_img1.jpg" alt="">
+						<p class="btn_con">
+							<button class="btn j_hide" style="display: none;">下载证书</button>
+							<button class="btn bag_color j_show" style="display: inline-block;"><em class="deckok"></em>已安装</button>
+						</p>
+					</div>
+					<div class="swiper-slide step2 swiper-slide-next" style="width: 610px; opacity: 0; transform: translate3d(-611px, 0px, 0px); transition-duration: 0ms; -webkit-transition-duration: 0ms;">
+						<img src="http://static.appshike.com/images/no_img2.jpg" alt="">
+						<input type="button" class="btn Click_bj j_dlxb" value="下载小兵">
+					</div>
+					<div class="swiper-slide step3 cf" style="width: 610px; opacity: 0; transform: translate3d(-1221px, 0px, 0px); transition-duration: 0ms; -webkit-transition-duration: 0ms;"><h2 style="font-size:28px;color:#c0c0c0;margin:50px 0px 10px 0px;">试客小兵 打开方式</h2>					<div class="cf" style="width:560px; margin: 0px auto;height:540px; overflow: hidden;">					<div class="swiper-container swiper-container-v cf swiper-container-horizontal">				  	<div class="swiper-wrapper cf">					    <div class="swiper-slide swiper-slide-active" style="width: 560px; margin-right: 50px;">							<img src="http://static.appshike.com/images/new-download-ios9_1.jpg" alt="">					    </div>					    <div class="swiper-slide swiper-slide-next" style="width: 560px; margin-right: 50px;">							<img src="http://static.appshike.com/images/new-download-ios9_2.jpg" alt="">					    </div>					    <div class="swiper-slide" style="width: 560px; margin-right: 50px;">					    	<img src="http://static.appshike.com/images/new-download-ios9_3.jpg" alt="">					    </div>					    <div class="swiper-slide" style="width: 560px; margin-right: 50px;">					    	<img src="http://static.appshike.com/images/new-download-ios9_4.jpg" alt="">					    </div>					    <div class="swiper-slide" style="width: 560px; margin-right: 50px;">					    	<img src="http://static.appshike.com/images/new-download-ios9_5.jpg" alt="">					    </div>					    <div class="swiper-slide" style="width: 560px; margin-right: 50px;">					    	<img src="http://static.appshike.com/images/new-download-ios9_6.jpg" alt="">					    </div>				  	</div>				  	<div class="swiper-pagination cf swiper-pagination-clickable" style="position:absolute;bottom:80px;left:0px;"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>				</div>			</div>			<a href="javascript:;" class="btn j_iknow Click_bj">桌面打开小兵</a></div>
+				</div>
+			</div>
+			<div class="step_l swiper-button-prev swiper-button-disabled"><span></span></div>
+    		<div class="step_r swiper-button-next"><span></span></div>
+		</div>	
+	</div>
+</div>
+<script src="http://static.appshike.com/js/swiper.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	if(/micromessenger/i.test(navigator.userAgent)){
+		safariopen_tips();
+	}
+	
+	$('.j_dl').addClass('bag_color').html('<em class="deckok"></em>已安装');
+	setTimeout(function(){
+		$(".j_hide").fadeOut(600);
+		$(".j_show").fadeIn(800);
+		window.setTimeout(function(){
+			if($('.swiper-slide-active.step_no2').length==0){
+				$('.step_r').click();
+			}
+		},1500);
+	},300);
+	
+	var download_href = 'itms-services://?action=download-manifest&url=https://down.appshike.com/itry/powerDownload//';
+	if(Number('80')>0){
+		download_href = 'itms-services://?action=download-manifest&url=https://down.appshike.com/plist/80_1.plist';
+	}
+	
+	$('.j_dlxb').click(function(){
+		location.href = download_href;
+		window.setTimeout(function(){
+			if($('.swiper-slide-active.step_no2').length==1){
+				$('.step_r').click();
+			}
+		},3000);
+	});
+	
+	if(/Version\/(9|10)/.test(navigator.userAgent)){
+		if(/ipad/i.test(navigator.userAgent) || /Version\/10/.test(navigator.userAgent)){
+			$('.step3').html('<h2 style="font-size:28px;color:#c0c0c0;margin:50px 0px 10px 0px;">试客小兵 打开方式</h2>\
+					<div class="cf" style="width:560px; margin: 0px auto;height:540px; overflow: hidden;">\
+					<div class="swiper-container swiper-container-v cf">\
+				  	<div class="swiper-wrapper cf">\
+					    <div class="swiper-slide">\
+							<img src="http://static.appshike.com/images/new-download-ios9_1.jpg"alt="" />\
+					    </div>\
+					    <div class="swiper-slide">\
+							<img src="http://static.appshike.com/images/new-download-ios9_2.jpg" alt="" />\
+					    </div>\
+					    <div class="swiper-slide">\
+					    	<img src="http://static.appshike.com/images/new-download-ios9_3.jpg" alt="" />\
+					    </div>\
+					    <div class="swiper-slide">\
+					    	<img src="http://static.appshike.com/images/new-download-ios9_4.jpg" alt="" />\
+					    </div>\
+					    <div class="swiper-slide">\
+					    	<img src="http://static.appshike.com/images/new-download-ios9_5.jpg" alt="" />\
+					    </div>\
+					    <div class="swiper-slide">\
+					    	<img src="http://static.appshike.com/images/new-download-ios9_6.jpg" alt="" />\
+					    </div>\
+				  	</div>\
+				  	<div class="swiper-pagination cf" style="position:absolute;bottom:80px;left:0px;"></div>\
+				</div>\
+			</div>\
+			'+ (/Version\/10/.test(navigator.userAgent)
+					?'<a href="javascript:;" class="btn j_iknow Click_bj">桌面打开小兵</a>':
+					'<a href="prefs:root=General&path=ManagedConfigurationList" class="btn">前往设置</a>')
+			);
+			$('.j_iknow').click(function(){alert_Iknow('请在设置完成后</br >桌面打开小兵','我知道了')});
+		}else{
+			$('.step3').html('<h2 style="font-size:28px;color:#c0c0c0;margin:50px 0px 10px 0px;">试客小兵 打开方式</h2>\
+					<div class="cf" style="width:560px; margin: 0px auto;height:540px; overflow: hidden;">\
+					<div class="swiper-container swiper-container-v cf">\
+				  	<div class="swiper-wrapper cf">\
+					    <div class="swiper-slide">\
+							<img src="http://static.appshike.com/images/new-download-tips_01.jpg" alt="" />\
+					    </div>\
+					    <div class="swiper-slide">\
+							<img src="http://static.appshike.com/images/new-download-tips_02.jpg" alt="" />\
+					    </div>\
+					    <div class="swiper-slide">\
+					    	<img src="http://static.appshike.com/images/new-download-tips_03.jpg" alt="" />\
+					    </div>\
+				  	</div>\
+				  	<div class="swiper-pagination cf" style="position:absolute;bottom:80px;left:0px;"></div>\
+				</div>\
+			</div>\
+			<a href="prefs:root=General&path=ManagedConfigurationList" class="btn">前往设置</a>');
+		}
+	}else{
+		$('.step3').html('<div class="step_ios8"><img src="http://static.appshike.com/images/new-downloadios8_1.jpg" alt="" /><h3>桌面打开小兵</h3><p>请阅读《<a target="_blank" href="http://static.appshike.com/html/userAgreement.pdf">用户协议</a>》</p></div>');
+	}
+	
+	var swiperH = new Swiper('.swiper-container-h', {
+		onlyExternal : true,
+        paginationClickable: true,
+        spaceBetween: 50,
+		prevButton:'.swiper-button-prev',
+		nextButton:'.swiper-button-next',
+		effect : 'fade',
+		onSlideChangeEnd: function(swiper){
+			if($('.swiper-slide-active.step_no3').length==1){
+        		swiperV.startAutoplay();
+        	}else{
+        		swiperV.stopAutoplay();
+        		swiperV.slideTo(0);
+        	}
+         }
+    });
+    var swiperV = new Swiper('.swiper-container-v', {
+        pagination: '.swiper-pagination',
+        autoplayDisableOnInteraction : false,
+        autoplay :1500,
+        speed:1000,
+        paginationClickable: true,
+        spaceBetween: 50
+    });
+    swiperV.stopAutoplay || (swiperV.stopAutoplay = swiperV.startAutoplay = swiperV.slideTo = function(){});
+    swiperV.stopAutoplay();
+    
+    var mySwiper2 = new Swiper('#swiper-container1',{
+    	onlyExternal : true,
+		slidesPerView: 3,
+        centeredSlides: true,
+        paginationClickable: true,
+		})
+    swiperH.params.control = mySwiper2;
+    mySwiper2.params.control = swiperH;
+});
+
+	
+</script>
+
+</body></html>

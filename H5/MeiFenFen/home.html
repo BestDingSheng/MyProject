@@ -245,19 +245,19 @@
 			</div>
 			<!--弹出层结束-->
 		<nav class="mui-bar mui-bar-tab">
-		  <a class="mui-tab-item mui-active" href="home.html">
+		  <a class="mui-tab-item mui-active" href="home.html" id="home">
 				<span class="mui-icon">
 					<i class="iconfont">&#xe616;</i>
 				</span>
 				<span class="mui-tab-label">美分分</span>
 			</a>
-			<a class="mui-tab-item" href="project.html">
+			<a class="mui-tab-item" href="project.html" id="project">
 				<span class="mui-icon">
 					<i class="iconfont">&#xe600;</i>
 				</span>
 				<span class="mui-tab-label">项目</span>
 			</a>
-			<a class="mui-tab-item" href="B-my.html">
+			<a class="mui-tab-item" href="B-my.html" id="my">
 				<span class="mui-icon">
 					<i class="iconfont">&#xe60e;</i>
 				</span>
@@ -282,6 +282,20 @@
 		$(window).resize();  
 		
 		$(function(){
+			$('#home').on('tap',function(){
+				location.href='home.html';
+			})
+			$('#project').on('tap',function(){
+				location.href='project.html';
+			})
+			$('#my').on('tap',function(){
+				location.href='B-my.html';
+			})
+			
+			
+			
+			
+			//
 			getSrceenWH();
 			//显示弹框
 			$('.city-btn').click(function(){
@@ -309,6 +323,11 @@
 				$('#city-dialog').removeClass('animated').addClass('animated dialog'+'bounceOutUp'+'').fadeOut();
 				
 			});
+			
+			
+			
+			
+			
 		});
 	</script>
 

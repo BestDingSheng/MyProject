@@ -1,0 +1,243 @@
+<div class="sys_menu">
+    <el-row :gutter="8">
+        <el-col class="menuList" :span="10">
+            <el-collapse>
+                <el-collapse-item class='menuInner'>
+                    <template slot="title" scope="props">
+                        菜单列表&emsp;&emsp;
+                        <el-button-group class="inline-block">
+                            <el-button size="mini" class="pButton " type="primary" icon="plus" :data-id="0" @click="addMenuNode">添加子节点</el-button>
+                        </el-button-group>
+                    </template>
+                    <el-collapse class="menuHandle">
+                        <template v-for="(item,index) in menuListData">
+                            <el-collapse-item>
+                                <template slot="title" scope="props">
+                                    {{item.sysresname}}&emsp;&emsp;
+                                    <el-button-group class="inline-block">
+                                        <el-button size="mini" class="pButton " type="primary" icon="plus" :data-id="item.id" @click="addMenuNode">添加子节点</el-button>
+                                        <el-button size="mini" class="pButton" type="primary" :data-id="item.id" icon="edit" @click="editMenuNode">编辑节点</el-button>
+                                    </el-button-group>
+                                </template>
+                                <template v-for="(item2,idx) in item.children">
+                                    <!-- 没有三级节点 -->
+                                    <template v-if="item2.children.length == 0">
+                                        <el-row class='item'>
+                                            <el-col :span="6">
+                                                <h4>{{item2.sysresname}}</h4>
+                                            </el-col>
+                                            <el-col :span="18">
+                                                <el-button size="mini" type="primary" :data-id="item2.id" icon="plus" @click="addMenuNode">添加子节点</el-button>
+                                                <el-button-group>
+                                                    <el-button size="mini" type="primary" :data-id="item2.id" icon="delete" @click="delMenuNode">删除节点</el-button>
+                                                    <el-button size="mini" type="primary" :data-id="item2.id" icon="edit" @click="editMenuNode">编辑节点</el-button>
+                                                </el-button-group>
+                                            </el-col>
+                                        </el-row>
+                                    </template>
+                                    <!-- 有三级节点时 -->
+                                    <template v-else>
+                                        <el-collapse accordion>
+                                            <el-collapse-item>
+                                                <template slot="title" scope="props">
+                                                    {{item2.sysresname}}&emsp;&emsp;
+                                                    <el-button-group>
+                                                        <el-button size="mini" class="pButton " type="primary" icon="plus" :data-id="item2.id" @click="addMenuNode">添加子节点</el-button>
+                                                        <el-button size="mini" class="pButton" type="primary" :data-id="item2.id" icon="edit" @click="editMenuNode">编辑节点</el-button>
+                                                    </el-button-group>
+                                                </template>
+                                                <template v-for="(item3,idx) in item2.children">
+                                                    <!-- 没有四级节点 -->
+                                                    <template v-if="item3.children.length == 0">
+                                                        <el-row class='item'>
+                                                            <el-col :span="6">
+                                                                <h4>{{item3.sysresname}}</h4>
+                                                            </el-col>
+                                                            <el-col :span="18">
+                                                                <el-button size="mini" type="primary" :data-id="item3.id" icon="plus" @click="addMenuNode">添加子节点</el-button>
+                                                                    <el-button-group>
+                                                                        <el-button size="mini" type="primary" :data-id="item3.id" icon="delete" @click="delMenuNode">删除节点</el-button>
+                                                                        <el-button size="mini" type="primary" :data-id="item3.id" icon="edit" @click="editMenuNode">编辑节点</el-button>
+                                                                    </el-button-group>
+                                                            </el-col>
+                                                        </el-row>
+                                                    </template>
+                                                    <!-- 有四级节点时 -->
+                                                    <template v-else>
+                                                        <el-collapse accordion>
+                                                            <el-collapse-item>
+                                                                <template slot="title" scope="props">
+                                                                    {{item3.sysresname}}&emsp;&emsp;
+                                                                    <el-button-group class="inline-block">
+                                                                        <el-button size="mini" class="pButton " type="primary" icon="plus" :data-id="item3.id" @click="addMenuNode">添加子节点</el-button>
+                                                                        <el-button size="mini" class="pButton " type="edit" icon="edit" :data-id="item3.id" @click="editMenuNode">编辑节点</el-button>
+                                                                    </el-button-group>
+                                                                </template>
+                                                                <template v-for="(item4,idx) in item3.children">
+                                                                    <!-- 没有五级节点 -->
+                                                                    <template v-if="item4.children.length == 0">
+                                                                        <el-row class='item'>
+                                                                            <el-col :span="6">
+                                                                                <h4>{{item4.sysresname}}</h4>
+                                                                            </el-col>
+                                                                            <el-col :span="18">
+                                                                                <el-button size="mini" type="primary" :data-id="item4.id" icon="plus" @click="addMenuNode">添加子节点</el-button>
+                                                                                <el-button-group>
+                                                                                    <el-button size="mini" type="primary" :data-id="item4.id" icon="delete" @click="delMenuNode">删除节点</el-button>
+                                                                                    <el-button size="mini" type="primary" :data-id="item4.id" icon="edit" @click="editMenuNode">编辑节点</el-button>
+                                                                                </el-button-group>
+                                                                            </el-col>
+                                                                        </el-row>
+                                                                    </template>
+                                                                    <!-- 有五级节点时 -->
+                                                                    <template v-else>
+                                                                        <el-collapse accordion>
+                                                                            <el-collapse-item>
+                                                                                <template slot="title" scope="props">
+                                                                                    {{item4.sysresname}}&emsp;&emsp;
+                                                                                    <el-button-group class="inline-block">
+                                                                                        <el-button size="mini" class="pButton " type="primary" icon="plus" :data-id="item4.id" @click="addMenuNode">添加子节点</el-button>
+                                                                                        <el-button size="mini" class="pButton " type="primary" icon="edit" :data-id="item4.id" @click="editMenuNode">编辑节点</el-button>
+                                                                                    </el-button-group>
+                                                                                </template>
+                                                                                <template v-for="(item5,idx) in item4.children">
+                                                                                    <el-row class='item'>
+                                                                                        <el-col :span="6">
+                                                                                            <h4>{{item5.sysresname}}</h4>
+                                                                                        </el-col>
+                                                                                        <el-col :span="18">
+                                                                                            <!-- 没有添加节点了，5级了，再来弄不了 -->
+                                                                                            <!-- <el-button size="mini" type="primary" icon="plus">添加子节点</el-button> -->
+                                                                                            <el-button-group>
+                                                                                                <el-button size="mini" type="primary" :data-id="item5.id" icon="delete" @click="delMenuNode">删除节点</el-button>
+                                                                                                <el-button size="mini" type="primary" :data-id="item5.id" icon="edit" @click="editMenuNode">编辑节点</el-button>
+                                                                                            </el-button-group>
+                                                                                        </el-col>
+                                                                                    </el-row>
+                                                                                </template>
+                                                                            </el-collapse-item>
+                                                                        </el-collapse>
+                                                                    </template>
+                                                                </template>
+                                                            </el-collapse-item>
+                                                        </el-collapse>
+                                                    </template>
+                                            </el-collapse-item>
+                                        </el-collapse>
+                                        </template>
+                                    </template>
+                            </el-collapse-item>
+                            </template>
+                    </el-collapse>
+                </el-collapse-item>
+            </el-collapse>
+        </el-col>
+        <!-- <el-col class="menuList" :span="10">
+            <el-tree :data="menuListData" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+        </el-col> -->
+        <el-col class="menuList_handle" :span="14" v-if="menuListHandleIsShow">
+            <el-card>
+                <div slot="header" class="clearfix">
+                    <span style="line-height: 36px;">焦点菜单基础信息编辑及功能节点操作区</span>
+                </div>
+                <!-- 顶部选中菜单的基本信息 -->
+                <el-card class="menuInfoHandle" style="margin-bottom:20px;">
+                    <div slot="header" class="clearfix">
+                        <span style="line-height: 36px;">菜单基础信息-修改</span>
+                        <el-button-group style="margin-left:60px;">
+                            <el-button type="primary" @click="menuInfoRefresh">刷新</el-button>
+                            <el-button type="primary" @click="menuInfoSave">保存</el-button>
+                        </el-button-group>
+                    </div>
+                    <el-card>
+                        <ul class="contentBox">
+                            <li class="clearfix">
+                                <div class="pull-left title"><span>ID</span></div>
+                                <div class="pull-left content">
+                                    <input type="text" v-model="focusMenuBaseInfoData.id" disabled="true">
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="pull-left title"><span>菜单名称</span></div>
+                                <div class="pull-left content">
+                                    <input type="text" v-model="focusMenuBaseInfoData.sysresname">
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="pull-left title"><span>URL</span></div>
+                                <div class="pull-left content">
+                                    <input type="text" v-model="focusMenuBaseInfoData.url">
+                                </div>
+                            </li>
+                        </ul>
+                    </el-card>
+                </el-card>
+                <!-- 节点操作功能区 -->
+                <el-card>
+                    <div slot="header" class="clearfix">
+                        <span style="line-height: 36px;">焦点菜单功能节点操作区</span>
+                        <el-button type="primary" style="margin-left:60px">自动保存中...</el-button>
+                    </div>
+                    <!-- 当前选中菜单操作点 -->
+                    <el-card class="focusMenuFuncHandle">
+                        <el-table :data="focusMenuFuncData" border style="width: 100%">
+                            <el-table-column align="center" prop="operatecode" label="操作点代码"></el-table-column>
+                            <el-table-column align="center" prop="operatename" label="操作点名称"></el-table-column>
+                            <el-table-column align="center" label="操作" inline-template :context="_self">
+                                <span>
+                                    <el-button @click="focusMenuFuncDel(row)" type="text" size="small">删除</el-button>
+                                </span>
+                            </el-table-column>
+                        </el-table>
+                    </el-card>
+                    <!-- 操作节点列表 -->
+                    <el-card>
+                        <el-table :data="menuFuncAllData" border style="width: 100%">
+                            <el-table-column align="center" prop="operatecode" label="操作点代码"></el-table-column>
+                            <el-table-column align="center" prop="operatename" label="操作点名称"></el-table-column>
+                            <el-table-column align="center" label="操作" inline-template :context="_self">
+                                <span>
+                                    <el-button type="text" size="small" @click="focusMenuFuncAdd(row)">添加</el-button>
+                                </span>
+                            </el-table-column>
+                        </el-table>
+                    </el-card>
+                </el-card>
+            </el-card>
+        </el-col>
+        <div class="addMenuNodeHandleBox">
+            <el-dialog title="现有数据操作" v-model="addMenuNodeHandleBoxIsShow">
+                <el-row class="item">
+                    <el-col :span="3">
+                        <span>父级ID</span>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" :disabled="true" v-model="addMenuNodeData.parentid"></el-input>
+                    </el-col>
+                </el-row>
+                <el-row class="item">
+                    <el-col :span="3">
+                        <span>菜单名称</span>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" v-model="addMenuNodeData.sysresname"></el-input>
+                    </el-col>
+                </el-row>
+                <el-row class="item">
+                    <el-col :span="3">
+                        <span>URL</span>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" v-model="addMenuNodeData.url"></el-input>
+                    </el-col>
+                </el-row>
+                <el-row class='btns'>
+                    <el-button-group>
+                        <el-button type="primary" @click="addMenuNodeSubmit">提交</el-button>
+                        <el-button type="primary" @click="addMenuNodeCancel">取消</el-button>
+                    </el-button-group>
+                </el-row>
+            </el-dialog>
+        </div>
+    </el-row>
+</div>

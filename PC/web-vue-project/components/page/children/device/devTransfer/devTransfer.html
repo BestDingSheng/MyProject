@@ -1,0 +1,124 @@
+<div class="dev_transfer">
+    <div class="choose_option">
+        <el-row :gutter="20" class="firstRow">
+            <el-col :span="8">
+                <el-row >
+                    <el-col :span="8" >
+                        <span class="title">终端起始编号</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-input placeholder="请输入终端起始编号" v-model="searchObj.devStartID"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="8">
+                <el-row >
+                    <el-col :span="8" >
+                        <span class="title">终端结束编号</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-input placeholder="请输入终端起始编号" v-model="searchObj.devEndID"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <el-row :gutter="20" class="secondRow">
+            <el-col :span="8">
+                <el-row >
+                    <el-col :span="8">
+                        <span class="title">归属机构</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-select v-model="searchObj.agent" placeholder="请选择">
+                            <el-option v-for="item in agent" :label="item.label" :value="item.value"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="8">
+                <el-row >
+                    <el-col :span="8">
+                        <span class="title">终端状态</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-select v-model="searchObj.devStatus" placeholder="请选择">
+                            <el-option v-for="item in devStatus" :label="item.label" :value="item.value"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <el-row :gutter="20">
+            <el-col :span="8">
+                <el-row>
+                    <el-col :span="8">
+                        <span class="title">操&emsp;作</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-button-group>
+                            <el-button type="primary" @click="doSearch">查询</el-button>
+                            <el-button type="primary" @click="doTransfer">划拨</el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+    </div>
+    <!-- 查询结果表 -->
+    <div class="search_result">
+        <el-table :data="searchResult.data" border>
+            <el-table-column align="center" prop="psam" label="PSAM"></el-table-column>
+            <el-table-column align="center" prop="agent" label="所属机构"></el-table-column>
+            <el-table-column align="center" prop="devStatus" label="终端状态"></el-table-column>
+        </el-table>
+        <div class="do_transfer">
+            <el-dialog title="划拨收款宝" v-model="transferIsShow" size="tiny">
+                <!-- start -->
+                <el-form ref="doTransfer" :model="transferData" label-width="100px">
+                    <el-row>
+                        <span class="title">终端号"{{searchObj.devStartID}}"到“{{searchObj.devStartID}}”一共{{searchResult.total}}台终端，请选择新机构</span>
+                    </el-row>
+                    <el-row class="item">
+                        <el-col :span="5">
+                            <span class="title">由归属机构:</span>
+                        </el-col>
+                        <el-col :span="7">
+                            <el-select v-model="transferData.oldAgent" placeholder="请选择当前归属机构">
+                                <el-option v-for="item in agent" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="5">
+                            <span class="title">调整到新机构:</span>
+                        </el-col>
+                        <el-col :span="7">
+                            <el-select v-model="transferData.newAgent" placeholder="请选择新的机构">
+                                <el-option v-for="item in agent" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :sapn="5" :offset="10">
+                            <el-button type="primary" @click="transferDoing">划拨</el-button>
+                        </el-col>
+                    </el-row>
+                </el-form>
+                <!-- end -->
+            </el-dialog>
+            <!-- result start -->
+            <el-dialog title="提示" v-model="transferResultIsShow" size="tiny">
+                <span class="title">收款宝终端划拨成功/失败</span>
+                <span slot="footer" class="dialog-footer">
+                        <el-button @click="doTransferDone">完成</el-button>
+                        <el-button type="primary" @click="doTransfer">继续/重新创建</el-button>
+                    </span>
+            </el-dialog>
+            <!-- result end -->
+        </div>
+        <div class="pagination ">
+            <div class="block ">
+                <el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize" layout="prev, pager, next, jumper" :page-count="pageTotal">
+                </el-pagination>
+            </div>
+        </div>
+    </div>
+</div>

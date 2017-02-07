@@ -1,0 +1,48 @@
+<div class="user_info">
+    <div class="deal_info">
+        <span class="table_title">交易信息</span>
+        <template>
+            <el-table :data="dealData" min-height="250" >
+                <el-table-column align="center" prop="date" label="日期" sortable >
+                </el-table-column>
+                <el-table-column align="center" prop="agent" label="XXX代理商" >
+                </el-table-column>
+                <el-table-column align="center" prop="juniorAgent" label="下级代理商" >
+                </el-table-column>
+                <el-table-column align="center" prop="total" label="合计" >
+                </el-table-column>
+            </el-table>
+        </template>
+    </div>
+    <div class="customer_info">
+        <span class="table_title">签约客户信息</span>
+        <template>
+            <el-table :data="customerData" max-height="250" border >
+                <el-table-column align="center" prop="oganization" label="机构" >
+                </el-table-column>
+                <el-table-column align="center" prop="customerToday" label="当日发展客户" >
+                </el-table-column>
+                <el-table-column align="center" prop="customerMonth" label="当月发展商户" >
+                </el-table-column>
+                <el-table-column align="center" prop="total" label="合计发展商户" >
+                </el-table-column>
+            </el-table>
+        </template>
+    </div>
+    <div class="dev_info">
+        <span class="table_title">终端信息</span>
+        <template>
+            <el-table :data="devData" max-height="250" border >
+                <el-table-column align="center" prop="oganization" label="机构">
+                </el-table-column>
+                <el-table-column align="center" prop="devToday" label="当日绑定终端" >
+                </el-table-column>
+                <el-table-column align="center" prop="devMonth" label="当月绑定终端" >
+                </el-table-column>
+                <el-table-column align="center" prop="total" label="合计绑定终端">
+                </el-table-column>
+            </el-table>
+        </template>
+    </div>
+
+</div>

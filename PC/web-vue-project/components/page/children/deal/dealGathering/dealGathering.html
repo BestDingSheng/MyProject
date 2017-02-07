@@ -1,0 +1,135 @@
+<div class="deal_gathering">
+    <el-row class="search" :gutter="20">
+        <el-row class="item" :gutter="30">
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">交易时间段</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-date-picker v-model="createdTimeRange" format="yyyy-MM-dd HH-mm-ss" type="daterange" placeholder="选择日期范围" style="width:210px;"></el-date-picker>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">商户号</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-input placeholder="请输入商户号" v-model="searchObj.merchantCode"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <!-- 第二行 -->
+        <el-row class="item" :gutter="30">
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">分属代理商</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-select v-model="searchObj.signOrg" clearable filterable placeholder="请选择分属代理商">
+                            <el-option v-for="item in signOrgData" :label="item.compOrgName" :value="item.compOrgCode"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">交易类型</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-select v-model="searchObj.transCode" placeholder="请选择交易类型">
+                            <el-option v-for="item in transCodeData" :label="item.label" :value="item.value"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <!-- 第三行 -->
+        <el-row class="item" :gutter="30">
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">终端号</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-input placeholder="请输入终端号" v-model="searchObj.termNo"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">流水号</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-input placeholder="请输入流水号" v-model="searchObj.logNo"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <!-- 第四行 -->
+        <el-row class="item" :gutter="30">
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">操&emsp;作</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-button-group>
+                            <el-button type="primary" icon="search" @click="doSearch">搜索</el-button>
+                            <el-button type="primary" icon="delete" @click="cleanSearchInp">清空</el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="9">
+            </el-col>
+        </el-row>
+    </el-row>
+    <ul class="ctr-bar">
+        <li>
+            <a href="javascript:;"><i class="el-icon-plus"></i>&nbsp;&nbsp;<span>添加</span></a>
+        </li>
+        <li>
+            <a href="javascript:;"><i class="el-icon-delete"></i>&nbsp;&nbsp;<span>删除</span></a>
+        </li>
+        <!-- <li>
+            <a href="javascript:;"><i class="el-icon-edit"></i>&nbsp;&nbsp;<span @click="refreshData">刷新</span></a>
+        </li> -->
+    </ul>
+    <div class="seach_list">
+        <el-table :data="dealData" border style="width: 100%" max-height="500" :stripe="true">
+            <el-table-column align="center" prop="pageRowId" label="ID" min-width="60"></el-table-column>
+            <el-table-column align="center" prop="signOrg" label="代理商" min-width='100'></el-table-column>
+            <el-table-column align="center" prop="merchantName" label="商户名称" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="merchantCode" label="商户号" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="termNo" label="终端号" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="logNo" label="流水号" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="transAmt" label="交易金额（元）" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="feeAmt" label="手续费（元）" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="cardNo" label="交易卡号" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="transCode" label="业务类型" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="cardType" label="渠道" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="tranTime" label="交易时间" min-width="150"></el-table-column>
+            <!-- <el-table-column align="center" inline-template :context="_self" fixed="right" label="操作" width="150">
+                <span>
+                <el-button @click="viewDetail(row)" type="text" size="small">查看</el-button>
+              </span>
+            </el-table-column> -->
+        </el-table>
+        <div class="ps" v-if="this.transactionCount">
+            <p>交易笔数: {{transactionCount}} 笔</p>
+        </div>
+        <div class="pagination">
+            <div class="block">
+                <el-pagination :current-page="currentPage" @current-change = "doJumpPage" :page-size="pageSize" layout="prev, pager, next, jumper" :page-count="pageTotal">
+                </el-pagination>
+            </div>
+        </div>
+    </div>
+</div>

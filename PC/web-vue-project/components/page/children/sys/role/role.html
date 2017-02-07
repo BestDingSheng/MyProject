@@ -1,0 +1,198 @@
+<div class="sys_role">
+    <el-row class="search" :gutter="20">
+        <el-col :span="8">
+            <el-row>
+                <el-col :span="6">
+                    <span>角色名称</span>
+                </el-col>
+                <el-col :span="18">
+                    <el-input placeholder="请输入内容" v-model="searchObj.rolename"></el-input>
+                </el-col>
+            </el-row>
+        </el-col>
+        <el-col :span="8">
+            <el-col :span="6">
+                <span>创建时间</span>
+            </el-col>
+            <el-col :span="18">
+                <el-date-picker v-model="createdTimeRange" format="yyyy-MM-dd HH-mm-ss" type="datetimerange" placeholder="选择日期范围" style="width:210px;"></el-date-picker>
+            </el-col>
+        </el-col>
+        <el-col :span="6">
+            <el-button-group>
+                <el-button type="primary" icon="search" @click="doSearch">搜索</el-button>
+                <el-button type="primary" icon="delete" @click="cleanSearchInp">清空</el-button>
+            </el-button-group>
+        </el-col>
+    </el-row>
+    <ul class="ctr-bar">
+        <li>
+            <a href="javascript:;" @click="addRole"><i class="el-icon-plus"></i>&nbsp;&nbsp;<span>添加</span></a>
+        </li>
+        <li>
+            <a href="javascript:;"><i class="el-icon-delete"></i>&nbsp;&nbsp;<span @click="delSelected">删除</span></a>
+        </li>
+        <!-- <li>
+            <a href="javascript:;"><i class="el-icon-edit"></i>&nbsp;&nbsp;<span @click="refreshData">刷新</span></a>
+        </li> -->
+    </ul>
+    <div class="seach_list">
+        <el-table :data="roleData" border style="width: 100%" max-height="500" :stripe="true" @selection-change="doChange">
+            <el-table-column align="center" type="selection" width="55"></el-table-column>
+            <el-table-column align="center" prop="id" label="ID" min-width="60"></el-table-column>
+            <el-table-column align="center" prop="rolename" label="角色名称" min-width='100'></el-table-column>
+            <el-table-column align="center" prop="remark" label="说明" min-width="150"></el-table-column>
+            <el-table-column align="center" inline-template :context="_self" fixed="right" label="操作" width="150">
+                <span>
+                <el-button @click="viewDetail(row)" type="text" size="small">查看</el-button>
+                <el-button @click="edit(row)" type="text" size="small">编辑</el-button>
+                <el-button @click="assignPermission(row)" type="text" size="small">权限</el-button>
+              </span>
+            </el-table-column>
+        </el-table>
+        <div class="pagination">
+            <div class="block">
+                <el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize" layout="prev, pager, next, jumper" :page-count="pageTotal">
+                </el-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="rowHandleBox" :class="{rowView : isView}">
+        <el-dialog title="现有数据操作" v-model="rowHandleBoxIsShow">
+            <!-- <el-row class="id">
+                <el-col :span="8">
+                    <span>ID</span>
+                </el-col>
+                <el-col :span="10">
+                    <el-input placeholder="请输入内容" :disabled="isView" v-model="resourceObj.id"></el-input>
+                </el-col>
+            </el-row> -->
+            <el-row class="roleName">
+                <el-col :span="3">
+                    <span>角色名称</span>
+                </el-col>
+                <el-col :span="6">
+                    <el-input placeholder="请输入内容" :disabled="isView" v-model="resourceObj.rolename"></el-input>
+                </el-col>
+            </el-row>
+            <div class="dec">
+                <div class="span">说明</div>
+                <textarea :disabled="isView" v-model="resourceObj.remark"></textarea>
+            </div>
+            <el-row class='btns' v-if="!isView">
+                <el-button-group>
+                    <el-button type="primary" @click="rowUpdateSubmit">提交</el-button>
+                    <el-button type="primary" @click="rowHandleBoxIsShow=false">取消</el-button>
+                </el-button-group>
+            </el-row>
+        </el-dialog>
+    </div>
+    <div class="addRoleBox">
+        <el-dialog title="现有数据操作" v-model="addRoleHandleBoxIsShow">
+            <!-- <el-row class="id">
+                <el-col :span="8">
+                    <span>ID</span>
+                </el-col>
+                <el-col :span="10">
+                    <el-input placeholder="请输入内容" :disabled="isView" v-model="resourceObj.id"></el-input>
+                </el-col>
+            </el-row> -->
+            <el-row class="roleName">
+                <el-col :span="3">
+                    <span>角色名称</span>
+                </el-col>
+                <el-col :span="6">
+                    <el-input placeholder="请输入内容" v-model="addRoleObj.rolename"></el-input>
+                </el-col>
+            </el-row>
+            <div class="dec">
+                <div class="span">说明</div>
+                <textarea v-model="addRoleObj.remark"></textarea>
+            </div>
+            <el-row class='btns text-center'>
+                <el-button-group>
+                    <el-button type="primary" @click="addRoleSubmit">提交</el-button>
+                    <el-button type="primary" @click="addRoleHandleBoxIsShow=false">取消</el-button>
+                </el-button-group>
+            </el-row>
+        </el-dialog>
+    </div>
+    <div class="assignPermissionHandleBox">
+        <el-dialog :title="'角色【'+assignPermissionData.roleName+ '】权限设置'" v-model="assignPermissionBoxIsShow">
+            <!-- <template v-for="(item,index) in assignPermissionAllData">
+                <div class="pMenu">
+                    <el-row :gutter='50' class="inner">
+                        <el-col :span="6">
+                            <h2><a href="javascript:;"><i class="el-icon-caret-bottom"></i>{{item.sysresname}}</a></h2>
+                        </el-col>
+                        <el-col :span="18">
+                            <el-checkbox-group v-model="assignPermissionData.sysFuncId">
+                                <template v-for="checkBox in item.aSystemFunctions">
+                                    <el-checkbox :label="checkBox.id">{{checkBox.functionname}}-{{checkBox.id}}</el-checkbox>
+                                </template>
+                            </el-checkbox-group>
+                        </el-col>
+                    </el-row>
+                    <div class="cMenu">
+                        <div class="item" v-for="(child,idx) in item.children">
+                            <el-row class='item' :gutter="50">
+                                <el-col :span="6">
+                                    <h3>{{item.sysresname}}</h3>
+                                </el-col>
+                                <el-col :span="18">
+                                    <el-checkbox-group v-model="assignPermissionData.sysFuncId">
+                                        <template v-for="checkBox in child.aSystemFunctions">
+                                            <el-checkbox :label="checkBox.id">{{checkBox.functionname}}-{{checkBox.id}}</el-checkbox>
+                                        </template>
+                                    </el-checkbox-group>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <div class="btns text-center">
+                <el-button-group>
+                    <el-button type="primary" @click="rolePermissionSubmit">提交</el-button>
+                    <el-button type="primary" @click="rolePermissionCancel">取消</el-button>
+                </el-button-group>
+            </div> -->
+            <div class="mySlideTab">
+                <template v-for="(item,index) in assignPermissionAllData">
+                    <div class="mySlideTab-item">
+                        <div class="mySlideTab-item-header">
+                            <span class="mySlideTab-item-header-title"><i class="el-icon-caret-right"></i>{{item.sysresname}}</span>
+                            <el-checkbox-group class="inline-block" v-model="assignPermissionData.sysFuncId" @click = "stopPropagation" >
+                                <template v-for="checkBox in item.aSystemFunctions">
+                                    <el-checkbox :label="checkBox.id" >{{checkBox.functionname}}-{{checkBox.id}}</el-checkbox>
+                                </template>
+                            </el-checkbox-group>
+                        </div>
+                        <div class="mySlideTab-item-wrap">
+                            <template v-for="(child,idx) in item.children">
+                                <el-row class='item' :gutter="50">
+                                    <el-col :span="4">
+                                        <h3>{{child.sysresname}}</h3>
+                                    </el-col>
+                                    <el-col :span="20">
+                                        <el-checkbox-group v-model="assignPermissionData.sysFuncId">
+                                            <template v-for="checkBox in child.aSystemFunctions">
+                                                <el-checkbox :label="checkBox.id">{{checkBox.functionname}}-{{checkBox.id}}</el-checkbox>
+                                            </template>
+                                        </el-checkbox-group>
+                                    </el-col>
+                                </el-row>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="btns text-center">
+                <el-button-group>
+                    <el-button type="primary" @click="rolePermissionSubmit">提交</el-button>
+                    <el-button type="primary" @click="rolePermissionCancel">取消</el-button>
+                </el-button-group>
+            </div>
+        </el-dialog>
+    </div>
+</div>

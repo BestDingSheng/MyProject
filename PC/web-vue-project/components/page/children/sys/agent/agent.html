@@ -1,0 +1,475 @@
+<div class="sys_agent">
+    <el-row class="search" :gutter="10">
+        <el-col :span="4">
+            <el-row>
+                <el-col :span="8">
+                    <span>代理商名</span>
+                </el-col>
+                <el-col :span="16">
+                    <el-input v-model="searchObj.agentname"></el-input>
+                </el-col>
+            </el-row>
+        </el-col>
+        <el-col :span="4">
+            <el-row>
+                <el-col :span="4">
+                    <span>等级</span>
+                </el-col>
+                <el-col :span="20">
+                    <el-input v-model="searchObj.levelid"></el-input>
+                </el-col>
+            </el-row>
+        </el-col>
+        <el-col :span="5">
+            <div class="block">
+                <el-col :span="7">
+                    <span>创建时间</span>
+                </el-col>
+                <el-col :span="17">
+                    <el-date-picker v-model="createdTimeRange" type="datetimerange" placeholder="选择日期范围" style="width:100%;"></el-date-picker>
+                </el-col>
+            </div>
+        </el-col>
+        <el-col :span="5">
+            <el-button-group>
+                <el-button type="primary" icon="search" @click="doSearch">搜索</el-button>
+                <el-button type="primary" icon="delete" @click="cleanSearchInp">清空</el-button>
+            </el-button-group>
+        </el-col>
+    </el-row>
+    <ul class="ctr-bar">
+        <li>
+            <a href="javascript:;" @click="addAgent"><i class="el-icon-plus"></i>&nbsp;&nbsp;<span>添加</span></a>
+        </li>
+        <li>
+            <a href="javascript:;" @click="delSelected"><i class="el-icon-delete"></i>&nbsp;&nbsp;<span>删除</span></a>
+        </li>
+        <!-- <li>
+            <a href="javascript:;"><i class="el-icon-edit"></i>&nbsp;&nbsp;<span @click="refreshData">刷新</span></a>
+        </li> -->
+    </ul>
+    <div class="seach_list">
+        <el-table :data="agentData" border style="width: 100%" height="500" :stripe="true" @selection-change="doChange">
+            <el-table-column align="center" type="selection" width="55"></el-table-column>
+            <el-table-column align="center" prop="id" label="ID" min-width="60"></el-table-column>
+            <el-table-column align="center" prop="crname" label="法人姓名" min-width="60"></el-table-column>
+            <el-table-column align="center" prop="agentname" label="代理商名" min-width='100'></el-table-column>
+            <el-table-column align="center" prop="levelid" label="代理商等级" min-width='100'></el-table-column>
+            <el-table-column align="center" prop="telephone" label="联系电话" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="createdtime" :formatter="msToTime" label="创建时间" min-width="150"></el-table-column>
+            <el-table-column align="center" inline-template :context="_self" fixed="right" label="操作" width="150">
+                <span>
+                <el-button @click="viewDetail(row)" type="text" size="small">详情</el-button>
+                <el-button @click="edit(row)" type="text" size="small">编辑</el-button>
+              </span>
+            </el-table-column>
+        </el-table>
+        <div class="pagination">
+            <div class="block">
+                <el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize" layout="prev, pager, next, jumper" :page-count="pageTotal">
+                </el-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="rowHandleBox">
+        <el-dialog :title="resourceObj.agentname + '当前信息操作'" v-model="rowHandleBoxIsShow">
+            <div class="inner" :class="{view : isView}">
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>法人姓名</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.crname"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>代理商名</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.agentname"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>联系电话</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.telephone"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>传真</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.fax"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>法人身份证</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.crlicenceno"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>工商注册号</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.identitycardno"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>代理商属性</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.atype"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>上级机构</span>
+                            </el-col>
+                            <el-col :span="18">
+                                <el-input :disabled="isView" v-model="resourceObj.comporgparent"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow" v-if="isView">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>创建时间</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <span>{{resourceObj.createdtime | msToTime}}</span>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>上次更新时间</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <span>{{resourceObj.editedtime | msToTime}}</span>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>微信</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input disabled v-model="resourceObj.weiXin"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>邮箱</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input :disabled="isView" v-model="resourceObj.email"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <!-- 编辑时地址 -->
+                <el-row class="listRow editAddress" v-if="!isView">
+                    <el-col :span="12">
+                        <el-col :span="6" class="title">
+                            <span>地址</span>
+                        </el-col>
+                        <el-col :span="18" class="data">
+                            <el-row>
+                                <el-col :span="8">
+                                    <el-row>
+                                        <el-col :span="6" class="text-center">
+                                            <span>省</span>
+                                        </el-col>
+                                        <el-col :span="18">
+                                            <el-select v-model="resourceObj.provinceid" @change="getCityByProvinceid" placeholder="请选择">
+                                                <el-option v-for="item in provinceData" :label="item.provincename" :value="item.provinceid">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="8">
+                                    <el-row>
+                                        <el-col :span="6" class="text-center">
+                                            <span>市</span>
+                                        </el-col>
+                                        <el-col :span="18">
+                                            <el-select v-model="resourceObj.cityid"  @change="getDistrictByCityid"  placeholder="请选择">
+                                                <el-option v-for="item in cityData" :label="item.cityname" :value="item.cityid">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="8">
+                                    <el-row>
+                                        <el-col :span="6" class="text-center">
+                                            <span>区</span>
+                                        </el-col>
+                                        <el-col :span="18">
+                                            <el-select v-model="resourceObj.districtid" placeholder="请选择">
+                                                <el-option v-for="item in districtData" :label="item.districtname" :value="item.districtid">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                            </el-row>
+                        </el-col>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>详细地址</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="resourceObj.sortAddderss"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <!-- 查看时 地址 -->
+                <el-row class="listRow viewAddress" v-if="isView">
+                    <el-col :span="3" class="title">
+                        <span>完整地址</span>
+                    </el-col>
+                    <el-col :span="21" class="data">
+                        <span>&emsp;{{resourceObj.addressdetail}}</span>
+                    </el-col>
+                </el-row>
+            </div>
+            <el-row class='btns' v-if="!isView">
+                <el-button-group>
+                    <el-button type="primary" @click="rowUpdateSubmit">提交</el-button>
+                    <el-button type="primary" @click="rowHandleBoxIsShow=false">取消</el-button>
+                </el-button-group>
+            </el-row>
+        </el-dialog>
+    </div>
+    <!-- 添加代理商 -->
+      <div class="addAgentHandleBox">
+        <el-dialog title="添加代理商" v-model="addAgentHandleBoxIsShow">
+            <div class="inner">
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>法人姓名</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.crname"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>代理商名</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.agentname"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>联系电话</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.telephone"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>传真</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.fax"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>法人身份证</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.crlicenceno"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>工商注册号</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.identitycardno"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>代理商属性</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.atype"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>上级机构</span>
+                            </el-col>
+                            <el-col :span="18">
+                                <el-input v-model="addAgentObj.comporgparent"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                
+                <el-row class="listRow">
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>微信</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input disabled v-model="addAgentObj.weiXin"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>邮箱</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.email"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <!-- 编辑时地址 -->
+                <el-row class="listRow editAddress">
+                    <el-col :span="12">
+                        <el-col :span="6" class="title">
+                            <span>地址</span>
+                        </el-col>
+                        <el-col :span="18" class="data">
+                            <el-row>
+                                <el-col :span="8">
+                                    <el-row>
+                                        <el-col :span="6" class="text-center">
+                                            <span>省</span>
+                                        </el-col>
+                                        <el-col :span="18">
+                                            <el-select v-model="addAgentObj.provinceid" @change="getCityByProvinceid" placeholder="请选择">
+                                                <el-option v-for="item in provinceData" :label="item.provincename" :value="item.provinceid">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="8">
+                                    <el-row>
+                                        <el-col :span="6" class="text-center">
+                                            <span>市</span>
+                                        </el-col>
+                                        <el-col :span="18">
+                                            <el-select v-model="addAgentObj.cityid"  @change="getDistrictByCityid"  placeholder="请选择">
+                                                <el-option v-for="item in cityData" :label="item.cityname" :value="item.cityid">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="8">
+                                    <el-row>
+                                        <el-col :span="6" class="text-center">
+                                            <span>区</span>
+                                        </el-col>
+                                        <el-col :span="18">
+                                            <el-select v-model="addAgentObj.districtid" placeholder="请选择">
+                                                <el-option v-for="item in districtData" :label="item.districtname" :value="item.districtid">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                            </el-row>
+                        </el-col>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row>
+                            <el-col :span="6" class="title">
+                                <span>详细地址</span>
+                            </el-col>
+                            <el-col :span="18" class="data">
+                                <el-input v-model="addAgentObj.addressdetail"></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+              
+            </div>
+            <el-row class='btns'>
+                <el-button-group>
+                    <el-button type="primary" @click="addAgentSubmit">提交</el-button>
+                    <el-button type="primary" @click="addAgentHandleBoxIsShow=false">取消</el-button>
+                </el-button-group>
+            </el-row>
+        </el-dialog>
+    </div>
+    <!-- <div class="loadingBox" v-loading="loadingBoxIsShow" element-loading-text="数据处理中..."></div> -->
+</div>

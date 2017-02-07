@@ -1,0 +1,128 @@
+<div class="deal_gathering">
+    <el-row class="search" :gutter="20">
+        <!-- 第一行 -->
+        <el-row class="item" :gutter="30">
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">商户名称</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-input placeholder="请输入商户号" v-model="searchObj.merchantName"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">所在地区</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-row>
+                            <el-col :span="10">
+                                <el-select v-model="searchObj.province" placeholder="--省--" @change="getCityData">
+                                    <el-option v-for="item in provinceData" :label="item.areaName" :value="item.areaCode"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col :span="13" offset="1">
+                                <el-select v-model="searchObj.city" placeholder="--市（区）--">
+                                    <el-option v-for="item in cityData" :label="item.areaName" :value="item.areaCode"></el-option>
+                                </el-select>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <!-- 第二行 -->
+        <el-row class="item" :gutter="30">
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">商户号</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-input placeholder="请输入商户号" v-model="searchObj.merchantNo"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">分属代理商</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-select v-model="searchObj.signOrg" clearable filterable placeholder="请选择分属代理商">
+                            <el-option v-for="item in signOrgData" :label="item.compOrgName" :value="item.compOrgCode"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <!-- 第三行 -->
+        <el-row class="item" :gutter="30">
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">负责人姓名</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-input placeholder="请输入终端号" v-model="searchObj.userName"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="9">
+                <el-row class="part" :gutter="30">
+                    <el-col :span="10" class="text-riht">
+                        <span class="title">操&emsp;作</span>
+                    </el-col>
+                    <el-col :span="14">
+                        <el-button-group>
+                            <el-button type="primary" icon="search" @click="doSearch">搜索</el-button>
+                            <el-button type="primary" icon="delete" @click="cleanSearchInp">清空</el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <ul class="ctr-bar">
+            <li>
+                <a href="javascript:;"><i class="el-icon-plus"></i>&nbsp;&nbsp;<span>添加</span></a>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="el-icon-delete"></i>&nbsp;&nbsp;<span>删除</span></a>
+            </li>
+            <!-- <li>
+            <a href="javascript:;"><i class="el-icon-edit"></i>&nbsp;&nbsp;<span @click="refreshData">刷新</span></a>
+        </li> -->
+        </ul>
+        <div class="seach_list">
+            <el-table :data="merchantData" border style="width: 100%" max-height="500" :stripe="true">
+                <el-table-column align="center" prop="Id_" label="商户号" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="merchantName" label="商户注册名称" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="merchantExternalName" label="商户经营名称" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="address" label="商户注册地址" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="contactName" label="负责人姓名" min-width="120"></el-table-column>
+                <el-table-column align="center" prop="contactMobile" label="联系电话" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="userCertNo" label="身份证号码" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="bankName" label="收款银行" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="accountNo" label="收款账号" min-width="200"></el-table-column>
+                <el-table-column align="center" prop="accountName" label="收款人姓名" min-width="120"></el-table-column>
+                <!-- <el-table-column align="center" inline-template :context="_self" fixed="right" label="操作" width="150">
+                <span>
+                <el-button @click="viewDetail(row)" type="text" size="small">查看</el-button>
+              </span>
+            </el-table-column> -->
+            </el-table>
+            <div class="ps" v-if="this.transactionCount">
+                <p>总记录: {{transactionCount}} 条</p>
+            </div>
+            <div class="pagination">
+                <div class="block">
+                    <el-pagination :current-page="currentPage" @current-change="doJumpPage" :page-size="pageSize" layout="prev, pager, next, jumper"
+                        :page-count="pageTotal">
+                        </el-pagination>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,17 @@
+<el-row class="widget_header">
+    <el-col :span="12" class="logo">
+        <h1>拉卡拉MPOS代理商管理系统</h1>
+    </el-col>
+    <el-col :span="12" class="logInfo">
+        <div class="login" v-if="this.$root.login"><span>欢迎你，亲爱的</span><span class="username">:&nbsp;{{this.$root.username}}</span> | <a href="javascript:;" @click="changePassword">修改密码</a> | <a href="javascript:;" @click="logout">安全退出</a></div>
+        <div class="logout" v-if="!this.$root.login"><span>欢迎你，请</span><a href="javascript:;" @click="login">登录</a></div>
+    </el-col>
+    <!-- 退出提示框 -->
+    <el-dialog title="提示" v-model="logoutIsShow" size="tiny">
+        <span>你确定要退出系统吗？</span>
+        <span slot="footer" class="dialog-footer">
+		    <el-button @click="logoutIsShow = false">取 消</el-button>
+		    <el-button type="primary" @click="logoutConfirm">确 定</el-button>
+	    </span>
+    </el-dialog>
+</el-row>

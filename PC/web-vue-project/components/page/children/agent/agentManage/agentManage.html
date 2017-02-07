@@ -1,0 +1,437 @@
+<div class="agent_manage">
+    <div class="choose_option">
+        <el-row  :gutter="20">
+            <el-col :span="8">
+                <el-row >
+                    <el-col :span="7" >
+                        <span class="title">代理商名称</span>
+                    </el-col>
+                    <el-col :span="17">
+                        <el-select v-model="searchObj.agentName" placeholder="请选择" @change='agentC' class='username'>
+                            <el-option v-for="item in agentName" :value="item.compOrgCode" :label="item.compOrgName">
+                                </el-option-group>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <el-row class="secondRow" :gutter="20">
+
+            <el-col :span='8' >
+                <el-row >
+                    <el-col :span="6">
+                        <span class="title">身份证号</span>
+                    </el-col>
+                    <el-col :span='18' >
+                        <el-input v-model="searchObj.crLicenceNo" placeholder="请输入身份证号"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span='8' >
+                <el-row :gutter="20" >
+                    <el-col :span="6">
+                        <span class="title" >法人姓名</span>
+                    </el-col>
+                    <el-col :span='15'>
+                        <el-input v-model="searchObj.crName" placeholder="请输入姓名"></el-input>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="6">
+                <el-button-group>
+                    <el-button type="primary" icon="search" @click="doSearch">搜索</el-button>
+                    <el-button type="primary" icon="delete" @click="cleanSearchInp">清空</el-button>
+                </el-button-group>
+            </el-col>
+        </el-row>
+    </div>
+
+    <!-- 查询结果�?  v-show='tableControl'-->
+    <ul class="ctr-bar">
+        <li>
+            <a href="javascript:;" @click="doAdd"><i class="el-icon-plus"></i>&nbsp;&nbsp;<span>添加</span></a>
+        </li>
+    </ul>
+    <div class="seach_list " >
+        <el-table :data="datas" border style="width: 100%" height="450" :stripe="true" @selection-change="doChange">
+            <el-table-column align="center" prop="compOrgCode" label="机构编码" width="150"></el-table-column>
+            <el-table-column align="center" prop="compOrgName" label="代理商名称" width="200"></el-table-column>
+            <el-table-column align="center" prop="compOrgParent" label="上级机构" width="200"></el-table-column>
+            <el-table-column align="center" prop="address" label="企业地址" width="400"></el-table-column>
+            <el-table-column align="center" prop="business" label="分润业务" width="200"></el-table-column>
+            <el-table-column align="center" prop="devNum" label="终端数量" width="100"></el-table-column>
+            <el-table-column align="center" prop="devOnline" label="已绑定终端数量" width="200"></el-table-column>
+            <el-table-column align="center" prop="customerNum" label="商户数量" width="150"></el-table-column>
+            <el-table-column align="center" prop="creater" label="创建人" width="150"></el-table-column>
+            <el-table-column align="center" prop="creatTime" label="创建时间" width="250"></el-table-column>
+
+            <el-table-column inline-template :context="_self" fixed="right" label="操作" width="100" align="center">
+    			<span>
+    				<el-button @click="modify(row)" type="text" size="small" align="center">修改</el-button>
+    			</span>
+            </el-table-column>
+        </el-table>
+        <div class="pagination ">
+            <div class="block ">
+                <el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize" layout="prev, pager, next, jumper" :page-count="pageTotal">
+                </el-pagination>
+            </div>
+        </div>
+            <div class="addAgent">
+            <el-dialog title="添加代理商" v-model="addAgentIsShow" size="small">
+                <!-- start -->
+                <el-form ref="addAgentObj" :model="addAgentObj" label-width="100px">
+                    <el-row class='bottomdistance'>
+                        <el-col :span="12">
+                            <el-form-item label="联系电话" label-position="left">
+                                <el-input v-model="addAgentObj.telephone" ></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12" label-position="right">
+                            <el-form-item label="法人姓名">
+                                <el-input v-model="addAgentObj.crName"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row >
+
+                    <el-row class='bottomdistance'>
+                        <el-col :span="12">
+                            <el-form-item label="性别" label-position="left">
+                                <el-input v-model="addAgentObj.gender"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item label="邮箱" label-position="right">
+                                <el-input v-model="addAgentObj.email"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
+
+                    <el-row class='bottomdistance'>
+                        <el-col :span="12">
+                            <el-form-item label="身份证正面" label-position="left">
+                                <el-input v-model="addAgentObj.idFront"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item label="身份证反面" label-position="right">
+                                <el-input v-model="addAgentObj.idBack"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
+                    <el-row class='bottomdistance'>
+
+                        <el-col :span="12">
+                            <el-form-item label="法人身份证号" label-position="left">
+                                <el-input v-model="addAgentObj.crLicenceNo"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <!--<el-col :span="10">-->
+                            <!--<el-form-item label="地址">-->
+                                <!--<el-input v-model="addAgentObj.address"></el-input>-->
+                            <!--</el-form-item>-->
+                        <!--</el-col>-->
+                    </el-row>
+                    <!-- 支持分润的业�?-->
+                    <!--<el-row>-->
+                        <!--<el-col :span="4">-->
+                            <!--<h3>支持分润的业�?</h3>-->
+                        <!--</el-col>-->
+                        <!--<el-col :span="20">-->
+                            <!--<el-checkbox-group v-model="addAgentObj.businessArr" @change=''>-->
+                                <!--<el-checkbox label="cb1">刷卡收款</el-checkbox>-->
+                                <!--<el-checkbox label="cb2">D+0业务</el-checkbox>-->
+                                <!--<el-checkbox label="cb3">扫码收款</el-checkbox>-->
+                            <!--</el-checkbox-group>-->
+                        <!--</el-col>-->
+                    <!--</el-row>-->
+                    <!-- 分润比例 -->
+                    <!--<el-row :gutter="40">-->
+                        <!--<el-col :span="4">-->
+                            <!--<h3>分润比例</h3>-->
+                        <!--</el-col>-->
+                        <!--<el-col :span="12">-->
+                            <!--<el-table :data="businessRate" style="width: 450px">-->
+                                <!--<el-table-column prop="business" label="业务" width="120"></el-table-column>-->
+                                <!--<el-table-column prop="rate" label="分润比例" width="120"></el-table-column>-->
+                                <!--<el-table-column prop="" label="" width="150"></el-table-column>-->
+                            <!--</el-table>-->
+                        <!--</el-col>-->
+                        <!--<el-col :span="8">-->
+                            <!--<h3>提示�?</h3>-->
+                            <!--<p>1. 下级的分润比例如果不配置，就不会分润</p>-->
+                            <!--<p>2. 分润说明提示�?</p>-->
+                        <!--</el-col>-->
+                    <!--</el-row>-->
+                    <el-row class='bottomdistance'>
+                        <el-col :span="20">
+                            <el-form-item label="地址">
+                                <el-col :span="5">
+                                    <el-row>
+                                        <el-col :span="20">
+                                            <el-select v-model="addAgentObj.province" placeholder="--省--" @change='proC'>
+                                                <el-option v-for="item in provinceData" :label="item.provincename" :value="item.provinceid">
+                                                    </el-option-group>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="5">
+                                    <el-row>
+                                        <el-col :span="20">
+                                            <el-select v-model="addAgentObj.city" placeholder="--市--" @change='cityC'>
+                                                <el-option v-for="item in cityData" :label="item.cityname" :value="item.cityid">
+                                                    </el-option-group>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="5">
+                                    <el-row>
+                                        <el-col :span="20">
+                                            <el-select v-model="addAgentObj.county" placeholder="--区--" @change='countyC'>
+                                                <el-option v-for="item in countyData" :label="item.districtname" :value="item.districtid">
+                                                    </el-option-group>
+                                            </el-select>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="9"> <el-input v-model="addAgentObj.detailaddress" placeholder="请输入详细地址"></el-input></el-col>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row class='bottomdistance btns text-center'>
+                        <el-button-group>
+                                <el-button type="primary" @click="doAddAgent">创建</el-button>
+                                <el-button type="primary" @click="addAgentIsShow=false">取消</el-button>
+                        </el-button-group>
+                    </el-row>
+                </el-form>
+                <!-- end -->
+            </el-dialog>
+            <!-- result start -->
+            <!--<el-dialog title="提示" v-model="addAgentResultIsShow" size="tiny">-->
+                <!--<span>添加商户{{addAgentResultTips}}</span>-->
+						<!--<span slot="footer" class="dialog-footer">-->
+						<!--<el-button @click="addAgentDone">完成</el-button>-->
+						<!--<el-button type="primary" @click="addAgentDoing">继续/重新创建</el-button>-->
+					<!--</span>-->
+            <!--</el-dialog>-->
+            <!-- result end -->
+
+                <el-dialog title="修改代理商" v-model="modifyIsShow" size="small">
+                    <!-- start -->
+                    <el-form ref="modifyobj" :model="modifyobj" label-width="100px">
+                        <el-row class="bottomdistance">
+                            <el-col :span="10">
+                                <el-form-item label="机构编码">
+                                    <el-input v-model="modifyobj.compOrgCode" :disabled="true" class="disablefill"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="10">
+                                <el-form-item label="法人身份证号">
+                                    <el-input v-model="modifyobj.crLicenceNo" :disabled="true" class="disablefill"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+
+                        <el-row class="bottomdistance">
+                            <el-col :span="10">
+                                <el-form-item label="身份证正面">
+                                    <el-input v-model="modifyobj.idFront" :disabled="true"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="10">
+                                <el-form-item label="身份证反面">
+                                    <el-input v-model="modifyobj.idBack" :disabled="true"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row class="bottomdistance">
+                            <el-col :span="10">
+                                <el-form-item label="法人姓名">
+                                    <el-input v-model="modifyobj.crName" :disabled="true" class="disablefill"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="10">
+                                <el-form-item label="邮箱">
+                                    <el-input v-model="modifyobj.email" ></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row class="bottomdistance">
+
+                            <el-col :span="10">
+                                <el-form-item label="地址">
+                                    <el-input v-model="modifyobj.address"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="10">
+                                <el-form-item label="联系电话">
+                                    <el-input v-model="modifyobj.telephone"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <!-- 支持分润的业�?-->
+                        <!--<el-row>-->
+                        <!--<el-col :span="4">-->
+                        <!--<h3>支持分润的业�?</h3>-->
+                        <!--</el-col>-->
+                        <!--<el-col :span="20">-->
+                        <!--<el-checkbox-group v-model="addAgentObj.businessArr" @change=''>-->
+                        <!--<el-checkbox label="cb1">刷卡收款</el-checkbox>-->
+                        <!--<el-checkbox label="cb2">D+0业务</el-checkbox>-->
+                        <!--<el-checkbox label="cb3">扫码收款</el-checkbox>-->
+                        <!--</el-checkbox-group>-->
+                        <!--</el-col>-->
+                        <!--</el-row>-->
+                        <!-- 分润比例 -->
+                        <!--<el-row :gutter="40">-->
+                        <!--<el-col :span="4">-->
+                        <!--<h3>分润比例</h3>-->
+                        <!--</el-col>-->
+                        <!--<el-col :span="12">-->
+                        <!--<el-table :data="businessRate" style="width: 450px">-->
+                        <!--<el-table-column prop="business" label="业务" width="120"></el-table-column>-->
+                        <!--<el-table-column prop="rate" label="分润比例" width="120"></el-table-column>-->
+                        <!--<el-table-column prop="" label="" width="150"></el-table-column>-->
+                        <!--</el-table>-->
+                        <!--</el-col>-->
+                        <!--<el-col :span="8">-->
+                        <!--<h3>提示�?</h3>-->
+                        <!--<p>1. 下级的分润比例如果不配置，就不会分润</p>-->
+                        <!--<p>2. 分润说明提示�?</p>-->
+                        <!--</el-col>-->
+                        <!--</el-row>-->
+                        <el-row class="bottomdistance">
+                            <el-col :sapn="5" :offset="10">
+                                <el-button type="primary" @click="doModify" class="text-center">立即修改</el-button>
+                            </el-col>
+                        </el-row>
+                    </el-form>
+                    <!-- end -->
+                </el-dialog>
+                <!-- result start -->
+                <el-dialog title="提示" v-model="modifyResultIsShow" size="tiny">
+                    <span>添加商户{{modifyResultTips}}</span>
+						<span slot="footer" class="dialog-footer">
+						<el-button @click="modifyDone">完成</el-button>
+						<el-button type="primary" @click="modifyDoing">继续/重新创建</el-button>
+					</span>
+                </el-dialog>
+                <!-- result end -->
+        </div>
+            <!--<div class="addAgent">-->
+                <!--<el-dialog title="添加代理�?" v-model="addAgentIsShow" size="small">-->
+                    <!--&lt;!&ndash; start &ndash;&gt;-->
+                    <!--<el-form ref="addAgentObj" :model="addAgentObj" label-width="100px">-->
+
+                    	<!--<el-row>-->
+                    		<!--<el-col :span="10">-->
+	                            <!--<el-form-item label="代理商名�?">-->
+	                                <!--<el-input v-model="addAgentObj.agentName"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+	                        <!--<el-col :span="10">-->
+	                            <!--<el-form-item label="代理商地�?">-->
+	                                <!--<el-input v-model="addAgentObj.agentAddress"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+                        <!--</el-row>-->
+
+                    	<!--<el-row>-->
+                    		<!--<el-col :span="10">-->
+	                            <!--<el-form-item label="联系�?">-->
+	                                <!--<el-input v-model="addAgentObj.holderName"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+	                        <!--<el-col :span="10">-->
+	                            <!--<el-form-item label="详细地址">-->
+	                                <!--<el-input v-model="addAgentObj.holderAddress"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+                        <!--</el-row>-->
+
+                    	<!--<el-row>-->
+                    		<!--<el-col :span="10">-->
+	                            <!--<el-form-item label="联系电话">-->
+	                                <!--<el-input v-model="addAgentObj.tel"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+	                        <!--<el-col :span="10">-->
+	                            <!--<el-form-item label="法人姓名">-->
+	                                <!--<el-input v-model="addAgentObj.legalName"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+                        <!--</el-row>-->
+
+                    	<!--<el-row>-->
+                    		<!--<el-col :span="10">-->
+	                            <!--<el-form-item label="登录用户�?">-->
+	                                <!--<el-input v-model="addAgentObj.loginName"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+	                        <!--<el-col :span="10">-->
+	                            <!--<el-form-item label="法人身份�?">-->
+	                                <!--<el-input v-model="addAgentObj.legalID"></el-input>-->
+	                            <!--</el-form-item>-->
+	                        <!--</el-col>-->
+                        <!--</el-row>-->
+                    	<!--<el-row>-->
+                    		<!--<el-col :span="4">-->
+			                	<!--<h3>支持分润的业�?</h3>-->
+			            	<!--</el-col>-->
+				            <!--<el-col :span="20">-->
+				                <!--<el-checkbox-group v-model="addAgentObj.businessArr" @change=''>-->
+				                    <!--<el-checkbox label="cb1" :checked>刷卡收款</el-checkbox>-->
+				                    <!--<el-checkbox label="cb2" :checked>D+0业务</el-checkbox>-->
+				                    <!--<el-checkbox label="cb3" :checked>扫码收款</el-checkbox>-->
+				                <!--</el-checkbox-group>-->
+				            <!--</el-col>-->
+                        <!--</el-row>-->
+						<!--&lt;!&ndash; 分润比例 &ndash;&gt;-->
+						<!--<el-row :gutter="40">-->
+							<!--<el-col :span="4">-->
+								<!--<h3>分润比例</h3>-->
+							<!--</el-col>-->
+							<!--<el-col :span="12">-->
+								<!--<el-table :data="businessRate" style="width: 450px">-->
+									<!--<el-table-column prop="business" label="业务" width="120"></el-table-column>-->
+									<!--<el-table-column prop="rate" label="分润比例" width="120"></el-table-column>-->
+									<!--<el-table-column prop="" label="" width="150"></el-table-column>-->
+  								<!--</el-table>-->
+							<!--</el-col>-->
+							<!--<el-col :span="8">-->
+								<!--<h3>提示�?</h3>-->
+								<!--<p>1. 下级的分润比例如果不配置，就不会分润</p>-->
+								<!--<p>2. 分润说明提示�?</p>-->
+							<!--</el-col>-->
+						<!--</el-row>-->
+						<!--<el-row>-->
+							<!--<el-col :sapn="5" :offset="10">-->
+                            	<!--<el-button type="primary" @click="doAddAgent">立即创建</el-button>-->
+                        	<!--</el-col>-->
+						<!--</el-row>-->
+                    <!--</el-form>-->
+                    <!--&lt;!&ndash; end &ndash;&gt;-->
+                <!--</el-dialog>-->
+                <!--&lt;!&ndash; result start &ndash;&gt;-->
+                <!--<el-dialog title="提示" v-model="addAgentResultIsShow" size="tiny">-->
+					<!--<span>添加商户{{addAgentResultTips}}</span>-->
+						<!--<span slot="footer" class="dialog-footer">-->
+						<!--<el-button @click="addAgentDone">完成</el-button>-->
+						<!--<el-button type="primary" @click="addAgentDoing">继续/重新创建</el-button>-->
+					<!--</span>-->
+				<!--</el-dialog>-->
+                    <!--&lt;!&ndash; result end &ndash;&gt;-->
+            <!--</div>-->
+    <!--</div>-->
+
+
+    </div>
+</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

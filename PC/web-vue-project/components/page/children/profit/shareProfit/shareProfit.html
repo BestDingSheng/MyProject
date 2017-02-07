@@ -1,0 +1,90 @@
+<div class="deal_gathering">
+    <el-row >
+        <el-row :gutter="20" class="firstRow">
+            <el-col :span="8">
+                <el-row>
+                    <el-col :span="8" >
+                        <span class="title">交易时间段</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-date-picker v-model="createdTimeRange" @change="dealTime()" format="yyyy-MM-dd HH-mm-ss" type="datetimerange" placeholder="选择日期范围" style="width:210px;"></el-date-picker>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="8">
+                <el-row>
+                    <el-col :span="8" >
+                        <span class="title">交易类型</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-select v-model="searchObj.tradeType" placeholder="请选择交易类型">
+                            <el-option v-for="item in transCodeData" :label="item.label" :value="item.value"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+        <!-- 第二行 -->
+        <el-row :gutter="20" class="secondRow">
+            <el-col :span="8">
+                <el-row>
+                    <el-col :span="8" >
+                        <span class="title">分属代理商</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-select v-model="searchObj.signOrg" placeholder="请选择分属代理商">
+                            <el-option v-for="item in signOrgData" :label="item.label" :value="item.value"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="8">
+                <el-row >
+                    <el-col :span="8">
+                        <span class="title">操&emsp;作</span>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-button-group>
+                            <el-button type="primary" icon="search" @click="doSearch">搜索</el-button>
+                            <el-button type="primary" icon="delete" @click="cleanSearchInp">清空</el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+    </el-row>
+    <ul class="ctr-bar">
+        <li>
+            <a href="javascript:;"><i class="el-icon-plus"></i>&nbsp;&nbsp;<span>添加</span></a>
+        </li>
+        <li>
+            <a href="javascript:;"><i class="el-icon-delete"></i>&nbsp;&nbsp;<span>删除</span></a>
+        </li>
+        <!-- <li>
+            <a href="javascript:;"><i class="el-icon-edit"></i>&nbsp;&nbsp;<span @click="refreshData">刷新</span></a>
+        </li> -->
+    </ul>
+    <div class="seach_list">
+        <el-table :data="dealData" border style="width: 100%" height="400" :stripe="true">
+            <el-table-column align="center" prop="agent" label="代理商" min-width='100'></el-table-column>
+            <el-table-column align="center" prop="transactionAmount" label="交易总金额(元)" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="poundage" label="合计手续费（元）" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="profit" label="分润比例" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="totalprofit" label="分润总金额" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="subordinateprofit" label="下级分润比例" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="subordinatetotalprofit" label="下级分润总金额" min-width="150"></el-table-column>
+            <el-table-column align="center" prop="subordinatetotalprofit" label="总交易笔数" min-width="150"></el-table-column>
+            <!-- <el-table-column align="center" inline-template :context="_self" fixed="right" label="操作" width="150">
+                <span>
+                <el-button @click="viewDetail(row)" type="text" size="small">查看</el-button>
+              </span>
+            </el-table-column> -->
+        </el-table>
+        <div class="pagination">
+            <div class="block">
+                <el-pagination :current-page="currentPage" :page-size="pageSize" layout="prev, pager, next, jumper" :total="pageTotal">
+                </el-pagination>
+            </div>
+        </div>
+    </div>
+</div>
